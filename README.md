@@ -6,28 +6,28 @@ Una extensión compatible con múltiples navegadores (Chrome, Edge, Brave, Opera
 
 <table>
   <tr>
-    <td align="center" width="160" bgcolor="#f0f0f0"><a href="#la-capital"><img src="imagenes/logos/lacapital.svg" height="48" alt="La Capital"/><br/><sub>La Capital</sub></a></td>
-    <td align="center" width="160" bgcolor="#f0f0f0"><a href="#el-ciudadano"><img src="imagenes/logos/elciudadano.svg" height="48" alt="El Ciudadano"/><br/><sub>El Ciudadano</sub></a></td>
-    <td align="center" width="160" bgcolor="#f0f0f0"><a href="#rosario3"><img src="imagenes/logos/rosario3.svg" height="48" alt="Rosario3"/><br/><sub>Rosario3</sub></a></td>
-    <td align="center" width="160" bgcolor="#f0f0f0"><a href="#el-litoral"><img src="imagenes/logos/ellitoral.svg" height="48" alt="El Litoral"/><br/><sub>El Litoral</sub></a></td>
-    <td align="center" width="160" bgcolor="#f0f0f0"><a href="#la-voz-del-interior"><img src="imagenes/logos/lavoz.svg" height="48" alt="La Voz del Interior"/><br/><sub>La Voz del Interior</sub></a></td>
-    <td align="center" width="160" bgcolor="#f0f0f0"><a href="#clarín"><img src="imagenes/logos/clarin.svg" height="48" alt="Clarín"/><br/><sub>Clarín</sub></a></td>
+    <td align="center" width="160"><a href="#la-capital"><img src="imagenes/logos/lacapital.svg" width="160" alt="La Capital"/><br/><sub>La Capital</sub></a></td>
+    <td align="center" width="160"><a href="#el-ciudadano"><img src="imagenes/logos/elciudadano.svg" width="160" alt="El Ciudadano"/><br/><sub>El Ciudadano</sub></a></td>
+    <td align="center" width="160"><a href="#rosario3"><img src="imagenes/logos/rosario3.svg" width="160" alt="Rosario3"/><br/><sub>Rosario3</sub></a></td>
+    <td align="center" width="160"><a href="#el-litoral"><img src="imagenes/logos/ellitoral.svg" width="160" alt="El Litoral"/><br/><sub>El Litoral</sub></a></td>
+    <td align="center" width="160"><a href="#la-voz-del-interior"><img src="imagenes/logos/lavoz.svg" width="160" alt="La Voz del Interior"/><br/><sub>La Voz del Interior</sub></a></td>
+    <td align="center" width="160"><a href="#clarín"><img src="imagenes/logos/clarin.svg" width="160" alt="Clarín"/><br/><sub>Clarín</sub></a></td>
   </tr>
   <tr>
-    <td align="center" width="160" bgcolor="#f0f0f0"><a href="#la-nación"><img src="imagenes/logos/lanacion.svg" height="48" alt="La Nación"/><br/><sub>La Nación</sub></a></td>
-    <td align="center" width="160" bgcolor="#f0f0f0"><a href="#infobae"><img src="imagenes/logos/infobae.svg" height="48" alt="Infobae"/><br/><sub>Infobae</sub></a></td>
-    <td align="center" width="160" bgcolor="#f0f0f0"><a href="#página12"><img src="imagenes/logos/pagina12.svg" height="48" alt="Página/12"/><br/><sub>Página/12</sub></a></td>
-    <td align="center" width="160" bgcolor="#f0f0f0"><a href="#el-cronista"><img src="imagenes/logos/elcronista.svg" height="48" alt="El Cronista"/><br/><sub>El Cronista</sub></a></td>
-    <td align="center" width="160" bgcolor="#f0f0f0"><a href="#ámbito"><img src="imagenes/logos/ambito.svg" height="48" alt="Ámbito"/><br/><sub>Ámbito</sub></a></td>
-    <td align="center" width="160" bgcolor="#f0f0f0"><a href="#el-destape"><img src="imagenes/logos/eldestape.svg" height="48" alt="El Destape"/><br/><sub>El Destape</sub></a></td>
+    <td align="center" width="160"><a href="#la-nación"><img src="imagenes/logos/lanacion.svg" width="160" alt="La Nación"/><br/><sub>La Nación</sub></a></td>
+    <td align="center" width="160"><a href="#infobae"><img src="imagenes/logos/infobae.svg" width="160" alt="Infobae"/><br/><sub>Infobae</sub></a></td>
+    <td align="center" width="160"><a href="#página12"><img src="imagenes/logos/pagina12.svg" width="160" alt="Página/12"/><br/><sub>Página/12</sub></a></td>
+    <td align="center" width="160"><a href="#el-cronista"><img src="imagenes/logos/elcronista.svg" width="160" alt="El Cronista"/><br/><sub>El Cronista</sub></a></td>
+    <td align="center" width="160"><a href="#ámbito"><img src="imagenes/logos/ambito.svg" width="160" alt="Ámbito"/><br/><sub>Ámbito</sub></a></td>
+    <td align="center" width="160"><a href="#el-destape"><img src="imagenes/logos/eldestape.svg" width="160" alt="El Destape"/><br/><sub>El Destape</sub></a></td>
   </tr>
   <tr>
-    <td align="center" width="160" bgcolor="#f0f0f0"><a href="#perfil"><img src="imagenes/logos/perfil.svg" height="48" alt="Perfil"/><br/><sub>Perfil</sub></a></td>
-    <td align="center" width="160" bgcolor="#f0f0f0"><a href="#olé"><img src="imagenes/logos/ole.svg" height="48" alt="Olé"/><br/><sub>Olé</sub></a></td>
-    <td align="center" width="160" bgcolor="#f0f0f0"><a href="#minuto-uno"><img src="imagenes/logos/minutouno.svg" height="48" alt="Minuto Uno"/><br/><sub>Minuto Uno</sub></a></td>
-    <td align="center" width="160" bgcolor="#f0f0f0"><a href="#la-política-online"><img src="imagenes/logos/lpo.svg" height="48" alt="La Política Online"/><br/><sub>La Política Online</sub></a></td>
-    <td align="center" width="160" bgcolor="#f0f0f0"><a href="#diario-popular"><img src="imagenes/logos/diariopopular.svg" height="48" alt="Diario Popular"/><br/><sub>Diario Popular</sub></a></td>
-    <td align="center" width="160" bgcolor="#f0f0f0"></td>
+    <td align="center" width="160"><a href="#perfil"><img src="imagenes/logos/perfil.svg" width="160" alt="Perfil"/><br/><sub>Perfil</sub></a></td>
+    <td align="center" width="160"><a href="#olé"><img src="imagenes/logos/ole.svg" width="160" alt="Olé"/><br/><sub>Olé</sub></a></td>
+    <td align="center" width="160"><a href="#minuto-uno"><img src="imagenes/logos/minutouno.svg" width="160" alt="Minuto Uno"/><br/><sub>Minuto Uno</sub></a></td>
+    <td align="center" width="160"><a href="#la-política-online"><img src="imagenes/logos/lpo.svg" width="160" alt="La Política Online"/><br/><sub>La Política Online</sub></a></td>
+    <td align="center" width="160"><a href="#diario-popular"><img src="imagenes/logos/diariopopular.svg" width="160" alt="Diario Popular"/><br/><sub>Diario Popular</sub></a></td>
+    <td align="center" width="160"></td>
   </tr>
 </table>
 

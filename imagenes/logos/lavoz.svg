@@ -1,5 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 251.85 70">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 72">
+  <rect width="160" height="72" rx="6" fill="#f0f0f0"/>
+  <svg x="16" y="12" width="128" height="48" id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 251.85 70">
 <defs><style>.cls-1{letter-spacing:-.01em;}.cls-2{font-family:TitilliumWeb-Regular, 'Titillium Web';font-size:24.4px;}.cls-3{fill:#1048b0;stroke-width:0px;}</style>
 </defs>
 <g id="Layer_1-2">
@@ -9,4 +10,5 @@
     <path class="cls-3" d="M208.7,58.95l21.97-31.08h-20.61v-12.25h39.06v9.47l-22.16,31.74h23.03v11.41h-41.3v-9.28Z"/>
     <path class="cls-3" d="M139.01,48.96c.05.05.08.12.08.2,0,.18-.14.33-.33.34h-.12c-.15,0-.31,0-.46,0-2.77,0-5.31-1.51-6.64-3.94l-.07-.09C129.47,42.38,117.8,0,117.8,0h-16.23l21.42,68.71h18.12L162.62,0h-16.23l-9.88,33.89-.24.85c-1.63,5.39-.7,10.77,2.74,14.23"/>
 </g>
+</svg>
 </svg>

@@ -55,8 +55,8 @@ footer p:last-of-type::after {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100px;
-    height: 42px;
+    width: 31%;
+    height: auto;
     opacity: 0.45;
     filter: grayscale(1);
     transition: opacity 0.2s ease, filter 0.2s ease, transform 0.15s ease;
