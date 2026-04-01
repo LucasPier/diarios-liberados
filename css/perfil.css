@@ -1,0 +1,69 @@
+#onesignal-slidedown-container,
+#onesignal-slidedown-dialog,
+#onesignal-bell-container,
+.ad-container,
+#notification-modal-popover-container,
+*[class*="publicidad"],
+*[class*="ads"],
+*[class*="banner"]:not(html),
+*[class*="__ad"],
+*[class*="__promo"],
+*[class*="-promo"],
+*[data-type*="_mgwidget"],
+.head-ad,
+.head-ad.d-lg-flex,
+#pw-content,
+#standard_1,
+#standard_1>*,
+#standard_2,
+#standard_2>*,
+#standard_3,
+#standard_3>*,
+#standard_4,
+#standard_4>*,
+.d-xs-none.d-xxl-flex,
+#inScreen,
+#inScreen>*,
+#mgw1813235_06cec,
+#mgw1813235_06cec>*,
+body .ad-bg,
+body .ad-bg>*,
+*[class*="ads"].d-xs-flex,
+*[class*="ads"].d-sm-flex,
+*[class*="ads"].d-md-flex,
+*[class*="ads"].d-lg-flex,
+*[class*="ads"].d-xl-flex,
+*:not(body):not(.container-fluid):not(.m-0):not(.p-0):not(#news-body):has(> .ads-space),
+*:not(body):has(> .ads-space).d-xs-flex,
+*:not(body):has(> .ads-space).d-sm-flex,
+*:not(body):has(> .ads-space).d-md-flex,
+*:not(body):has(> .ads-space).d-lg-flex,
+*:not(body):has(> .ads-space).d-xl-flex,
+.ad,
+.ad-wrap,
+#cookie-notice,
+#qc-cmp2-container,
+.ob-smartfeed-wrapper {
+    display: none !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    visibility: hidden !important;
+    z-index: -1 !important;
+}
+
+.footer .mustang {
+    height: 0 !important;
+    padding: 0 !important;
+    margin: 24px 0 0 !important;
+}
+
+html._theme-banner-upper ._theme-alt__body {
+    padding-top: 3.4375rem !important;
+}
+
+html._theme-banner-upper ._main-header {
+    top: 0 !important;
+}

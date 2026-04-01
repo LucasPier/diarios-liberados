@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   fill="#ffffff"
+   width="106"
+   height="56"
+   version="1.1"
+   id="svg39"
+   sodipodi:docname="svgexport-1 (1).svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs43" />
+  <sodipodi:namedview
+     id="namedview41"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     showgrid="false" />
+  <rect
+     style="display:inline;fill:#a6ce39;fill-opacity:1;stroke-width:0.88943"
+     id="rect255"
+     width="105.99668"
+     height="55.996918"
+     x="0.0065128803"
+     y="0.0038757473"
+     inkscape:label="rect255" />
+  <g
+     id="use37"
+     style="fill:#ffffff">
+    <g
+       fill="#ffffff"
+       id="g1035">
+      <defs
+         id="defs1021" />
+      <clipPath
+         id="clipPath1025"
+         fill="#ffffff">
+        <rect
+           id="rect1023"
+           y="0"
+           width="106"
+           height="56"
+           x="0"
+           style="fill:#ffffff" />
+      </clipPath>
+      <g
+         id="g1033"
+         fill="#ffffff">
+        <path
+           id="path1027"
+           d="m 38.53,28.68 c 0,9.68 -4.31,15.94 -11.92,15.94 -7.68,0 -11.99,-6.26 -11.99,-15.94 C 14.62,19 18.93,13.1 26.61,13.1 34.22,13.09 38.53,19 38.53,28.68 M 68.88,2.35 H 56.89 L 53.15,28.24 C 52.94,9.28 39.53,1.35 26.62,1.35 13.53,1.35 0,9.39 0,28.68 0,47.97 13.53,56 26.62,56 36.98,56 47.66,50.9 51.59,39.09 L 49.28,55 h 11.99 z"
+           fill="#ffffff" />
+        <path
+           id="path1029"
+           d="M 93.74,31.95 H 81.75 c 1.32,-3.84 3.73,-5.98 6.87,-5.98 4.24,0 5.27,2.35 5.12,5.98 m -4.31,-15.8 c -6.8,0 -22.89,3.42 -22.89,23.27 0,11.6 8.41,16.37 19.16,16.37 8.41,0 14.19,-1.99 18.21,-4.98 L 98.65,42.7 c -3.2,2.18 -6.95,3.39 -10.82,3.49 -3.95,0 -7.09,-1.07 -7.17,-6.19 h 24.42 l 0.37,-2.13 C 108.07,22.55 101.2,16.15 89.43,16.15"
+           fill="#ffffff" />
+        <path
+           id="path1031"
+           fill="#020005"
+           d="M 91.99,12.88 105.44,0 H 91.55 l -9.14,12.88 z" />
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,38 @@
+div.tp-modal,
+div.tp-backdrop,
+#onesignal-slidedown-container,
+#onesignal-slidedown-dialog,
+#onesignal-bell-container,
+.ad-container,
+div[id*="google_ads_iframe"],
+div[class*="banner-box"],
+div[class*="banner-box--300x600"],
+div[id*="ad-slot-top"],
+div[id*="ad-slot"],
+div[class*="ad-slot-top"],
+div[class*="ad-slot"] {
+    display: none !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    visibility: hidden !important;
+    z-index: -1 !important;
+}
+
+body.tp-modal-open {
+    overflow: scroll !important;
+}
+
+.exclusive-icon {
+    background: #000000cf !important;
+}
+
+.exclusive-icon svg path {
+    fill: rgb(245 2 2);
+}
+
+body .exclusive-entry .volanta {
+    color: #ff5353ad !important;
+}

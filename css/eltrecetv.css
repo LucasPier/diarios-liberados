@@ -1,0 +1,17 @@
+#onesignal-slidedown-container,
+#onesignal-slidedown-dialog,
+#onesignal-bell-container,
+.ad-container,
+*[class*="ad-slot"],
+*[class*="ad-container"],
+*[class*="header_ad"],
+*[class*="banner"] {
+    display: none !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    visibility: hidden !important;
+    z-index: -1 !important;
+}

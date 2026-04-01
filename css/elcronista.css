@@ -1,0 +1,45 @@
+#onesignal-slidedown-container,
+#onesignal-slidedown-dialog,
+#onesignal-bell-container,
+.ad-container,
+.paywall-chain,
+*[class*="adzone-ad"],
+.masthead__subscribe,
+.login-google
+
+/*,
+*[class*="banner-container"],
+*[class*="p12banner"],
+*[class*="col-banner"]*/
+    {
+    display: none !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    visibility: hidden !important;
+    z-index: -1 !important;
+}
+
+body {
+    overflow: auto !important;
+}
+
+.article-body--blurred {
+    filter: blur(0px) !important;
+    pointer-events: auto !important;
+    -webkit-user-select: auto !important;
+    -moz-user-select: auto !important;
+    user-select: auto !important;
+}
+
+.article-body--blurred:after {
+    display: none !important;
+}
+
+.story-card__restricted,
+.author-card__restricted,
+.article-head__members {
+    background: #cb4141 !important;
+}

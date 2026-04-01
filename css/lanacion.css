@@ -1,0 +1,23 @@
+#onesignal-slidedown-container,
+#onesignal-slidedown-dialog,
+#onesignal-bell-container,
+.ad-container,
+aside.ln-aside.--tablet-lg-none.grid-item.--1.--col-lg-4.--col-xl-4,
+button[id="btnsuscribite"][class*="--subscribe"],
+div[class*="ln-banner"],
+div[class*="ln-banner-container"],
+div[class*="container --ads"],
+div[class*="default-creative-container"],
+.ln-pwa-modal.fixed,
+div.dropdown.relative.h-max.flex.cursor-pointer:has(> .dropdown-toggle .email span:empty),
+iframe[src*="https://imasdk.googleapis.com"],
+.page-tint.subscriber-content {
+    display: none !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    visibility: hidden !important;
+    z-index: -1 !important;
+}

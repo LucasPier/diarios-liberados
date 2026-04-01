@@ -1,0 +1,25 @@
+#onesignal-slidedown-container,
+#onesignal-slidedown-dialog,
+#onesignal-bell-container,
+.ad-container,
+*[class*="banner-container"],
+/**[class*="banner"]:not([class*="MiniPlayer__banner"]):not([class*="layout"]),*/
+
+
+*[class*="banner"]:has(> *[class*="ad-slot"]),
+*[id*="ad-slot"],
+*[class*="ad-slot"],
+*[class*="col-banner"] {
+    display: none !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    visibility: hidden !important;
+    z-index: -1 !important;
+}
+
+.p12-partners-top-bar .left-col .svg-container {
+    margin-bottom: 0 !important;
+}

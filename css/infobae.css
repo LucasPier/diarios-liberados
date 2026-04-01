@@ -1,0 +1,33 @@
+div[class*="sticky-navbar-ad-container"],
+div[class*="dfpAd"],
+div[class*="ad-exp-push"],
+div[class*="ad-text"],
+div[class*="up-show"],
+div[class*="arcad"],
+div[class*="ad-wrapper"],
+div[id*="google_ads_iframe_"],
+div[class*="iframe-timezone"],
+#onesignal-slidedown-container,
+#onesignal-slidedown-dialog,
+#onesignal-bell-container,
+.ad-container,
+div[class*="iframe-election"] {
+    display: none !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    visibility: hidden !important;
+    z-index: -1 !important;
+}
+
+div.width_full {
+    height: 48px !important;
+}
+
+@media only screen and (max-width: 992px) {
+    div.width_full {
+        height: 56px !important;
+    }
+}

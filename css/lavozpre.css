@@ -1,0 +1,27 @@
+#onesignal-slidedown-container,
+#onesignal-slidedown-dialog,
+#onesignal-bell-container,
+.ad-container,
+a[href*="https://suscripcion.lavoz.com.ar"],
+div[class*="review-topsite"],
+*[class*="__ad"],
+*[class*="__promo"],
+*[class*="-promo"],
+.imgSponsor {
+    display: none !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    visibility: hidden !important;
+    z-index: -1 !important;
+}
+
+.text-lvi-suscription {
+    color: #ff0000a4 !important;
+}
+
+.border-lvi-suscription {
+    border-color: #ff0000a4 !important;
+}

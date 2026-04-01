@@ -1,0 +1,35 @@
+.iWubfS>div,
+.hfYYTL>div,
+.icon-paywall-box>div>div {
+    background: rgb(255 60 60) !important;
+}
+
+ul.contentUser>li.widget-weizenbock a,
+.home li a.kjZxUp {
+    display: none !important;
+}
+
+div[id="div-gpt-ad-horizontal1"][class="sc-d0f79270-0 lcvdWI bannerSRA"],
+div[class="sc-737fb80f-6 dxGPJW"],
+div[class="sc-737fb80f-6 dgXEUb banner sticky"],
+div[class="sc-737fb80f-0 fnFNLM"],
+div[class*="bannerTopHeader"],
+div[class="sc-737fb80f-6 dxGPJW sticky"],
+div[class="sc-737fb80f-8 lgoyrB"],
+*[id^="googl"],
+*[id^="google_ads_iframe"],
+#div-gpt-ad-flotante6,
+#intro-placement,
+.gptFlotante6,
+#__next>div:has(> div>.bannerSRA),
+#__next>div:has(> div>#div-gpt-ad-horizontal1),
+#div-gpt-ad-horizontal1 ins[id*="gpt_unit"] {
+    display: none !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    visibility: hidden !important;
+    z-index: -1 !important;
+}
