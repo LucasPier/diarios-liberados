@@ -1,3 +1,6 @@
+/* Notificaciones - Oculta elementos de OneSignal y el modal de notificaciones del sitio */
+/* Publicidad - Oculta todos los banners, contenedores de ads, promos y espacios publicitarios */
+/* Suscriptores - Oculta el paywall (#pw-content), los estándares de slots y el botón "Suscribite" */
 #onesignal-slidedown-container,
 #onesignal-slidedown-dialog,
 #onesignal-bell-container,
@@ -44,6 +47,7 @@ body .ad-bg>*,
 #cookie-notice,
 #qc-cmp2-container,
 .ob-smartfeed-wrapper,
+/* Suscriptores - Oculta el botón "Suscribite" y la sección de suscripción dentro del artículo */
 a.pw-suscribite,
 #article-content div.subscription,
 #js-side-menu li.pw-cta {
@@ -57,16 +61,19 @@ a.pw-suscribite,
     z-index: -1 !important;
 }
 
+/* Publicidad - Colapsa el footer de publicidad (Mustang) sin romper el layout del footer */
 .footer .mustang {
     height: 0 !important;
     padding: 0 !important;
     margin: 24px 0 0 !important;
 }
 
+/* Publicidad - Corrige el padding-top del body cuando hay un banner superior sticky activo */
 html._theme-banner-upper ._theme-alt__body {
     padding-top: 3.4375rem !important;
 }
 
+/* Publicidad - Corrige la posición del header cuando hay un banner superior sticky activo */
 html._theme-banner-upper ._main-header {
     top: 0 !important;
 }

@@ -1,3 +1,7 @@
+/* Notificaciones - Oculta el modal de Piano (tp-modal/tp-backdrop) y los elementos de OneSignal
+   (notificaciones push). Los primeros 3 selectores son notificaciones, el resto son ads. */
+/* Publicidad - Oculta banners y slots de publicidad (ad-container, google_ads_iframe, ad-slot) */
+/* Edición Impresa - El CSS aplica a flipbook.lacapital.com.ar (visor de edición impresa) también */
 div.tp-modal,
 div.tp-backdrop,
 #onesignal-slidedown-container,
@@ -12,6 +16,7 @@ div[id*="ad-slot"],
 div[class*="ad-slot-top"],
 div[class*="ad-slot"],
 #liveWrapper #liveSponsors,
+/* Suscriptores - Oculta secciones exclusivas para suscriptores en la página */
 .sucriptoresblc-custom-widget .standard-right-column,
 .negocios-custom-widget .extra-holder>article+div,
 .negocios-custom-widget .en-escena-center{
@@ -25,17 +30,21 @@ div[class*="ad-slot"],
     z-index: -1 !important;
 }
 
+/* Notificaciones - Restaura el scroll cuando Piano abre el modal (evita que la página quede bloqueada) */
 body.tp-modal-open {
     overflow: scroll !important;
 }
 
+/* Suscriptores - Cambia el fondo del ícono "exclusivo" a negro semitransparente */
 .exclusive-icon {
     background: #000000cf !important;
 }
 
+/* Suscriptores - Cambia el color del path SVG del ícono "exclusivo" a rojo */
 .exclusive-icon svg path {
     fill: rgb(245 2 2);
 }
+/* Suscriptores - Ajusta colores de texto en artículos exclusivos y ranking */
 .sucriptoresblc-custom-widget .horizontal-entry-box:hover .entry-data .entry-title,
 body .exclusive-entry .volanta,
 .ranking-section .ranking-number {
@@ -43,6 +52,7 @@ body .exclusive-entry .volanta,
     color: rgb(239 126 126) !important;*/
     color: rgb(145 145 145) !important;
 }
+/* Suscriptores - Ajusta el fondo de los bloques de suscriptores y la sección exclusivos */
 .opinion-entry-box:first-child,
 .sucriptoresblc-custom-widget,
 .page-seccion-exclusivo .section-top-part {
@@ -52,6 +62,7 @@ body .exclusive-entry .volanta,
     background: #c3c3c3 !important;
 }*/
 
+/* Suscriptores - Cambia el color del scrollbar del slider de suscriptores */
 .sucriptoresblc-custom-widget .fake-slider::-webkit-scrollbar-thumb {
     background: rgb(240 0 0) !important;
 }

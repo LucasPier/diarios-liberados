@@ -1,18 +1,22 @@
+/* Suscriptores - Cambia el color de fondo del ícono de paywall a negro (reemplaza el color original) */
 .iWubfS>div,
 .hfYYTL>div,
 .icon-paywall-box>div>div {
     background: rgb(0, 0, 0) !important;
 }
 
+/* Suscriptores - Cambia el color del SVG interno del ícono de paywall a rojo */
 .icon-paywall-box>div>div svg[fill="black"]{
     fill: rgb(245, 2, 2) !important;
 }
 
+/* Suscriptores - Oculta el botón de suscripción en el menú de usuario y en el header */
 ul.contentUser>li.widget-weizenbock a,
 .home li a.kjZxUp {
     display: none !important;
 }
 
+/* Publicidad - Oculta todos los banners, slots de GPT/AdSense y contenedores de anuncios */
 div[id="div-gpt-ad-horizontal1"],
 div[class="sc-737fb80f-6 dxGPJW"],
 div[class="sc-737fb80f-6 dgXEUb banner sticky"],

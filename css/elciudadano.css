@@ -1,3 +1,5 @@
+/* Notificaciones - Oculta los elementos de OneSignal (notificaciones push) */
+/* Publicidad - Oculta los elementos con clase .elciu-target (contenedor de ads del sitio) */
 #onesignal-slidedown-container,
 #onesignal-slidedown-dialog,
 #onesignal-bell-container,

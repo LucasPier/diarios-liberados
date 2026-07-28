@@ -1,3 +1,5 @@
+/* Notificaciones - Oculta elementos de OneSignal y el modal de notificaciones propio del sitio */
+/* Publicidad - Oculta banners, publicidades y la sección lateral de publicidad */
 #onesignal-slidedown-container,
 #onesignal-slidedown-dialog,
 #onesignal-bell-container,
@@ -18,6 +20,7 @@ footer.footer>.fs {
     z-index: -1 !important;
 }
 
+/* Publicidad - Colapsa el footer de publicidad (Mustang) sin romper el layout del footer */
 .footer .mustang {
     height: 0 !important;
     padding: 0 !important;

@@ -1,3 +1,6 @@
+/* Notificaciones - Oculta elementos de OneSignal (notificaciones push) */
+/* Publicidad - Oculta grid de ads, advertisements y banners */
+/* Suscriptores - Oculta los elementos de suscripción (_Subscribe) y sus íconos */
 #onesignal-slidedown-container,
 #onesignal-slidedown-dialog,
 #onesignal-bell-container,

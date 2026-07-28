@@ -1,3 +1,6 @@
+/* Notificaciones - Oculta los elementos de OneSignal (notificaciones push) */
+/* Publicidad - Oculta banners de La Nación (ln-banner, ads containers, IMA SDK, page-tint) */
+/* Suscriptores - Oculta el botón "Suscribite", el aside de tablets y el modal PWA de login */
 #onesignal-slidedown-container,
 #onesignal-slidedown-dialog,
 #onesignal-bell-container,
@@ -12,6 +15,7 @@ div[class*="cll-banner"],
 .ln-pwa-modal.fixed,
 div.dropdown.relative.h-max.flex.cursor-pointer:has(> .dropdown-toggle .email span:empty),
 iframe[src*="https://imasdk.googleapis.com"],
+/* Suscriptores - Oculta el "tint" que oscurece el artículo bloqueado */
 .page-tint.subscriber-content {
     display: none !important;
     height: 0 !important;

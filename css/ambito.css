@@ -1,3 +1,6 @@
+/* Notificaciones - Oculta los elementos de OneSignal (notificaciones push) */
+/* Publicidad - Oculta banners y contenedor de ads */
+/* Suscriptores - Oculta el botón de suscripción (excepto el de mobile header/login) */
 #onesignal-slidedown-container,
 #onesignal-slidedown-dialog,
 #onesignal-bell-container,
@@ -14,10 +17,12 @@ button.subscribe-btn:not(.mobile-header-login) {
     z-index: -1 !important;
 }
 
+/* Publicidad - Corrige la posición del header sticky cuando había un banner superior */
 body.body--banner-sticky.with-banner-sticky #headerSticky.main-header__sticky-wrapper {
     top: 0px !important;
 }
 
+/* Publicidad - Colapsa el espacio reservado para el anuncio del header */
 body .header-ad {
     padding: 0 !important;
 }

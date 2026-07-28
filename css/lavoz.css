@@ -1,3 +1,6 @@
+/* Notificaciones - Oculta los elementos de OneSignal (notificaciones push) */
+/* Publicidad - Oculta contenedores de publicidad (ad-container, banners, promos, etc.) */
+/* Suscriptores - Oculta el enlace de suscripción a lavoz.com.ar y el widget de "hot days" patrocinado */
 #onesignal-slidedown-container,
 #onesignal-slidedown-dialog,
 #onesignal-bell-container,
@@ -21,20 +24,25 @@ aside[data-mrf-recirculation*="widget-"]>section>div>div.flex:has(a[target="_bla
     visibility: hidden !important;
     z-index: -1 !important;
 }
+/* Suscriptores - Desactiva el clic en el enlace de suscripción del nav principal (queda visible pero inactivo) */
 a[href*="https://suscripcion.lavoz.com.ar"].nav__link{
     pointer-events: none !important;
 }
 
+/* Suscriptores - Cambia el color del texto de suscripción a rojo (identidad visual de la extensión) */
 .text-lvi-suscription {
     color: #ff0000 !important;
 }
+/* Suscriptores - Cambia el fondo de los elementos de suscripción a rojo */
 .bg-lvi-suscription {
     background-color: #ff0000 !important;
 }
+/* Suscriptores - Cambia el borde de los elementos de suscripción a rojo */
 .border-lvi-suscription {
     border-color: #ff0000 !important;
 }
 
+/* Publicidad - Reduce el padding del nav lateral cuando se eliminan banners del sidebar */
 #sectionsSideBar>header+nav.py-4{
     padding-top: 0.2rem;
 }

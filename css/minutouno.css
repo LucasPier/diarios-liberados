@@ -1,3 +1,5 @@
+/* Notificaciones - Oculta los elementos de OneSignal y el link de suscripción a newsletter */
+/* Publicidad - Oculta ad-slots y banners */
 #onesignal-slidedown-container,
 #onesignal-slidedown-dialog,
 #onesignal-bell-container,
@@ -15,6 +17,7 @@
     z-index: -1 !important;
 }
 
+/* Notificaciones - Restaura el scroll del body (el sitio lo bloquea al mostrar notificaciones o paywall) */
 .no_scroll_body {
     height: auto !important;
     overflow: auto !important;
