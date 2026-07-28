@@ -1,9 +1,55 @@
+// Suscriptores - Verifica si la feature está habilitada en la config del usuario.
+// loader.js (mundo ISOLATED) setea este atributo en document.documentElement.
+// Si no está disponible aún (storage async), reintenta una vez con 150ms de demora.
+let _iniciadoLagaceta = false;
+
+function iniciarSiHabilitado(reintentos) {
+    if (_iniciadoLagaceta) return;
+    const val = document.documentElement.dataset.dlSuscriptores;
+    if (val === 'false') return; // Feature deshabilitada por el usuario
+    if (val === undefined && reintentos > 0) {
+        setTimeout(() => iniciarSiHabilitado(reintentos - 1), 150);
+        return;
+    }
+    _iniciadoLagaceta = true;
+    iniciar();
+}
+
+/**
+ * Utilitario seguro para definir getters/setters en `window` sin provocar
+ * `TypeError: Cannot redefine property` si la propiedad ya fue congelada/definida.
+ */
+function definirInterceptador(prop, transformFn) {
+    let internalVal = window[prop];
+
+    const desc = Object.getOwnPropertyDescriptor(window, prop);
+    if (desc && !desc.configurable) {
+        if (window[prop]) transformFn(window[prop]);
+        return;
+    }
+
+    try {
+        Object.defineProperty(window, prop, {
+            set: function (val) {
+                if (val) transformFn(val);
+                internalVal = val;
+            },
+            get: function () {
+                return internalVal;
+            },
+            configurable: true
+        });
+    } catch (e) {
+        console.warn(`No se pudo definir interceptador para ${prop}:`, e);
+        if (window[prop]) transformFn(window[prop]);
+    }
+}
+
+function iniciar() {
 (function () {
 
     // Suscriptores (La Gaceta) - Intercepta el primer <script type="application/ld+json"> y
     // modifica su contenido antes de que el sitio lo evalúe.
-    // Cambia el productID del artículo de "premium" a "suscripcion_digital_metered" para
-    // que el sistema de paywall lo trate como acceso medido en lugar de acceso restringido.
     const ldJsonObserver = new MutationObserver((mutations) => {
         for (const mutation of mutations) {
             for (const node of mutation.addedNodes) {
@@ -14,9 +60,6 @@
                         const article = graph.find(item => item['@type'] === 'NewsArticle');
                         if (article) {
                             console.log("ld+json interceptado!");
-                            // article.isAccessibleForFree = true;
-                            // delete article.hasPart;
-                            // delete article.isPartOf;
                             article.isPartOf.name = "Acceso Digital Medido";
                             article.isPartOf.productID = "lagaceta.com.ar:suscripcion_digital_metered";
                             node.textContent = JSON.stringify(data);
@@ -33,8 +76,6 @@
     ldJsonObserver.observe(document.documentElement, { childList: true, subtree: true });
 
     // Suscriptores (La Gaceta) - Intercepta el script de dataLayer (Google Tag Manager)
-    // y modifica el access_level de 'hard' (paywall duro) a 'metered' (acceso medido)
-    // para que el sitio no active el muro de pago en el front-end.
     const dataLayerObserver = new MutationObserver((mutations) => {
         for (const mutation of mutations) {
             for (const node of mutation.addedNodes) {
@@ -42,8 +83,6 @@
                     try {
                         if(node.textContent.includes("dataLayer.push(") && node.textContent.includes("'access_level': 'hard'")) {
                             console.log("Script con dataLayer interceptado!");
-
-                            // Reemplazar 'access_level': 'hard' por 'access_level': 'metered'
                             node.textContent = node.textContent.replace("'access_level': 'hard'", "'access_level': 'metered'");
                             node.textContent = node.textContent.replace("'perfil': 'premium'", "'perfil': 'noticia medida'");
                             dataLayerObserver.disconnect();
@@ -59,7 +98,6 @@
     dataLayerObserver.observe(document.documentElement, { childList: true, subtree: true });
 
     // Suscriptores (La Gaceta) - Intercepta la inserción del elemento <article> con clase "premium"
-    // y le quita esa clase antes de que el CSS del sitio lo renderice bloqueado.
     const classPremiumObserver = new MutationObserver((mutations) => {
         for (const mutation of mutations) {
             for (const node of mutation.addedNodes) {
@@ -78,9 +116,7 @@
     });
     classPremiumObserver.observe(document.documentElement, { childList: true, subtree: true });
 
-    // Suscriptores (La Gaceta) - Intercepta XMLHttpRequest para modificar la respuesta del
-    // endpoint /ajax/getInfo que el sitio usa para determinar acceso al artículo.
-    // Modifica los campos is_subscriber, show_wall y article_access para simular acceso de suscriptor.
+    // Suscriptores (La Gaceta) - Intercepta XMLHttpRequest para /ajax/getInfo
     const _XHR = window.XMLHttpRequest;
     window.XMLHttpRequest = function() {
         const xhr = new _XHR();
@@ -98,7 +134,6 @@
                 _modified = true;
                 console.log("Fetch a getInfo interceptado!", _url);
                 data.article_access = "2"
-                // data.is_logged = true;
                 data.is_selected = false;
                 data.is_subscriber = true;
                 data.show_wall = false;
@@ -119,8 +154,6 @@
 
         xhr.open = function(method, url, ...rest) {
             _url = url;
-            // Registrar el listener acá, ANTES que los listeners del sitio,
-            // para que la respuesta esté modificada cuando ellos la lean.
             if (url.includes('/ajax/getInfo')) {
                 _addEventListener('readystatechange', function() {
                     if (xhr.readyState === 4) modificarRespuesta();
@@ -136,58 +169,33 @@
         return xhr;
     };
 
-    let _paywallConfigData = undefined,
-        _article_dataData = undefined;
-
-    // Suscriptores (La Gaceta) - Intercepta la variable global `paywallConfig` que el sitio
-    // usa para determinar el tipo de paywall. La fuerza a "metered" para evitar el bloqueo hard.
-    Object.defineProperty(window, 'paywallConfig', {
-        set: function (val) {
-            if (val && val.type) {
-                console.log("paywallConfig interceptado!", val);
-                val.type = "metered";
-            }
-
-            _paywallConfigData = val;
-        },
-        get: function () {
-            return _paywallConfigData;
-        },
-        configurable: true
+    // Suscriptores (La Gaceta) - Intercepta `paywallConfig`
+    definirInterceptador('paywallConfig', (val) => {
+        if (val.type) {
+            console.log("paywallConfig interceptado!", val);
+            val.type = "metered";
+        }
     });
 
-
-    // Suscriptores (La Gaceta) - Intercepta la variable global `article_data` que el sitio
-    // usa para determinar el nivel de acceso del artículo. La fuerza a "metered".
-    Object.defineProperty(window, 'article_data', {
-        set: function (val) {
-            if (val && val.access) {
-                console.log("article_data interceptado!", val);
-                val.access = "metered";
-            }
-
-            _article_dataData = val;
-        },
-        get: function () {
-            return _article_dataData;
-        },
-        configurable: true
+    // Suscriptores (La Gaceta) - Intercepta `article_data`
+    definirInterceptador('article_data', (val) => {
+        if (val.access) {
+            console.log("article_data interceptado!", val);
+            val.access = "metered";
+        }
     });
-
 
     // Suscriptores (La Gaceta) - Muestra el sidebar que el sitio oculta en artículos premium
     window.addEventListener('load', () => {
-        
         const sidebar = document.getElementById("sidebar");
         if (sidebar) {
-            //sidebar.style.setProperty("display", "block", "important");
             console.log("Sidebar mostrado!");
-            
             document.getElementById("sidebar").style.display = "block";
         } else {
             console.warn("No se encontró el sidebar para mostrarlo.");
         }
     });
 
-
 })();
+}
+iniciarSiHabilitado(1);

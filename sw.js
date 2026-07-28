@@ -1,4 +1,24 @@
-const DOMAINS = ["www.lacapital.com.ar", "flipbook.lacapital.com.ar", "www.lavoz.com.ar", "www.lagaceta.com.ar", "www.clarin.com", "elle.clarin.com", "www.lanacion.com.ar", "www.infobae.com", "www.ellitoral.com", "www.rosario3.com", "www.lapoliticaonline.com", "www.pagina12.com.ar", "www.cronista.com", "www.ambito.com", "www.eldestapeweb.com", "www.perfil.com", "noticias.perfil.com", "442.perfil.com", "caras.perfil.com", "parabrisas.perfil.com", "fortuna.perfil.com", "weekend.perfil.com", "supercampo.perfil.com", "look.perfil.com", "luz.perfil.com", "mia.perfil.com", "lunateen.perfil.com", "horizonte.perfil.com", "exitoina.perfil.com", "brasil.perfil.com", "marieclaire.perfil.com", "radio.perfil.com", "canalnet.tv", "rouge.perfil.com", "hombre.perfil.com", "batimes.com.ar", "www.ole.com.ar", "www.elciudadanoweb.com", "viapais.com.ar", "www.diariopopular.com.ar", "www.eltrecetv.com.ar", "www.radiomitre.com.ar", "www.tycsports.com", "www.ciudad.com.ar", "www.tn.com.ar", "ar.cienradios.com", "radiomitre.cienradios.com", "la100.cienradios.com", "mia.cienradios.com", "www.kenja.tech", "www.minutouno.com", "imasdk.googleapis.com"];
+const BASE_DOMAINS = [
+  "lacapital.com.ar", "flipbook.lacapital.com.ar", "lavoz.com.ar", "lagaceta.com.ar",
+  "clarin.com", "elle.clarin.com", "lanacion.com.ar", "infobae.com", "ellitoral.com",
+  "puertonegocios.com", "rosario3.com", "lapoliticaonline.com", "pagina12.com.ar",
+  "cronista.com", "ambito.com", "eldestapeweb.com", "perfil.com", "noticias.perfil.com",
+  "442.perfil.com", "caras.perfil.com", "parabrisas.perfil.com", "fortuna.perfil.com",
+  "weekend.perfil.com", "supercampo.perfil.com", "look.perfil.com", "luz.perfil.com",
+  "mia.perfil.com", "lunateen.perfil.com", "horizonte.perfil.com", "exitoina.perfil.com",
+  "brasil.perfil.com", "marieclaire.perfil.com", "radio.perfil.com", "canalnet.tv",
+  "rouge.perfil.com", "hombre.perfil.com", "batimes.com.ar", "ole.com.ar",
+  "elciudadanoweb.com", "viapais.com.ar", "diariopopular.com.ar", "eltrecetv.com.ar",
+  "radiomitre.com.ar", "tycsports.com", "ciudad.com.ar", "tn.com.ar", "cienradios.com",
+  "ar.cienradios.com", "radiomitre.cienradios.com", "la100.cienradios.com",
+  "mia.cienradios.com", "kenja.tech", "minutouno.com", "imasdk.googleapis.com"
+];
+
+// Incluye dominios apex y subdominios www. para matchear sin importar si el usuario usa www o no
+const DOMAINS = Array.from(new Set([
+  ...BASE_DOMAINS,
+  ...BASE_DOMAINS.map(d => d.startsWith('www.') ? d : `www.${d}`)
+]));
 
 // Reglas de red dinámicas aplicadas vía declarativeNetRequest.
 // Todas las reglas de este bloque corresponden a: Publicidad
@@ -10,17 +30,7 @@ const RULES_PUBLICIDAD = [
     action: { type: "block" },
     condition: {
       urlFilter: ".doubleclick.net",
-      initiatorDomains: Array.from(DOMAINS).filter(d => d !== "www.diariopopular.com.ar"),
-    },
-  },
-  {
-    // Publicidad - CDN de Wyleex (proveedor de ads de La Voz / La Gaceta)
-    id: 3,
-    priority: 1,
-    action: { type: "block" },
-    condition: {
-      urlFilter: "cdn.wyleex.com",
-      initiatorDomains: DOMAINS, // Global,
+      initiatorDomains: DOMAINS.filter(d => d !== "www.diariopopular.com.ar" && d !== "diariopopular.com.ar"),
     },
   },
   {
@@ -30,7 +40,7 @@ const RULES_PUBLICIDAD = [
     action: { type: "block" },
     condition: {
       urlFilter: ".adzonestatic.com",
-      initiatorDomains: DOMAINS, // Global,
+      initiatorDomains: DOMAINS,
     },
   },
   {
@@ -40,7 +50,7 @@ const RULES_PUBLICIDAD = [
     action: { type: "block" },
     condition: {
       urlFilter: "imasdk.googleapis.com",
-      initiatorDomains: DOMAINS, // Global,
+      initiatorDomains: DOMAINS,
     },
   },
   {
@@ -50,7 +60,7 @@ const RULES_PUBLICIDAD = [
     action: { type: "block" },
     condition: {
       urlFilter: "adengine.snigelweb.com",
-      initiatorDomains: DOMAINS, // Global,
+      initiatorDomains: DOMAINS,
     },
   },
   {
@@ -60,7 +70,7 @@ const RULES_PUBLICIDAD = [
     action: { type: "block" },
     condition: {
       urlFilter: ".vidoomy.com",
-      initiatorDomains: DOMAINS, // Global,
+      initiatorDomains: DOMAINS,
     },
   },
   {
@@ -70,7 +80,7 @@ const RULES_PUBLICIDAD = [
     action: { type: "block" },
     condition: {
       urlFilter: "d323qqnnjmo65t.cloudfront.net/zonda",
-      initiatorDomains: ["www.lavoz.com.ar", "www.lagaceta.com.ar"],
+      initiatorDomains: ["www.lavoz.com.ar", "lavoz.com.ar", "www.lagaceta.com.ar", "lagaceta.com.ar"],
     },
   },
   {
@@ -80,7 +90,7 @@ const RULES_PUBLICIDAD = [
     action: { type: "block" },
     condition: {
       urlFilter: ".taboola.",
-      initiatorDomains: DOMAINS, // Global,
+      initiatorDomains: DOMAINS,
     },
   },
   {
@@ -90,7 +100,7 @@ const RULES_PUBLICIDAD = [
     action: { type: "block" },
     condition: {
       urlFilter: ".mgid.com",
-      initiatorDomains: DOMAINS, // Global,
+      initiatorDomains: DOMAINS,
     },
   },
   {
@@ -100,7 +110,7 @@ const RULES_PUBLICIDAD = [
     action: { type: "block" },
     condition: {
       urlFilter: ".pubmatic.com",
-      initiatorDomains: DOMAINS, // Global,
+      initiatorDomains: DOMAINS,
     },
   },
   {
@@ -110,17 +120,7 @@ const RULES_PUBLICIDAD = [
     action: { type: "block" },
     condition: {
       urlFilter: "zonda-wyleex.lavoz.com.ar",
-      initiatorDomains: ["www.lavoz.com.ar"],
-    },
-  },
-  {
-    // Publicidad - Zonda DevOps (infraestructura de ads de La Voz / La Gaceta)
-    id: 13,
-    priority: 1,
-    action: { type: "block" },
-    condition: {
-      urlFilter: ".zondadevops.com",
-      initiatorDomains: ["www.lavoz.com.ar", "www.lagaceta.com.ar"],
+      initiatorDomains: ["www.lavoz.com.ar", "lavoz.com.ar"],
     },
   },
   {
@@ -130,7 +130,7 @@ const RULES_PUBLICIDAD = [
     action: { type: "block" },
     condition: {
       urlFilter: "pixel-sync.sitescout.com",
-      initiatorDomains: DOMAINS, // Global,
+      initiatorDomains: DOMAINS,
     },
   },
   {
@@ -140,7 +140,7 @@ const RULES_PUBLICIDAD = [
     action: { type: "block" },
     condition: {
       urlFilter: ".seedtag.com",
-      initiatorDomains: DOMAINS, // Global,
+      initiatorDomains: DOMAINS,
     },
   },
   {
@@ -150,7 +150,7 @@ const RULES_PUBLICIDAD = [
     action: { type: "block" },
     condition: {
       urlFilter: ".id5-sync.com",
-      initiatorDomains: DOMAINS, // Global,
+      initiatorDomains: DOMAINS,
     },
   },
   {
@@ -160,7 +160,7 @@ const RULES_PUBLICIDAD = [
     action: { type: "block" },
     condition: {
       urlFilter: ".e-planning.",
-      initiatorDomains: DOMAINS, // Global,
+      initiatorDomains: DOMAINS,
     },
   },
   {
@@ -170,7 +170,7 @@ const RULES_PUBLICIDAD = [
     action: { type: "block" },
     condition: {
       urlFilter: "google-analytics.com,",
-      initiatorDomains: DOMAINS, // Global,
+      initiatorDomains: DOMAINS,
     },
   },
   {
@@ -180,7 +180,7 @@ const RULES_PUBLICIDAD = [
     action: { type: "block" },
     condition: {
       urlFilter: "adnxs.com",
-      initiatorDomains: DOMAINS, // Global,
+      initiatorDomains: DOMAINS,
     },
   },
   {
@@ -190,7 +190,7 @@ const RULES_PUBLICIDAD = [
     action: { type: "block" },
     condition: {
       urlFilter: "adtech.de",
-      initiatorDomains: DOMAINS, // Global,
+      initiatorDomains: DOMAINS,
     },
   },
   {
@@ -200,7 +200,7 @@ const RULES_PUBLICIDAD = [
     action: { type: "block" },
     condition: {
       urlFilter: "adform.net",
-      initiatorDomains: DOMAINS, // Global,
+      initiatorDomains: DOMAINS,
     },
   },
   {
@@ -210,7 +210,7 @@ const RULES_PUBLICIDAD = [
     action: { type: "block" },
     condition: {
       urlFilter: "adroll.com",
-      initiatorDomains: DOMAINS, // Global,
+      initiatorDomains: DOMAINS,
     },
   },
   {
@@ -220,7 +220,7 @@ const RULES_PUBLICIDAD = [
     action: { type: "block" },
     condition: {
       urlFilter: "scorecardresearch.com",
-      initiatorDomains: DOMAINS, // Global,
+      initiatorDomains: DOMAINS,
     },
   },
   {
@@ -230,7 +230,7 @@ const RULES_PUBLICIDAD = [
     action: { type: "block" },
     condition: {
       urlFilter: "mathtag.com",
-      initiatorDomains: DOMAINS, // Global,
+      initiatorDomains: DOMAINS,
     },
   },
   {
@@ -240,7 +240,7 @@ const RULES_PUBLICIDAD = [
     action: { type: "block" },
     condition: {
       urlFilter: "segment.io",
-      initiatorDomains: DOMAINS, // Global,
+      initiatorDomains: DOMAINS,
     },
   },
   {
@@ -250,7 +250,7 @@ const RULES_PUBLICIDAD = [
     action: { type: "block" },
     condition: {
       urlFilter: "ads.js",
-      initiatorDomains: DOMAINS, // Global,
+      initiatorDomains: DOMAINS,
     },
   }
 ];
@@ -259,13 +259,33 @@ const RULES_PUBLICIDAD = [
 // Todas las reglas de este bloque corresponden a: Suscriptores
 const RULES_SUSCRIPTORES = [
   {
+    // Suscriptores - CDN de Wyleex (proveedor de La Capital / La Voz / La Gaceta)
+    id: 3,
+    priority: 1,
+    action: { type: "block" },
+    condition: {
+      urlFilter: "cdn.wyleex.com",
+      initiatorDomains: DOMAINS,
+    },
+  },
+  {
+    // Suscriptores (La Voz / La Gaceta) - Zonda DevOps
+    id: 13,
+    priority: 1,
+    action: { type: "block" },
+    condition: {
+      urlFilter: ".zondadevops.com",
+      initiatorDomains: ["www.lavoz.com.ar", "lavoz.com.ar", "www.lagaceta.com.ar", "lagaceta.com.ar"],
+    },
+  },
+  {
     // Suscriptores (La Gaceta) - Script SWG (Subscribe with Google) propio del sitio, gestiona el paywall
     id: 14,
     priority: 1,
     action: { type: "block" },
     condition: {
       urlFilter: "www.lagaceta.com.ar/js/sus/swg-merge",
-      initiatorDomains: ["www.lagaceta.com.ar"],
+      initiatorDomains: ["www.lagaceta.com.ar", "lagaceta.com.ar"],
     },
   },
   {
@@ -275,7 +295,7 @@ const RULES_SUSCRIPTORES = [
     action: { type: "block" },
     condition: {
       urlFilter: "zonda.lavoz.com.ar",
-      initiatorDomains: ["www.lavoz.com.ar", "www.lagaceta.com.ar"],
+      initiatorDomains: ["www.lavoz.com.ar", "lavoz.com.ar", "www.lagaceta.com.ar", "lagaceta.com.ar"],
     },
   },
   {
@@ -285,34 +305,76 @@ const RULES_SUSCRIPTORES = [
     action: { type: "block" },
     condition: {
       urlFilter: "raw.githubusercontent.com/subscriptions-project/swg-js",
-      initiatorDomains: ["www.lagaceta.com.ar"],
+      initiatorDomains: ["www.lagaceta.com.ar", "lagaceta.com.ar"],
     },
   }
 ];
 
-// Combinamos ambos arrays para registrar todas las reglas de una sola vez.
-const RULES = [...RULES_PUBLICIDAD, ...RULES_SUSCRIPTORES];
+// ID del ruleset estático (rules.json) — aplica sólo a la feature "suscriptores"
+const STATIC_RULESET_ID = "ruleset_lagaceta";
 
-// Primero limpiamos cualquier regla previa con esos IDs,
-// y recién después agregamos las nuevas. Dos llamadas separadas
-// para evitar conflictos por IDs duplicados entre sesiones.
-chrome.declarativeNetRequest.updateDynamicRules(
-  { removeRuleIds: RULES.map((r) => r.id) },
-  () => {
-    if (chrome.runtime.lastError) {
-      console.error("Error al remover reglas:", chrome.runtime.lastError.message);
-      return;
+let isApplyingRules = false;
+let pendingApply = false;
+
+/**
+ * Aplica las reglas declarativeNetRequest según la config del usuario.
+ * Serializa la ejecución mediante un lock (isApplyingRules) para evitar
+ * ejecuciones concurrentes y colisiones de IDs en llamadas asincrónicas simultáneas.
+ */
+async function applyRules() {
+    if (isApplyingRules) {
+        pendingApply = true;
+        return;
     }
+    isApplyingRules = true;
 
-    chrome.declarativeNetRequest.updateDynamicRules(
-      { addRules: RULES },
-      () => {
-        if (chrome.runtime.lastError) {
-          console.error("Error al agregar reglas:", chrome.runtime.lastError.message);
-          return;
-        }
-        console.log("Reglas de bloqueo aplicadas correctamente.");
-      }
-    );
-  }
-);
+    try {
+        do {
+            pendingApply = false;
+
+            const cfg = await chrome.storage.sync.get({
+                feature_publicidad:    true,
+                feature_suscriptores:  true
+            });
+
+            // Construir el conjunto de reglas a activar según config
+            const rulesToAdd = [
+                ...(cfg.feature_publicidad   ? RULES_PUBLICIDAD   : []),
+                ...(cfg.feature_suscriptores ? RULES_SUSCRIPTORES : []),
+            ];
+
+            // Obtener de Chrome todas las reglas dinámicas actualmente instaladas
+            const currentRules = await chrome.declarativeNetRequest.getDynamicRules();
+            const removeRuleIds = currentRules.map(r => r.id);
+
+            // Actualización atómica en una sola llamada
+            await chrome.declarativeNetRequest.updateDynamicRules({
+                removeRuleIds: removeRuleIds,
+                addRules: rulesToAdd
+            });
+
+            console.log(`Reglas aplicadas correctamente (${rulesToAdd.length} reglas activas).`);
+
+            // Habilitar/deshabilitar el ruleset estático (rules.json) según suscriptores
+            await chrome.declarativeNetRequest.updateEnabledRulesets({
+                enableRulesetIds:  cfg.feature_suscriptores ? [STATIC_RULESET_ID] : [],
+                disableRulesetIds: cfg.feature_suscriptores ? [] : [STATIC_RULESET_ID],
+            });
+        } while (pendingApply);
+    } catch (e) {
+        console.error("Error al actualizar reglas declarativeNetRequest:", e);
+    } finally {
+        isApplyingRules = false;
+    }
+}
+
+// Aplicar reglas al iniciar el Service Worker
+applyRules();
+
+// Re-aplicar reglas cuando el usuario cambia la configuración desde el popup
+chrome.storage.onChanged.addListener((changes, area) => {
+    if (area !== 'sync') return;
+    if ('feature_publicidad' in changes || 'feature_suscriptores' in changes) {
+        applyRules();
+    }
+});

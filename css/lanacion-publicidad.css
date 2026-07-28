@@ -5,7 +5,8 @@ div[class*="ln-banner-container"],
 div[class*="container --ads"],
 div[class*="default-creative-container"],
 div[class*="cll-banner"],
-iframe[src*="https://imasdk.googleapis.com"] {
+iframe[src*="https://imasdk.googleapis.com"],
+aside.ln-aside.--tablet-lg-none.grid-item.--1.--col-lg-4.--col-xl-4 {
     display: none !important;
     height: 0 !important;
     overflow: hidden !important;
