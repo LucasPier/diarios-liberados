@@ -222,3 +222,14 @@ Una extensión compatible con múltiples navegadores (Chrome, Edge, Brave, Opera
 ✅ Se bloquean diálogos de notificaciones
 
 ℹ️ El medio no requiere suscripción para leer sus notas
+
+---
+
+## ⚖️ Descargo de Responsabilidad
+
+Este proyecto fue desarrollado exclusivamente con **fines educativos, de investigación técnica y aprendizaje** sobre manipulación del DOM, arquitectura de extensiones web e intervención del lado del cliente (*client-side*).
+
+- **Sin fines de lucro:** Este proyecto es totalmente gratuito, de código abierto y no persigue ningún beneficio económico, monetización ni comercialización directa o indirecta.
+- **Sin redistribución de contenido:** La extensión no almacena, aloja ni retransmite material protegido por derechos de autor. Todas las modificaciones se ejecutan de manera local en el navegador del usuario sobre la información que el propio sitio web ya envió al cliente.
+- **Uso bajo propia responsabilidad:** El software se provee "tal cual" (*as-is*), sin garantías de ningún tipo. Cada usuario es responsable del uso que le da a la herramienta y del cumplimiento de los términos y condiciones de los sitios web que visita.
+- **Marcas y Derechos:** Todos los nombres, logos y marcas registradas mencionadas pertenecen a sus respectivos dueños y se utilizan únicamente con fines identificatorios y descriptivos.
