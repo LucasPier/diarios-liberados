@@ -79,6 +79,67 @@
             </div>
         </section>
 
+        <!-- Sección de Configuración -->
+        <section class="config-section" id="configuracion">
+            <h2 class="config-title">
+                <span class="config-title-icon">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 1.41 1.41M4.93 4.93a10 10 0 0 0-1.41 1.41M19.07 19.07a10 10 0 0 0 1.41-1.41M4.93 19.07a10 10 0 0 1-1.41-1.41M12 2v2M12 20v2M2 12h2M20 12h2"/></svg>
+                </span>
+                Configuración
+            </h2>
+
+            <!-- Banner de recarga animado -->
+            <div class="reload-banner-wrapper" id="reload-banner-wrapper">
+                <div class="reload-banner" id="reload-banner">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+                    <span id="reload-banner-text">Recargá la página para aplicar los cambios</span>
+                    <button class="btn-reload" id="btn-reload">Recargar ahora</button>
+                </div>
+            </div>
+
+            <!-- Toggle: Publicidad -->
+            <div class="config-row" id="row-publicidad">
+                <div class="config-info">
+                    <span class="config-label">Quitar publicidades</span>
+                    <span class="config-desc">Bloquea anuncios y redes publicitarias en todos los medios</span>
+                </div>
+                <label class="toggle" id="toggle-publicidad-label" for="toggle-publicidad">
+                    <input type="checkbox" id="toggle-publicidad" checked>
+                    <span class="toggle-track">
+                        <span class="toggle-thumb"></span>
+                    </span>
+                </label>
+            </div>
+
+            <!-- Toggle: Notificaciones -->
+            <div class="config-row" id="row-notificaciones">
+                <div class="config-info">
+                    <span class="config-label">Ocultar diálogos de notificaciones</span>
+                    <span class="config-desc">Elimina banners y pop-ups de suscripción a notificaciones push</span>
+                </div>
+                <label class="toggle" id="toggle-notificaciones-label" for="toggle-notificaciones">
+                    <input type="checkbox" id="toggle-notificaciones" checked>
+                    <span class="toggle-track">
+                        <span class="toggle-thumb"></span>
+                    </span>
+                </label>
+            </div>
+
+            <!-- Toggle: Suscriptores -->
+            <div class="config-row" id="row-suscriptores">
+                <div class="config-info">
+                    <span class="config-label">Desbloquear contenido exclusivo</span>
+                    <span class="config-desc">Accede a notas de suscriptores y ediciones impresas</span>
+                </div>
+                <label class="toggle" id="toggle-suscriptores-label" for="toggle-suscriptores">
+                    <input type="checkbox" id="toggle-suscriptores" checked>
+                    <span class="toggle-track">
+                        <span class="toggle-thumb"></span>
+                    </span>
+                </label>
+            </div>
+        </section>
+
         <div class="disclaimer">
             <p><strong>Aviso legal:</strong> Proyecto desarrollado con fines educativos y de investigación técnica. Sin fines de lucro ni retransmisión de contenidos.</p>
         </div>
@@ -90,7 +151,7 @@
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
                 Visitar extensión
             </a>
-            <span class="version-tag" id="extension-version">v1.1.0</span>
+            <span class="version-tag" id="extension-version">v1.2.0</span>
         </div>
         <p><strong>Por Lucas Pier | Rosario, 2026</strong></p>
     </footer>
