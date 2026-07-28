@@ -1,0 +1,40 @@
+#onesignal-slidedown-container,
+#onesignal-slidedown-dialog,
+#onesignal-bell-container,
+.ad-container,
+a[href*="https://suscripcion.lavoz.com.ar"]:not(.nav__link),
+div[class*="review-topsite"],
+*[class*="__ad"],
+*[class*="__promo"],
+*[class*="-promo"],
+/*.bg-lvi-hotdays-blue,*/
+.CONTAINER-WRAPPER:has(.WIDGET-BOX>.bg-lvi-hotdays-blue),
+.imgSponsor,
+aside[data-mrf-recirculation*="widget-"]>div>div>div>div.flex.items-end,
+aside[data-mrf-recirculation*="widget-"]>section>div>div.flex:has(a[target="_blank"][cmp-ltrk="widget-premium"][cmp-ltrk-idx="0"]) {
+    display: none !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    visibility: hidden !important;
+    z-index: -1 !important;
+}
+a[href*="https://suscripcion.lavoz.com.ar"].nav__link{
+    pointer-events: none !important;
+}
+
+.text-lvi-suscription {
+    color: #ff0000 !important;
+}
+.bg-lvi-suscription {
+    background-color: #ff0000 !important;
+}
+.border-lvi-suscription {
+    border-color: #ff0000 !important;
+}
+
+#sectionsSideBar>header+nav.py-4{
+    padding-top: 0.2rem;
+}
