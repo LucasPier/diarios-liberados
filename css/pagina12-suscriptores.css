@@ -1,0 +1,16 @@
+/* Suscriptores - Oculta el botón "Socios" del nav principal */
+#main-nav a.partners-btn {
+    display: none !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    visibility: hidden !important;
+    z-index: -1 !important;
+}
+
+/* Suscriptores - Ajusta el alineado del logo dentro del banner "Exclusivo para SOCI@S" */
+.p12-partners-top-bar .left-col .svg-container {
+    margin-bottom: 0 !important;
+}

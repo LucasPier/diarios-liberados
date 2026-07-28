@@ -1,0 +1,12 @@
+/* Suscriptores - Oculta los elementos de suscripción (_Subscribe) y sus íconos */
+*[class*="_Subscribe"],
+*[class*="_Subscribe"]+i {
+    display: none !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    visibility: hidden !important;
+    z-index: -1 !important;
+}

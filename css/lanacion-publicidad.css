@@ -1,0 +1,17 @@
+/* Publicidad - Oculta banners de La Nación (ln-banner, ads containers, IMA SDK) */
+.ad-container,
+div[class*="ln-banner"],
+div[class*="ln-banner-container"],
+div[class*="container --ads"],
+div[class*="default-creative-container"],
+div[class*="cll-banner"],
+iframe[src*="https://imasdk.googleapis.com"] {
+    display: none !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    visibility: hidden !important;
+    z-index: -1 !important;
+}

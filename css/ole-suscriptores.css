@@ -1,0 +1,12 @@
+/* Suscriptores - Oculta el botón/enlace de suscripción y el dropdown de suscripción del header */
+a.subscription,
+#btn-login+div:has(div>div>a.subscription-button-misc) {
+    display: none !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    visibility: hidden !important;
+    z-index: -1 !important;
+}

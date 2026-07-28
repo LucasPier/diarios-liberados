@@ -1,0 +1,23 @@
+/* Publicidad - Oculta banners, publicidades y la sección lateral de publicidad */
+.ad-container,
+*[class*="publicidad"],
+*[class*="_publi"],
+*[class*="banner"],
+#sitio+.is-narrow:not(.item),
+footer.footer>.fs {
+    display: none !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    visibility: hidden !important;
+    z-index: -1 !important;
+}
+
+/* Publicidad - Colapsa el footer de publicidad (Mustang) sin romper el layout del footer */
+.footer .mustang {
+    height: 0 !important;
+    padding: 0 !important;
+    margin: 24px 0 0 !important;
+}

@@ -1,0 +1,21 @@
+/* Notificaciones - Oculta el modal de Piano (tp-modal/tp-backdrop) y los elementos de OneSignal
+   (notificaciones push) */
+div.tp-modal,
+div.tp-backdrop,
+#onesignal-slidedown-container,
+#onesignal-slidedown-dialog,
+#onesignal-bell-container {
+    display: none !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    visibility: hidden !important;
+    z-index: -1 !important;
+}
+
+/* Notificaciones - Restaura el scroll cuando Piano abre el modal (evita que la página quede bloqueada) */
+body.tp-modal-open {
+    overflow: scroll !important;
+}
