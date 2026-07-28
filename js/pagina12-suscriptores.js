@@ -1,7 +1,7 @@
 // Suscriptores - URLs de los SVG de socios de la extensión (reemplazan los del sitio)
 const urlImagenSocios = chrome.runtime.getURL("recursos/socios_p12.svg");
 const urlImagenSocios2 = chrome.runtime.getURL("recursos/socios_v2_p12.svg");
-// Suscriptores - Envía las URLs al contexto MAIN (pagina12dom.js corre en world MAIN y las necesita)
+// Suscriptores - Envía las URLs al contexto MAIN (pagina12dom-suscriptores.js corre en world MAIN y las necesita)
 window.postMessage({ type: "FROM_EXT", url: urlImagenSocios, url2: urlImagenSocios2 }, "*");
 
 

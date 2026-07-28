@@ -1,7 +1,9 @@
 (function () {
     let _fusionData = undefined;
 
-    /*let urlImagenSocios = '',
+    // Suscriptores - Recibe las URLs de los SVG enviadas desde pagina12-suscriptores.js (contexto ISOLATED)
+    // via postMessage, necesario porque en world MAIN no se puede acceder a chrome.runtime.getURL
+    let urlImagenSocios = '',
         urlImagenSocios2 = '';
 
     window.addEventListener("message", (event) => {
@@ -11,6 +13,8 @@
         }
     });
 
+    // Suscriptores - Inserta el banner "Exclusivo para SOCI@S" en el artículo.
+    // Usa MutationObserver para re-insertarlo si el sitio lo elimina.
     const agregarBanner = () => {
         // console.log("Agregar banner");
         const contenedor = document.querySelector("main>.article-wrapper");
@@ -32,18 +36,10 @@
                     // Revisamos cada nodo que fue eliminado o agregado en esta mutación
                     mutation.removedNodes.forEach((node) => {
                         // Verificamos si es el banner
-                        // if (typeof node === "object" && node.querySelector && node.querySelector('main>.article-wrapper>div>.p12-partners-top-bar .svg-container')) {
-                        //     observer.disconnect();
-                        //     agregarBanner();
-                        // }
                         verificarNode(node);
                     });
                     mutation.addedNodes.forEach((node) => {
                         // Verificamos si es el banner
-                        // if (typeof node === "object" && node.querySelector && node.querySelector('main>.article-wrapper>div>.p12-partners-top-bar .svg-container')) {
-                        //     observer.disconnect();
-                        //     agregarBanner();
-                        // }
                         verificarNode(node);
                     });
                 });
@@ -57,22 +53,17 @@
             // console.log("Sin contenedor banner");
             setTimeout(agregarBanner, 100);
         }
-    };*/
-    console.log("¡Fusion iniciado!");
+    };
 
-    // Suscriptores - Intercepta la asignación del objeto global `Fusion` (framework de La Nación)
-    // antes de que el sitio lo lea. Al poner IS_DEV=true y API_ENV="dev" se fuerza el modo
-    // desarrollo, que omite las validaciones de paywall en el front-end.
+    // Suscriptores - Intercepta la asignación del objeto global `Fusion` (framework Arc Publishing de P12)
+    // antes de que el sitio lo lea. Elimina content_restrictions para desbloquear el artículo
+    // y dispara el banner de socios.
     Object.defineProperty(window, 'Fusion', {
         set: function (val) {
-            /*if (val && val.environment) {
-                console.log("¡Fusion hola!", val);
-            }*/
-            if (val && val.environment && typeof val.environment.IS_DEV !== "undefined") {
-                console.log("¡Fusion interceptado!", val);
-                val.environment.IS_DEV = true;
-                val.environment.API_ENV = "dev";
-                // agregarBanner();
+            if (val && val.globalContent && val.globalContent.content_restrictions) {
+                // console.log("¡Fusion interceptado!", val);
+                val.globalContent.content_restrictions = undefined;
+                agregarBanner();
             }
 
             _fusionData = val;
