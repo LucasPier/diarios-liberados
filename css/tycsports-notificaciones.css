@@ -1,7 +1,11 @@
 /* Notificaciones - Oculta los elementos de OneSignal (notificaciones push) */
 #onesignal-slidedown-container,
 #onesignal-slidedown-dialog,
-#onesignal-bell-container {
+#onesignal-bell-container,
+.notificationModalOverlay,
+#vanPushPermissionPromptRoot,
+.notificationPermissionAlert,
+#vanModalPushPrompt {
     display: none !important;
     height: 0 !important;
     overflow: hidden !important;
