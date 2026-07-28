@@ -16,7 +16,7 @@ Una extensión compatible con múltiples navegadores (Chrome, Edge, Brave, Opera
   <tr>
     <td align="center" width="160"><a href="#la-capital"><img src="imagenes/logos/lacapital.svg" width="160" alt="La Capital"/><br/><sub>La Capital</sub></a></td>
     <td align="center" width="160"><a href="#la-voz-del-interior"><img src="imagenes/logos/lavoz.svg" width="160" alt="La Voz del Interior"/><br/><sub>La Voz del Interior</sub></a></td>
-    <td align="center" width="160"><a href="#la-gaceta-de-tucumán"><img src="imagenes/logos/lagaceta.svg" width="160" alt="La Gaceta de Tucumán"/><br/><sub>La Gaceta de Tucumán</sub></a></td>
+    <td align="center" width="160"><a href="#la-gaceta-de-tucumán"><img src="imagenes/logos/lagaceta.svg" width="160" alt="La Gaceta"/><br/><sub>La Gaceta</sub></a></td>
     <td align="center" width="160"><a href="#el-litoral"><img src="imagenes/logos/ellitoral.svg" width="160" alt="El Litoral"/><br/><sub>El Litoral</sub></a></td>
     <td align="center" width="160"><a href="#el-cronista"><img src="imagenes/logos/elcronista.svg" width="160" alt="El Cronista"/><br/><sub>El Cronista</sub></a></td>
     <td align="center" width="160"><a href="#el-destape"><img src="imagenes/logos/eldestape.svg" width="160" alt="El Destape"/><br/><sub>El Destape</sub></a></td>
@@ -131,7 +131,7 @@ Una extensión compatible con múltiples navegadores (Chrome, Edge, Brave, Opera
 
 ✅ Se bloquean diálogos de notificaciones
 
-### La Gaceta de Tucumán
+### La Gaceta
 
 
 ✅ Se quitan las publicidades de todo el sitio
