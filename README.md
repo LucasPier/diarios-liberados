@@ -1,4 +1,9 @@
-# Diarios Liberados
+<p align="center">
+  <img src="imagenes/lector.png" alt="Diarios Liberados" width="280">
+</p>
+
+# <img src="imagenes/favicon-96x96.png" width="30" height="30" align="absmiddle" alt="Diarios Liberados"> Diarios Liberados
+
 
 Una extensión compatible con múltiples navegadores (Chrome, Edge, Brave, Opera, Vivaldi, etc.) que mejora la experiencia de lectura en 18 grupos de medios argentinos. Elimina publicidades intrusivas, bloquea diálogos de notificaciones y, en los medios que lo requieren, desbloquea notas exclusivas para suscriptores o socios. Algunos portales incluyen funcionalidades adicionales: visualización de versiones impresas (La Capital), resúmenes generados por IA y escucha de notas (La Nación), y cobertura extendida a los grupos editoriales completos de Clarín y Perfil. Se irán agregando nuevos medios y funcionalidades con el paso del tiempo.
 
