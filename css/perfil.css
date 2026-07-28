@@ -43,7 +43,10 @@ body .ad-bg>*,
 .ad-wrap,
 #cookie-notice,
 #qc-cmp2-container,
-.ob-smartfeed-wrapper {
+.ob-smartfeed-wrapper,
+a.pw-suscribite,
+#article-content div.subscription,
+#js-side-menu li.pw-cta {
     display: none !important;
     height: 0 !important;
     overflow: hidden !important;

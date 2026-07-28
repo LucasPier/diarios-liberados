@@ -4,8 +4,8 @@
 .ad-container,
 *[class*="banner-container"],
 /**[class*="banner"]:not([class*="MiniPlayer__banner"]):not([class*="layout"]),*/
-
-
+#coral-notif,
+#main-nav a.partners-btn,
 *[class*="banner"]:has(> *[class*="ad-slot"]),
 *[id*="ad-slot"],
 *[class*="ad-slot"],

@@ -2,7 +2,8 @@
 #onesignal-slidedown-dialog,
 #onesignal-bell-container,
 .ad-container,
-.banner {
+.banner,
+button.subscribe-btn:not(.mobile-header-login) {
     display: none !important;
     height: 0 !important;
     overflow: hidden !important;

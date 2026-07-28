@@ -10,7 +10,11 @@ div[class*="banner-box--300x600"],
 div[id*="ad-slot-top"],
 div[id*="ad-slot"],
 div[class*="ad-slot-top"],
-div[class*="ad-slot"] {
+div[class*="ad-slot"],
+#liveWrapper #liveSponsors,
+.sucriptoresblc-custom-widget .standard-right-column,
+.negocios-custom-widget .extra-holder>article+div,
+.negocios-custom-widget .en-escena-center{
     display: none !important;
     height: 0 !important;
     overflow: hidden !important;
@@ -32,7 +36,22 @@ body.tp-modal-open {
 .exclusive-icon svg path {
     fill: rgb(245 2 2);
 }
+.sucriptoresblc-custom-widget .horizontal-entry-box:hover .entry-data .entry-title,
+body .exclusive-entry .volanta,
+.ranking-section .ranking-number {
+    /*color: rgb(240 0 0) !important;
+    color: rgb(239 126 126) !important;*/
+    color: rgb(145 145 145) !important;
+}
+.opinion-entry-box:first-child,
+.sucriptoresblc-custom-widget,
+.page-seccion-exclusivo .section-top-part {
+    background: #dbdbdb !important;
+}
+/*.sucriptoresblc-custom-widget .entry-1-nota-destacada {
+    background: #c3c3c3 !important;
+}*/
 
-body .exclusive-entry .volanta {
-    color: #ff5353ad !important;
+.sucriptoresblc-custom-widget .fake-slider::-webkit-scrollbar-thumb {
+    background: rgb(240 0 0) !important;
 }

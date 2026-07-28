@@ -6,9 +6,13 @@ window.postMessage({ type: "FROM_EXT", url: urlImagenSocios, url2: urlImagenSoci
 
 const agregarLabel = () => {
     // reemplazamos imágenes existentes
-    const images = document.querySelectorAll('img[src*="p12-label/label_logo_socios.svg"]');
-
-    console.log(images);
+    const images = document.querySelectorAll('img[src*="p12-label/label_logo_socios.svg"]'),
+    verificarNode = (node)=>{
+        if (typeof node === "object" && node.querySelector && node.querySelector('img[class*="label-socios svg-logo"]')) {
+            observer.disconnect();
+            agregarLabel();
+        }
+    };
 
     images.forEach(img => {
         img.src = urlImagenSocios2;
@@ -16,15 +20,14 @@ const agregarLabel = () => {
 
     const observer = new MutationObserver((mutations) => {
         mutations.forEach((mutation) => {
-            console.log("Mutation label");
-            // Revisamos cada nodo que fue eliminado en esta mutación
+            // Revisamos cada nodo que fue eliminado o agregado en esta mutación
             mutation.removedNodes.forEach((node) => {
                 // Verificamos si es el label
-                if (node.querySelector('img[class*="label-socios svg-logo"]')) {
-                    console.log('¡Elemento detectado como eliminado!');
-                    observer.disconnect();
-                    agregarLabel();
-                }
+                verificarNode(node);
+            });
+            mutation.addedNodes.forEach((node) => {
+                // Verificamos si es el label
+                verificarNode(node);
             });
         });
     });

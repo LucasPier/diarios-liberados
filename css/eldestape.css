@@ -6,7 +6,8 @@
 *[class*="publicidad"],
 *[class*="_publi"],
 *[class*="banner"],
-#sitio+.is-narrow:not(.item) {
+#sitio+.is-narrow:not(.item),
+footer.footer>.fs {
     display: none !important;
     height: 0 !important;
     overflow: hidden !important;

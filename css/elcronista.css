@@ -38,8 +38,26 @@ body {
     display: none !important;
 }
 
+.article-head__members {
+    margin-left: 19px;
+}
+
+.more-about__item .story-card__restricted,
 .story-card__restricted,
 .author-card__restricted,
 .article-head__members {
-    background: #cb4141 !important;
+    position: relative !important;
+    /*background: #cb4141 !important;*/
+}
+
+.story-card__restricted::before,
+.author-card__restricted::before,
+.article-head__members::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -26px;
+    width: 24px;
+    height: 24px;
+    background-size: 22px;
 }

@@ -1,7 +1,7 @@
 (function () {
     let _fusionData = undefined;
 
-    let urlImagenSocios = '',
+    /*let urlImagenSocios = '',
         urlImagenSocios2 = '';
 
     window.addEventListener("message", (event) => {
@@ -57,14 +57,19 @@
             // console.log("Sin contenedor banner");
             setTimeout(agregarBanner, 100);
         }
-    };
+    };*/
+    console.log("¡Fusion iniciado!");
 
     Object.defineProperty(window, 'Fusion', {
         set: function (val) {
-            if (val && val.globalContent && val.globalContent.content_restrictions) {
-                // console.log("¡Fusion interceptado!", val);
-                val.globalContent.content_restrictions = undefined;
-                agregarBanner();
+            /*if (val && val.environment) {
+                console.log("¡Fusion hola!", val);
+            }*/
+            if (val && val.environment && typeof val.environment.IS_DEV !== "undefined") {
+                console.log("¡Fusion interceptado!", val);
+                val.environment.IS_DEV = true;
+                val.environment.API_ENV = "dev";
+                // agregarBanner();
             }
 
             _fusionData = val;
