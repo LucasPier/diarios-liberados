@@ -2,7 +2,7 @@ const DOMAINS = ["www.lacapital.com.ar", "flipbook.lacapital.com.ar", "www.lavoz
 
 // Reglas de red dinámicas aplicadas vía declarativeNetRequest.
 // Todas las reglas de este bloque corresponden a: Publicidad
-const RULES = [
+const RULES_PUBLICIDAD = [
   {
     // Publicidad - Red publicitaria DoubleClick/Google Ads (excluye Diario Popular por incompatibilidad)
     id: 2,
@@ -120,36 +120,6 @@ const RULES = [
     action: { type: "block" },
     condition: {
       urlFilter: ".zondadevops.com",
-      initiatorDomains: ["www.lavoz.com.ar", "www.lagaceta.com.ar"],
-    },
-  },
-  {
-    // Suscriptores (La Gaceta) - Script SWG (Subscribe with Google) propio del sitio, gestiona el paywall
-    id: 14,
-    priority: 1,
-    action: { type: "block" },
-    condition: {
-      urlFilter: "www.lagaceta.com.ar/js/sus/swg-merge",
-      initiatorDomains: ["www.lagaceta.com.ar"],
-    },
-  },
-  {
-    // Suscriptores (La Gaceta) - Librería SWG-JS oficial de Google (Subscribe with Google), activa el muro de pago
-    id: 29,
-    priority: 1,
-    action: { type: "block" },
-    condition: {
-      urlFilter: "raw.githubusercontent.com/subscriptions-project/swg-js",
-      initiatorDomains: ["www.lagaceta.com.ar"],
-    },
-  },
-  {
-    // Suscriptores (La Voz / La Gaceta) - Zonda (plataforma de gestión de suscripciones y paywall)
-    id: 15,
-    priority: 1,
-    action: { type: "block" },
-    condition: {
-      urlFilter: "zonda.lavoz.com.ar",
       initiatorDomains: ["www.lavoz.com.ar", "www.lagaceta.com.ar"],
     },
   },
@@ -284,6 +254,44 @@ const RULES = [
     },
   }
 ];
+
+// Reglas de red dinámicas aplicadas vía declarativeNetRequest.
+// Todas las reglas de este bloque corresponden a: Suscriptores
+const RULES_SUSCRIPTORES = [
+  {
+    // Suscriptores (La Gaceta) - Script SWG (Subscribe with Google) propio del sitio, gestiona el paywall
+    id: 14,
+    priority: 1,
+    action: { type: "block" },
+    condition: {
+      urlFilter: "www.lagaceta.com.ar/js/sus/swg-merge",
+      initiatorDomains: ["www.lagaceta.com.ar"],
+    },
+  },
+  {
+    // Suscriptores (La Voz / La Gaceta) - Zonda (plataforma de gestión de suscripciones y paywall)
+    id: 15,
+    priority: 1,
+    action: { type: "block" },
+    condition: {
+      urlFilter: "zonda.lavoz.com.ar",
+      initiatorDomains: ["www.lavoz.com.ar", "www.lagaceta.com.ar"],
+    },
+  },
+  {
+    // Suscriptores (La Gaceta) - Librería SWG-JS oficial de Google (Subscribe with Google), activa el muro de pago
+    id: 29,
+    priority: 1,
+    action: { type: "block" },
+    condition: {
+      urlFilter: "raw.githubusercontent.com/subscriptions-project/swg-js",
+      initiatorDomains: ["www.lagaceta.com.ar"],
+    },
+  }
+];
+
+// Combinamos ambos arrays para registrar todas las reglas de una sola vez.
+const RULES = [...RULES_PUBLICIDAD, ...RULES_SUSCRIPTORES];
 
 // Primero limpiamos cualquier regla previa con esos IDs,
 // y recién después agregamos las nuevas. Dos llamadas separadas
