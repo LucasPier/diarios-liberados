@@ -1,4 +1,4 @@
-const DOMAINS = ["www.lacapital.com.ar", "flipbook.lacapital.com.ar", "www.lavoz.com.ar", "www.clarin.com", "elle.clarin.com", "www.lanacion.com.ar", "www.infobae.com", "www.ellitoral.com", "www.rosario3.com", "www.lapoliticaonline.com", "www.pagina12.com.ar", "www.cronista.com", "www.ambito.com", "www.eldestapeweb.com", "www.perfil.com", "noticias.perfil.com", "442.perfil.com", "caras.perfil.com", "parabrisas.perfil.com", "fortuna.perfil.com", "weekend.perfil.com", "supercampo.perfil.com", "look.perfil.com", "luz.perfil.com", "mia.perfil.com", "lunateen.perfil.com", "horizonte.perfil.com", "exitoina.perfil.com", "brasil.perfil.com", "marieclaire.perfil.com", "radio.perfil.com", "canalnet.tv", "rouge.perfil.com", "hombre.perfil.com", "batimes.com.ar", "www.ole.com.ar", "www.elciudadanoweb.com", "viapais.com.ar", "www.diariopopular.com.ar", "www.eltrecetv.com.ar", "www.radiomitre.com.ar", "www.tycsports.com", "www.ciudad.com.ar", "www.tn.com.ar", "ar.cienradios.com", "radiomitre.cienradios.com", "la100.cienradios.com", "mia.cienradios.com", "www.kenja.tech", "www.minutouno.com", "imasdk.googleapis.com"];
+const DOMAINS = ["www.lacapital.com.ar", "flipbook.lacapital.com.ar", "www.lavoz.com.ar", "www.lagaceta.com.ar", "www.clarin.com", "elle.clarin.com", "www.lanacion.com.ar", "www.infobae.com", "www.ellitoral.com", "www.rosario3.com", "www.lapoliticaonline.com", "www.pagina12.com.ar", "www.cronista.com", "www.ambito.com", "www.eldestapeweb.com", "www.perfil.com", "noticias.perfil.com", "442.perfil.com", "caras.perfil.com", "parabrisas.perfil.com", "fortuna.perfil.com", "weekend.perfil.com", "supercampo.perfil.com", "look.perfil.com", "luz.perfil.com", "mia.perfil.com", "lunateen.perfil.com", "horizonte.perfil.com", "exitoina.perfil.com", "brasil.perfil.com", "marieclaire.perfil.com", "radio.perfil.com", "canalnet.tv", "rouge.perfil.com", "hombre.perfil.com", "batimes.com.ar", "www.ole.com.ar", "www.elciudadanoweb.com", "viapais.com.ar", "www.diariopopular.com.ar", "www.eltrecetv.com.ar", "www.radiomitre.com.ar", "www.tycsports.com", "www.ciudad.com.ar", "www.tn.com.ar", "ar.cienradios.com", "radiomitre.cienradios.com", "la100.cienradios.com", "mia.cienradios.com", "www.kenja.tech", "www.minutouno.com", "imasdk.googleapis.com"];
 const RULES = [
   {
     id: 2,
@@ -59,8 +59,8 @@ const RULES = [
     priority: 1,
     action: { type: "block" },
     condition: {
-      urlFilter: "d323qqnnjmo65t.cloudfront.net/zonda/pw.js",
-      initiatorDomains: ["www.lavoz.com.ar"],
+      urlFilter: "d323qqnnjmo65t.cloudfront.net/zonda",
+      initiatorDomains: ["www.lavoz.com.ar", "www.lagaceta.com.ar"],
     },
   },
   {
@@ -105,7 +105,34 @@ const RULES = [
     action: { type: "block" },
     condition: {
       urlFilter: ".zondadevops.com",
-      initiatorDomains: ["www.lavoz.com.ar"],
+      initiatorDomains: ["www.lavoz.com.ar", "www.lagaceta.com.ar"],
+    },
+  },
+  {
+    id: 14,
+    priority: 1,
+    action: { type: "block" },
+    condition: {
+      urlFilter: "www.lagaceta.com.ar/js/sus/swg-merge",
+      initiatorDomains: ["www.lagaceta.com.ar"],
+    },
+  },
+  {
+    id: 29,
+    priority: 1,
+    action: { type: "block" },
+    condition: {
+      urlFilter: "raw.githubusercontent.com/subscriptions-project/swg-js",
+      initiatorDomains: ["www.lagaceta.com.ar"],
+    },
+  },
+  {
+    id: 15,
+    priority: 1,
+    action: { type: "block" },
+    condition: {
+      urlFilter: "zonda.lavoz.com.ar",
+      initiatorDomains: ["www.lavoz.com.ar", "www.lagaceta.com.ar"],
     },
   },
   {
@@ -226,8 +253,6 @@ const RULES = [
     },
   }
 ];
-
-//https://r.prcdn.co/scripts/se2sky/3.52.4-beta.40/viewer.nolibs.build.min.js
 
 // Primero limpiamos cualquier regla previa con esos IDs,
 // y recién después agregamos las nuevas. Dos llamadas separadas

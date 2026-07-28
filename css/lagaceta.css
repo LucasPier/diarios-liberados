@@ -1,0 +1,40 @@
+.block .card .image .tag {
+    border-color: rgba(0, 0, 0, 0) #000000 rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) !important;
+}
+.block .card .image .tag i {
+    font-size: 13px !important;
+    color: #ff0000 !important;
+    margin-left: 27px !important;
+}
+.icon-star-regular:before {
+    content: "\e932" !important;
+}
+.article .articleHead .breadcrumb a .icon-star-solid,
+.article .articleHead .breadcrumb span .icon-star-solid,
+#dilogComments .comments .avatar .tag i,
+#dilogComments .comments .list .comment .respond .comment .avatar .tag i,
+.block .card .text .tag i,
+#sidebar nav ul li a.gold,
+.article .articleBody .premium i {
+    color: #ff0000 !important;
+}
+#dilogComments .comments .avatar .tag {
+    border-color: transparent transparent #000000 !important;
+}
+#onesignal-slidedown-container,
+#onesignal-slidedown-dialog,
+#onesignal-bell-container,
+.add,
+#addTop,
+.clubSlider,
+#user_menu .suscribe,
+div[data-mrf-recirculation="home-premium"] .col-12:has(.frame){
+    display: none !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    visibility: hidden !important;
+    z-index: -1 !important;
+}
