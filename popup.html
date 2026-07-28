@@ -1,18 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
-    <meta charSet="utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diarios Liberados</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/popup.css">
 </head>
 
 <body>
     <header>
         <img src="imagenes/lector.png" alt="Diarios Liberados" class="logoDL">
-        <h1><span><img src="imagenes/favicon-32x32.png" alt="Diarios Liberados" width="32px"></span>Diarios Liberados</h1>
+        <h1><span><img src="imagenes/favicon-32x32.png" alt="Diarios Liberados"></span>Diarios Liberados</h1>
     </header>
+
     <main>
-        <p>Mejora la experiencia de lectura en 18 grupos de medios argentinos. Elimina publicidades intrusivas, bloquea diálogos de notificaciones y, en los medios que lo requieren, desbloquea notas exclusivas para suscriptores o socios. Algunos portales incluyen funcionalidades adicionales: visualización de versiones impresas (La Capital), resúmenes generados por IA y escucha de notas (La Nación), y cobertura extendida a los grupos editoriales completos de Clarín y Perfil.</p>
+        <p class="intro-desc">Mejora la experiencia de lectura en 18 grupos de medios argentinos. Elimina publicidades intrusivas, bloquea diálogos de notificaciones y desbloquea notas exclusivas. Incluye versiones impresas, resúmenes e integración con grupos editoriales completos.</p>
+        
         <div class="portales-logos">
             <a href="https://www.infobae.com" target="_blank" title="Infobae"><img src="imagenes/logos/infobae.svg" alt="Infobae"></a>
             <a href="https://www.clarin.com" target="_blank" title="Clarín"><img src="imagenes/logos/clarin.svg" alt="Clarín"></a>
@@ -33,10 +40,61 @@
             <a href="https://www.ole.com.ar" target="_blank" title="Olé"><img src="imagenes/logos/ole.svg" alt="Olé"></a>
             <a href="https://www.rosario3.com" target="_blank" title="Rosario 3"><img src="imagenes/logos/rosario3.svg" alt="Rosario 3"></a>
         </div>
+
+        <section class="otros-medios">
+            <h3><span class="badge-dot"></span> Otros portales y suplementos integrados</h3>
+            <div class="otros-medios-list">
+                <!-- Grupo Clarín -->
+                <a href="https://tn.com.ar" target="_blank">TN</a>
+                <a href="https://www.tycsports.com" target="_blank">TyC Sports</a>
+                <a href="https://www.ciudad.com.ar" target="_blank">Ciudad Magazine</a>
+                <a href="https://www.eltrecetv.com.ar" target="_blank">El Trece TV</a>
+                <a href="https://radiomitre.cienradios.com" target="_blank">Radio Mitre</a>
+                <a href="https://la100.cienradios.com" target="_blank">La 100</a>
+                <a href="https://cienradios.com" target="_blank">Cienradios</a>
+                <a href="https://viapais.com.ar" target="_blank">VíaPaís</a>
+                <a href="https://elle.clarin.com" target="_blank">Elle</a>
+                <!-- Editorial Perfil -->
+                <a href="https://442.perfil.com" target="_blank">442</a>
+                <a href="https://noticias.perfil.com" target="_blank">Noticias</a>
+                <a href="https://caras.perfil.com" target="_blank">Caras</a>
+                <a href="https://www.parati.com.ar" target="_blank">Para Ti</a>
+                <a href="https://fortuna.perfil.com" target="_blank">Fortuna</a>
+                <a href="https://weekend.perfil.com" target="_blank">Weekend</a>
+                <a href="https://parabrisas.perfil.com" target="_blank">Parabrisas</a>
+                <a href="https://supercampo.perfil.com" target="_blank">Super Campo</a>
+                <a href="https://look.perfil.com" target="_blank">Look</a>
+                <a href="https://luz.perfil.com" target="_blank">Luz</a>
+                <a href="https://mia.perfil.com" target="_blank">Mía</a>
+                <a href="https://lunateen.perfil.com" target="_blank">Lunateen</a>
+                <a href="https://horizonte.perfil.com" target="_blank">Horizonte</a>
+                <a href="https://exitoina.perfil.com" target="_blank">Exitoina</a>
+                <a href="https://marieclaire.perfil.com" target="_blank">Marie Claire</a>
+                <a href="https://radio.perfil.com" target="_blank">Radio Perfil</a>
+                <a href="https://rouge.perfil.com" target="_blank">Rouge</a>
+                <a href="https://hombre.perfil.com" target="_blank">Hombre</a>
+                <a href="https://perfil.com.br" target="_blank">Perfil Brasil</a>
+                <a href="https://www.batimes.com.ar" target="_blank">Buenos Aires Times</a>
+                <a href="https://www.canalnet.tv" target="_blank">Canal Net TV</a>
+            </div>
+        </section>
+
+        <div class="disclaimer">
+            <p><strong>Aviso legal:</strong> Proyecto desarrollado con fines educativos y de investigación técnica. Sin fines de lucro ni retransmisión de contenidos.</p>
+        </div>
     </main>
+
     <footer>
+        <div class="footer-meta">
+            <a href="https://github.com/LucasPier/diarios-liberados/" target="_blank" class="btn-github" title="Ver proyecto en GitHub">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                Visitar extensión
+            </a>
+            <span class="version-tag" id="extension-version">v1.1.0</span>
+        </div>
         <p><strong>Por Lucas Pier | Rosario, 2026</strong></p>
     </footer>
+    <script src="js/popup.js"></script>
 </body>
 
 </html>
