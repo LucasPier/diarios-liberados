@@ -94,10 +94,11 @@
   "content_scripts": [
     {
       "js": [
-        "js/clarin.js"
+        "js/clarin-suscriptores.js"
       ],
       "css": [
-        "css/clarin.css"
+        "css/clarin-publicidad.css",
+        "css/clarin-suscriptores.css"
       ],
       "matches": [
         "*://*.clarin.com/*",
@@ -107,7 +108,8 @@
     },
     {
       "css": [
-        "css/ole.css"
+        "css/ole-publicidad.css",
+        "css/ole-suscriptores.css"
       ],
       "matches": [
         "*://*.ole.com.ar/*"
@@ -116,10 +118,12 @@
     },
     {
       "js": [
-        "js/lanacionpre.js"
+        "js/lanacionpre-suscriptores.js"
       ],
       "css": [
-        "css/lanacion.css"
+        "css/lanacion-notificaciones.css",
+        "css/lanacion-publicidad.css",
+        "css/lanacion-suscriptores.css"
       ],
       "matches": [
         "*://*.lanacion.com.ar/*"
@@ -128,7 +132,7 @@
     },
     {
       "js": [
-        "js/lanaciondom.js"
+        "js/lanaciondom-suscriptores.js"
       ],
       "matches": [
         "*://*.lanacion.com.ar/*"
@@ -138,7 +142,7 @@
     },
     {
       "js": [
-        "js/lanacion.js"
+        "js/lanacion-edicion-impresa.js"
       ],
       "matches": [
         "*://*.lanacion.com.ar/*"
@@ -147,10 +151,13 @@
     },
     {
       "js": [
-        "js/lacapital.js"
+        "js/lacapital-suscriptores.js",
+        "js/lacapital-notificaciones.js"
       ],
       "css": [
-        "css/lacapital.css"
+        "css/lacapital-notificaciones.css",
+        "css/lacapital-publicidad.css",
+        "css/lacapital-suscriptores.css"
       ],
       "matches": [
         "*://*.lacapital.com.ar/*",
@@ -160,10 +167,12 @@
     },
     {
       "js": [
-        "js/lavoz.js"
+        "js/lavoz-suscriptores.js"
       ],
       "css": [
-        "css/lavoz.css"
+        "css/lavoz-notificaciones.css",
+        "css/lavoz-publicidad.css",
+        "css/lavoz-suscriptores.css"
       ],
       "matches": [
         "*://*.lavoz.com.ar/*"
@@ -175,7 +184,9 @@
         "js/lagaceta.js"
       ],
       "css": [
-        "css/lagaceta.css"
+        "css/lagaceta-notificaciones.css",
+        "css/lagaceta-publicidad.css",
+        "css/lagaceta-suscriptores.css"
       ],
       "matches": [
         "*://*.lagaceta.com.ar/*"
@@ -184,7 +195,7 @@
     },
     {
       "js": [
-        "js/lagacetadom.js"
+        "js/lagacetadom-suscriptores.js"
       ],
       "matches": [
         "*://*.lagaceta.com.ar/*"
@@ -197,7 +208,8 @@
         "js/infobae.js"
       ],
       "css": [
-        "css/infobae.css"
+        "css/infobae-notificaciones.css",
+        "css/infobae-publicidad.css"
       ],
       "matches": [
         "*://*.infobae.com/*"
@@ -209,7 +221,9 @@
         "js/ellitoral.js"
       ],
       "css": [
-        "css/ellitoral.css"
+        "css/ellitoral-notificaciones.css",
+        "css/ellitoral-publicidad.css",
+        "css/ellitoral-suscriptores.css"
       ],
       "matches": [
         "*://*.ellitoral.com/*",
@@ -222,7 +236,8 @@
         "js/rosario3.js"
       ],
       "css": [
-        "css/rosario3.css"
+        "css/rosario3-notificaciones.css",
+        "css/rosario3-publicidad.css"
       ],
       "matches": [
         "*://*.rosario3.com/*"
@@ -234,7 +249,8 @@
         "js/lpo.js"
       ],
       "css": [
-        "css/lpo.css"
+        "css/lpo-notificaciones.css",
+        "css/lpo-publicidad.css"
       ],
       "matches": [
         "*://*.lapoliticaonline.com/*"
@@ -243,10 +259,12 @@
     },
     {
       "js": [
-        "js/pagina12dom.js"
+        "js/pagina12dom-suscriptores.js"
       ],
       "css": [
-        "css/pagina12.css"
+        "css/pagina12-notificaciones.css",
+        "css/pagina12-publicidad.css",
+        "css/pagina12-suscriptores.css"
       ],
       "matches": [
         "*://*.pagina12.com.ar/*"
@@ -256,7 +274,7 @@
     },
     {
       "js": [
-        "js/pagina12.js"
+        "js/pagina12-suscriptores.js"
       ],
       "matches": [
         "*://*.pagina12.com.ar/*"
@@ -265,10 +283,12 @@
     },
     {
       "js": [
-        "js/elcronista.js"
+        "js/elcronista-suscriptores.js"
       ],
       "css": [
-        "css/elcronista.css"
+        "css/elcronista-notificaciones.css",
+        "css/elcronista-publicidad.css",
+        "css/elcronista-suscriptores.css"
       ],
       "matches": [
         "*://*.cronista.com/*"
@@ -280,7 +300,8 @@
         "js/elciudadano.js"
       ],
       "css": [
-        "css/elciudadano.css"
+        "css/elciudadano-notificaciones.css",
+        "css/elciudadano-publicidad.css"
       ],
       "matches": [
         "*://*.elciudadanoweb.com/*"
@@ -292,7 +313,9 @@
         "js/ambito.js"
       ],
       "css": [
-        "css/ambito.css"
+        "css/ambito-notificaciones.css",
+        "css/ambito-publicidad.css",
+        "css/ambito-suscriptores.css"
       ],
       "matches": [
         "*://*.ambito.com/*"
@@ -304,7 +327,8 @@
         "js/eldestape.js"
       ],
       "css": [
-        "css/eldestape.css"
+        "css/eldestape-notificaciones.css",
+        "css/eldestape-publicidad.css"
       ],
       "matches": [
         "*://*.eldestapeweb.com/*"
@@ -313,10 +337,12 @@
     },
     {
       "js": [
-        "js/perfil.js"
+        "js/perfil-suscriptores.js"
       ],
       "css": [
-        "css/perfil.css"
+        "css/perfil-notificaciones.css",
+        "css/perfil-publicidad.css",
+        "css/perfil-suscriptores.css"
       ],
       "matches": [
         "*://*.perfil.com/*",
@@ -330,7 +356,8 @@
         "js/viapais.js"
       ],
       "css": [
-        "css/viapais.css"
+        "css/viapais-notificaciones.css",
+        "css/viapais-publicidad.css"
       ],
       "matches": [
         "*://*.viapais.com.ar/*"
@@ -342,7 +369,8 @@
         "js/diariopopular.js"
       ],
       "css": [
-        "css/diariopopular.css"
+        "css/diariopopular-notificaciones.css",
+        "css/diariopopular-publicidad.css"
       ],
       "matches": [
         "*://*.diariopopular.com.ar/*"
@@ -354,7 +382,8 @@
         "js/eltrecetv.js"
       ],
       "css": [
-        "css/eltrecetv.css"
+        "css/eltrecetv-notificaciones.css",
+        "css/eltrecetv-publicidad.css"
       ],
       "matches": [
         "*://*.eltrecetv.com.ar/*"
@@ -366,7 +395,8 @@
         "js/cienradios.js"
       ],
       "css": [
-        "css/cienradios.css"
+        "css/cienradios-notificaciones.css",
+        "css/cienradios-publicidad.css"
       ],
       "matches": [
         "*://*.radiomitre.com.ar/*",
@@ -379,7 +409,8 @@
         "js/tycsports.js"
       ],
       "css": [
-        "css/tycsports.css"
+        "css/tycsports-notificaciones.css",
+        "css/tycsports-publicidad.css"
       ],
       "matches": [
         "*://*.tycsports.com/*"
@@ -391,7 +422,8 @@
         "js/ciudad.js"
       ],
       "css": [
-        "css/ciudad.css"
+        "css/ciudad-notificaciones.css",
+        "css/ciudad-publicidad.css"
       ],
       "matches": [
         "*://*.ciudad.com.ar/*"
@@ -403,7 +435,8 @@
         "js/tn.js"
       ],
       "css": [
-        "css/tn.css"
+        "css/tn-notificaciones.css",
+        "css/tn-publicidad.css"
       ],
       "matches": [
         "*://*.tn.com.ar/*"
@@ -415,7 +448,8 @@
         "js/minutouno.js"
       ],
       "css": [
-        "css/minutouno.css"
+        "css/minutouno-notificaciones.css",
+        "css/minutouno-publicidad.css"
       ],
       "matches": [
         "*://*.minutouno.com/*"
