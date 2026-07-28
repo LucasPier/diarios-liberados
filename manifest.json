@@ -12,11 +12,21 @@
     "scripting",
     "declarativeNetRequest"
   ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "ruleset_lagaceta",
+        "enabled": true,
+        "path": "rules.json"
+      }
+    ]
+  },
   "host_permissions": [
     "*://*.lacapital.com.ar/*",
     "*://*.flipbook.com.ar/*",
     "*://cdn.wyleex.com/*",
     "*://*.lavoz.com.ar/*",
+    "*://*.lagaceta.com.ar/*",
     "*://d323qqnnjmo65t.cloudfront.net/*",
     "*://*.clarin.com/*",
     "*://*.lanacion.com.ar/*",
@@ -52,11 +62,14 @@
   "web_accessible_resources": [
     {
       "resources": [
+        "recursos/diarios.svg",
         "recursos/suscripciones_lavoz.svg",
         "recursos/crown-icon_lavoz.svg",
         "recursos/crown-fill-black_lavoz.svg",
         "recursos/socios_p12.svg",
-        "recursos/socios_v2_p12.svg"
+        "recursos/socios_v2_p12.svg",
+        "recursos/suscriptores_lacapital.svg",
+        "recursos/suscriptores_blanco_clarin.svg"
       ],
       "matches": [
         "<all_urls>"
@@ -81,13 +94,22 @@
   "content_scripts": [
     {
       "js": [
-        "js/clarinpre.js"
+        "js/clarin.js"
       ],
       "css": [
         "css/clarin.css"
       ],
       "matches": [
         "*://*.clarin.com/*",
+        "*://*.ole.com.ar/*"
+      ],
+      "run_at": "document_start"
+    },
+    {
+      "css": [
+        "css/ole.css"
+      ],
+      "matches": [
         "*://*.ole.com.ar/*"
       ],
       "run_at": "document_start"
@@ -102,6 +124,16 @@
       "matches": [
         "*://*.lanacion.com.ar/*"
       ],
+      "run_at": "document_start"
+    },
+    {
+      "js": [
+        "js/lanaciondom.js"
+      ],
+      "matches": [
+        "*://*.lanacion.com.ar/*"
+      ],
+      "world": "MAIN",
       "run_at": "document_start"
     },
     {
@@ -124,14 +156,14 @@
         "*://*.lacapital.com.ar/*",
         "*://*.flipbook.com.ar/*"
       ],
-      "run_at": "document_end"
+      "run_at": "document_start"
     },
     {
       "js": [
-        "js/lavozpre.js"
+        "js/lavoz.js"
       ],
       "css": [
-        "css/lavozpre.css"
+        "css/lavoz.css"
       ],
       "matches": [
         "*://*.lavoz.com.ar/*"
@@ -140,12 +172,25 @@
     },
     {
       "js": [
-        "js/lavoz.js"
+        "js/lagaceta.js"
+      ],
+      "css": [
+        "css/lagaceta.css"
       ],
       "matches": [
-        "*://*.lavoz.com.ar/*"
+        "*://*.lagaceta.com.ar/*"
       ],
-      "run_at": "document_end"
+      "run_at": "document_start"
+    },
+    {
+      "js": [
+        "js/lagacetadom.js"
+      ],
+      "matches": [
+        "*://*.lagaceta.com.ar/*"
+      ],
+      "world": "MAIN",
+      "run_at": "document_start"
     },
     {
       "js": [
