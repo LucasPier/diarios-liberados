@@ -1,0 +1,18 @@
+/* Publicidad - Oculta contenedores de publicidad y zonas de ads */
+.ad-container,
+*[class*="adzone-ad"]
+
+/*,
+*[class*="banner-container"],
+*[class*="p12banner"],
+*[class*="col-banner"]*/
+    {
+    display: none !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    visibility: hidden !important;
+    z-index: -1 !important;
+}

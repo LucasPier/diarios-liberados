@@ -1,0 +1,14 @@
+/* Suscriptores - Oculta el paywall (#pw-content), el botón "Suscribite" y la sección de suscripción */
+#pw-content,
+a.pw-suscribite,
+#article-content div.subscription,
+#js-side-menu li.pw-cta {
+    display: none !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    visibility: hidden !important;
+    z-index: -1 !important;
+}

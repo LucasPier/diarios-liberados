@@ -1,0 +1,13 @@
+/* Suscriptores - Oculta el botón "Suscribite", y el "tint" que oscurece el artículo bloqueado */
+button[id="btnsuscribite"][class*="--subscribe"],
+div.dropdown.relative.h-max.flex.cursor-pointer:has(> .dropdown-toggle .email span:empty),
+.page-tint.subscriber-content {
+    display: none !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    visibility: hidden !important;
+    z-index: -1 !important;
+}

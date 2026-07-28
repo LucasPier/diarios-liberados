@@ -1,0 +1,19 @@
+/* Publicidad - Oculta banners y slots de publicidad (ad-container, google_ads_iframe, ad-slot) */
+.ad-container,
+div[id*="google_ads_iframe"],
+div[class*="banner-box"],
+div[class*="banner-box--300x600"],
+div[id*="ad-slot-top"],
+div[id*="ad-slot"],
+div[class*="ad-slot-top"],
+div[class*="ad-slot"],
+#liveWrapper #liveSponsors {
+    display: none !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    visibility: hidden !important;
+    z-index: -1 !important;
+}

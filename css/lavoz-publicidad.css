@@ -1,0 +1,23 @@
+/* Publicidad - Oculta contenedores de publicidad (ad-container, banners, promos, etc.) */
+.ad-container,
+div[class*="review-topsite"],
+*[class*="__ad"],
+*[class*="__promo"],
+*[class*="-promo"],
+/*.bg-lvi-hotdays-blue,*/
+.CONTAINER-WRAPPER:has(.WIDGET-BOX>.bg-lvi-hotdays-blue),
+.imgSponsor {
+    display: none !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    visibility: hidden !important;
+    z-index: -1 !important;
+}
+
+/* Publicidad - Reduce el padding del nav lateral cuando se eliminan banners del sidebar */
+#sectionsSideBar>header+nav.py-4 {
+    padding-top: 0.2rem;
+}

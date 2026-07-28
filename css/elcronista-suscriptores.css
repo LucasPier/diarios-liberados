@@ -1,0 +1,60 @@
+/* Suscriptores - Oculta el banner de paywall (.paywall-chain), el botón de suscripción y el login con Google */
+.paywall-chain,
+.masthead__subscribe,
+.login-google {
+    display: none !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    visibility: hidden !important;
+    z-index: -1 !important;
+}
+
+/* Suscriptores - Restaura el scroll del body (el sitio lo bloquea cuando muestra el paywall) */
+body {
+    overflow: auto !important;
+}
+
+/* Suscriptores - Quita el efecto blur del cuerpo del artículo premium y habilita la selección de texto */
+.article-body--blurred {
+    filter: blur(0px) !important;
+    pointer-events: auto !important;
+    -webkit-user-select: auto !important;
+    -moz-user-select: auto !important;
+    user-select: auto !important;
+}
+
+/* Suscriptores - Oculta el overlay/gradiente que el sitio pone sobre el texto bloqueado */
+.article-body--blurred:after {
+    display: none !important;
+}
+
+/* Suscriptores - Ajusta el margen del badge de "Miembros" en el encabezado del artículo */
+.article-head__members {
+    margin-left: 19px;
+}
+
+/* Suscriptores - Posiciona relativamente los badges de artículo restringido para el ícono custom */
+.more-about__item .story-card__restricted,
+.story-card__restricted,
+.author-card__restricted,
+.article-head__members {
+    position: relative !important;
+    /*background: #cb4141 !important;*/
+}
+
+/* Suscriptores - Crea el pseudo-elemento ::before para el ícono custom de la extensión
+   (el JS de elcronista-suscriptores.js inyecta la imagen vía background en este pseudo-elemento) */
+.story-card__restricted::before,
+.author-card__restricted::before,
+.article-head__members::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -26px;
+    width: 24px;
+    height: 24px;
+    background-size: 22px;
+}

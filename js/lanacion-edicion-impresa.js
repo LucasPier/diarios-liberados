@@ -1,0 +1,19 @@
+getConfig().then(cfg => {
+    if (!cfg.feature_suscriptores) return;
+
+    // Edición Impresa - Desbloquea las páginas del visor de edición impresa de La Nación
+    // (flipbook/viewer) quitando la clase que las marca como bloqueadas. Polling cada 100ms.
+    const desbloquear = () => {
+        const paginasBloqueadas = document.querySelectorAll('#Panel_pagesViewContainer .page:not(.page-unlocked)');
+
+        // console.log("Paginas bloqueadas: " + paginasBloqueadas.length);
+
+        paginasBloqueadas.forEach(function (pagina) {
+            pagina.classList.add('page-unlocked');
+        });
+        setTimeout(desbloquear, 100);
+    }
+    window.addEventListener('load', function () {
+        desbloquear();
+    });
+});
