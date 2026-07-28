@@ -60,6 +60,9 @@
     };*/
     console.log("¡Fusion iniciado!");
 
+    // Suscriptores - Intercepta la asignación del objeto global `Fusion` (framework de La Nación)
+    // antes de que el sitio lo lea. Al poner IS_DEV=true y API_ENV="dev" se fuerza el modo
+    // desarrollo, que omite las validaciones de paywall en el front-end.
     Object.defineProperty(window, 'Fusion', {
         set: function (val) {
             /*if (val && val.environment) {

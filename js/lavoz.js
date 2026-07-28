@@ -1,7 +1,9 @@
+// Suscriptores - URLs de los íconos de la extensión que reemplazan las coronas del sitio
 const imageUrl = chrome.runtime.getURL("recursos/suscripciones_lavoz.svg");
 const imageUrl2 = chrome.runtime.getURL("recursos/crown-icon_lavoz.svg");
 const imageUrl3 = chrome.runtime.getURL("recursos/crown-fill-black_lavoz.svg");
 
+// Suscriptores - Inyecta CSS para forzar el ícono de suscripción en los backgrounds CSS
 const style = document.createElement('style');
 style.textContent = `
     .bg-suscripcion-icon {
@@ -9,6 +11,8 @@ style.textContent = `
     }
 `;
 
+// Suscriptores - Reemplaza los íconos de corona (indicadores de contenido premium) por
+// los equivalentes de la extensión. Polling cada 100ms hasta confirmar 100 ciclos sin cambios.
 let sinReemplazos = 0;
 const cambiarImagenes = () => {
 

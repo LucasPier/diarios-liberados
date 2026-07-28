@@ -1,6 +1,8 @@
 (function () {
     let _fusionData = undefined;
 
+    // Suscriptores - Recibe las URLs de los SVG enviadas desde pagina12.js (contexto ISOLATED)
+    // via postMessage, necesario porque en world MAIN no se puede acceder a chrome.runtime.getURL
     let urlImagenSocios = '',
         urlImagenSocios2 = '';
 
@@ -11,6 +13,8 @@
         }
     });
 
+    // Suscriptores - Inserta el banner "Exclusivo para SOCI@S" en el artículo.
+    // Usa MutationObserver para re-insertarlo si el sitio lo elimina.
     const agregarBanner = () => {
         // console.log("Agregar banner");
         const contenedor = document.querySelector("main>.article-wrapper");
@@ -59,6 +63,9 @@
         }
     };
 
+    // Suscriptores - Intercepta la asignación del objeto global `Fusion` (framework Arc Publishing de P12)
+    // antes de que el sitio lo lea. Elimina content_restrictions para desbloquear el artículo
+    // y dispara el banner de socios.
     Object.defineProperty(window, 'Fusion', {
         set: function (val) {
             if (val && val.globalContent && val.globalContent.content_restrictions) {

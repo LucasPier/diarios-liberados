@@ -1,15 +1,22 @@
+// Suscriptores - Asigna cookies que simulan un usuario con suscripción activa
 const setCookie = (cname, cvalue, exdays) => {
     const d = new Date();
     d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
     let expires = "expires=" + d.toUTCString();
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
+// Suscriptores - Cookie de estado de suscripción (statusSus=1 = suscriptor activo)
 setCookie("statusSus", "1", 90);
+// Suscriptores - Cookie de suscripción temporal (susTemp=true = acceso habilitado)
 setCookie("susTemp", "true", 90);
 
 
+// Suscriptores - URL del ícono de suscriptores de la extensión (reemplaza el original del sitio)
 const imageUrl = chrome.runtime.getURL("recursos/suscriptores_blanco_clarin.svg");
 
+// Suscriptores - Reemplaza el ícono de suscriptores del sitio por el de la extensión,
+// evitando que quede en blanco (el sitio bloquea la imagen original para no suscriptores).
+// Polling cada 100ms hasta confirmar 100 ciclos sin imágenes para reemplazar.
 let sinReemplazos = 0;
 const cambiarImagenes = () => {
 

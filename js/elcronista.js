@@ -1,6 +1,9 @@
 
+// Suscriptores - URL del SVG de la extensión para el ícono de artículos restringidos
 const imageUrl = chrome.runtime.getURL("recursos/diarios.svg");
 
+// Suscriptores - Inyecta un estilo que pone el ícono de la extensión como background del
+// pseudo-elemento ::before definido en elcronista.css para los badges de artículo restringido
 const style = document.createElement('style');
 style.textContent = `
     .story-card__restricted::before,

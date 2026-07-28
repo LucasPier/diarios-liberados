@@ -1,6 +1,9 @@
 
+// Suscriptores - URL del ícono de suscriptores de la extensión (reemplaza el original del sitio)
 const imageUrl = chrome.runtime.getURL("recursos/suscriptores_lacapital.svg");
 
+// Suscriptores - Reemplaza el ícono de suscriptores del sitio por el de la extensión.
+// Polling cada 100ms hasta confirmar 100 ciclos sin imágenes para reemplazar.
 let sinReemplazos = 0;
 const cambiarImagenes = () => {
 
@@ -30,6 +33,9 @@ const cambiarImagenes = () => {
 
 document.addEventListener('DOMContentLoaded', () => {
     if(document.body){
+        // Notificaciones / Publicidad - Elimina modales de Piano (tp-modal/tp-backdrop) y el
+        // slidedown de notificaciones push de OneSignal. Polling cada 100ms para cubrir
+        // elementos inyectados dinámicamente después de la carga inicial.
         function eliminarElementos() {
             let elementosABorrar = document.querySelectorAll("div.tp-modal, div.tp-backdrop, #onesignal-slidedown-container");
             elementosABorrar.forEach(elemento => {

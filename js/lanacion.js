@@ -1,3 +1,5 @@
+// Edición Impresa - Desbloquea las páginas del visor de edición impresa de La Nación
+// (flipbook/viewer) quitando la clase que las marca como bloqueadas. Polling cada 100ms.
 const desbloquear = () => {
     const paginasBloqueadas = document.querySelectorAll('#Panel_pagesViewContainer .page:not(.page-unlocked)');
 

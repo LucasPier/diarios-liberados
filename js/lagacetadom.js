@@ -1,6 +1,9 @@
 (function () {
 
-    // Interceptar el primer <script type="application/ld+json"> y modificar su contenido
+    // Suscriptores (La Gaceta) - Intercepta el primer <script type="application/ld+json"> y
+    // modifica su contenido antes de que el sitio lo evalúe.
+    // Cambia el productID del artículo de "premium" a "suscripcion_digital_metered" para
+    // que el sistema de paywall lo trate como acceso medido en lugar de acceso restringido.
     const ldJsonObserver = new MutationObserver((mutations) => {
         for (const mutation of mutations) {
             for (const node of mutation.addedNodes) {
@@ -29,7 +32,9 @@
     });
     ldJsonObserver.observe(document.documentElement, { childList: true, subtree: true });
 
-    // Interceptar dataLayer
+    // Suscriptores (La Gaceta) - Intercepta el script de dataLayer (Google Tag Manager)
+    // y modifica el access_level de 'hard' (paywall duro) a 'metered' (acceso medido)
+    // para que el sitio no active el muro de pago en el front-end.
     const dataLayerObserver = new MutationObserver((mutations) => {
         for (const mutation of mutations) {
             for (const node of mutation.addedNodes) {
@@ -53,7 +58,8 @@
     });
     dataLayerObserver.observe(document.documentElement, { childList: true, subtree: true });
 
-    // Interceptar classPremium
+    // Suscriptores (La Gaceta) - Intercepta la inserción del elemento <article> con clase "premium"
+    // y le quita esa clase antes de que el CSS del sitio lo renderice bloqueado.
     const classPremiumObserver = new MutationObserver((mutations) => {
         for (const mutation of mutations) {
             for (const node of mutation.addedNodes) {
@@ -72,7 +78,9 @@
     });
     classPremiumObserver.observe(document.documentElement, { childList: true, subtree: true });
 
-    // Interceptar XMLHttpRequest
+    // Suscriptores (La Gaceta) - Intercepta XMLHttpRequest para modificar la respuesta del
+    // endpoint /ajax/getInfo que el sitio usa para determinar acceso al artículo.
+    // Modifica los campos is_subscriber, show_wall y article_access para simular acceso de suscriptor.
     const _XHR = window.XMLHttpRequest;
     window.XMLHttpRequest = function() {
         const xhr = new _XHR();
@@ -131,6 +139,8 @@
     let _paywallConfigData = undefined,
         _article_dataData = undefined;
 
+    // Suscriptores (La Gaceta) - Intercepta la variable global `paywallConfig` que el sitio
+    // usa para determinar el tipo de paywall. La fuerza a "metered" para evitar el bloqueo hard.
     Object.defineProperty(window, 'paywallConfig', {
         set: function (val) {
             if (val && val.type) {
@@ -147,6 +157,8 @@
     });
 
 
+    // Suscriptores (La Gaceta) - Intercepta la variable global `article_data` que el sitio
+    // usa para determinar el nivel de acceso del artículo. La fuerza a "metered".
     Object.defineProperty(window, 'article_data', {
         set: function (val) {
             if (val && val.access) {
@@ -163,6 +175,7 @@
     });
 
 
+    // Suscriptores (La Gaceta) - Muestra el sidebar que el sitio oculta en artículos premium
     window.addEventListener('load', () => {
         
         const sidebar = document.getElementById("sidebar");
