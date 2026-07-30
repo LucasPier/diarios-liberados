@@ -183,6 +183,12 @@ var SITE_CSS_MAP = window.SITE_CSS_MAP || (function () {
         suscriptores:   ['css/rionegro-suscriptores.css']
     };
 
+    const diariounoConfig = {
+        publicidad:     ['css/diariouno-publicidad.css'],
+        notificaciones: ['css/diariouno-notificaciones.css'],
+        suscriptores:   []
+    };
+
     return {
         // ── Clarín / Olé ─────────────────────────────────────────
         'www.clarin.com': clarinConfig,
@@ -328,7 +334,11 @@ var SITE_CSS_MAP = window.SITE_CSS_MAP || (function () {
 
         // ── Río Negro ─────────────────────────────────────────────
         'www.rionegro.com.ar': rionegroConfig,
-        'rionegro.com.ar':     rionegroConfig
+        'rionegro.com.ar':     rionegroConfig,
+
+        // ── Diario Uno ────────────────────────────────────────────
+        'www.diariouno.com.ar': diariounoConfig,
+        'diariouno.com.ar':     diariounoConfig
 
     };
 })();

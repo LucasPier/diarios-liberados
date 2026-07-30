@@ -19,7 +19,7 @@ const DOMINIOS_CUBIERTOS = [
     "ole.com.ar", "elciudadanoweb.com", "viapais.com.ar", "diariopopular.com.ar",
     "eltrecetv.com.ar", "radiomitre.com.ar", "tycsports.com", "ciudad.com.ar",
     "tn.com.ar", "cienradios.com", "minutouno.com", "letrap.com.ar", "mdzol.com",
-    "losandes.com.ar", "eldia.com", "rionegro.com.ar"
+    "losandes.com.ar", "eldia.com", "rionegro.com.ar", "diariouno.com.ar"
 ];
 
 /** Verifica si una URL pertenece a alguno de los dominios cubiertos */
