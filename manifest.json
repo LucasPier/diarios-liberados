@@ -59,6 +59,7 @@
     "*://*.mdzol.com/*",
     "*://*.losandes.com.ar/*",
     "*://*.eldia.com/*",
+    "*://*.rionegro.com.ar/*",
     "*://imasdk.googleapis.com/*"
   ],
   "background": {
@@ -140,7 +141,10 @@
         "css/losandes-publicidad.css",
         "css/eldia-notificaciones.css",
         "css/eldia-publicidad.css",
-        "css/eldia-suscriptores.css"
+        "css/eldia-suscriptores.css",
+        "css/rionegro-notificaciones.css",
+        "css/rionegro-publicidad.css",
+        "css/rionegro-suscriptores.css"
       ],
       "matches": [
         "<all_urls>"
@@ -561,6 +565,19 @@
       ],
       "matches": [
         "*://*.eldia.com/*"
+      ],
+      "run_at": "document_start"
+    },
+    {
+      "js": [
+        "js/config.js",
+        "js/css-loader.js",
+        "js/site-map.js",
+        "js/loader.js",
+        "js/rionegro.js"
+      ],
+      "matches": [
+        "*://*.rionegro.com.ar/*"
       ],
       "run_at": "document_start"
     }

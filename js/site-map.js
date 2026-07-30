@@ -177,6 +177,12 @@ var SITE_CSS_MAP = window.SITE_CSS_MAP || (function () {
         suscriptores:   ['css/eldia-suscriptores.css']
     };
 
+    const rionegroConfig = {
+        publicidad:     ['css/rionegro-publicidad.css'],
+        notificaciones: ['css/rionegro-notificaciones.css'],
+        suscriptores:   ['css/rionegro-suscriptores.css']
+    };
+
     return {
         // ── Clarín / Olé ─────────────────────────────────────────
         'www.clarin.com': clarinConfig,
@@ -318,7 +324,12 @@ var SITE_CSS_MAP = window.SITE_CSS_MAP || (function () {
 
         // ── El Día ────────────────────────────────────────────────
         'www.eldia.com': eldiaConfig,
-        'eldia.com':     eldiaConfig
+        'eldia.com':     eldiaConfig,
+
+        // ── Río Negro ─────────────────────────────────────────────
+        'www.rionegro.com.ar': rionegroConfig,
+        'rionegro.com.ar':     rionegroConfig
+
     };
 })();
 window.SITE_CSS_MAP = SITE_CSS_MAP;

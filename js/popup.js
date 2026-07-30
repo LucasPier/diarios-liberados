@@ -18,7 +18,8 @@ const DOMINIOS_CUBIERTOS = [
     "ambito.com", "eldestapeweb.com", "perfil.com", "canalnet.tv", "batimes.com.ar",
     "ole.com.ar", "elciudadanoweb.com", "viapais.com.ar", "diariopopular.com.ar",
     "eltrecetv.com.ar", "radiomitre.com.ar", "tycsports.com", "ciudad.com.ar",
-    "tn.com.ar", "cienradios.com", "minutouno.com", "letrap.com.ar", "mdzol.com", "losandes.com.ar", "eldia.com"
+    "tn.com.ar", "cienradios.com", "minutouno.com", "letrap.com.ar", "mdzol.com",
+    "losandes.com.ar", "eldia.com", "rionegro.com.ar"
 ];
 
 /** Verifica si una URL pertenece a alguno de los dominios cubiertos */
