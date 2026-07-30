@@ -56,6 +56,7 @@
     "*://*.kenja.tech/*",
     "*://*.minutouno.com/*",
     "*://*.letrap.com.ar/*",
+    "*://*.mdzol.com/*",
     "*://imasdk.googleapis.com/*"
   ],
   "background": {
@@ -130,7 +131,9 @@
         "css/minutouno-notificaciones.css",
         "css/minutouno-publicidad.css",
         "css/letrap-notificaciones.css",
-        "css/letrap-publicidad.css"
+        "css/letrap-publicidad.css",
+        "css/mdz-notificaciones.css",
+        "css/mdz-publicidad.css"
       ],
       "matches": [
         "<all_urls>"
@@ -512,6 +515,19 @@
       ],
       "matches": [
         "*://*.letrap.com.ar/*"
+      ],
+      "run_at": "document_start"
+    },
+    {
+      "js": [
+        "js/config.js",
+        "js/css-loader.js",
+        "js/site-map.js",
+        "js/loader.js",
+        "js/mdz.js"
+      ],
+      "matches": [
+        "*://*.mdzol.com/*"
       ],
       "run_at": "document_start"
     }
