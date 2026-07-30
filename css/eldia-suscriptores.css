@@ -1,0 +1,26 @@
+/* Suscriptores - Oculta botones y banners de suscripción */
+.login_suscribirse,
+.paywall,
+.articulo__suscripcion,
+.tapaDelDia .promo {
+    display: none !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    visibility: hidden !important;
+    z-index: -1 !important;
+}
+article.articulo [amp-access][amp-access-hide]{
+    display: block !important;
+}
+amp-img[src*="eldia.com/img/estructura/star-susc.svg"]{
+    width: 17px !important;
+    height: 17px !important;
+    margin: 2px 0 0 1px !important;
+    
+}
+.nota.nota--gral.member .icons-espacio{
+    padding: 0 3px 0 8px !important;
+}

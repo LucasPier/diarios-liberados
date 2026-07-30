@@ -171,6 +171,12 @@ var SITE_CSS_MAP = window.SITE_CSS_MAP || (function () {
         suscriptores:   []
     };
 
+    const eldiaConfig = {
+        publicidad:     ['css/eldia-publicidad.css'],
+        notificaciones: ['css/eldia-notificaciones.css'],
+        suscriptores:   ['css/eldia-suscriptores.css']
+    };
+
     return {
         // ── Clarín / Olé ─────────────────────────────────────────
         'www.clarin.com': clarinConfig,
@@ -308,7 +314,11 @@ var SITE_CSS_MAP = window.SITE_CSS_MAP || (function () {
 
         // ── Los Andes ─────────────────────────────────────────────
         'www.losandes.com.ar': losandesConfig,
-        'losandes.com.ar':     losandesConfig
+        'losandes.com.ar':     losandesConfig,
+
+        // ── El Día ────────────────────────────────────────────────
+        'www.eldia.com': eldiaConfig,
+        'eldia.com':     eldiaConfig
     };
 })();
 window.SITE_CSS_MAP = SITE_CSS_MAP;

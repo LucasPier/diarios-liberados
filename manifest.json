@@ -58,6 +58,7 @@
     "*://*.letrap.com.ar/*",
     "*://*.mdzol.com/*",
     "*://*.losandes.com.ar/*",
+    "*://*.eldia.com/*",
     "*://imasdk.googleapis.com/*"
   ],
   "background": {
@@ -136,7 +137,10 @@
         "css/mdz-notificaciones.css",
         "css/mdz-publicidad.css",
         "css/losandes-notificaciones.css",
-        "css/losandes-publicidad.css"
+        "css/losandes-publicidad.css",
+        "css/eldia-notificaciones.css",
+        "css/eldia-publicidad.css",
+        "css/eldia-suscriptores.css"
       ],
       "matches": [
         "<all_urls>"
@@ -544,6 +548,19 @@
       ],
       "matches": [
         "*://*.losandes.com.ar/*"
+      ],
+      "run_at": "document_start"
+    },
+    {
+      "js": [
+        "js/config.js",
+        "js/css-loader.js",
+        "js/site-map.js",
+        "js/loader.js",
+        "js/eldia-suscriptores.js"
+      ],
+      "matches": [
+        "*://*.eldia.com/*"
       ],
       "run_at": "document_start"
     }
