@@ -55,6 +55,7 @@
     "*://*.cienradios.com/*",
     "*://*.kenja.tech/*",
     "*://*.minutouno.com/*",
+    "*://*.letrap.com.ar/*",
     "*://imasdk.googleapis.com/*"
   ],
   "background": {
@@ -127,7 +128,9 @@
         "css/tn-notificaciones.css",
         "css/tn-publicidad.css",
         "css/minutouno-notificaciones.css",
-        "css/minutouno-publicidad.css"
+        "css/minutouno-publicidad.css",
+        "css/letrap-notificaciones.css",
+        "css/letrap-publicidad.css"
       ],
       "matches": [
         "<all_urls>"
@@ -496,6 +499,19 @@
       ],
       "matches": [
         "*://*.minutouno.com/*"
+      ],
+      "run_at": "document_start"
+    },
+    {
+      "js": [
+        "js/config.js",
+        "js/css-loader.js",
+        "js/site-map.js",
+        "js/loader.js",
+        "js/letrap.js"
+      ],
+      "matches": [
+        "*://*.letrap.com.ar/*"
       ],
       "run_at": "document_start"
     }

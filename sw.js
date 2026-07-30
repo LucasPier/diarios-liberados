@@ -11,7 +11,7 @@ const BASE_DOMAINS = [
   "elciudadanoweb.com", "viapais.com.ar", "diariopopular.com.ar", "eltrecetv.com.ar",
   "radiomitre.com.ar", "tycsports.com", "ciudad.com.ar", "tn.com.ar", "cienradios.com",
   "ar.cienradios.com", "radiomitre.cienradios.com", "la100.cienradios.com",
-  "mia.cienradios.com", "kenja.tech", "minutouno.com", "imasdk.googleapis.com"
+  "mia.cienradios.com", "kenja.tech", "minutouno.com", "letrap.com.ar", "imasdk.googleapis.com"
 ];
 
 // Incluye dominios apex y subdominios www. para matchear sin importar si el usuario usa www o no
@@ -250,6 +250,16 @@ const RULES_PUBLICIDAD = [
     action: { type: "block" },
     condition: {
       urlFilter: "ads.js",
+      initiatorDomains: DOMAINS,
+    },
+  },
+  {
+    // Publicidad - Bloqueo genérico de scripts "ad.js" (cargadores de publicidad)
+    id: 30,
+    priority: 1,
+    action: { type: "block" },
+    condition: {
+      urlFilter: "smartadserver.com",
       initiatorDomains: DOMAINS,
     },
   }

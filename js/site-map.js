@@ -153,6 +153,12 @@ var SITE_CSS_MAP = window.SITE_CSS_MAP || (function () {
         suscriptores:   []
     };
 
+    const letrapConfig = {
+        publicidad:     ['css/letrap-publicidad.css'],
+        notificaciones: ['css/letrap-notificaciones.css'],
+        suscriptores:   []
+    };
+
     return {
         // ── Clarín / Olé ─────────────────────────────────────────
         'www.clarin.com': clarinConfig,
@@ -278,7 +284,11 @@ var SITE_CSS_MAP = window.SITE_CSS_MAP || (function () {
 
         // ── Minuto Uno ────────────────────────────────────────────
         'www.minutouno.com': minutounoConfig,
-        'minutouno.com':     minutounoConfig
+        'minutouno.com':     minutounoConfig,
+
+        // ── Letra P ───────────────────────────────────────────────
+        'www.letrap.com.ar': letrapConfig,
+        'letrap.com.ar':     letrapConfig
     };
 })();
 window.SITE_CSS_MAP = SITE_CSS_MAP;
