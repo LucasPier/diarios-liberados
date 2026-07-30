@@ -153,6 +153,42 @@ var SITE_CSS_MAP = window.SITE_CSS_MAP || (function () {
         suscriptores:   []
     };
 
+    const letrapConfig = {
+        publicidad:     ['css/letrap-publicidad.css'],
+        notificaciones: ['css/letrap-notificaciones.css'],
+        suscriptores:   []
+    };
+
+    const mdzConfig = {
+        publicidad:     ['css/mdz-publicidad.css'],
+        notificaciones: ['css/mdz-notificaciones.css'],
+        suscriptores:   []
+    };
+
+    const losandesConfig = {
+        publicidad:     ['css/losandes-publicidad.css'],
+        notificaciones: ['css/losandes-notificaciones.css'],
+        suscriptores:   []
+    };
+
+    const eldiaConfig = {
+        publicidad:     ['css/eldia-publicidad.css'],
+        notificaciones: ['css/eldia-notificaciones.css'],
+        suscriptores:   ['css/eldia-suscriptores.css']
+    };
+
+    const rionegroConfig = {
+        publicidad:     ['css/rionegro-publicidad.css'],
+        notificaciones: ['css/rionegro-notificaciones.css'],
+        suscriptores:   ['css/rionegro-suscriptores.css']
+    };
+
+    const diariounoConfig = {
+        publicidad:     ['css/diariouno-publicidad.css'],
+        notificaciones: ['css/diariouno-notificaciones.css'],
+        suscriptores:   []
+    };
+
     return {
         // ── Clarín / Olé ─────────────────────────────────────────
         'www.clarin.com': clarinConfig,
@@ -278,7 +314,32 @@ var SITE_CSS_MAP = window.SITE_CSS_MAP || (function () {
 
         // ── Minuto Uno ────────────────────────────────────────────
         'www.minutouno.com': minutounoConfig,
-        'minutouno.com':     minutounoConfig
+        'minutouno.com':     minutounoConfig,
+
+        // ── Letra P ───────────────────────────────────────────────
+        'www.letrap.com.ar': letrapConfig,
+        'letrap.com.ar':     letrapConfig,
+
+        // ── MDZ Online ────────────────────────────────────────────
+        'www.mdzol.com': mdzConfig,
+        'mdzol.com':     mdzConfig,
+
+        // ── Los Andes ─────────────────────────────────────────────
+        'www.losandes.com.ar': losandesConfig,
+        'losandes.com.ar':     losandesConfig,
+
+        // ── El Día ────────────────────────────────────────────────
+        'www.eldia.com': eldiaConfig,
+        'eldia.com':     eldiaConfig,
+
+        // ── Río Negro ─────────────────────────────────────────────
+        'www.rionegro.com.ar': rionegroConfig,
+        'rionegro.com.ar':     rionegroConfig,
+
+        // ── Diario Uno ────────────────────────────────────────────
+        'www.diariouno.com.ar': diariounoConfig,
+        'diariouno.com.ar':     diariounoConfig
+
     };
 })();
 window.SITE_CSS_MAP = SITE_CSS_MAP;

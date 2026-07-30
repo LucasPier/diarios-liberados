@@ -2,7 +2,7 @@
   "name": "Diarios Liberados",
   "short_name": "diarios-liberados",
   "description": "Mejora visualización de diarios online",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "author": "Lucas Pier",
   "homepage_url": "https://github.com/LucasPier/diarios-liberados",
   "manifest_version": 3,
@@ -55,6 +55,12 @@
     "*://*.cienradios.com/*",
     "*://*.kenja.tech/*",
     "*://*.minutouno.com/*",
+    "*://*.letrap.com.ar/*",
+    "*://*.mdzol.com/*",
+    "*://*.losandes.com.ar/*",
+    "*://*.eldia.com/*",
+    "*://*.rionegro.com.ar/*",
+    "*://*.diariouno.com.ar/*",
     "*://imasdk.googleapis.com/*"
   ],
   "background": {
@@ -127,7 +133,21 @@
         "css/tn-notificaciones.css",
         "css/tn-publicidad.css",
         "css/minutouno-notificaciones.css",
-        "css/minutouno-publicidad.css"
+        "css/minutouno-publicidad.css",
+        "css/letrap-notificaciones.css",
+        "css/letrap-publicidad.css",
+        "css/mdz-notificaciones.css",
+        "css/mdz-publicidad.css",
+        "css/losandes-notificaciones.css",
+        "css/losandes-publicidad.css",
+        "css/eldia-notificaciones.css",
+        "css/eldia-publicidad.css",
+        "css/eldia-suscriptores.css",
+        "css/rionegro-notificaciones.css",
+        "css/rionegro-publicidad.css",
+        "css/rionegro-suscriptores.css",
+        "css/diariouno-notificaciones.css",
+        "css/diariouno-publicidad.css"
       ],
       "matches": [
         "<all_urls>"
@@ -496,6 +516,84 @@
       ],
       "matches": [
         "*://*.minutouno.com/*"
+      ],
+      "run_at": "document_start"
+    },
+    {
+      "js": [
+        "js/config.js",
+        "js/css-loader.js",
+        "js/site-map.js",
+        "js/loader.js",
+        "js/letrap.js"
+      ],
+      "matches": [
+        "*://*.letrap.com.ar/*"
+      ],
+      "run_at": "document_start"
+    },
+    {
+      "js": [
+        "js/config.js",
+        "js/css-loader.js",
+        "js/site-map.js",
+        "js/loader.js",
+        "js/mdz.js"
+      ],
+      "matches": [
+        "*://*.mdzol.com/*"
+      ],
+      "run_at": "document_start"
+    },
+    {
+      "js": [
+        "js/config.js",
+        "js/css-loader.js",
+        "js/site-map.js",
+        "js/loader.js",
+        "js/losandes.js"
+      ],
+      "matches": [
+        "*://*.losandes.com.ar/*"
+      ],
+      "run_at": "document_start"
+    },
+    {
+      "js": [
+        "js/config.js",
+        "js/css-loader.js",
+        "js/site-map.js",
+        "js/loader.js",
+        "js/eldia-suscriptores.js"
+      ],
+      "matches": [
+        "*://*.eldia.com/*"
+      ],
+      "run_at": "document_start"
+    },
+    {
+      "js": [
+        "js/config.js",
+        "js/css-loader.js",
+        "js/site-map.js",
+        "js/loader.js",
+        "js/rionegro.js"
+      ],
+      "matches": [
+        "*://*.rionegro.com.ar/*"
+      ],
+      "run_at": "document_start"
+    },
+    {
+      "js": [
+        "js/config.js",
+        "js/css-loader.js",
+        "js/site-map.js",
+        "js/loader.js",
+        "js/diariouno.js"
+      ],
+      "matches": [
+        "*://*.diariouno.com.ar/*"
       ],
       "run_at": "document_start"
     }

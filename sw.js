@@ -11,7 +11,8 @@ const BASE_DOMAINS = [
   "elciudadanoweb.com", "viapais.com.ar", "diariopopular.com.ar", "eltrecetv.com.ar",
   "radiomitre.com.ar", "tycsports.com", "ciudad.com.ar", "tn.com.ar", "cienradios.com",
   "ar.cienradios.com", "radiomitre.cienradios.com", "la100.cienradios.com",
-  "mia.cienradios.com", "kenja.tech", "minutouno.com", "imasdk.googleapis.com"
+  "mia.cienradios.com", "kenja.tech", "minutouno.com", "letrap.com.ar", "mdzol.com",
+  "losandes.com.ar", "eldia.com", "rionegro.com.ar", "diariouno.com.ar", "imasdk.googleapis.com"
 ];
 
 // Incluye dominios apex y subdominios www. para matchear sin importar si el usuario usa www o no
@@ -252,6 +253,16 @@ const RULES_PUBLICIDAD = [
       urlFilter: "ads.js",
       initiatorDomains: DOMAINS,
     },
+  },
+  {
+    // Publicidad - Bloqueo genérico de scripts "ad.js" (cargadores de publicidad)
+    id: 30,
+    priority: 1,
+    action: { type: "block" },
+    condition: {
+      urlFilter: "smartadserver.com",
+      initiatorDomains: DOMAINS,
+    },
   }
 ];
 
@@ -310,6 +321,21 @@ const RULES_SUSCRIPTORES = [
   }
 ];
 
+// Reglas de red dinámicas aplicadas vía declarativeNetRequest.
+// Todas las reglas de este bloque corresponden a: Notificaciones
+const RULES_NOTIFICACIONES = [
+  {
+    // Notificaciones - Bloqueo de Gravitec para desactivar notificaciones push
+    id: 31,
+    priority: 1,
+    action: { type: "block" },
+    condition: {
+      urlFilter: "gravitec.net/",
+      initiatorDomains: DOMAINS,
+    },
+  }
+];
+
 // ID del ruleset estático (rules.json) — aplica sólo a la feature "suscriptores"
 const STATIC_RULESET_ID = "ruleset_lagaceta";
 
@@ -333,14 +359,16 @@ async function applyRules() {
             pendingApply = false;
 
             const cfg = await chrome.storage.sync.get({
-                feature_publicidad:    true,
-                feature_suscriptores:  true
+                feature_publicidad:     true,
+                feature_suscriptores:   true,
+                feature_notificaciones: true
             });
 
             // Construir el conjunto de reglas a activar según config
             const rulesToAdd = [
                 ...(cfg.feature_publicidad   ? RULES_PUBLICIDAD   : []),
                 ...(cfg.feature_suscriptores ? RULES_SUSCRIPTORES : []),
+                ...(cfg.feature_notificaciones ? RULES_NOTIFICACIONES : []),
             ];
 
             // Obtener de Chrome todas las reglas dinámicas actualmente instaladas
@@ -374,7 +402,7 @@ applyRules();
 // Re-aplicar reglas cuando el usuario cambia la configuración desde el popup
 chrome.storage.onChanged.addListener((changes, area) => {
     if (area !== 'sync') return;
-    if ('feature_publicidad' in changes || 'feature_suscriptores' in changes) {
+    if ('feature_publicidad' in changes || 'feature_suscriptores' in changes || 'feature_notificaciones' in changes) {
         applyRules();
     }
 });
