@@ -57,6 +57,7 @@
     "*://*.minutouno.com/*",
     "*://*.letrap.com.ar/*",
     "*://*.mdzol.com/*",
+    "*://*.losandes.com.ar/*",
     "*://imasdk.googleapis.com/*"
   ],
   "background": {
@@ -133,7 +134,9 @@
         "css/letrap-notificaciones.css",
         "css/letrap-publicidad.css",
         "css/mdz-notificaciones.css",
-        "css/mdz-publicidad.css"
+        "css/mdz-publicidad.css",
+        "css/losandes-notificaciones.css",
+        "css/losandes-publicidad.css"
       ],
       "matches": [
         "<all_urls>"
@@ -528,6 +531,19 @@
       ],
       "matches": [
         "*://*.mdzol.com/*"
+      ],
+      "run_at": "document_start"
+    },
+    {
+      "js": [
+        "js/config.js",
+        "js/css-loader.js",
+        "js/site-map.js",
+        "js/loader.js",
+        "js/losandes.js"
+      ],
+      "matches": [
+        "*://*.losandes.com.ar/*"
       ],
       "run_at": "document_start"
     }

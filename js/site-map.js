@@ -165,6 +165,12 @@ var SITE_CSS_MAP = window.SITE_CSS_MAP || (function () {
         suscriptores:   []
     };
 
+    const losandesConfig = {
+        publicidad:     ['css/losandes-publicidad.css'],
+        notificaciones: ['css/losandes-notificaciones.css'],
+        suscriptores:   []
+    };
+
     return {
         // ── Clarín / Olé ─────────────────────────────────────────
         'www.clarin.com': clarinConfig,
@@ -296,9 +302,13 @@ var SITE_CSS_MAP = window.SITE_CSS_MAP || (function () {
         'www.letrap.com.ar': letrapConfig,
         'letrap.com.ar':     letrapConfig,
 
-        // ── MDZ Online ─────────────────────────────────────────────
+        // ── MDZ Online ────────────────────────────────────────────
         'www.mdzol.com': mdzConfig,
-        'mdzol.com':     mdzConfig
+        'mdzol.com':     mdzConfig,
+
+        // ── Los Andes ─────────────────────────────────────────────
+        'www.losandes.com.ar': losandesConfig,
+        'losandes.com.ar':     losandesConfig
     };
 })();
 window.SITE_CSS_MAP = SITE_CSS_MAP;
