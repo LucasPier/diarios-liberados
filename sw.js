@@ -13,7 +13,7 @@ const BASE_DOMAINS = [
     "ar.cienradios.com", "radiomitre.cienradios.com", "la100.cienradios.com",
     "mia.cienradios.com", "kenja.tech", "minutouno.com", "letrap.com.ar", "mdzol.com",
     "losandes.com.ar", "eldia.com", "rionegro.com.ar", "diariouno.com.ar", "unosantafe.com.ar",
-    "unoentrerios.com.ar", "elonce.com", "imasdk.googleapis.com"
+    "unoentrerios.com.ar", "elonce.com", "airedesantafe.com.ar", "imasdk.googleapis.com"
 ];
 
 // Incluye dominios apex y subdominios www. para matchear sin importar si el usuario usa www o no
@@ -264,6 +264,16 @@ const RULES_PUBLICIDAD = [
             urlFilter: "smartadserver.com",
             initiatorDomains: DOMAINS,
         },
+    },
+    {
+        // Trackeo Dos al Cubo
+        id: 32,
+        priority: 1,
+        action: { type: "block" },
+        condition: {
+            urlFilter: "racker.thinkindot.com",
+            initiatorDomains: DOMAINS,
+        },
     }
 ];
 
@@ -332,6 +342,26 @@ const RULES_NOTIFICACIONES = [
         action: { type: "block" },
         condition: {
             urlFilter: "gravitec.net/",
+            initiatorDomains: DOMAINS,
+        },
+    },
+    {
+        // Notificaciones - Bloqueo de OneSignal para desactivar notificaciones push
+        id: 33,
+        priority: 1,
+        action: { type: "block" },
+        condition: {
+            urlFilter: "onesignal.com/",
+            initiatorDomains: DOMAINS,
+        },
+    },
+    {
+        // Notificaciones - Bloqueo de OneSignal para desactivar notificaciones push
+        id: 34,
+        priority: 1,
+        action: { type: "block" },
+        condition: {
+            urlFilter: "OneSignalSDKFiles",
             initiatorDomains: DOMAINS,
         },
     }

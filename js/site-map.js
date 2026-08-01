@@ -195,6 +195,12 @@ var SITE_CSS_MAP = window.SITE_CSS_MAP || (function () {
         suscriptores:   []
     };
 
+    const airedesantafeConfig = {
+        publicidad:     ['css/airedesantafe-publicidad.css'],
+        notificaciones: ['css/airedesantafe-notificaciones.css'],
+        suscriptores:   []
+    };
+
     return {
         // ── Clarín / Olé ─────────────────────────────────────────
         'www.clarin.com': clarinConfig,
@@ -353,6 +359,10 @@ var SITE_CSS_MAP = window.SITE_CSS_MAP || (function () {
         // ── El Once ───────────────────────────────────────────────
         'www.elonce.com': elonceConfig,
         'elonce.com':     elonceConfig,
+
+        // ── Aire de Santa Fe ──────────────────────────────────────
+        'www.airedesantafe.com.ar': airedesantafeConfig,
+        'airedesantafe.com.ar':     airedesantafeConfig
 
     };
 })();

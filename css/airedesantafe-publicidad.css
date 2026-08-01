@@ -1,0 +1,39 @@
+/* Publicidad - Oculta banners */
+.banner,
+*[class*="banner"]:not(.banner__youtube-stream):not(.banner-libre):not(.banner-wrapper),
+*[class*="banner"]:has([class*="ad-slot"]),
+.w-full.lg\:w-3\/12:has(.banner-inside),
+.w-full.lg\:w-3\/12:has(.ad-slot),
+.widget-grid__row:has(.banner-libre):has(.ad-slot) .widget-grid__region:first-child,
+.ad-slot-itt,
+.adzone-fast-slot,
+.ad-slot,
+*[class*="ad-slot"] {
+    display: none !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    visibility: hidden !important;
+    z-index: -1 !important;
+}
+
+
+/* Mejoras de distribución UI sin banners publicitarios*/
+.main-header{
+    margin-bottom: 25px !important;
+}
+.hidden:not(.barraNavegacion):has(.ad-slot),
+#loaderCont+.container.mx-auto:has([class*="ad-slot"]):first-of-type,
+body.news-detail:not(.seccion-page) #loaderCont+.lg\:container > div:not(.related-news):has([class*="ad-slot"]):first-of-type {
+    display: none !important;
+}
+.lg\:w-\[72\%\] {
+    margin: 0 auto !important;
+}
+@media (min-width: 1024px) {
+    .lg\:w-9\/12 {
+        margin: 0 auto !important;
+    }
+}

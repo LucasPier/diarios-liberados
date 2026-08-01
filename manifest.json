@@ -64,6 +64,7 @@
         "*://*.unosantafe.com.ar/*",
         "*://*.unoentrerios.com.ar/*",
         "*://*.elonce.com/*",
+        "*://*.airedesantafe.com.ar/*",
         "*://imasdk.googleapis.com/*"
     ],
     "background": {
@@ -152,7 +153,9 @@
                 "css/diariouno-notificaciones.css",
                 "css/diariouno-publicidad.css",
                 "css/elonce-notificaciones.css",
-                "css/elonce-publicidad.css"
+                "css/elonce-publicidad.css",
+                "css/airedesantafe-notificaciones.css",
+                "css/airedesantafe-publicidad.css"
             ],
             "matches": [
                 "<all_urls>"
@@ -601,6 +604,29 @@
             ],
             "matches": [
                 "*://*.diariouno.com.ar/*"
+            ],
+            "run_at": "document_start"
+        },
+        {
+            "js": [
+                "js/airedesantafe-spa.js"
+            ],
+            "matches": [
+                "*://*.airedesantafe.com.ar/*"
+            ],
+            "world": "MAIN",
+            "run_at": "document_start"
+        },
+        {
+            "js": [
+                "js/config.js",
+                "js/css-loader.js",
+                "js/site-map.js",
+                "js/loader.js",
+                "js/airedesantafe.js"
+            ],
+            "matches": [
+                "*://*.airedesantafe.com.ar/*"
             ],
             "run_at": "document_start"
         },
