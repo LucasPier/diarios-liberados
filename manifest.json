@@ -63,6 +63,7 @@
         "*://*.diariouno.com.ar/*",
         "*://*.unosantafe.com.ar/*",
         "*://*.unoentrerios.com.ar/*",
+        "*://*.elonce.com/*",
         "*://imasdk.googleapis.com/*"
     ],
     "background": {
@@ -149,7 +150,9 @@
                 "css/rionegro-publicidad.css",
                 "css/rionegro-suscriptores.css",
                 "css/diariouno-notificaciones.css",
-                "css/diariouno-publicidad.css"
+                "css/diariouno-publicidad.css",
+                "css/elonce-notificaciones.css",
+                "css/elonce-publicidad.css"
             ],
             "matches": [
                 "<all_urls>"
@@ -598,6 +601,19 @@
             ],
             "matches": [
                 "*://*.diariouno.com.ar/*"
+            ],
+            "run_at": "document_start"
+        },
+        {
+            "js": [
+                "js/config.js",
+                "js/css-loader.js",
+                "js/site-map.js",
+                "js/loader.js",
+                "js/elonce.js"
+            ],
+            "matches": [
+                "*://*.elonce.com/*"
             ],
             "run_at": "document_start"
         }

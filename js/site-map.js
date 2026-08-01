@@ -189,6 +189,12 @@ var SITE_CSS_MAP = window.SITE_CSS_MAP || (function () {
         suscriptores:   []
     };
 
+    const elonceConfig = {
+        publicidad:     ['css/elonce-publicidad.css'],
+        notificaciones: ['css/elonce-notificaciones.css'],
+        suscriptores:   []
+    };
+
     return {
         // ── Clarín / Olé ─────────────────────────────────────────
         'www.clarin.com': clarinConfig,
@@ -342,7 +348,11 @@ var SITE_CSS_MAP = window.SITE_CSS_MAP || (function () {
 
         // ── Diario Uno ────────────────────────────────────────────
         'www.diariouno.com.ar': diariounoConfig,
-        'diariouno.com.ar':     diariounoConfig
+        'diariouno.com.ar':     diariounoConfig,
+
+        // ── El Once ───────────────────────────────────────────────
+        'www.elonce.com': elonceConfig,
+        'elonce.com':     elonceConfig,
 
     };
 })();
