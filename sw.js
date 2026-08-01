@@ -12,7 +12,8 @@ const BASE_DOMAINS = [
     "radiomitre.com.ar", "tycsports.com", "ciudad.com.ar", "tn.com.ar", "cienradios.com",
     "ar.cienradios.com", "radiomitre.cienradios.com", "la100.cienradios.com",
     "mia.cienradios.com", "kenja.tech", "minutouno.com", "letrap.com.ar", "mdzol.com",
-    "losandes.com.ar", "eldia.com", "rionegro.com.ar", "diariouno.com.ar", "imasdk.googleapis.com"
+    "losandes.com.ar", "eldia.com", "rionegro.com.ar", "diariouno.com.ar", "unosantafe.com.ar",
+    "unoentrerios.com.ar", "imasdk.googleapis.com"
 ];
 
 // Incluye dominios apex y subdominios www. para matchear sin importar si el usuario usa www o no

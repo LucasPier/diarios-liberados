@@ -61,6 +61,8 @@
         "*://*.eldia.com/*",
         "*://*.rionegro.com.ar/*",
         "*://*.diariouno.com.ar/*",
+        "*://*.unosantafe.com.ar/*",
+        "*://*.unoentrerios.com.ar/*",
         "*://imasdk.googleapis.com/*"
     ],
     "background": {
@@ -231,7 +233,9 @@
             ],
             "matches": [
                 "*://*.lacapital.com.ar/*",
-                "*://*.flipbook.com.ar/*"
+                "*://*.flipbook.com.ar/*",
+                "*://*.unosantafe.com.ar/*",
+                "*://*.unoentrerios.com.ar/*"
             ],
             "run_at": "document_start"
         },

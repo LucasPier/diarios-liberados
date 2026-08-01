@@ -201,10 +201,14 @@ var SITE_CSS_MAP = window.SITE_CSS_MAP || (function () {
         'www.lanacion.com.ar': lanacionConfig,
         'lanacion.com.ar':     lanacionConfig,
 
-        // ── La Capital / Flipbook ─────────────────────────────────
+        // ── La Capital / UNO Santa Fe / UNO Entre Ríos ────────────
         'www.lacapital.com.ar':      lacapitalConfig,
         'lacapital.com.ar':          lacapitalConfig,
         'flipbook.lacapital.com.ar': lacapitalConfig,
+        'www.unosantafe.com.ar': lacapitalConfig,
+        'unosantafe.com.ar': lacapitalConfig,
+        'www.unoentrerios.com.ar': lacapitalConfig,
+        'unoentrerios.com.ar': lacapitalConfig,
 
         // ── La Voz ────────────────────────────────────────────────
         'www.lavoz.com.ar': lavozConfig,

@@ -8,6 +8,7 @@ div[id*="ad-slot"],
 div[class*="ad-slot-top"],
 div[class*="ad-slot"],
 #liveWrapper #liveSponsors,
+.banner-no-sticky,
 .sponsornegocios {
     display: none !important;
     height: 0 !important;
@@ -19,33 +20,46 @@ div[class*="ad-slot"],
     z-index: -1 !important;
 }
 
-/* Mejoras de distribución sin banners publicitarios*/
+/* Mejoras de distribución UI sin banners publicitarios*/
+.site-header {
+    height: auto !important;
+}
+
+.site-header.sticky-header {
+    top: 0 !important;
+    height: 60px !important;
+}
 
 .destacadas-container.justify-between,
-.motores-custom-widget .-custom-widget .outer-container .flex-container.justify-between {
+.-custom-widget .outer-container .flex-container.justify-between,
+.common-block-total-holder .columns-holder {
     justify-content: center !important;
 }
 
 .ovacion-home .destacadas-grid-container,
 .en-escena-home .destacadas-grid-container {
     grid-template-columns: 1fr 1fr 1fr !important;
+    grid-template-rows: none !important;
 }
 
 .destacadas-container.justify-between .standard-right-column,
-.ovacion-home .destacadas-grid-container > div,
+.ovacion-home .destacadas-grid-container>div,
 .en-escena-center,
-.standard-right-column.sticky-column,
 .region_destacado-custom-widget.extra-holder,
-.novedades-home .standard-right-column,
+.standard-right-column.sticky-column,
 .salud2col-custom-widget .standard-right-column,
-.-custom-widget.columns-holder .standard-right-column,
-.motores-custom-widget .standard-right-column,
+.-custom-widget .standard-right-column,
 .outer-container .section-medium-part .left-column,
 .last-entrys-container .right-column,
-.page-seccion-editor .section-medium-part .right-column{
+.page-seccion-editor .section-medium-part .right-column,
+.outer-container>.-custom-widget.home-section.widget-with-slider>.extra-relative-holder,
+.inmuebles-custom-widget .publica-con-nosotros,
+.site-header[data-td-script-src*="unosantafe.com.ar"] .site-top-nav,
+.site-header[data-td-script-src*="unoentrerios.com.ar"] .site-top-nav {
     display: none !important;
 }
-.ovacion-home > .outer-container,
+
+.ovacion-home>.outer-container,
 .opinion-elegidos-holder.outer-container,
 .zoom-custom-widget.en-escena-home,
 .novedades-home .outer-container,
@@ -53,43 +67,48 @@ div[class*="ad-slot"],
 .salud2col-custom-widget .outer-container,
 .outer-container.common-block-total-holder.six-column-with-banner,
 .outer-container:has(.section-medium-part),
-#main>.outer-container:has(>.destacadas-container) {
+#main>.outer-container:has(>.destacadas-container),
+.-custom-widget.en-escena-home.home-section>.outer-container {
     max-width: 1020px !important;
     margin: 0 auto;
 }
+
+.outer-container.common-block-total-holder.six-column-with-banner.common-block-total-holder {
+    margin-bottom: 50px !important;
+}
+
 .salud2col-custom-widget>.outer-container {
     padding: 0 30px !important;
 }
+
 .opinion-elegidos-holder .standard-left-column,
 .novedades-home .standard-left-column,
 .salud2col-custom-widget .standard-left-column,
 .-custom-widget.columns-holder .standard-left-column,
-.destacadas-container.justify-between .standard-left-column {
+.destacadas-container.justify-between .standard-left-column,
+.salud2col-custom-widget .justify-between {
     width: 100% !important;
 }
-body.page-nota #main>.outer-container:has(>.flex-container.justify-between) .standard-left-column{
+
+body.page-nota #main>.outer-container:has(>.flex-container.justify-between) .standard-left-column {
     margin: 0 auto;
 }
-.motores-custom-widget .standard-left-column{
+
+.motores-custom-widget .standard-left-column {
     width: 100% !important;
     max-width: 955px !important;
 }
+
 .motores-custom-widget .standard-left-column>article:last-of-type {
     margin-right: 0 !important;
 }
+
 .last-entrys-container {
     max-width: 630px !important;
 }
+
 .last-entrys-container .last-entrys {
     flex-basis: 100% !important;
-}
-@media (max-width: 1299px) {
-    .section-medium-part{
-        grid-template-columns: 300px 300px 300px;
-    }
-    .section-medium-part .right-column {
-        grid-column: 3/3;
-    }
 }
 
 .page-seccion-economia .divino {
@@ -101,5 +120,85 @@ body.page-seccion {
 }
 
 .page-seccion-editor .section-medium-entrys {
-    grid-template-columns: repeat(3,300px) !important;
+    grid-template-columns: repeat(3, 300px) !important;
+}
+
+.clasificados-home .clasificados-bottom-part {
+    padding: 23px 50px !important;
+    height: auto !important;
+}
+
+.-custom-widget .fake-slider.flex-container {
+    gap: 30px;
+}
+
+.elegidos-editor-home .fake-slider .vertical-entry-box:not(:last-child) {
+    margin-right: 0 !important;
+}
+
+@media (max-width: 1299px) {
+    .section-medium-part {
+        grid-template-columns: 300px 300px;
+        justify-content: center;
+    }
+
+    .section-medium-part .right-column {
+        grid-column: 1/3;
+    }
+}
+
+@media (max-width: 1279px) {
+    .ovacion-home .destacadas-grid-container {
+        grid-template-columns: 1fr 300px 300px 1fr !important;
+    }
+
+    .ovacion-home .destacadas-grid-container .big-entry-box {
+        grid-column: 2/4 !important;
+    }
+
+    .en-escena-home .destacadas-grid-container .extra-holder {
+        grid-column: 2/4 !important;
+        grid-row: auto !important;
+    }
+}
+
+@media (max-width: 1179px) {
+    .clasificados-home .clasificados-bottom-part .form-holder {
+        margin-bottom: 0 !important;
+        width: 100% !important;
+    }
+
+    .salud2col-custom-widget .standard-left-column header.flex-container>div,
+    .salud2col-custom-widget .entry-1-nota {
+        width: 100% !important;
+    }
+
+    /* Fix error en clasificados */
+    .inmuebles-custom-widget .clasificados-bottom-part .forms-extra-holder .buscador {
+        flex-direction: column !important;
+    }
+
+    .clasificados-home .clasificados-bottom-part .form-holder form {
+        justify-content: center;
+    }
+
+    .inmuebles-custom-widget .clasificados-bottom-part .forms-extra-holder .buscador .kicker {
+        margin: 0 0 15px !important;
+    }
+
+}
+
+/* Fix error en clasificados */
+.inmuebles-custom-widget .inmuebles-entrys-container>div {
+    position: relative;
+}
+
+.inmuebles-custom-widget .miniinfo {
+    bottom: -20px !important;
+    white-space: nowrap !important;
+}
+
+/* UNO Santa Fe */
+.en-escena-home .destacadas-grid-container .extra-holder .standard-entry-box {
+    margin-bottom: 20px;
 }
