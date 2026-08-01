@@ -65,6 +65,7 @@
         "*://*.unoentrerios.com.ar/*",
         "*://*.elonce.com/*",
         "*://*.airedesantafe.com.ar/*",
+        "*://*.cadena3.com/*",
         "*://imasdk.googleapis.com/*"
     ],
     "background": {
@@ -155,7 +156,9 @@
                 "css/elonce-notificaciones.css",
                 "css/elonce-publicidad.css",
                 "css/airedesantafe-notificaciones.css",
-                "css/airedesantafe-publicidad.css"
+                "css/airedesantafe-publicidad.css",
+                "css/cadena3-notificaciones.css",
+                "css/cadena3-publicidad.css"
             ],
             "matches": [
                 "<all_urls>"
@@ -623,6 +626,19 @@
                 "js/css-loader.js",
                 "js/site-map.js",
                 "js/loader.js",
+                "js/elonce.js"
+            ],
+            "matches": [
+                "*://*.elonce.com/*"
+            ],
+            "run_at": "document_start"
+        },
+        {
+            "js": [
+                "js/config.js",
+                "js/css-loader.js",
+                "js/site-map.js",
+                "js/loader.js",
                 "js/airedesantafe.js"
             ],
             "matches": [
@@ -636,10 +652,10 @@
                 "js/css-loader.js",
                 "js/site-map.js",
                 "js/loader.js",
-                "js/elonce.js"
+                "js/cadena3.js"
             ],
             "matches": [
-                "*://*.elonce.com/*"
+                "*://*.cadena3.com/*"
             ],
             "run_at": "document_start"
         }

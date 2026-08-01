@@ -20,7 +20,8 @@ const DOMINIOS_CUBIERTOS = [
     "eltrecetv.com.ar", "radiomitre.com.ar", "tycsports.com", "ciudad.com.ar",
     "tn.com.ar", "cienradios.com", "minutouno.com", "letrap.com.ar", "mdzol.com",
     "losandes.com.ar", "eldia.com", "rionegro.com.ar", "diariouno.com.ar",
-    "unosantafe.com.ar", "unoentrerios.com.ar", "elonce.com", "airedesantafe.com.ar"
+    "unosantafe.com.ar", "unoentrerios.com.ar", "elonce.com", "airedesantafe.com.ar",
+    "cadena3.com"
 ];
 
 /** Verifica si una URL pertenece a alguno de los dominios cubiertos */
