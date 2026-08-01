@@ -5,7 +5,7 @@ getConfig().then(cfg => {
     // notificaciones push de OneSignal. Polling cada 100ms para cubrir elementos inyectados
     // dinámicamente después de la carga inicial.
     document.addEventListener('DOMContentLoaded', () => {
-        if(document.body){
+        if (document.body) {
             function eliminarElementos() {
                 let elementosABorrar = document.querySelectorAll("div.tp-modal, div.tp-backdrop, #onesignal-slidedown-container");
                 elementosABorrar.forEach(elemento => {

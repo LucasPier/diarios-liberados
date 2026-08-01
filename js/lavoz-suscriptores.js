@@ -2,7 +2,7 @@
 getConfig().then(cfg => {
     if (!cfg.feature_suscriptores) return;
 
-    const imageUrl  = chrome.runtime.getURL("recursos/suscripciones_lavoz.svg");
+    const imageUrl = chrome.runtime.getURL("recursos/suscripciones_lavoz.svg");
     const imageUrl2 = chrome.runtime.getURL("recursos/crown-icon_lavoz.svg");
     const imageUrl3 = chrome.runtime.getURL("recursos/crown-fill-black_lavoz.svg");
 
@@ -22,9 +22,9 @@ getConfig().then(cfg => {
         let conteo = 0;
 
         // reemplazamos imágenes existentes
-        const images  = document.querySelectorAll('img[src="/icons/crown-fill-yellow.svg"]'),
-              images2 = document.querySelectorAll('img[src="/icons/crown-yellow-icon.svg"]'),
-              images3 = document.querySelectorAll('img[src="/icons/crown-fill-black.svg"]');
+        const images = document.querySelectorAll('img[src="/icons/crown-fill-yellow.svg"]'),
+            images2 = document.querySelectorAll('img[src="/icons/crown-yellow-icon.svg"]'),
+            images3 = document.querySelectorAll('img[src="/icons/crown-fill-black.svg"]');
 
         images.forEach(img => {
             img.src = imageUrl;
@@ -41,13 +41,13 @@ getConfig().then(cfg => {
             conteo++;
         });
 
-        if(conteo === 0) {
+        if (conteo === 0) {
             sinReemplazos++;
-        }else {
+        } else {
             sinReemplazos = 0;
         }
 
-        if(sinReemplazos < 100) {
+        if (sinReemplazos < 100) {
             setTimeout(cambiarImagenes, 100);
         }
 

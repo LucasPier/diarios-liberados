@@ -20,20 +20,20 @@ getConfig().then(cfg => {
             conteo++;
         });
 
-        if(conteo === 0) {
+        if (conteo === 0) {
             sinReemplazos++;
-        }else {
+        } else {
             sinReemplazos = 0;
         }
 
-        if(sinReemplazos < 100) {
+        if (sinReemplazos < 100) {
             setTimeout(cambiarImagenes, 100);
         }
 
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-        if(document.body){
+        if (document.body) {
             // Reemplazamos las imágenes al cargar la página
             cambiarImagenes();
         }

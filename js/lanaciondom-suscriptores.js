@@ -46,20 +46,20 @@ function definirInterceptador(prop, transformFn) {
 }
 
 function iniciar() {
-(function () {
-    console.log("¡Fusion iniciado!");
+    (function () {
+        console.log("¡Fusion iniciado!");
 
-    // Suscriptores - Intercepta la asignación del objeto global `Fusion` (framework de La Nación)
-    // antes de que el sitio lo lea. Al poner IS_DEV=true y API_ENV="dev" se fuerza el modo
-    // desarrollo, que omite las validaciones de paywall en el front-end.
-    definirInterceptador('Fusion', (val) => {
-        if (val && val.environment && typeof val.environment.IS_DEV !== "undefined") {
-            console.log("¡Fusion interceptado!", val);
-            val.environment.IS_DEV = true;
-            val.environment.API_ENV = "dev";
-        }
-    });
+        // Suscriptores - Intercepta la asignación del objeto global `Fusion` (framework de La Nación)
+        // antes de que el sitio lo lea. Al poner IS_DEV=true y API_ENV="dev" se fuerza el modo
+        // desarrollo, que omite las validaciones de paywall en el front-end.
+        definirInterceptador('Fusion', (val) => {
+            if (val && val.environment && typeof val.environment.IS_DEV !== "undefined") {
+                console.log("¡Fusion interceptado!", val);
+                val.environment.IS_DEV = true;
+                val.environment.API_ENV = "dev";
+            }
+        });
 
-})();
+    })();
 }
 iniciarSiHabilitado(1);
