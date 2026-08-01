@@ -2,7 +2,8 @@
 .ad-container,
 *[class*="ad-slot"],
 *[class*="banner"],
-tadevel-ad {
+tadevel-ad,
+footer .content a[target="_blank"] {
     display: none !important;
     height: 0 !important;
     overflow: hidden !important;

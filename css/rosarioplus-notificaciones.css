@@ -2,7 +2,8 @@
 #onesignal-slidedown-container,
 #onesignal-slidedown-dialog,
 #onesignal-bell-container,
-#google-follow{
+#google-follow,
+view-generic-prompt{
     display: none !important;
     height: 0 !important;
     overflow: hidden !important;
