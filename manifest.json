@@ -66,6 +66,7 @@
         "*://*.elonce.com/*",
         "*://*.airedesantafe.com.ar/*",
         "*://*.cadena3.com/*",
+        "*://*.rosarioplus.com/*",
         "*://imasdk.googleapis.com/*"
     ],
     "background": {
@@ -158,7 +159,9 @@
                 "css/airedesantafe-notificaciones.css",
                 "css/airedesantafe-publicidad.css",
                 "css/cadena3-notificaciones.css",
-                "css/cadena3-publicidad.css"
+                "css/cadena3-publicidad.css",
+                "css/rosarioplus-notificaciones.css",
+                "css/rosarioplus-publicidad.css"
             ],
             "matches": [
                 "<all_urls>"
@@ -656,6 +659,19 @@
             ],
             "matches": [
                 "*://*.cadena3.com/*"
+            ],
+            "run_at": "document_start"
+        },
+        {
+            "js": [
+                "js/config.js",
+                "js/css-loader.js",
+                "js/site-map.js",
+                "js/loader.js",
+                "js/rosarioplus.js"
+            ],
+            "matches": [
+                "*://*.rosarioplus.com/*"
             ],
             "run_at": "document_start"
         }

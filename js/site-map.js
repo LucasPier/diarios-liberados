@@ -207,6 +207,12 @@ var SITE_CSS_MAP = window.SITE_CSS_MAP || (function () {
         suscriptores:   []
     };
 
+    const rosarioplusConfig = {
+        publicidad:     ['css/rosarioplus-publicidad.css'],
+        notificaciones: ['css/rosarioplus-notificaciones.css'],
+        suscriptores:   []
+    };
+
     return {
         // ── Clarín / Olé ─────────────────────────────────────────
         'www.clarin.com': clarinConfig,
@@ -372,7 +378,11 @@ var SITE_CSS_MAP = window.SITE_CSS_MAP || (function () {
 
         // ── Cadena 3 ───────────────────────────────────────────────
         'www.cadena3.com': cadena3Config,
-        'cadena3.com':     cadena3Config
+        'cadena3.com':     cadena3Config,
+
+        // ── Rosario Plus ───────────────────────────────────────────
+        'www.rosarioplus.com': rosarioplusConfig,
+        'rosarioplus.com':     rosarioplusConfig
 
     };
 })();

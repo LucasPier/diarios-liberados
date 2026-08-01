@@ -1,0 +1,28 @@
+/* Publicidad - Oculta ad-slots y banners */
+.ad-container,
+*[class*="ad-slot"],
+*[class*="banner"],
+tadevel-ad {
+    display: none !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    visibility: hidden !important;
+    z-index: -1 !important;
+}
+
+
+/* Mejoras de distribución UI sin banners publicitarios*/
+component-row .column-aux{
+    display: none !important;
+}
+component-row .column-main{
+    margin: 0 auto !important;
+}
+@media (min-width: 1366px) {
+    [data-tadevel-template="web/frame-body"] [is="page-front"] {
+        left: auto !important;
+    }
+}

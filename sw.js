@@ -13,7 +13,7 @@ const BASE_DOMAINS = [
     "ar.cienradios.com", "radiomitre.cienradios.com", "la100.cienradios.com",
     "mia.cienradios.com", "kenja.tech", "minutouno.com", "letrap.com.ar", "mdzol.com",
     "losandes.com.ar", "eldia.com", "rionegro.com.ar", "diariouno.com.ar", "unosantafe.com.ar",
-    "unoentrerios.com.ar", "elonce.com", "airedesantafe.com.ar", "cadena3.com",
+    "unoentrerios.com.ar", "elonce.com", "airedesantafe.com.ar", "cadena3.com", "rosarioplus.com",
     "imasdk.googleapis.com"
 ];
 
@@ -257,7 +257,7 @@ const RULES_PUBLICIDAD = [
         },
     },
     {
-        // Publicidad - Bloqueo genérico de scripts "ad.js" (cargadores de publicidad)
+        // Publicidad - Bloqueo de scripts smartadserver
         id: 30,
         priority: 1,
         action: { type: "block" },
@@ -274,6 +274,16 @@ const RULES_PUBLICIDAD = [
         condition: {
             urlFilter: "racker.thinkindot.com",
             initiatorDomains: DOMAINS,
+        },
+    },
+    {
+        // Publicidad - Bloqueo de scripts de Tadevel (proveedor de publicidad y tracking)
+        id: 35,
+        priority: 1,
+        action: { type: "block" },
+        condition: {
+            urlFilter: "static/adder",
+            initiatorDomains: ["www.rosarioplus.com", "rosarioplus.com"],
         },
     }
 ];
