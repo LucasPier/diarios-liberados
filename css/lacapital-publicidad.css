@@ -7,7 +7,8 @@ div[id*="ad-slot-top"],
 div[id*="ad-slot"],
 div[class*="ad-slot-top"],
 div[class*="ad-slot"],
-#liveWrapper #liveSponsors {
+#liveWrapper #liveSponsors,
+.sponsornegocios {
     display: none !important;
     height: 0 !important;
     overflow: hidden !important;
@@ -16,4 +17,89 @@ div[class*="ad-slot"],
     border: none !important;
     visibility: hidden !important;
     z-index: -1 !important;
+}
+
+/* Mejoras de distribución sin banners publicitarios*/
+
+.destacadas-container.justify-between,
+.motores-custom-widget .-custom-widget .outer-container .flex-container.justify-between {
+    justify-content: center !important;
+}
+
+.ovacion-home .destacadas-grid-container,
+.en-escena-home .destacadas-grid-container {
+    grid-template-columns: 1fr 1fr 1fr !important;
+}
+
+.destacadas-container.justify-between .standard-right-column,
+.ovacion-home .destacadas-grid-container > div,
+.en-escena-center,
+.standard-right-column.sticky-column,
+.region_destacado-custom-widget.extra-holder,
+.novedades-home .standard-right-column,
+.salud2col-custom-widget .standard-right-column,
+.-custom-widget.columns-holder .standard-right-column,
+.motores-custom-widget .standard-right-column,
+.outer-container .section-medium-part .left-column,
+.last-entrys-container .right-column,
+.page-seccion-editor .section-medium-part .right-column{
+    display: none !important;
+}
+.ovacion-home > .outer-container,
+.opinion-elegidos-holder.outer-container,
+.zoom-custom-widget.en-escena-home,
+.novedades-home .outer-container,
+.negocios-custom-widget .outer-container,
+.salud2col-custom-widget .outer-container,
+.outer-container.common-block-total-holder.six-column-with-banner,
+.outer-container:has(.section-medium-part),
+#main>.outer-container:has(>.destacadas-container) {
+    max-width: 1020px !important;
+    margin: 0 auto;
+}
+.salud2col-custom-widget>.outer-container {
+    padding: 0 30px !important;
+}
+.opinion-elegidos-holder .standard-left-column,
+.novedades-home .standard-left-column,
+.salud2col-custom-widget .standard-left-column,
+.-custom-widget.columns-holder .standard-left-column,
+.destacadas-container.justify-between .standard-left-column {
+    width: 100% !important;
+}
+body.page-nota #main>.outer-container:has(>.flex-container.justify-between) .standard-left-column{
+    margin: 0 auto;
+}
+.motores-custom-widget .standard-left-column{
+    width: 100% !important;
+    max-width: 955px !important;
+}
+.motores-custom-widget .standard-left-column>article:last-of-type {
+    margin-right: 0 !important;
+}
+.last-entrys-container {
+    max-width: 630px !important;
+}
+.last-entrys-container .last-entrys {
+    flex-basis: 100% !important;
+}
+@media (max-width: 1299px) {
+    .section-medium-part{
+        grid-template-columns: 300px 300px 300px;
+    }
+    .section-medium-part .right-column {
+        grid-column: 3/3;
+    }
+}
+
+.page-seccion-economia .divino {
+    margin-bottom: 40px !important;
+}
+
+body.page-seccion {
+    padding-top: 110px !important;
+}
+
+.page-seccion-editor .section-medium-entrys {
+    grid-template-columns: repeat(3,300px) !important;
 }
