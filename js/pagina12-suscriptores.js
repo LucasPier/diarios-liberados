@@ -52,9 +52,15 @@ getConfig().then(cfg => {
         });
     };
 
-    window.document.addEventListener("DOMContentLoaded", () => {
+    if (document.readyState === "loading") {
+        // El DOM todavía se está cargando: esperamos el evento normalmente.
+        document.addEventListener("DOMContentLoaded", () => {
+            agregarLabel();
+        });
+    } else {
+        // El DOM ya cargó antes de que getConfig() resolviera: ejecutamos directo.
         agregarLabel();
-    });
+    }
 });
 
 console.log("Se activó Diarios Liberados");

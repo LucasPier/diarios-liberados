@@ -53,13 +53,19 @@ getConfig().then(cfg => {
 
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
-        // Agregamos la regla CSS nueva
-        document.head.appendChild(style);
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            // Agregamos la regla CSS nueva
+            document.head.appendChild(style);
 
-        // Reemplazamos las imágenes al cargar la página
+            // Reemplazamos las imágenes al cargar la página
+            cambiarImagenes();
+        });
+    } else {
+        // El DOM ya cargó antes de que getConfig() resolviera: ejecutamos directo.
+        document.head.appendChild(style);
         cambiarImagenes();
-    });
+    }
 });
 
 console.log("Se activó Diarios Liberados");

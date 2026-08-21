@@ -31,12 +31,15 @@ getConfig().then(cfg => {
 
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
-        if (document.body) {
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
             // Reemplazamos las imágenes al cargar la página
             cambiarImagenes();
-        }
-    });
+        });
+    } else {
+        // El DOM ya cargó antes de que getConfig() resolviera: ejecutamos directo.
+        cambiarImagenes();
+    }
 });
 
 console.log("Se activó Diarios Liberados");

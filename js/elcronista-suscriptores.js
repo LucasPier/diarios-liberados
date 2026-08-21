@@ -1,5 +1,24 @@
+// Suscriptores - Asigna cookies que simulan un usuario con suscripción activa
+const setCookie = (cname, cvalue, exdays) => {
+    const d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    let expires = "expires=" + d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
 getConfig().then(cfg => {
-    if (!cfg.feature_suscriptores) return;
+    if (!cfg.feature_suscriptores) {
+        // Suscriptores - Cookie de estado de suscripción
+        setCookie("crprm", "Suscriptor", 0);
+        // Suscriptores - Cookie de suscripción
+        setCookie("userIsPremium", "1", 0);
+        return;
+    };
+
+    // Suscriptores - Cookie de estado de suscripción
+    setCookie("crprm", "Suscriptor", 90);
+    // Suscriptores - Cookie de suscripción
+    setCookie("userIsPremium", "1", 90);
 
     // Suscriptores - URL del SVG de la extensión para el ícono de artículos restringidos
     const imageUrl = chrome.runtime.getURL("recursos/diarios.svg");
@@ -16,10 +35,15 @@ getConfig().then(cfg => {
         }
     `;
 
-    document.addEventListener('DOMContentLoaded', () => {
-        // Agregamos la regla CSS nueva
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            // Agregamos la regla CSS nueva
+            document.head.appendChild(style);
+        });
+    } else {
+        // El DOM ya cargó antes de que getConfig() resolviera: ejecutamos directo.
         document.head.appendChild(style);
-    });
+    }
 });
 
 console.log("Se activó Diarios Liberados");
