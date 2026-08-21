@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diarios Liberados — Mejorá tu lectura en los diarios argentinos</title>
+    <meta name="description"
+        content="Extensión gratuita y de código abierto que mejora la experiencia de lectura en más de 50 portales de medios argentinos: desbloquea notas exclusivas, elimina publicidades y bloquea diálogos de notificaciones.">
+    <meta name="author" content="Lucas Pier">
+    <meta name="theme-color" content="#121318">
+
+    <link rel="icon" type="image/png" sizes="32x32" href="imagenes/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="imagenes/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="imagenes/favicon-144x144.png">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Diarios Liberados">
+    <meta property="og:description"
+        content="Mejorá la experiencia de lectura en más de 50 portales de medios argentinos.">
+    <meta property="og:image" content="imagenes/favicon-512x512.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/landing.css">
+</head>
+
+<body>
+
+    <!-- ═══════════════════════════════════════════════════════
+         Hero
+         ═══════════════════════════════════════════════════════ -->
+    <header class="hero">
+        <div class="wrap">
+            <img src="imagenes/lector.png" alt="" class="hero-logo">
+            <h1><img src="imagenes/favicon-96x96.png" alt="">Diarios Liberados</h1>
+
+            <p class="hero-desc">
+                Una extensión gratuita y de código abierto que mejora la experiencia de lectura en
+                <strong>más de 50 portales de medios argentinos</strong>. Desbloquea notas exclusivas,
+                elimina publicidades intrusivas y bloquea los diálogos de notificaciones.
+                Todo configurable y activable de forma independiente.
+            </p>
+
+            <div class="hero-actions">
+                <a class="btn btn-accent" href="#instalacion">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                        <polyline points="7 10 12 15 17 10" />
+                        <line x1="12" y1="15" x2="12" y2="3" />
+                    </svg>
+                    Descargar e instalar
+                </a>
+                <a class="btn btn-ghost" href="https://github.com/LucasPier/diarios-liberados" target="_blank"
+                    rel="noopener">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path
+                            d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                    </svg>
+                    Ver en GitHub
+                </a>
+            </div>
+
+            <!-- Nota discreta: solo se muestra cuando NO hay comparación de versiones -->
+            <p class="version-note" id="version-badge" hidden></p>
+
+            <!-- Estado de versión: lo completa js/landing.js según ?version=X.Y.Z -->
+            <div class="version-status" id="version-status" hidden>
+                <span class="version-status-icon" id="version-status-icon" aria-hidden="true"></span>
+                <div class="version-status-body">
+                    <strong class="version-status-title" id="version-status-title"></strong>
+                    <span class="version-status-text" id="version-status-text"></span>
+                </div>
+                <a class="btn btn-accent btn-sm" id="version-status-action" href="#instalacion" hidden>Descargar</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ═══════════════════════════════════════════════════
+             Qué hace
+             ═══════════════════════════════════════════════════ -->
+        <section id="funcionalidades">
+            <div class="wrap">
+                <h2 class="section-title"><span class="badge-dot"></span> Qué hace la extensión</h2>
+                <p class="section-lead">Tres funciones independientes que activás o desactivás cuando quieras desde el
+                    menú de la extensión.</p>
+
+                <div class="features">
+                    <article class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <rect x="3" y="11" width="18" height="11" rx="2" />
+                                <path d="M7 11V7a5 5 0 0 1 9.9-1" />
+                            </svg>
+                        </div>
+                        <h3>Desbloquear contenido exclusivo</h3>
+                        <p>Accedé a notas de suscriptores o socios y a las ediciones impresas en los medios que lo
+                            requieren.</p>
+                    </article>
+
+                    <article class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <circle cx="12" cy="12" r="10" />
+                                <line x1="4.93" y1="4.93" x2="19.07" y2="19.07" />
+                            </svg>
+                        </div>
+                        <h3>Quitar publicidades</h3>
+                        <p>Bloquea anuncios y redes publicitarias en todos los medios soportados, incluidos los
+                            intersticiales y videos.</p>
+                    </article>
+
+                    <article class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                                <path d="M18.63 13A17.9 17.9 0 0 1 18 8" />
+                                <path d="M6.26 6.26A5.86 5.86 0 0 0 6 8c0 7-3 9-3 9h14" />
+                                <path d="M18 8a6 6 0 0 0-9.33-5" />
+                                <line x1="2" y1="2" x2="22" y2="22" />
+                            </svg>
+                        </div>
+                        <h3>Ocultar notificaciones</h3>
+                        <p>Elimina los banners y pop-ups que te piden permiso para enviarte notificaciones push.</p>
+                    </article>
+                </div>
+
+                <div class="callout" style="margin-top:20px">
+                    <span class="callout-icon" aria-hidden="true">★</span>
+                    <p>
+                        <strong>Además, en algunos portales</strong>
+                        La Capital suma la visualización de las versiones impresas, La Nación permite ver resúmenes
+                        generados por IA y escuchar las notas, y la cobertura se extiende a los grupos editoriales
+                        completos de Clarín y Perfil.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════════════
+             Portales soportados
+             ═══════════════════════════════════════════════════ -->
+        <section id="portales">
+            <div class="wrap">
+                <h2 class="section-title"><span class="badge-dot"></span> Portales soportados</h2>
+                <p class="section-lead">Se van agregando nuevos medios y funcionalidades con el paso del tiempo.</p>
+
+                <div class="portales-grid">
+                    <a class="portal-card" href="#medio-clarin" title="Ver qué hace la extensión en Clarín"><img src="imagenes/logos/clarin.svg" alt="Clarín"></a>
+                    <a class="portal-card" href="#medio-lanacion" title="Ver qué hace la extensión en La Nación"><img src="imagenes/logos/lanacion.svg" alt="La Nación"></a>
+                    <a class="portal-card" href="#medio-infobae" title="Ver qué hace la extensión en Infobae"><img src="imagenes/logos/infobae.svg" alt="Infobae"></a>
+                    <a class="portal-card" href="#medio-pagina12" title="Ver qué hace la extensión en Página/12"><img src="imagenes/logos/pagina12.svg" alt="Página/12"></a>
+                    <a class="portal-card" href="#medio-perfil" title="Ver qué hace la extensión en Perfil"><img src="imagenes/logos/perfil.svg" alt="Perfil"></a>
+                    <a class="portal-card" href="#medio-eldestape" title="Ver qué hace la extensión en El Destape"><img src="imagenes/logos/eldestape.svg" alt="El Destape"></a>
+                    <a class="portal-card" href="#medio-lacapital" title="Ver qué hace la extensión en La Capital"><img src="imagenes/logos/lacapital.svg" alt="La Capital"></a>
+                    <a class="portal-card" href="#medio-lavoz" title="Ver qué hace la extensión en La Voz del Interior"><img src="imagenes/logos/lavoz.svg" alt="La Voz del Interior"></a>
+                    <a class="portal-card" href="#medio-lagaceta" title="Ver qué hace la extensión en La Gaceta"><img src="imagenes/logos/lagaceta.svg" alt="La Gaceta"></a>
+                    <a class="portal-card" href="#medio-ellitoral" title="Ver qué hace la extensión en El Litoral"><img src="imagenes/logos/ellitoral.svg" alt="El Litoral"></a>
+                    <a class="portal-card" href="#medio-losandes" title="Ver qué hace la extensión en Los Andes"><img src="imagenes/logos/losandes.svg" alt="Los Andes"></a>
+                    <a class="portal-card" href="#medio-eldia" title="Ver qué hace la extensión en El Día"><img src="imagenes/logos/eldia.svg" alt="El Día"></a>
+                    <a class="portal-card" href="#medio-rionegro" title="Ver qué hace la extensión en Río Negro"><img src="imagenes/logos/rionegro.svg" alt="Río Negro"></a>
+                    <a class="portal-card" href="#medio-elonce" title="Ver qué hace la extensión en Elonce"><img src="imagenes/logos/elonce.svg" alt="Elonce"></a>
+                    <a class="portal-card" href="#medio-elciudadano" title="Ver qué hace la extensión en El Ciudadano"><img src="imagenes/logos/elciudadano.svg" alt="El Ciudadano"></a>
+                    <a class="portal-card" href="#medio-rosario3" title="Ver qué hace la extensión en Rosario3"><img src="imagenes/logos/rosario3.svg" alt="Rosario3"></a>
+                    <a class="portal-card" href="#medio-cadena3" title="Ver qué hace la extensión en Cadena 3"><img src="imagenes/logos/cadena3.svg" alt="Cadena 3"></a>
+                    <a class="portal-card" href="#medio-airedesantafe" title="Ver qué hace la extensión en Aire de Santa Fe"><img src="imagenes/logos/airedesantafe.svg" alt="Aire de Santa Fe"></a>
+                    <a class="portal-card" href="#medio-mdz" title="Ver qué hace la extensión en MDZ Online"><img src="imagenes/logos/mdz.svg" alt="MDZ Online"></a>
+                    <a class="portal-card" href="#medio-uno" title="Ver qué hace la extensión en Diario Uno"><img src="imagenes/logos/uno.svg" alt="Diario Uno"></a>
+                    <a class="portal-card" href="#medio-rosarioplus" title="Ver qué hace la extensión en Rosario Plus"><img src="imagenes/logos/rosarioplus.svg" alt="Rosario Plus"></a>
+                    <a class="portal-card" href="#medio-unoentrerios" title="Ver qué hace la extensión en Diario Uno Entre Ríos"><img src="imagenes/logos/unoentrerios.svg" alt="Diario Uno Entre Ríos"></a>
+                    <a class="portal-card" href="#medio-unosantafe" title="Ver qué hace la extensión en Diario Uno Santa Fe"><img src="imagenes/logos/unosantafe.svg" alt="Diario Uno Santa Fe"></a>
+                    <a class="portal-card" href="#medio-viapais" title="Ver qué hace la extensión en Vía País"><img src="imagenes/logos/viapais.svg" alt="Vía País"></a>
+                    <a class="portal-card" href="#medio-minutouno" title="Ver qué hace la extensión en Minuto Uno"><img src="imagenes/logos/minutouno.svg" alt="Minuto Uno"></a>
+                    <a class="portal-card" href="#medio-lpo" title="Ver qué hace la extensión en La Política Online"><img src="imagenes/logos/lpo.svg" alt="La Política Online"></a>
+                    <a class="portal-card" href="#medio-letrap" title="Ver qué hace la extensión en Letra P"><img src="imagenes/logos/letrap.svg" alt="Letra P"></a>
+                    <a class="portal-card" href="#medio-diariopopular" title="Ver qué hace la extensión en Diario Popular"><img src="imagenes/logos/diariopopular.svg" alt="Diario Popular"></a>
+                    <a class="portal-card" href="#medio-elcronista" title="Ver qué hace la extensión en El Cronista"><img src="imagenes/logos/elcronista.svg" alt="El Cronista"></a>
+                    <a class="portal-card" href="#medio-ambito" title="Ver qué hace la extensión en Ámbito"><img src="imagenes/logos/ambito.svg" alt="Ámbito"></a>
+                    <a class="portal-card" href="#medio-tn" title="Ver qué hace la extensión en TN"><img src="imagenes/logos/tn.svg" alt="TN"></a>
+                    <a class="portal-card" href="#medio-ole" title="Ver qué hace la extensión en Olé"><img src="imagenes/logos/ole.svg" alt="Olé"></a>
+                    <a class="portal-card" href="#medio-tycsports" title="Ver qué hace la extensión en TyC Sports"><img src="imagenes/logos/tycsports.svg" alt="TyC Sports"></a>
+                </div>
+
+                <div class="otros">
+                    <h2 class="section-title"><span class="badge-dot"></span> Otros portales y suplementos integrados
+                    </h2>
+                    <p class="section-lead">La extensión también cubre estos sitios del Grupo Clarín, La Nación, la
+                        Editorial Perfil y El Litoral.</p>
+                    <div class="otros-list">
+                        <a href="https://www.ciudad.com.ar" target="_blank" rel="noopener">Ciudad Magazine</a>
+                        <a href="https://www.eltrecetv.com.ar" target="_blank" rel="noopener">El Trece TV</a>
+                        <a href="https://radiomitre.cienradios.com" target="_blank" rel="noopener">Radio Mitre</a>
+                        <a href="https://la100.cienradios.com" target="_blank" rel="noopener">La 100</a>
+                        <a href="https://cienradios.com" target="_blank" rel="noopener">Cienradios</a>
+                        <a href="https://elle.clarin.com" target="_blank" rel="noopener">Elle</a>
+                        <a href="https://es.rollingstone.com/arg/" target="_blank" rel="noopener">Rolling Stone</a>
+                        <a href="https://www.somosohlala.com" target="_blank" rel="noopener">Ohlalá!</a>
+                        <a href="https://442.perfil.com" target="_blank" rel="noopener">442</a>
+                        <a href="https://noticias.perfil.com" target="_blank" rel="noopener">Noticias</a>
+                        <a href="https://caras.perfil.com" target="_blank" rel="noopener">Caras</a>
+                        <a href="https://parati.perfil.com" target="_blank" rel="noopener">Para Ti</a>
+                        <a href="https://fortuna.perfil.com" target="_blank" rel="noopener">Fortuna</a>
+                        <a href="https://weekend.perfil.com" target="_blank" rel="noopener">Weekend</a>
+                        <a href="https://parabrisas.perfil.com" target="_blank" rel="noopener">Parabrisas</a>
+                        <a href="https://supercampo.perfil.com" target="_blank" rel="noopener">Super Campo</a>
+                        <a href="https://look.perfil.com" target="_blank" rel="noopener">Look</a>
+                        <a href="https://luz.perfil.com" target="_blank" rel="noopener">Luz</a>
+                        <a href="https://mia.perfil.com" target="_blank" rel="noopener">Mía</a>
+                        <a href="https://lunateen.perfil.com" target="_blank" rel="noopener">Lunateen</a>
+                        <a href="https://horizonte.perfil.com" target="_blank" rel="noopener">Horizonte</a>
+                        <a href="https://exitoina.perfil.com" target="_blank" rel="noopener">Exitoina</a>
+                        <a href="https://marieclaire.perfil.com" target="_blank" rel="noopener">Marie Claire</a>
+                        <a href="https://radio.perfil.com" target="_blank" rel="noopener">Radio Perfil</a>
+                        <a href="https://rouge.perfil.com" target="_blank" rel="noopener">Rouge</a>
+                        <a href="https://hombre.perfil.com" target="_blank" rel="noopener">Hombre</a>
+                        <a href="https://brasil.perfil.com" target="_blank" rel="noopener">Perfil Brasil</a>
+                        <a href="https://www.batimes.com.ar" target="_blank" rel="noopener">Buenos Aires Times</a>
+                        <a href="https://www.canalnet.tv" target="_blank" rel="noopener">Canal Net TV</a>
+                        <a href="https://www.puertonegocios.com" target="_blank" rel="noopener">Puerto Negocios</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════════════
+             Instalación
+             ═══════════════════════════════════════════════════ -->
+        <section id="instalacion">
+            <div class="wrap">
+                <h2 class="section-title"><span class="badge-dot"></span> Instalación paso a paso</h2>
+                <p class="section-lead">No hace falta saber nada de programación. Son cinco minutos y se hace una sola
+                    vez.</p>
+
+                <ol class="pasos">
+                    <li>
+                        <strong>Descargar el archivo.</strong>
+                        <span class="paso-extra">
+                            <a class="btn btn-accent btn-sm" data-zip-link
+                                href="https://github.com/LucasPier/diarios-liberados/archive/refs/heads/main.zip">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"
+                                    aria-hidden="true">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                    <polyline points="7 10 12 15 17 10" />
+                                    <line x1="12" y1="15" x2="12" y2="3" />
+                                </svg>
+                                Descargar ZIP
+                            </a>
+                        </span>
+                    </li>
+                    <li>
+                        <strong>Descomprimir.</strong> Extraé el contenido del ZIP en una carpeta de tu compu que no
+                        vayas a borrar después.
+                        <span class="paso-extra">La carpeta que se crea al descomprimir se llama
+                            <code>diarios-liberados-main</code>. Acordate de dónde la dejaste, la vas a necesitar en el
+                            paso 6.</span>
+                    </li>
+                    <li>
+                        <strong>Abrir la sección de extensiones.</strong> Escribí <code>chrome://extensions/</code> en
+                        la barra de direcciones de tu navegador y apretá Enter.
+                        <span class="paso-extra">Según el navegador que uses puede ser
+                            <code>edge://extensions/</code>, <code>brave://extensions/</code>,
+                            <code>opera://extensions/</code> o <code>vivaldi://extensions/</code>.</span>
+                    </li>
+                    <li>
+                        <strong>Activar el Modo de desarrollador.</strong> Es un interruptor que suele estar arriba a la
+                        derecha de esa pantalla.
+                    </li>
+                    <li>
+                        <strong>Cargar la extensión.</strong> Hacé clic en el botón <em>“Cargar descomprimida”</em> (o
+                        <em>“Load unpacked”</em>), que aparece recién después de activar el modo de desarrollador.
+                    </li>
+                    <li>
+                        <strong>Seleccionar la carpeta.</strong> Elegí la carpeta
+                        <code>diarios-liberados-main</code> que extrajiste en el paso 2.
+                        <span class="paso-extra">Fijate de seleccionar la carpeta que tiene los archivos directamente
+                            adentro (la que contiene el <code>manifest.json</code>), no una carpeta que contenga a otra
+                            carpeta.</span>
+                    </li>
+                    <li>
+                        <strong>Permitir en modo incógnito (recomendado).</strong> Entrá en los <em>Detalles</em> de la
+                        extensión recién instalada y activá <em>“Permitir en modo incógnito”</em>.
+                        <span class="paso-extra">Esto evita problemas y bloqueos en varios de los medios
+                            soportados.</span>
+                    </li>
+                </ol>
+
+                <div class="callout">
+                    <span class="callout-icon" aria-hidden="true">⚠</span>
+                    <p>
+                        <strong>¿Se puede usar en celulares?</strong>
+                        Lamentablemente no. Las versiones móviles de la mayoría de los navegadores no permiten instalar
+                        extensiones de PC. Esto está diseñado para usarse solo desde la computadora.
+                    </p>
+                </div>
+
+                <div class="callout" style="border-left-color:rgba(96,165,250,.6);border-color:rgba(96,165,250,.22);background:rgba(96,165,250,.05)">
+                    <span class="callout-icon" aria-hidden="true" style="color:#60a5fa">↻</span>
+                    <p>
+                        <strong>¿Cómo actualizo a una versión nueva?</strong>
+                        Descargá el ZIP otra vez, reemplazá el contenido de la carpeta anterior por el nuevo y entrá en
+                        <code>chrome://extensions/</code> para hacer clic en el botón de recargar (↻) de la extensión.
+                        No hace falta desinstalarla ni volver a configurarla.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════════════
+             Detalle por medio
+             ═══════════════════════════════════════════════════ -->
+        <section id="detalle">
+            <div class="wrap">
+                <h2 class="section-title"><span class="badge-dot"></span> Características según cada medio</h2>
+                <p class="section-lead">Qué hace exactamente la extensión en cada uno de los portales soportados.</p>
+
+                <details class="detalle">
+                    <summary>
+                        Ver el detalle medio por medio
+                        <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"
+                            aria-hidden="true">
+                            <polyline points="6 9 12 15 18 9" />
+                        </svg>
+                    </summary>
+
+                    <div class="detalle-body">
+
+                        <article class="medio" id="medio-clarin">
+                            <h4>Clarín</h4>
+                            <ul>
+                                <li class="f-yes">Permite el acceso a notas para suscriptores</li>
+                                <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
+                                <li class="f-yes">Se bloquean diálogos de notificaciones</li>
+                                <li class="f-yes">Incluye todos los medios del Grupo Clarín: Ciudad Magazine, El Trece
+                                    TV, Radio Mitre, La 100, Elle y Cienradios</li>
+                            </ul>
+                        </article>
+
+                        <article class="medio" id="medio-lanacion">
+                            <h4>La Nación</h4>
+                            <ul>
+                                <li class="f-no">Por el momento NO permite leer notas para suscriptores</li>
+                                <li class="f-yes">Permite ver resúmenes generados por IA</li>
+                                <li class="f-yes">Permite la escucha de notas</li>
+                                <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
+                                <li class="f-yes">Se bloquean diálogos de notificaciones</li>
+                            </ul>
+                        </article>
+
+                        <article class="medio" id="medio-infobae">
+                            <h4>Infobae</h4>
+                            <ul>
+                                <li class="f-info">El medio no requiere suscripción para leer sus notas</li>
+                                <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
+                                <li class="f-yes">Se bloquean diálogos de notificaciones</li>
+                            </ul>
+                        </article>
+
+                        <article class="medio" id="medio-pagina12">
+                            <h4>Página/12</h4>
+                            <ul>
+                                <li class="f-yes">Permite el acceso a notas para soci@s</li>
+                                <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
+                                <li class="f-yes">Se bloquean diálogos de notificaciones</li>
+                            </ul>
+                        </article>
+
+                        <article class="medio" id="medio-perfil">
+                            <h4>Perfil</h4>
+                            <ul>
+                                <li class="f-info">El medio no requiere suscripción para leer sus notas</li>
+                                <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
+                                <li class="f-yes">Se bloquean diálogos de notificaciones</li>
+                                <li class="f-yes">Incluye todos los medios de la Editorial Perfil: Diario Perfil, 442,
+                                    Noticias, Caras, Para Ti, Fortuna, Weekend, Parabrisas, Super Campo, Look, Luz, Mía,
+                                    Lunateen, Horizonte, Exitoina, Marie Claire, Radio Perfil, Rouge, Hombre, Perfil
+                                    Brasil, Buenos Aires Times y Canal Net TV</li>
+                            </ul>
+                        </article>
+
+                        <article class="medio" id="medio-eldestape">
+                            <h4>El Destape</h4>
+                            <ul>
+                                <li class="f-info">El medio no requiere suscripción para leer sus notas</li>
+                                <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
+                                <li class="f-yes">Se bloquean diálogos de notificaciones</li>
+                            </ul>
+                        </article>
+
+                        <article class="medio" id="medio-lacapital">
+                            <h4>La Capital</h4>
+                            <ul>
+                                <li class="f-yes">Permite el acceso a notas para suscriptores</li>
+                                <li class="f-yes">Permite la visualización de versiones impresas</li>
+                                <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
+                                <li class="f-yes">Se bloquean diálogos de notificaciones</li>
+                            </ul>
+                        </article>
+
+                        <article class="medio" id="medio-lavoz">
+                            <h4>La Voz del Interior</h4>
+                            <ul>
+                                <li class="f-yes">Permite el acceso a notas para suscriptores</li>
+                                <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
+                                <li class="f-yes">Se bloquean diálogos de notificaciones</li>
+                            </ul>
+                        </article>
+
+                        <article class="medio" id="medio-lagaceta">
+                            <h4>La Gaceta</h4>
+                            <ul>
+                                <li class="f-yes">Permite el acceso a notas para suscriptores</li>
+                                <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
+                                <li class="f-yes">Se bloquean diálogos de notificaciones</li>
+                            </ul>
+                        </article>
+
+                        <article class="medio" id="medio-ellitoral">
+                            <h4>El Litoral</h4>
+                            <ul>
+                                <li class="f-info">El medio no requiere suscripción para leer sus notas</li>
+                                <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
+                                <li class="f-yes">Se bloquean diálogos de notificaciones</li>
+                                <li class="f-yes">Incluye el portal Puerto Negocios</li>
+                            </ul>
+                        </article>
+
+                        <article class="medio" id="medio-losandes">
+                            <h4>Los Andes</h4>
+                            <ul>
+                                <li class="f-info">El medio no requiere suscripción para leer sus notas</li>
+                                <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
+                                <li class="f-yes">Se bloquean diálogos de notificaciones</li>
+                            </ul>
+                        </article>
+
+                        <article class="medio" id="medio-eldia">
+                            <h4>El Día</h4>
+                            <ul>
+                                <li class="f-yes">Permite el acceso a notas para suscriptores</li>
+                                <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
+                                <li class="f-yes">Se bloquean diálogos de notificaciones</li>
+                            </ul>
+                        </article>
+
+                        <article class="medio" id="medio-rionegro">
+                            <h4>Río Negro</h4>
+                            <ul>
+                                <li class="f-info">El medio no requiere suscripción para leer sus notas</li>
+                                <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
+                                <li class="f-yes">Se bloquean diálogos de notificaciones</li>
+                            </ul>
+                        </article>
+
+                        <article class="medio" id="medio-elonce">
+                            <h4>Elonce</h4>
+                            <ul>
+                                <li class="f-info">El medio no requiere suscripción para leer sus notas</li>
+                                <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
+                                <li class="f-yes">Se bloquean diálogos de notificaciones</li>
+                            </ul>
+                        </article>
+
+                        <article class="medio" id="medio-elciudadano">
+                            <h4>El Ciudadano</h4>
+                            <ul>
+                                <li class="f-info">El medio no requiere suscripción para leer sus notas</li>
+                                <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
+                                <li class="f-yes">Se bloquean diálogos de notificaciones</li>
+                            </ul>
+                        </article>
+
+                        <article class="medio" id="medio-rosario3">
+                            <h4>Rosario3</h4>
+                            <ul>
+                                <li class="f-info">El medio no requiere suscripción para leer sus notas</li>
+                                <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
+                                <li class="f-yes">Se bloquean diálogos de notificaciones</li>
+                            </ul>
+                        </article>
+
+                        <article class="medio" id="medio-cadena3">
+                            <h4>Cadena 3</h4>
+                            <ul>
+                                <li class="f-info">El medio no requiere suscripción para leer sus notas</li>
+                                <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
+                                <li class="f-yes">Se bloquean diálogos de notificaciones</li>
+                            </ul>
+                        </article>
+
+                        <article class="medio" id="medio-airedesantafe">
+                            <h4>Aire de Santa Fe</h4>
+                            <ul>
+                                <li class="f-info">El medio no requiere suscripción para leer sus notas</li>
+                                <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
+                                <li class="f-yes">Se bloquean diálogos de notificaciones</li>
+                            </ul>
+                        </article>
+
+                        <article class="medio" id="medio-mdz">
+                            <h4>MDZ Online</h4>
+                            <ul>
+                                <li class="f-info">El medio no requiere suscripción para leer sus notas</li>
+                                <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
+                                <li class="f-yes">Se bloquean diálogos de notificaciones</li>
+                            </ul>
+                        </article>
+
+                        <article class="medio" id="medio-uno">
+                            <h4>Diario Uno</h4>
+                            <ul>
+                                <li class="f-info">El medio no requiere suscripción para leer sus notas</li>
+                                <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
+                                <li class="f-yes">Se bloquean diálogos de notificaciones</li>
+                            </ul>
+                        </article>
+
+                        <article class="medio" id="medio-rosarioplus">
+                            <h4>Rosario Plus</h4>
+                            <ul>
+                                <li class="f-info">El medio no requiere suscripción para leer sus notas</li>
+                                <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
+                                <li class="f-yes">Se bloquean diálogos de notificaciones</li>
+                            </ul>
+                        </article>
+
+                        <article class="medio" id="medio-unoentrerios">
+                            <h4>Diario Uno Entre Ríos</h4>
+                            <ul>
+                                <li class="f-info">El medio no requiere suscripción para leer sus notas</li>
+                                <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
+                                <li class="f-yes">Se bloquean diálogos de notificaciones</li>
+                            </ul>
+                        </article>
+
+                        <article class="medio" id="medio-unosantafe">
+                            <h4>Diario Uno Santa Fe</h4>
+                            <ul>
+                                <li class="f-info">El medio no requiere suscripción para leer sus notas</li>
+                                <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
+                                <li class="f-yes">Se bloquean diálogos de notificaciones</li>
+                            </ul>
+                        </article>
+
+                        <article class="medio" id="medio-viapais">
+                            <h4>Vía País</h4>
+                            <ul>
+                                <li class="f-info">El medio no requiere suscripción para leer sus notas</li>
+                                <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
+                                <li class="f-yes">Se bloquean diálogos de notificaciones</li>
+                            </ul>
+                        </article>
+
+                        <article class="medio" id="medio-minutouno">
+                            <h4>Minuto Uno</h4>
+                            <ul>
+                                <li class="f-info">El medio no requiere suscripción para leer sus notas</li>
+                                <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
+                                <li class="f-yes">Se bloquean diálogos de notificaciones</li>
+                            </ul>
+                        </article>
+
+                        <article class="medio" id="medio-lpo">
+                            <h4>La Política Online</h4>
+                            <ul>
+                                <li class="f-info">El medio no requiere suscripción para leer sus notas</li>
+                                <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
+                                <li class="f-yes">Se bloquean diálogos de notificaciones</li>
+                            </ul>
+                        </article>
+
+                        <article class="medio" id="medio-letrap">
+                            <h4>Letra P</h4>
+                            <ul>
+                                <li class="f-info">El medio no requiere suscripción para leer sus notas</li>
+                                <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
+                                <li class="f-yes">Se bloquean diálogos de notificaciones</li>
+                            </ul>
+                        </article>
+
+                        <article class="medio" id="medio-diariopopular">
+                            <h4>Diario Popular</h4>
+                            <ul>
+                                <li class="f-info">El medio no requiere suscripción para leer sus notas</li>
+                                <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
+                                <li class="f-yes">Se bloquean diálogos de notificaciones</li>
+                            </ul>
+                        </article>
+
+                        <article class="medio" id="medio-elcronista">
+                            <h4>El Cronista</h4>
+                            <ul>
+                                <li class="f-yes">Permite el acceso a notas para suscriptores (members)</li>
+                                <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
+                                <li class="f-yes">Se bloquean diálogos de notificaciones</li>
+                            </ul>
+                        </article>
+
+                        <article class="medio" id="medio-ambito">
+                            <h4>Ámbito</h4>
+                            <ul>
+                                <li class="f-info">El medio no requiere suscripción para leer sus notas</li>
+                                <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
+                                <li class="f-yes">Se bloquean diálogos de notificaciones</li>
+                            </ul>
+                        </article>
+
+                        <article class="medio" id="medio-tn">
+                            <h4>TN</h4>
+                            <ul>
+                                <li class="f-info">El medio no requiere suscripción para leer sus notas</li>
+                                <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
+                                <li class="f-yes">Se bloquean diálogos de notificaciones</li>
+                            </ul>
+                        </article>
+
+                        <article class="medio" id="medio-ole">
+                            <h4>Olé</h4>
+                            <ul>
+                                <li class="f-info">El medio no requiere suscripción para leer sus notas</li>
+                                <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
+                                <li class="f-yes">Se bloquean diálogos de notificaciones</li>
+                            </ul>
+                        </article>
+
+                        <article class="medio" id="medio-tycsports">
+                            <h4>TyC Sports</h4>
+                            <ul>
+                                <li class="f-info">El medio no requiere suscripción para leer sus notas</li>
+                                <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
+                                <li class="f-yes">Se bloquean diálogos de notificaciones</li>
+                            </ul>
+                        </article>
+
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════════════
+             Aviso legal
+             ═══════════════════════════════════════════════════ -->
+        <section id="legal">
+            <div class="wrap">
+                <h2 class="section-title"><span class="badge-dot"></span> Descargo de responsabilidad</h2>
+                <div class="legal">
+                    <p>Este proyecto fue desarrollado exclusivamente con <strong>fines educativos, de investigación
+                            técnica y aprendizaje</strong> sobre manipulación del DOM, arquitectura de extensiones web e
+                        intervención del lado del cliente (<em>client-side</em>).</p>
+                    <p><strong>Sin fines de lucro:</strong> es totalmente gratuito, de código abierto y no persigue
+                        ningún beneficio económico, monetización ni comercialización directa o indirecta.</p>
+                    <p><strong>Sin redistribución de contenido:</strong> la extensión no almacena, aloja ni retransmite
+                        material protegido por derechos de autor. Todas las modificaciones se ejecutan de manera local
+                        en el navegador del usuario sobre la información que el propio sitio web ya envió al cliente.
+                    </p>
+                    <p><strong>Uso bajo propia responsabilidad:</strong> el software se provee «tal cual»
+                        (<em>as-is</em>), sin garantías de ningún tipo. Cada usuario es responsable del uso que le da a
+                        la herramienta y del cumplimiento de los términos y condiciones de los sitios web que visita.
+                    </p>
+                    <p><strong>Marcas y derechos:</strong> todos los nombres, logos y marcas registradas mencionadas
+                        pertenecen a sus respectivos dueños y se utilizan únicamente con fines identificatorios y
+                        descriptivos.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="wrap footer-inner">
+            <a class="btn btn-ghost btn-sm" href="https://github.com/LucasPier/diarios-liberados" target="_blank"
+                rel="noopener">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path
+                        d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                </svg>
+                Ver el código del proyecto
+            </a>
+            <div class="footer-avatar" role="img" aria-label="Lucas Pier"></div>
+            <p><strong>Por Lucas Pier | Rosario, 2026</strong></p>
+        </div>
+    </footer>
+
+    <script src="js/landing.js"></script>
+</body>
+
+</html>
