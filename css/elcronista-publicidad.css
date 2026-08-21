@@ -1,7 +1,9 @@
 /* Publicidad - Oculta contenedores de publicidad y zonas de ads */
 .ad-container,
-*[class*="adzone-ad"]
-
+*[class*="adzone-ad"],
+.masthead__ticker.masthead__ticker--with-buttons .masthead__ticker-redirect.right,
+.title-block__html:has(a[rel="nofollow"]),
+.markets-general__header-presenter
 /*,
 *[class*="banner-container"],
 *[class*="p12banner"],
@@ -15,4 +17,22 @@
     border: none !important;
     visibility: hidden !important;
     z-index: -1 !important;
+}
+
+/* Mejoras de distribución UI */
+.masthead__modal {
+    left: 0 !important;
+}
+
+.grid-chain-layout__rail>.grid-chain-layout__rail-inner:has(*[class*="adzone-ad"]):not(:has(> :not(*[class*="adzone-ad"]))),
+.grid-chain-layout__rail:has(>.grid-chain-layout__rail-inner>*[class*="adzone-ad"]):not(:has(>.grid-chain-layout__rail-inner>:not(*[class*="adzone-ad"]))),
+*:has(*[class*="adzone-ad"]):not(:has(> :not(*[class*="adzone-ad"]))),
+.last-news__logo-link {
+    display: none !important;
+}
+
+@media only screen and (min-width: 1320px) {
+    .section-right-rail__center {
+        grid-template-columns: 1fr !important;
+    }
 }

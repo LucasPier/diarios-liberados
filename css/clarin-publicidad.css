@@ -1,5 +1,5 @@
 /* Publicidad - Oculta todos los banners, slots de GPT/AdSense y contenedores de anuncios */
-div[id="div-gpt-ad-horizontal1"],
+div[id*="div-gpt-ad-horizontal"],
 div[class="sc-737fb80f-6 dxGPJW"],
 div[class="sc-737fb80f-6 dgXEUb banner sticky"],
 div[class="sc-737fb80f-0 fnFNLM"],
@@ -16,7 +16,10 @@ div[class="sc-737fb80f-8 lgoyrB"],
 .bannerCajaGris,
 .bannerSRA,
 #__next>div:has(> div>#div-gpt-ad-horizontal1),
-#div-gpt-ad-horizontal1 ins[id*="gpt_unit"] {
+#div-gpt-ad-horizontal1 ins[id*="gpt_unit"],
+.banner-container,
+.cLHmrN .banners,
+*[id*="div-gpt-ad"] {
     display: none !important;
     height: 0 !important;
     overflow: hidden !important;
@@ -25,4 +28,642 @@ div[class="sc-737fb80f-8 lgoyrB"],
     border: none !important;
     visibility: hidden !important;
     z-index: -1 !important;
+}
+
+
+/* Mejoras de distribución UI */
+
+*:has(.bannerSRA):not(:has(> :not(.bannerSRA))),
+*:has(.banner-small):not(:has(> :not(.banner-small))),
+.inread-container:has(>.banner):not(:has(> :not(.banner))),
+*:has(*[id*="div-gpt-ad"]):not(:has(> :not(*[id*="div-gpt-ad"]))),
+.containerUalter .ualter_content .footer {
+    display: none !important;
+}
+
+.bJutdf,
+.bGwtcm,
+.iGVHTF {
+    width: max-content !important;
+    margin: 10px auto 0 !important;
+}
+.bJutdf div[class*="div"]:not(.div13):has(> div>.bannerSRA),
+.bJutdf .div13>div:has(>.bannerSRA),
+/*.bGwtcm div[class*="div"]:not(.div11):has(> div>.bannerSRA),
+.bGwtcm .div11>div:has(>.bannerSRA),*/
+.bGwtcm div[class*="div"]:has(> div>.bannerSRA),
+.kWynJk:has(.bannerSRA),
+.lgoyrB:has(.bannerSRA),
+.jgjGlO.div2:not(:last-child)::before,
+.cXXbEZ .jgjGlO.div2,
+.gvyEHw .div2,
+.gEHbWs .div2,
+.hqZjJe .div2,
+.dAYXWS .div2,
+.eurYkx .div2,
+.div2.banners,
+.fgXxto .div4:has(.bannerSRA),
+.fgXxto .div10,
+.fgXxto .div11,
+.fgXxto .div12,
+.fgXxto .div13,
+.fgXxto .div14,
+.fgXxto .div15,
+.fgXxto .div16,
+.bGwtcm .div10,
+.bGwtcm .div11,
+.bGwtcm .div16,
+.iGVHTF .div10,
+.iGVHTF .div11, /* Ojo, este es el alto */
+.iGVHTF .div16,
+.dvAWub .bannerList,
+.jckEpp .div6 {
+    display: none !important;
+}
+.bJutdf .div11 {
+    grid-area: 1 / 3 / 3 / 4 !important;
+}
+.bJutdf .div9,
+.bGwtcm .div9,
+.iGVHTF .div12 {
+    grid-area: 3 / 3 / 5 / 4 !important;
+}
+.bJutdf .div15 {
+    grid-area: 5 / 3 / 7 / 4 !important;
+}
+.bJutdf .div16,
+.bGwtcm .div15,
+.iGVHTF .div15 {
+    grid-area: 7 / 3 / 9 / 4 !important;
+}
+.cXXbEZ .div5 {
+    grid-area: 1 / 3 !important;
+}
+
+
+.bJutdf .div16 {
+    border-bottom: none !important;
+}
+.bJutdf .div16::after,
+/*.cXXbEZ .div6::after,*/
+.bGwtcm .div9::after,
+.bGwtcm .div12::after,
+.iGVHTF .div9::after,
+.iGVHTF .div12::after {
+    content: "";
+    position: absolute;
+    display: block !important;
+    bottom: -9px !important;
+    top: auto !important;
+    left: 0px;
+    width: 100%;
+    height: 1px;
+    background-color: rgb(224, 224, 224);
+}
+.bGwtcm .div3::before,
+.bGwtcm .div5::before,
+.bGwtcm .div6::before,
+/*.cXXbEZ .div6::before,*/
+.bGwtcm .div8::before,
+.iGVHTF .div2::before,
+.iGVHTF .div3::before,
+.iGVHTF .div5::before,
+.iGVHTF .div6::before,
+.iGVHTF .div8::before,
+.iGVHTF .div12::before {
+    content: "";
+    position: absolute;
+    right: -9px !important;
+    left: auto !important;
+    top: 0px !important;
+    bottom: auto !important;
+    width: 1px !important;
+    height: 100% !important;
+    background-color: rgb(224, 224, 224);
+}
+
+.fteCII,
+.fgXxto {
+    grid-template-columns: repeat(3, 314px) !important;
+}
+.fgXxto .div3,
+.bGwtcm .div12,
+.fteCII .div6,
+.iGVHTF .div9 {
+    grid-area: 1 / 3 / 3 / 4 !important;
+}
+.fteCII .div7,
+.fgXxto .div5 {
+    grid-area: 3 / 3 / 4 / 4 !important;
+}
+.fgXxto .div6 {
+    grid-area: 4 / 3 / 5 / 4 !important;
+}
+.fgXxto .div7,
+.bGwtcm .div14,
+.iGVHTF .div14 {
+    grid-area: 5 / 3 / 7 / 4 !important;
+    display: block !important;
+}
+.fgXxto .div8 {
+    grid-area: 7 / 3 / 8 / 4 !important;
+}
+.fgXxto .div9 {
+    grid-area: 8 / 3 / 9 / 4 !important;
+}
+.dAYXWS {
+    grid-template-columns: repeat(3, 314px) !important;
+}
+.edVnhT {
+    grid-template-columns: repeat(3, 314px) !important;
+}
+
+/* Fix Rural (Home) */
+.edrh5Elu {
+    justify-content: center;
+}
+.edrh5Elu .ChNPLx81 {
+    width: 100% !important;
+}
+.edrh5Elu .ChNPLx81:last-of-type {
+    display: none !important;
+}
+
+/* Secciones internas */
+
+.gEHbWs .div1 {
+    grid-template-rows: repeat(2, 325px) !important;
+}
+
+
+/* Especiales - OJO problema en Opinión! */
+.fyhYVD li:nth-child(4n)::before{
+    content: "" !important;
+    display: block !important;
+    position: absolute;
+    top: 0px !important;
+    right: -8px !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: 1px !important;
+    height: 95% !important;
+    background-color: rgb(224, 224, 224) !important;
+}
+
+/* EEUU */
+.eurYkx {
+    grid-template-columns: repeat(3, 314px) !important;
+}
+.eurYkx .div3 {
+    grid-column-start: 3 !important;
+    grid-row: auto !important;
+}
+.eurYkx .div4 {
+    grid-column-start: 3 !important;
+    grid-row: auto !important;
+}
+
+/* ARQ */
+.fgXxto .div4{
+    display: none !important;
+}
+.lobeBS {
+    grid-template-columns: repeat(3, 314px) !important;
+}
+.lobeBS .div4 {
+    grid-area: 1 / 3 / 2 / 3 !important;
+}
+.lobeBS .div5 {
+    grid-area: 2 / 3 / 2 / 3 !important;
+}
+.lobeBS .div6 {
+    grid-area: 4 / 3 / 3 / 3 !important;
+}
+.lobeBS .div1:not(:last-child)::after,
+.lobeBS .div4:not(:last-child)::after,
+.lobeBS .div5:not(:last-child)::after,
+.lobeBS .div6:not(:last-child)::after {
+    bottom: -9px !important;
+    left: 0px !important;
+    right: auto !important;
+    top: auto !important;
+    width: 100% !important;
+    height: 1px !important;
+    background-color: rgb(224, 224, 224) !important;
+}
+.dcbdjP:not(:last-child)::before {
+    right: -8px !important;
+    left: auto !important;
+}
+body .lobeBS .div3:not(:last-child)::after {
+    content: "";
+    position: absolute !important;
+    left: -11px !important;
+    top: 0px !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: 1px !important;
+    height: 100% !important;
+    background-color: rgb(224, 224, 224) !important;
+}
+
+
+/* Recetas */
+.brzEds .div7 {
+    display: none !important;
+}
+
+/* Humor */
+.kVdfkF {
+    border-right: 0px transparent !important;
+}
+.hkOerT::after {
+    display: none !important;
+}
+
+/* Propiedades */
+.ddmyvA::after {
+    content: "";
+    position: absolute;
+    left: 0px;
+    width: 100%;
+    top: calc(50% + 0.6rem);
+    height: 1px;
+    background: rgb(224, 224, 224);
+}
+.ddmyvA .div3::after {
+    content: "";
+    position: absolute;
+    right: -1rem;
+    top: 0px;
+    width: 1px;
+    height: 100%;
+    background: rgb(224, 224, 224);
+}
+.ddmyvA .div4::after {
+    display: none !important;
+}
+
+/* Rural */
+.CONTAINER-WRAPPER:has(>.dFbV4Iz1>.bannerSRA),
+.-HcIt1es:has(>.dFbV4Iz1>.bannerSRA) {
+    display: none !important;
+}
+
+/* Elle */
+.gSmYDh .featured {
+    grid-area: 3 / 1 / 5 / 3 !important;
+}
+@media (max-width: 1280px) {
+    /* Elle */
+    .gSmYDh .featured {
+        grid-area: 4 / 1 / 6 / 2 !important;
+    }
+}
+
+@media (max-width: 1360px) {
+    .geWhGR {
+        width: auto !important;
+        min-width: 300px !important;
+    }
+    .csSTFm {
+        width: 100% !important;
+    }
+}
+@media (min-width: 1025px) and (max-width: 1359px) {
+    .bJutdf,
+    .iGVHTF {
+        grid-template-columns: repeat(3, 314px) !important;
+        gap: 15px !important;
+    }
+    
+    .iGVHTF .div9::after,
+    .iGVHTF .div12::after,
+    .bJutdf .div13 {
+        display: none !important;
+    }
+    .bGwtcm .div7 {
+        grid-area: 7 / 1 / 9 / 2 !important;
+    }
+    .bGwtcm .div8 {
+        grid-area: 7 / 2 / 9 / 3 !important;
+    }
+    .bJutdf .div16 .onexone,
+    .bGwtcm .div14 .onexone {
+        width: 307px !important;
+        flex-direction: column-reverse !important;
+    }
+    .bJutdf .div16 .onexone .mt,
+    .bGwtcm .div14 .onexone .mt {
+        flex: auto !important;
+        width: auto !important;
+        margin-left: 0 !important;
+    }
+    .bJutdf .div16 .onexone .mt h2.title,
+    .bGwtcm .div14 .onexone .mt h2.title {
+        font-size: 21px !important;
+        line-height: 24px !important;
+        margin-bottom: 0 !important;
+    }
+    .bJutdf .div16 .onexone .mt .volanta,
+    .bGwtcm .div14 .onexone .mt .volanta {
+        font-size: 21px !important;
+        line-height: 24px !important;
+    }
+    .bJutdf .div16 .onexone picture,
+    .bGwtcm .div14 .onexone picture {
+        width: 100% !important;
+    }
+    .bJutdf .div14,
+    .iGVHTF .div13 {
+        grid-area: 11 / 1 / 15 / 4 !important;
+        max-height: 615px !important;
+    }
+    .bGwtcm .div13 {
+        grid-area: 9 / 1 / 15 / 4 !important;
+    }
+
+    /* Fix "onexone" en portada */
+    body .jkTEhQ .div4 article > div .mt .volanta {
+        height: auto !important;
+    }
+    body .jkTEhQ .div4 article > div .mt h2.title {
+        height: 70px !important;
+    }
+    .lcCKAe.div5{
+        grid-row: 1 / 5 !important;
+    }
+    .cXXbEZ .div6{
+        grid-row: 5 / 6 !important;
+    }
+    .gvyEHw .div3 {
+        grid-area: 1 / 3 / 2 / 4 !important;
+    }
+    .gvyEHw .div4 {
+        grid-area: 2 / 3 / 3 / 4 !important;
+    }
+    .gvyEHw .div5 {
+        grid-area: 3 / 3 / 4 / 4 !important;
+    }
+    /* Secciones internas */
+    .fteCII {
+        grid-template-rows: repeat(3, 314px) !important;
+    }
+    .gEHbWs .div3{
+        grid-area: 1 / 3 / 5 / 4 !important;
+    }
+    .gEHbWs .div3 .laNGRM  {
+        margin: 0 auto 2.188rem !important;
+    }
+    .fteCII .div3 {
+        grid-area: 2 / 2 / 3 / 3 !important;
+    }
+    .fteCII .div4 {
+        grid-area: 3 / 1 / 4 / 2 !important;
+    }
+    .fteCII .div5 {
+        grid-area: 3 / 2 / 4 / 3 !important;
+    }
+    .fgXxto .div1 {
+        grid-area: 1 / 1 / 5 / 3 !important;
+    }
+    .fgXxto .div2 {
+        grid-area: 5 / 1 / 9 / 3 !important;
+    }
+    .ddmyvA {
+        grid-template-columns: repeat(4, 1fr) !important;
+    }
+    .ddmyvA .div4 {
+        grid-area: 1 / 4 !important;
+    }
+    .dAYXWS .div1 {
+        grid-area: 1 / 1 / 6 / 4 !important;
+    }
+    .kWjXwG {
+        grid-template-columns: repeat(3, 314px) !important;
+    }
+    .edVnhT .div1 {
+        grid-area: 1 / 1 / 6 / 4 !important;
+    }
+
+    /* Especiales / Opinión */
+    .fyhYVD li:nth-child(3)::before,
+    .fyhYVD li:nth-child(7)::before,
+    .fyhYVD li:nth-child(10)::before,
+    .fyhYVD li:nth-child(14)::before,
+    .fyhYVD li:nth-child(17)::before,
+    .fyhYVD li:nth-child(21)::before,
+    .fyhYVD li:nth-child(24)::before,
+    .fyhYVD li:nth-child(27)::before {
+        display: none !important;
+    }
+    .cnuyCK li:nth-child(4n)::before {
+        content: "" !important;
+        position: absolute !important;
+        bottom: 0px !important;
+        left: -14px !important;
+        width: 110% !important;
+        height: 1px !important;
+        background-color: rgb(255, 255, 255) !important;
+    }
+
+    /* ARQ */
+    .lobeBS {
+        grid-template-rows: repeat(3, 314px) !important;
+    }
+    body .lobeBS .div3:not(:last-child)::after {
+        left: -9px !important;
+    }
+    .lobeBS .div1:not(:last-child)::before,
+    .lobeBS .div4:not(:last-child)::before,
+    .lobeBS .div5:not(:last-child)::before,
+    .lobeBS .div6:not(:last-child)::before,
+    .groFQp .module-grid > div.div2::after,
+    .fgXxto .div3::before,
+    .fgXxto .div7::before {
+        display: none !important;
+    }
+
+    /* Recetas */
+    .brzEds .div4 {
+        grid-area: 1 / 4 / 2 / 5 !important;
+    }
+
+    /* Humor */
+    body .hkOerT::before {
+        display: block !important;
+    }
+    body .hkOerT:nth-child(even)::before {
+        display: none !important;
+    }
+
+    /* Historias */
+    .bzUzky:not(:last-child)::after{
+        display: none !important;
+    }
+}
+@media (min-width: 1281px) {
+    /* Elle */
+
+    .jckEpp .div5 {
+        grid-area: 2 / 3 / 3 / 4 !important;
+    }
+    .cUeeaV .div1 {
+        grid-area: 1 / 1 / 2 / 5 !important;
+        margin: auto calc(((100% - 84px) / 8) + 14px) !important;
+    }
+    .bKhhSz:has(> .banner-container) {
+        width: auto !important;
+    }
+    .kTbdcQ {
+        width: calc(33.333% - 2px) !important;
+    }
+}
+@media (min-width: 780px) and (max-width: 1280px) {
+    /* Elle */
+    .jPEBfK .div4 {
+        grid-area: 2 / 1 / 3 / 2 !important;
+    }
+    .jPEBfK .div5 {
+        grid-area: 2 / 2 / 3 / 3 !important;
+    }
+    .jPEBfK .div6 {
+        grid-area: 3 / 1 / 4 / 2 !important;
+    }
+    .jPEBfK .div8 {
+        grid-area: 3 / 1 / 4 / 2 !important;
+    }
+}
+@media (min-width: 1360px) {
+    .cXXbEZ .div6 {
+        grid-area: 2 / 3 !important;
+    }
+    .bJutdf .div9 > div > article > div::before/*,
+    .bGwtcm .div9 > div > article > div::before */{
+        content: "";
+        position: absolute;
+        top: -9px;
+        width: 100%;
+        height: 1px;
+        background-color: rgb(224, 224, 224);
+    }
+    .bJutdf .div9 > div > article > div::after/*,
+    .bGwtcm .div9 > div > article > div::after*/ {
+        content: "";
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        width: 100%;
+        height: 1px;
+        background-color: rgb(224, 224, 224);
+    }
+    .DsprJ.div9:not(:last-child)::before {
+        display: none !important;
+    }
+    .gvyEHw {
+        grid-template-columns: repeat(8, 147px) !important;
+    }
+    .gvyEHw .div1 {
+        grid-area: 1 / 2 / 5 / 6 !important;
+    }
+    .gvyEHw .div3 {
+        grid-area: 1 / 6 / 2 / 8 !important;
+    }
+    .gvyEHw .div4 {
+        grid-area: 2 / 6 / 3 / 8 !important;
+    }
+    .gvyEHw .div5 {
+        grid-area: 3 / 6 / 4 / 8 !important;
+    }
+    .gvyEHw .div6 {
+        grid-area: 4 / 6 / 5 / 8 !important;
+    }
+    
+    /* Secciones internas */
+    .gBcVzj {
+        margin: 30px 0px 10px !important;
+    }
+    .gEHbWs {
+        padding-bottom: 0px !important;
+        padding-top: 0px !important;
+    }
+    .gEHbWs .div1 {
+        grid-area: 1 / 1 / 5 / 4 !important;
+        grid-template-columns: repeat(3, 314px) !important;
+    }
+
+    .laNGRM {
+        margin: 0 auto !important;
+    }
+
+    .gEHbWs .div1 li::after {
+        content: "";
+        position: absolute;
+        right: -8px;
+        top: 0px;
+        width: 1px;
+        height: 95%;
+        background-color: rgb(224, 224, 224);
+    }
+    .gEHbWs .div1 li:nth-child(3n+0)::after {
+        display: none !important;
+    }
+    .gEHbWs .div1 li:nth-child(2n+1)::before {
+        display: none !important;
+    }
+    .gEHbWs .div1 li:nth-child(3n+1)::before {
+        content: "";
+        position: absolute;
+        left: 0px;
+        display: block !important;
+        width: 314% !important;
+        height: 1px;
+        background-color: rgb(224, 224, 224);
+        bottom: -3px;
+    }
+    /* Propiedades */
+    .ddmyvA {
+        grid-template-columns: repeat(4, 1fr) !important;
+    }
+    .ddmyvA .div4 {
+        grid-area: 1 / 4 !important;
+    }
+    .ddmyvA::after {
+        width: 100% !important;
+    }
+
+    /* Especiales */
+    .fyhYVD li:nth-child(5)::before,
+    .fyhYVD li:nth-child(9)::before,
+    .fyhYVD li:nth-child(14)::before,
+    .fyhYVD li:nth-child(18)::before,
+    .fyhYVD li:nth-child(23)::before,
+    .fyhYVD li:nth-child(27)::before {
+        display: none !important;
+    }
+
+    /* Recetas */
+    .brzEds .div4 {
+        grid-area: 1 / 4 / 2 / 5 !important;
+    }
+    .brzEds::before {
+        width: 100% !important;
+    }
+    .brzEds::after,
+    .ifcMpX.div4::before {
+        display: none !important;
+    }
+    /*body .jMJLsH.sc-cab6e2fe-2.div3::after {
+        display: block !important;
+        top: 0px !important;
+        right: -9px !important;
+        bottom: auto !important;
+        left: auto !important;
+        width: 1px !important;
+        height: 100% !important;
+        background-color: rgb(224, 224, 224) !important;
+    }*/
+    .brzEds .jMJLsH.div3::before{
+        display: block !important;
+    }
 }

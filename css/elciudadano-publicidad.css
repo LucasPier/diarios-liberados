@@ -10,3 +10,18 @@
     visibility: hidden !important;
     z-index: -1 !important;
 }
+
+
+/* Mejoras de distribución UI */
+
+.elementor-1552317 .elementor-element.elementor-element-2e4c1028 {
+    display: none !important;
+}
+
+.elementor-1552317 .elementor-element.elementor-element-3191332a {
+    width: 100% !important;
+}
+.elementor-1552317 .elementor-element.elementor-element-3191332a .elementor-grid-3 .elementor-grid {
+    grid-template-columns: repeat(4,1fr) !important;
+}
+

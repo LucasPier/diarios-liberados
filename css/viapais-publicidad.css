@@ -11,3 +11,26 @@
     visibility: hidden !important;
     z-index: -1 !important;
 }
+
+
+/* Mejoras de distribución UI */
+*:has(*[class*="ad-slot"]):not(:has(> :not(*[class*="ad-slot"]))),
+.md\:grid-cols-4 .mx-auto:has(*[class*="ad-slot"]) {
+    display: none !important;
+}
+.md\:grid-cols-4:has(.mx-auto *[class*="ad-slot"]) .md\:grid-cols-3,
+.md\:grid-cols-4:has(.md\:grid-cols-3):not(:has(>*:not(.md\:text-xl):not(.md\:grid-cols-3))) > .md\:grid-cols-3,
+.md\:grid-cols-4:has(.grid-cols-1 .md\:col-span-3):not(:has(>*:not(.col-span-4))):has(.mx-auto *[class*="ad-slot"]) .md\:col-span-3 {
+    grid-column: span 4/span 3 !important;
+}
+.md\:grid-cols-4:has(>article.md\:row-span-2.md\:col-span-2):not(:has(.md\:grid-cols-2 > :nth-child(4 of .mb-4))) {
+    grid-template-columns: repeat(3,minmax(0,1fr)) !important;
+}
+@media (min-width:1024px) {
+    .md\:grid-cols-4:has(.mx-auto *[class*="ad-slot"]) .md\:grid-cols-3,
+    .md\:grid-cols-4:has(>article.md\:row-span-2.md\:col-span-2):not(:has(.md\:grid-cols-2 > :nth-child(4 of .mb-4))),
+    .md\:grid-cols-4:has(.md\:grid-cols-3):not(:has(>*:not(.md\:text-xl):not(.md\:grid-cols-3))) > .md\:grid-cols-3,
+    .md\:grid-cols-4:has(.grid-cols-1 .md\:col-span-3):not(:has(>*:not(.col-span-4))):has(.mx-auto *[class*="ad-slot"]) .md\:col-span-3 {
+        margin: auto calc(((100% - 48px) / 8) + 8px) !important;
+    }
+}

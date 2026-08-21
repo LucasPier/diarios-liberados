@@ -2,7 +2,10 @@
 #pw-content,
 a.pw-suscribite,
 #article-content div.subscription,
-#js-side-menu li.pw-cta {
+#js-side-menu li.pw-cta,
+.mc-header .suscribite,
+.mc-header .col-12.col-xl-3:has(>.suscribite):not(:has(> :not(.suscribite))),
+.suscripciones-accion {
     display: none !important;
     height: 0 !important;
     overflow: hidden !important;

@@ -39,7 +39,7 @@ body {
 /* Suscriptores - Posiciona relativamente los badges de artículo restringido para el ícono custom */
 .more-about__item .story-card__restricted,
 .story-card__restricted,
-.author-card__restricted,
+/*.author-card__restricted,*/
 .article-head__members {
     position: relative !important;
     /*background: #cb4141 !important;*/

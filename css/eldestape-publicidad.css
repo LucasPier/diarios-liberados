@@ -4,7 +4,14 @@
 *[class*="_publi"],
 *[class*="banner"],
 #sitio+.is-narrow:not(.item),
-footer.footer>.fs {
+footer.footer>.fs,
+.newheader_main__subscribe,
+.ad_top_sticky,
+#h_top_sticky,
+.container_publi,
+.cont-300:has(.banner):not(:has(> :not(.banner))),
+.cont-suscrb,
+.grecaptcha-badge {
     display: none !important;
     height: 0 !important;
     overflow: hidden !important;
@@ -15,9 +22,31 @@ footer.footer>.fs {
     z-index: -1 !important;
 }
 
-/* Publicidad - Colapsa el footer de publicidad (Mustang) sin romper el layout del footer */
+
+/* Mejoras de distribución UI */
 .footer .mustang {
     height: 0 !important;
     padding: 0 !important;
     margin: 24px 0 0 !important;
+}
+.frases_1_mas_vistas > .contenedor.grid.align-center {
+    justify-content: center !important;
+}
+body.hasAdTop {
+    --ad-top-current: 0px !important;
+}
+#newheader_root.header.newheader.hasAdTop {
+    transform: translateY(0px) !important;
+}
+.header.newheader~.aux_header {
+    height: 174px !important;
+}
+
+body.take-over-open {
+    overflow: auto !important;
+}
+
+:root {
+    --ad-top-height: 0px !important;
+    --fixed-stack-height: 210px !important;
 }

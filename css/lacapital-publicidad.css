@@ -9,7 +9,8 @@ div[class*="ad-slot-top"],
 div[class*="ad-slot"],
 #liveWrapper #liveSponsors,
 .banner-no-sticky,
-.sponsornegocios {
+.sponsornegocios,
+footer .our-logos {
     display: none !important;
     height: 0 !important;
     overflow: hidden !important;
@@ -20,7 +21,26 @@ div[class*="ad-slot"],
     z-index: -1 !important;
 }
 
-/* Mejoras de distribución UI sin banners publicitarios*/
+/* Mejoras de distribución UI */
+
+.destacadas-container.justify-between .standard-right-column,
+.ovacion-home .destacadas-grid-container>div,
+.en-escena-center,
+.region_destacado-custom-widget.extra-holder,
+.standard-right-column.sticky-column,
+.salud2col-custom-widget .standard-right-column,
+.-custom-widget .standard-right-column,
+.outer-container .section-medium-part .left-column,
+.last-entrys-container .right-column,
+.page-seccion-editor .section-medium-part .right-column,
+.outer-container>.-custom-widget.home-section.widget-with-slider>.extra-relative-holder,
+.inmuebles-custom-widget .publica-con-nosotros,
+.site-header[data-td-script-src*="unosantafe.com.ar"] .site-top-nav,
+.site-header[data-td-script-src*="unoentrerios.com.ar"] .site-top-nav,
+footer.footerCtn:has(>a.logo) {
+    display: none !important;
+}
+
 .site-header {
     height: auto !important;
 }
@@ -40,23 +60,6 @@ div[class*="ad-slot"],
 .en-escena-home .destacadas-grid-container {
     grid-template-columns: 1fr 1fr 1fr !important;
     grid-template-rows: none !important;
-}
-
-.destacadas-container.justify-between .standard-right-column,
-.ovacion-home .destacadas-grid-container>div,
-.en-escena-center,
-.region_destacado-custom-widget.extra-holder,
-.standard-right-column.sticky-column,
-.salud2col-custom-widget .standard-right-column,
-.-custom-widget .standard-right-column,
-.outer-container .section-medium-part .left-column,
-.last-entrys-container .right-column,
-.page-seccion-editor .section-medium-part .right-column,
-.outer-container>.-custom-widget.home-section.widget-with-slider>.extra-relative-holder,
-.inmuebles-custom-widget .publica-con-nosotros,
-.site-header[data-td-script-src*="unosantafe.com.ar"] .site-top-nav,
-.site-header[data-td-script-src*="unoentrerios.com.ar"] .site-top-nav {
-    display: none !important;
 }
 
 .ovacion-home>.outer-container,
@@ -136,6 +139,9 @@ body.page-seccion {
     margin-right: 0 !important;
 }
 
+.site-footer .footer-redes {
+    margin-bottom: 0px !important;
+}
 @media (max-width: 1299px) {
     .section-medium-part {
         grid-template-columns: 300px 300px;
@@ -196,6 +202,16 @@ body.page-seccion {
 .inmuebles-custom-widget .miniinfo {
     bottom: -20px !important;
     white-space: nowrap !important;
+}
+
+/* Minuto a minuto DF */
+.standard-entry-box.has-mam .mam-holder {
+    top: auto !important;
+    background: transparent !important;
+}
+.standard-entry-box.has-mam .mam-holder iframe {
+    height: 121px !important;
+    display: block;
 }
 
 /* UNO Santa Fe */

@@ -11,3 +11,53 @@
     visibility: hidden !important;
     z-index: -1 !important;
 }
+
+
+/* Mejoras de distribución UI */
+
+.col-xl-3:has(.add):not(:has(> :not(.add))) {
+    display: none !important;
+}
+
+.col-xl-9{
+    margin: 0 auto !important;
+}
+
+@media (min-width: 1200px) {
+    #topPage #cfull> .block.noMargin .col-xl-9:has(.timeline) {
+        width: 100% !important;
+    }
+    #topPage #cfull> .block.noMargin .col-xl-9:has(.timeline) .innerRow:not(:has(.timeline)) .col-12:not(.col-lg-4):not(:has(.titleHead)) {
+        width: 75% !important;
+        margin: 0 auto !important;
+    }
+    #topPage #cfull> .block.noMargin .col-xl-9:has(.timeline) .innerRow:not(:has(.timeline)) .row .col-lg-4 {
+        width: 25% !important;
+    }
+    #topPage #cfull> .block.noMargin .col-xl-9:has(.timeline) .innerRow:not(:has(.timeline)) .row :nth-child(1 of .col-lg-4),
+    #topPage #cfull> .block.noMargin .col-xl-9:has(.timeline) .innerRow:not(:has(.timeline)) .row :nth-child(4 of .col-lg-4),
+    #topPage #cfull> .block.noMargin .col-xl-9:has(.timeline) .innerRow:not(:has(.timeline)) .row :nth-child(7 of .col-lg-4)   {
+        margin-left:12.5%;
+    }
+    #topPage #cfull> .block.noMargin .col-xl-9:has(.timeline) .innerRow:not(:has(.timeline)) .row :nth-child(3 of .col-lg-4),
+    #topPage #cfull> .block.noMargin .col-xl-9:has(.timeline) .innerRow:not(:has(.timeline)) .row :nth-child(6 of .col-lg-4),
+    #topPage #cfull> .block.noMargin .col-xl-9:has(.timeline) .innerRow:not(:has(.timeline)) .row :nth-child(9 of .col-lg-4) {
+        margin-right:12.5%;
+    }
+    #topPage #cfull> .block.noMargin .col-xl-9 .innerRow:has(.timeline) {
+        width: 100% !important;
+    }
+    #topPage #cfull> .block.noMargin .col-xl-9 .innerRow:has(.timeline) .col-xl-8,
+    #topPage #cfull> .block.noMargin .col-xl-9 .innerRow:has(.timeline) .col-xl-4 {
+        width: 50% !important;
+    }
+    #topPage #cfull> .block.noMargin .col-xl-9:not(:has(.timeline)) .titleHead {
+        position: relative !important;
+        left: -17% !important;
+        width: 134% !important;
+    }
+}
+
+#moreNews .row {
+    justify-content: center !important;
+}

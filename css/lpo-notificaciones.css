@@ -1,7 +1,10 @@
 /* Notificaciones - Oculta los elementos de OneSignal (notificaciones push) */
 #onesignal-slidedown-container,
 #onesignal-slidedown-dialog,
-#onesignal-bell-container {
+#onesignal-bell-container,
+#notification-subscribe-button,
+#vsmtooltip,
+#vsm-ddp-arrow-0 {
     display: none !important;
     height: 0 !important;
     overflow: hidden !important;

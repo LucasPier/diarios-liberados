@@ -15,3 +15,43 @@
     visibility: hidden !important;
     z-index: -1 !important;
 }
+
+
+/* Mejoras de distribución UI */
+#main-nav.p12-header .p12-header__flyout-nav-wrapper {
+    height: calc(100dvh - 106px);
+}
+
+.layout-one-chain.render-banner-layout,
+.layout-catastrophe.render-banner-layout{
+    display: flex !important;
+    max-width: 1012px !important;
+    margin: 0 auto !important;
+}
+
+.section-columna-two:has(.p12-banner):not(:has(> :not(.p12-banner))),
+.p12-two-cols-layout .main aside.aside-right {
+    display: none !important;
+}
+.p12-two-cols-layout .main,
+.p12-home .section-middle {
+    grid-template-columns: minmax(500px, 1fr) !important;
+    grid-template-areas: "main-inner" !important;
+}
+.p12-two-cols-layout .main .main-inner,
+.content-secciones .section-columna-one,
+.p12-home .section-middle .col-content {
+    container-type: normal !important;
+    width: 100% !important;
+    max-width: 1012px !important;
+    margin: 0 auto !important;
+}
+.p12-home .section-middle .col-content .p12-section-base-layout--inner {
+    padding: 0 !important;
+}
+
+/* Edición Impresa */
+.content-secciones .content-secciones-grid {
+    grid-template-columns: minmax(400px, 1fr) !important;
+    grid-template-areas: "col1" !important;
+}

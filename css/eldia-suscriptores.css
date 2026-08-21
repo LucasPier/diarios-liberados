@@ -15,7 +15,7 @@
 article.articulo [amp-access][amp-access-hide]{
     display: block !important;
 }
-amp-img[src*="eldia.com/img/estructura/star-susc.svg"]{
+*[src*="eldia.com/img/estructura/star-susc.svg"]{
     width: 17px !important;
     height: 17px !important;
     margin: 2px 0 0 1px !important;

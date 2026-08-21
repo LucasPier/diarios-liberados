@@ -11,3 +11,47 @@
     visibility: hidden !important;
     z-index: -1 !important;
 }
+
+
+/* Mejoras de distribución UI */
+
+body{
+    overflow-x: hidden !important;
+}
+
+.col-md-4.col-sm-6.col-lg-4.region-container:not(:has(*)),
+body > .contain-icon-news,
+footer .container .row > div:not(.region-container):has(a[rel="nofollow"]) {
+    display: none !important;
+}
+
+html.async-hide{
+    opacity: 1 !important;
+}
+
+
+
+.row:has( > .col-md-4 > .banners-list):not(:has( > .col-md-4 > *:not(.banners-list))) > .col-md-8{
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+}
+/*.row:has( > .col-md-4 > .banners-list):has( > .col-md-4 > :not(.banners-list)) > .col-md-8 .flotated-title-highlighted-note{
+    margin-right: 33.333% !important;
+}*/
+.row:has( > .col-md-4 > .banners-list):not(:has( > .col-md-4 > *:not(.banners-list))) > .col-md-8 .col-lg-6{
+    flex: 0 0  33.333% !important;
+    max-width:  33.333% !important;
+}
+
+
+.container-fluid .row:has(.col-xs-12.col-md-6):not(:has(> :not(.col-xs-12.col-md-6))) {
+    margin: 0 10% !important;
+}
+
+
+.row:has(>.col-md-4.col-sm-6.col-lg-4.region-container):not(>.col-md-4.col-sm-6.col-lg-4.region-container:has(*)) {
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+}

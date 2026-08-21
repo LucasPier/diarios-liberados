@@ -4,7 +4,11 @@ div[class*="review-topsite"],
 *[class*="__ad"],
 *[class*="__promo"],
 *[class*="-promo"],
+*[id*="ad-slot"],
 /*.bg-lvi-hotdays-blue,*/
+*[class*="block-ads"],
+*[class*="bloque-ads"],
+*[class*="block-banner"],
 .CONTAINER-WRAPPER:has(.WIDGET-BOX>.bg-lvi-hotdays-blue),
 .imgSponsor {
     display: none !important;
@@ -17,7 +21,66 @@ div[class*="review-topsite"],
     z-index: -1 !important;
 }
 
+
+/* Mejoras de distribución UI */
+
 /* Publicidad - Reduce el padding del nav lateral cuando se eliminan banners del sidebar */
 #sectionsSideBar>header+nav.py-4 {
     padding-top: 0.2rem;
+}
+
+@media (min-width: 1024px) {
+    .lg\:grid-cols-5 {
+        grid-template-columns: repeat(4,minmax(0,1fr)) !important;
+    }
+    .lg\:mr-24 {
+        margin-right: 0 !important;
+    }
+}
+
+.xl\:col-span-1:has(*[id*="ad-slot"]):not(:has(> :not(*[id*="ad-slot"]))),
+
+/* Sponsors Live */
+.widget-live-home .mt-auto,
+.widget-live-home .overflow-hidden:has(>.w-full>.animate-right-loop-scroll-slow) {
+    display: none !important;
+}
+
+.variant-main+.xl\:col-span-1 {
+    grid-column: span 2/span 2 !important;
+}
+
+/* Banner suscripción */
+.CONTAINER-WRAPPER:has(.bg-\[\#2d036b\]) {
+    display: none !important;
+}
+
+/* Fotogalería Home */
+aside[data-mrf-recirculation="widget-fotogaleria-photo-gallery"] {
+    grid-template-columns: repeat(8,minmax(0,1fr)) !important;
+}
+aside[data-mrf-recirculation="widget-fotogaleria-photo-gallery"] .col-span-4{
+    grid-column: span 8/span 8;
+}
+aside[data-mrf-recirculation="widget-fotogaleria-photo-gallery"] .md\:col-span-3{
+    grid-column: span 6/span 6 !important;
+    grid-column-start: 2 !important;
+}
+
+/* Agenda */
+body#top.layout-default.lavoz .is-first-section {
+    margin-top: 30px !important;
+}
+body#top.layout-default.lavoz .column.is-3-desktop{
+    display: none !important;
+}
+@media screen and (min-width: 1024px) {
+    .column.is-9-desktop {
+        margin: 0 12.5% !important;
+    }
+}
+
+/* Agenda deportiva */
+.lg\:grid-cols-4:has(.lg\:col-span-3):not(:has(> :not(.lg\:col-span-3))) {
+    grid-template-columns: repeat(3,minmax(0,1fr)) !important;
 }

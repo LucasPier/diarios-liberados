@@ -15,7 +15,7 @@ footer .content a[target="_blank"] {
 }
 
 
-/* Mejoras de distribución UI sin banners publicitarios*/
+/* Mejoras de distribución UI */
 component-row .column-aux{
     display: none !important;
 }

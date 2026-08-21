@@ -3,7 +3,7 @@
 .grid-ads,
 *[class*="advertisement"],
 *[class*="ad-slot"],
-*[class*="banner"] {
+*[class*="banner"]:not(.S-banner-container-counter) {
     display: none !important;
     height: 0 !important;
     overflow: hidden !important;
@@ -12,4 +12,26 @@
     border: none !important;
     visibility: hidden !important;
     z-index: -1 !important;
+}
+
+
+
+
+/* Mejoras de distribución UI */
+
+*[class*="styles_Piso2Notas"] > *[class*="styles_segundo-bloque"]:has(*[class*="ad-slot"]):not(:has(> :not(*[class*="ad-slot"]))),
+div:has(>.WIDGET-BOX>*[class*="ad-slot"]):not(:has(>.WIDGET-BOX>:not(*[class*="ad-slot"]))),
+.WIDGET-BOX:has(>*[class*="ad-slot"]):not(:has(>:not(*[class*="ad-slot"]))),
+#odesur .S-columna.S-columna-3,
+*[class*="styles_container-mam"] *[class*="styles_c"]:has(*[class*="_publi"]){
+    display: none !important;
+}
+*[class*="styles_Piso2Notas"],
+.ChNPLx81{
+    display: flex !important;
+    margin: 0 auto !important;
+}
+
+*[class*="styles_container-mam"] {
+    justify-content: center;
 }

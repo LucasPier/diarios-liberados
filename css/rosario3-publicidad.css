@@ -1,7 +1,9 @@
 /* Publicidad - Oculta banners y popups publicitarios */
 .ad-container,
 *[class*="popup-"],
-*[class*="banner"] {
+*[class*="banner"],
+amp-sticky-ad,
+footer .our-logos {
     display: none !important;
     height: 0 !important;
     overflow: hidden !important;
@@ -10,4 +12,20 @@
     border: none !important;
     visibility: hidden !important;
     z-index: -1 !important;
+}
+
+/* Mejoras de distribución UI */
+
+#zona-ecos .ecos,
+.ocio-inner-container .general-link-holder .extra-holder {
+    flex-basis: 100% !important;
+}
+
+#ocio>.inner-container>.flex-container.justify-between,
+.extra-holder>.inner-container.justify-between {
+    justify-content: center !important;
+}
+
+section#deportes iframe[src*="rosario3.datafactory"] {
+    height: 170px!important;
 }

@@ -1,4 +1,5 @@
 /* Suscriptores - Ajusta el borde del tag de artículo premium en tarjetas (cambia color gold a negro) */
+.article .more .card .image .tag,
 .block .card .image .tag {
     border-color: rgba(0, 0, 0, 0) #000000 rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) !important;
 }
@@ -19,7 +20,8 @@
 #dilogComments .comments .list .comment .respond .comment .avatar .tag i,
 .block .card .text .tag i,
 #sidebar nav ul li a.gold,
-.article .articleBody .premium i {
+.article .articleBody .premium i,
+.article .more .card .image .tag i {
     color: #ff0000 !important;
 }
 /* Suscriptores - Ajusta el borde del tag de avatar en comentarios de premium */
@@ -38,3 +40,4 @@ div[data-mrf-recirculation="home-premium"] .col-12:has(.frame) {
     visibility: hidden !important;
     z-index: -1 !important;
 }
+

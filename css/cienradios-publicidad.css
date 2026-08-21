@@ -11,3 +11,18 @@
     visibility: hidden !important;
     z-index: -1 !important;
 }
+
+
+/* Mejoras de distribución UI */
+*:has(*[class*="ad-slot"]):not(:has(> :not(*[class*="ad-slot"]))),
+.b-quad-chain__child-item.c-stack:has(*[class*="ad-slot"]) {
+    display: none !important;
+}
+
+
+@media (min-width:1024px) {
+    .b-quad-chain__children-grid:has(.b-quad-chain__child-item.c-stack *[class*="ad-slot"]) {
+        grid-template-columns: repeat(3, 1fr) !important;
+        margin: 0 calc(12.5% + 0.1866rem) !important;
+    }
+}

@@ -13,3 +13,13 @@
     visibility: hidden !important;
     z-index: -1 !important;
 }
+
+
+/* Mejoras de distribución UI */
+*:has(.ad-container):not(:has(> :not(.ad-container))) {
+    display: none !important;
+}
+.brick-full-width-background {
+    margin-left: calc(50% - var(--vw, 1vw)*50) !important;
+    width: calc(var(--vw, 1vw)*100) !important;
+}

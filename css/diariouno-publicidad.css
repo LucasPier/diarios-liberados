@@ -15,8 +15,29 @@ ads-component,
     z-index: -1 !important;
 }
 
+/* Mejoras de distribución UI */
+
+.row {
+    justify-content: center !important;
+}
+
+*:has(*[class*="banner"]):not(:has(> :not(*[class*="banner"]))),
+.footer-dac-logo {
+    display: none !important;
+}
 @media screen and (min-width: 1200px){
-    .container-fluid.mx-0{
+    /*.container-fluid.mx-0{
         margin: 0 10%;
+    }*/
+    [class^="container-fluid"],
+    .navbar[class*="container"],
+    [class*="footer"][class*="container"] {
+        padding: 0 11rem !important;
+    }
+}
+@media (min-width: 992px) {
+    body:not(.ovacion) .col-lg-8 {
+        flex: 0 0 100% !important;
+        max-width: 1025px !important;
     }
 }

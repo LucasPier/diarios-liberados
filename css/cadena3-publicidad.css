@@ -6,7 +6,8 @@
 *[class*="banner"],
 #menu-secundario a[target="blank_"],
 #wide-skyscraper,
-#lasvocesdelasmarcas {
+#lasvocesdelasmarcas,
+footer #middleRectangleFooter:has( > div > script):not(:has( > * > *:not(script))) {
     display: none !important;
     height: 0 !important;
     overflow: hidden !important;
@@ -18,7 +19,7 @@
 }
 
 
-/* Mejoras de distribución UI sin banners publicitarios*/
+/* Mejoras de distribución UI */
 @media screen and (min-width: 1260px) {
     main {
         margin: 0 auto !important;

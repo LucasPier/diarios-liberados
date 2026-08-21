@@ -30,3 +30,21 @@ div.width_full {
         height: 56px !important;
     }
 }
+
+
+.new-centered-layout .new-span-rail-right:has(div[class*="ad-wrapper"]):not(:has(> :not(div[class*="ad-wrapper"]))) {
+    display: none !important;
+}
+
+@media (min-width: 1365px) and (max-width: 1599px) {
+    .new-centered-layout {
+        grid-template-columns: minmax(0, 1fr) !important;
+        grid-template-areas: "body" !important;
+    }
+    .new-centered-layout .new-centered-body {
+        /*grid-area: body;
+        width: 100%;
+        padding: 0 16px;*/
+        margin: 0 auto !important;
+    }
+}
