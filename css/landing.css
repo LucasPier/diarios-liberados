@@ -25,6 +25,14 @@
     box-sizing: border-box;
 }
 
+/* El atributo hidden debe ganarle a cualquier display de autor.
+   Sin esto, reglas como `.btn { display: inline-flex }` pisan el
+   `display: none` que el navegador aplica a [hidden] y el elemento
+   sigue visible aunque el marcado diga lo contrario. */
+[hidden] {
+    display: none !important;
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -156,10 +164,6 @@ a {
     opacity: 0.75;
 }
 
-.version-note[hidden] {
-    display: none;
-}
-
 /* ═══════════════════════════════════════════════════════════
    Bloque de estado de versión (dinámico)
    ═══════════════════════════════════════════════════════════ */
@@ -175,10 +179,6 @@ a {
     border: 1px solid var(--border);
     border-radius: var(--radius);
     transition: box-shadow 0.3s ease, border-color 0.3s ease;
-}
-
-.version-status[hidden] {
-    display: none;
 }
 
 .version-status-icon {

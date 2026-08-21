@@ -106,10 +106,10 @@ function mostrarEstado(estado, icono, titulo, texto, conAccion) {
     tituloEl.textContent = titulo;
     textoEl.textContent  = texto;
 
-    if (conAccion) {
-        accion.hidden = false;
-        accion.href = ZIP_URL;
-    }
+    // El botón de descarga solo tiene sentido cuando falta actualizar:
+    // si el usuario ya está al día o va adelantado, no se ofrece.
+    accion.hidden = !conAccion;
+    if (conAccion) accion.href = ZIP_URL;
 
     bloque.hidden = false;
 }
