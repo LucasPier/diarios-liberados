@@ -10,3 +10,29 @@
     visibility: hidden !important;
     z-index: -1 !important;
 }
+
+
+/* Mejoras de distribución UI */
+
+/*.sidebar__aside:has(.ln-banner-container):not(:has(> :not(.ln-banner-container))),*/
+.widget--standard .row>[class^=col-][class*="8"]+[class^=col-][class*="4"]:has(.banner):not(:has(> :not(.banner))),
+.footer .footer__misc-logos-wrapper .footer__dac-logo-wrapper,
+.footer .footer__misc-logos-wrapper .footer__sustantiva-logo,
+#audio-thinkindot #audioControl + p {
+    display: none !important;
+}
+
+*:has(.widget--standard .row>[class^=col-][class*="8"]+[class^=col-][class*="4"]:has(.banner):not(:has(> :not(.banner)))) > .col-md-8 {
+    width: 100% !important;
+}
+
+
+.widget--standard .row>[class^=col-][class*="8"] {
+    margin: 0 auto !important;
+}
+
+@media (min-width: 1024px) {
+    body.news-detail main.container-fluid {
+        padding: 0 15% !important;
+    }
+}

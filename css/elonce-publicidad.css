@@ -1,0 +1,53 @@
+/* Publicidad - Oculta banners */
+.banner,
+/**[class*="banner"]:not(body),*/
+body.listado #sidebar-right,
+footer .footer__desarrollado,
+.footerCtn:has(>.logo) {
+    display: none !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    visibility: hidden !important;
+    z-index: -1 !important;
+}
+
+/* Mejoras de distribución UI */
+body.listado #page:has(.sidebar>.banner):not(:has(.sidebar>*:not(.banner))) #main.cl-16 {
+    grid-column: 5/21 !important;
+}
+
+.bloque-data-factory iframe {
+    height: 131px !important;
+}
+.bloque-deportes {
+    margin: 0 0 30px !important;
+}
+
+@media only screen and (max-width: 1023px) {
+    .menu {
+        top: 0 !important;
+    }
+    .inicio [id=page] {
+        padding: 20px 20px 0 !important;
+    }
+    .menu-desplegable {
+        top: 62px !important;
+    }
+}
+
+@media (min-width: 1024px) {
+    /*.bloque-temas>.grid:not(:has(article.cl-8:nth-child(6))) > article.cl-8:nth-child(4),*/
+    .bloque-temas>.grid:has(>.banner) > article.cl-8:nth-of-type(4),
+    .bloque-impulso-empresarial:has(.grid>.banner) > .grid > article.cl-8:first-of-type {
+        grid-column-start: 5 !important;
+        grid-column-end: 13 !important;
+    }
+
+    .bloque-espectaculo:has(>.banner) > .grid {
+        grid-column-start: 5 !important;
+        grid-column-end: 21 !important;
+    }
+}

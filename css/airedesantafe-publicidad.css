@@ -1,0 +1,101 @@
+/* Publicidad - Oculta banners */
+.banner,
+*[class*="banner"]:not(.banner__youtube-stream):not(.banner-libre):not(.banner-wrapper),
+*[class*="banner"]:has([class*="ad-slot"]),
+.w-full.lg\:w-3\/12:has(.banner-inside),
+.w-full.lg\:w-3\/12:has(.ad-slot),
+.widget-grid__row:has(.banner-libre):has(.ad-slot) .widget-grid__region:first-child,
+.ad-slot-itt,
+.adzone-fast-slot,
+.ad-slot,
+.ad-wrapper:not(:has(#aire-alturas-rios)),
+*[class*="ad-slot"],
+.footer-copyright-wrapper+img {
+    display: none !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    visibility: hidden !important;
+    z-index: -1 !important;
+}
+
+
+/* Mejoras de distribución UI */
+.main-header{
+    margin-bottom: 25px !important;
+}
+
+/*body.news-detail:not(.seccion-page) #loaderCont+.lg\:container > div:not(.related-news):has([class*="ad-slot"]):first-of-type,*/
+.hidden:not(.barraNavegacion):has(.ad-slot):not(:has(.most-viewed)),
+#loaderCont+.container.mx-auto:has([class*="ad-slot"]):first-of-type,
+*:has(>.ad-wrapper):not(:has(>*:not(.ad-wrapper))):not(:has(#aire-alturas-rios)),
+.widget-grid__region:has(>div>.ad-wrapper):not(:has(>*>*:not(.ad-wrapper))):not(:has(#aire-alturas-rios)),
+.widget-grid__row:has( > .widget-grid__region):not(:has( > *:not(.widget-grid__region))):not(:has( > .widget-grid__region > *)) {
+    display: none !important;
+}
+.lg\:w-\[72\%\] {
+    margin: 0 auto !important;
+}
+@media (min-width: 1024px) {
+    .lg\:w-9\/12 {
+        margin: 0 auto !important;
+        /*width: 100% !important;*/
+    }
+}
+
+/* Arreglo para publicidades en columnas de algunas secciones */
+
+@media (min-width: 1024px) {
+
+    #contentWrapper:has(.widget-grid__region >div>.ad-wrapper):has(.component-Nota-1-columna):not(:has(#aire-alturas-rios))
+    > section.lg\:container > .gap-x-8 > .lg\:w-\[72\%\] {
+        display: grid !important;
+        grid-template-columns: repeat(3,minmax(0,1fr)) !important;
+        column-gap: 1rem !important;
+    }
+
+
+    #contentWrapper:has(.widget-grid__region >div>.ad-wrapper):has(.component-Nota-1-columna):not(:has(#aire-alturas-rios))
+    > section.lg\:container > .gap-x-8 > .lg\:w-\[72\%\] > .simple-news-list,
+    #contentWrapper:has(.widget-grid__region >div>.ad-wrapper):has(.component-Nota-1-columna):not(:has(#aire-alturas-rios))
+    > section.lg\:container > .gap-x-8 > .lg\:w-\[72\%\] > .simple-news-list ul.flex,
+
+    #contentWrapper:has(.widget-grid__region >div>.ad-wrapper):has(.component-Nota-1-columna):not(:has(#aire-alturas-rios))
+    .lg\:w-\[72\%\]>.widgetContent.none,
+    #contentWrapper:has(.widget-grid__region >div>.ad-wrapper):has(.component-Nota-1-columna):not(:has(#aire-alturas-rios))
+    .lg\:w-\[72\%\]>.widgetContent.none .widget-grid,
+    #contentWrapper:has(.widget-grid__region >div>.ad-wrapper):has(.component-Nota-1-columna):not(:has(#aire-alturas-rios))
+    .lg\:w-\[72\%\]>.widgetContent.none .lg\:flex,
+    #contentWrapper:has(.widget-grid__region >div>.ad-wrapper):has(.component-Nota-1-columna):not(:has(#aire-alturas-rios))
+    .lg\:w-\[72\%\]>.widgetContent.none .lg\:flex .lg\:w-4\/12,
+    #contentWrapper:has(.widget-grid__region >div>.ad-wrapper):has(.component-Nota-1-columna):not(:has(#aire-alturas-rios))
+    .lg\:w-\[72\%\]>.widgetContent.none .lg\:flex .lg\:w-4\/12 .component-Nota-1-columna,
+    #contentWrapper:has(.widget-grid__region >div>.ad-wrapper):has(.component-Nota-1-columna):not(:has(#aire-alturas-rios))
+    .lg\:w-\[72\%\]>.widgetContent.none .lg\:flex .lg\:w-4\/12 .component-Nota-1-columna .list-items {
+        display: contents !important;
+    }
+
+
+    #contentWrapper:has(.widget-grid__region >div>.ad-wrapper):has(.component-Nota-1-columna):not(:has(#aire-alturas-rios))
+    > section.lg\:container > .gap-x-8 > .lg\:w-\[72\%\] > div:first-of-type {
+        grid-area: 1 / 1 / 2 / 4 !important;
+    }
+    #contentWrapper:has(.widget-grid__region >div>.ad-wrapper):has(.component-Nota-1-columna):not(:has(#aire-alturas-rios))
+    > section.lg\:container > .gap-x-8 > .lg\:w-\[72\%\] > .news-article--highlighted {
+        grid-area: 2 / 1 / 3 / 4 !important;
+    }
+
+    #contentWrapper:has(.widget-grid__region >div>.ad-wrapper):has(.component-Nota-1-columna):not(:has(#aire-alturas-rios))
+    > section.lg\:container > .gap-x-8 > .lg\:w-\[72\%\] > nav.pagination {
+        grid-column: span 3 !important;
+    }
+
+    #contentWrapper:has(.widget-grid__region >div>.ad-wrapper):has(.component-Nota-1-columna):not(:has(#aire-alturas-rios))
+    > section.lg\:container > .gap-x-8 > .lg\:w-\[72\%\]
+    .component-Nota-1-columna .Item {
+        margin-bottom: 0 !important;
+        margin-top: 16px !important;
+    }
+}

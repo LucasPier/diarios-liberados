@@ -1,7 +1,8 @@
 /* Publicidad - Oculta banners */
 .banner,
 *[class*="banner"]:not(body),
-amp-sticky-ad[visible] {
+amp-sticky-ad[visible],
+.footer-bottom__author-wrapper {
     display: none !important;
     height: 0 !important;
     overflow: hidden !important;
@@ -14,3 +15,25 @@ amp-sticky-ad[visible] {
 body{
     border-bottom: 0px solid transparent !important;
 }
+
+
+
+/* Mejoras de distribución UI */
+
+*:has(.banner):not(:has(> :not(.banner))),
+.col-12.col-md-3.residual-column {
+    display: none !important;
+}
+*:has(.banner):not(:has(> :not(.banner):not(script))) {
+    display: none !important;
+}
+.footer-bottom {
+    padding: .875rem 6.125rem 4.125rem !important;
+}
+
+.row:has(.col-lg-3.residual-column .banner):not(:has(.col-lg-3.residual-column > :not(.banner):not(script))) {
+    justify-content: center !important;
+}
+/*.row:has(.col-lg-3.residual-column .banner):not(:has(.col-lg-3.residual-column > :not(.banner):not(script))) > .col-lg-9 {
+    width: 100% !important;
+}*/

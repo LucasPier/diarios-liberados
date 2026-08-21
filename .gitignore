@@ -1,5 +1,7 @@
 # Metadata de Chrome
 _metadata/
 
-# Notas de desarrollo
+# Privado
+.agents/
 notas.md
+*.stackdump

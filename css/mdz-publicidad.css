@@ -1,6 +1,6 @@
 /* Publicidad - Oculta banners */
-.banner,
-*[class*="banner"]:not(body) {
+.banner:not(:has(#page-weather-wrapper)):not(:has(#mdz-gamesnacks)),
+*[class*="banner"]:not(body):not(:has(#page-weather-wrapper)):not(:has(#mdz-gamesnacks)) {
     display: none !important;
     height: 0 !important;
     overflow: hidden !important;
@@ -9,4 +9,37 @@
     border: none !important;
     visibility: hidden !important;
     z-index: -1 !important;
+}
+
+/* Mejoras de distribución UI */
+
+
+.widget-grid__row,
+.container.section-detail>.gap-x-8,
+.lg\:container .flex-col.gap-x-6.lg\:flex-row{
+    justify-content: center !important;
+}
+
+*:has(.banner):not(:has(> :not(.banner):not(script))):not(:has(#page-weather-wrapper)):not(:has(#mdz-gamesnacks)),
+.lg\:w-4\/12:not(:has(*)),
+.gap-x-8.widget-grid__row:has(.simple-news-list--four-columns-xs) .widget-grid__region:after,
+footer figure:has(a[href*="dosalcubo"]),
+body.radio-mdz .lg\:w-4\/12:has(div>.banner) {
+    display: none !important;
+}
+
+@media (min-width: 640px) {
+    .md\:after\:content-\[\'\'\]:last-of-type::after,
+    .widget-grid__region.lg\:w-8\/12:not(:last-child):after {
+        display: none !important;
+    }
+}
+
+body .lg\:w-8\/12 {
+    width: 100% !important;
+    max-width: 760px !important;
+}
+
+p:has(#mdz-gamesnacks) {
+    width: 100% !important;
 }

@@ -1,6 +1,7 @@
 /* Publicidad - Oculta banners */
 .banner,
 .container-spot,
+.publi_sticky,
 *[class*="banner"],
 *[class*="container-spot"],
 amp-sticky-ad[visible] {
@@ -12,4 +13,48 @@ amp-sticky-ad[visible] {
     border: none !important;
     visibility: hidden !important;
     z-index: -1 !important;
+}
+
+
+/* Mejoras de distribución UI */
+
+.ultima-hora .cont-ultima-hora {
+    justify-content: center !important;
+    margin-top: 25px !important;
+}
+.publi_sticky+#sitio {
+    margin-top: 25px !important;
+}
+
+@media (min-width: 1024px) {
+    .modulo-bloqueClima {
+        display: flex !important;
+        justify-content: center !important;
+    }
+}
+
+@media (min-width: 48em) {
+    .notasRelleno:has(.container-spot) {
+        grid-template-columns: repeat(2,1fr) !important;
+        margin: 0 16.6666% !important;
+    }
+}
+@media (min-width: 64em) {
+    .ultima-hora .columna1 {
+        max-width: max-content !important;
+    }
+}
+/*.section-columna-two:has(.p12-banner):not(:has(> :not(.p12-banner)))*/
+*:has(*[class*="container-spot"]):not(:has(> :not(*[class*="container-spot"]))),
+footer .footer__mustang a{
+    display: none !important;
+}
+footer .footer__mustang p{
+    border: none !important;
+    padding: 0 !important;
+}
+
+/* Fix problema de ancho */
+html {
+    width: 100vw !important;
 }

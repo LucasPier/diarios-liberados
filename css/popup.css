@@ -372,7 +372,15 @@ footer {
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-.btn-github {
+/* Enlaces a la página de la extensión y al repositorio */
+.footer-links {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+}
+
+.btn-footer {
+    flex: 1;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -382,17 +390,60 @@ footer {
     color: #f1f5f9;
     background: rgba(255, 255, 255, 0.06);
     border: 1px solid rgba(255, 255, 255, 0.12);
-    padding: 6px 16px;
+    padding: 6px 12px;
     border-radius: 6px;
     text-decoration: none;
+    white-space: nowrap;
     transition: all 0.2s ease;
 }
 
-.btn-github:hover {
+.btn-footer:hover {
     color: #ffffff;
     background: rgba(255, 255, 255, 0.14);
     border-color: rgba(255, 255, 255, 0.25);
     transform: translateY(-1px);
+}
+
+.btn-footer img,
+.btn-footer svg {
+    flex-shrink: 0;
+}
+
+/* Versión + acceso al chequeo de actualizaciones */
+.footer-version {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-check-update {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: inherit;
+    font-size: 10.5px;
+    font-weight: 500;
+    color: #8a92a1;
+    background: none;
+    border: none;
+    padding: 2px 0;
+    cursor: pointer;
+    transition: color 0.18s ease;
+}
+
+.btn-check-update:hover {
+    color: #ef4444;
+}
+
+.btn-check-update svg {
+    flex-shrink: 0;
+    opacity: 0.8;
+    transition: transform 0.4s ease;
+}
+
+.btn-check-update:hover svg {
+    transform: rotate(180deg);
+    opacity: 1;
 }
 
 .version-tag {

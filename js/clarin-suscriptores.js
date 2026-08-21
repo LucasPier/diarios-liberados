@@ -1,27 +1,12 @@
-// Suscriptores - Asigna cookies que simulan un usuario con suscripción activa
-const setCookie = (cname, cvalue, exdays) => {
-    const d = new Date();
-    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-    let expires = "expires=" + d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-}
+// Suscriptores - Las cookies que simulan la suscripción están declaradas en
+// js/cookies-suscriptores.js y las escribe y renueva js/cookies-runtime.js.
+// Este archivo se ocupa sólo de los ajustes visuales del sitio.
 
 getConfig().then(cfg => {
-    if (!cfg.feature_suscriptores) {
-        // Suscriptores - Cookie de estado de suscripción (statusSus=0 = suscriptor no activo)
-        setCookie("statusSus", "0", 0);
-        // Suscriptores - Cookie de suscripción temporal (susTemp=false = acceso no habilitado)
-        setCookie("susTemp", "false", 0);
-        return;
-    };
-
-    // Suscriptores - Cookie de estado de suscripción (statusSus=1 = suscriptor activo)
-    setCookie("statusSus", "1", 90);
-    // Suscriptores - Cookie de suscripción temporal (susTemp=true = acceso habilitado)
-    setCookie("susTemp", "true", 90);
+    if (!cfg.feature_suscriptores) return;
 
     // Suscriptores - URL del ícono de suscriptores de la extensión (reemplaza el original del sitio)
-    const imageUrl = chrome.runtime.getURL("recursos/suscriptores_blanco_clarin.svg");
+    const imageUrl = chrome.runtime.getURL("imagenes/recursos/suscriptores_blanco_clarin.svg");
 
     // Suscriptores - Reemplaza el ícono de suscriptores del sitio por el de la extensión,
     // evitando que quede en blanco (el sitio bloquea la imagen original para no suscriptores).
@@ -39,22 +24,27 @@ getConfig().then(cfg => {
             conteo++;
         });
 
-        if(conteo === 0) {
+        if (conteo === 0) {
             sinReemplazos++;
-        }else {
+        } else {
             sinReemplazos = 0;
         }
 
-        if(sinReemplazos < 100) {
+        if (sinReemplazos < 100) {
             setTimeout(cambiarImagenes, 100);
         }
 
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
-        // Reemplazamos las imágenes al cargar la página
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            // Reemplazamos las imágenes al cargar la página
+            cambiarImagenes();
+        });
+    } else {
+        // El DOM ya cargó antes de que getConfig() resolviera: ejecutamos directo.
         cambiarImagenes();
-    });
+    }
 });
 
 console.log("Se activó Diarios Liberados");

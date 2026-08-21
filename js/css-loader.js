@@ -5,6 +5,9 @@
  * chrome.runtime.getURL para resolver la ruta dentro de la extensión.
  *
  * Usa var y window guard para evitar SyntaxError por re-declaración.
+ *
+ * Nota: el atributo data-component-style protege el <link> de ser eliminado
+ * por SPAs que limpian stylesheets al navegar (ej: airedesantafe.com.ar).
  */
 
 var injectCSS = window.injectCSS || function injectCSS(path) {
@@ -18,6 +21,7 @@ var injectCSS = window.injectCSS || function injectCSS(path) {
         link.rel  = 'stylesheet';
         link.type = 'text/css';
         link.href = href;
+        link.setAttribute('data-component-style', '');
         (document.head || document.documentElement).appendChild(link);
     };
 

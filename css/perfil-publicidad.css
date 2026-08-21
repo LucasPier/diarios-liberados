@@ -37,7 +37,12 @@ body .ad-bg>*,
 *:not(body):has(> .ads-space).d-xl-flex,
 .ad,
 .ad-wrap,
-.ob-smartfeed-wrapper {
+.ob-smartfeed-wrapper,
+.vf3-conversations-footer__branding,
+.up-floating,
+.banner-horizontal,
+.ads-space,
+._the-banner {
     display: none !important;
     height: 0 !important;
     overflow: hidden !important;
@@ -48,19 +53,125 @@ body .ad-bg>*,
     z-index: -1 !important;
 }
 
-/* Publicidad - Colapsa el footer de publicidad (Mustang) sin romper el layout del footer */
+
+/* Mejoras de distribución UI */
+*:has(*[class*="ads"]):not(:has(> :not(*[class*="ads"]))),
+*:has(._the-banner):not(:has(> :not(._the-banner))),
+.considebar:has(.mas-en-perfil) .sidebar:not(:has(.masvistas)),
+*:has( > .col-fixed > *[class*="ad"]):not(:has( > .col-fixed > :not(*[class*="ad"]):not(.sticky))):not(:has(*:not(.col-fixed))),
+.col-fixed:has( > *[class*="ad"]):not(:has( > *:not(*[class*="ad"]):not(.sticky))),
+.pf-new-show .d-none.d-lg-block:not(:has(.most-viewed-alter)):has(.ads-space) {
+    display: none !important;
+}
+.flex-wrap,
+.considebar:has(.mas-en-perfil) {
+    max-width: none !important;
+    justify-content: center !important;
+}
+.considebar:has(.mas-en-perfil) .noticia{
+    padding-right: 0 !important;
+}
 .footer .mustang {
     height: 0 !important;
     padding: 0 !important;
     margin: 24px 0 0 !important;
 }
-
-/* Publicidad - Corrige el padding-top del body cuando hay un banner superior sticky activo */
 html._theme-banner-upper ._theme-alt__body {
     padding-top: 3.4375rem !important;
 }
-
-/* Publicidad - Corrige la posición del header cuando hay un banner superior sticky activo */
 html._theme-banner-upper ._main-header {
     top: 0 !important;
+}
+.channel__wrapper.max-width-md .col-fixed.sidebar:has(> * > .ads-space):not(:has(> * > :not(.ads-space))),
+.col-fixed.visibility-auto:has(> * > .ads-space):not(:has(> * > :not(.ads-space))) {
+    display: none !important;
+}
+.viafoura .vf-trending-articles__row__min-height[data-v-0b36df3c],
+.row.visibility-auto .container,
+.pf-disp-bloque-superior .row,
+section.container-fluid.p-0.mt-3.ml-0.mr-0 > .row.m-0 {
+    justify-content: center !important;
+}
+.aside-destacada .widget-critica {
+    min-width: 300px !important;
+    margin-top: 3px !important;
+}
+
+/* Fix secciones Economía */
+.row > strong,
+strong > strong {
+    display: contents !important;
+}
+
+.destacada.row.max-width:has( > .col-fixed > *[class*="ads"]):not(:has( > .col-fixed > :not(*[class*="ads"])) ) > .destacada__container,
+.row.max-width.bloque:not(.destacado):has( > .col-fixed > *[class*="ad"]):not(:has( > .col-fixed > :not(*[class*="ad"]):not(.sticky))) >  .bloque__container.d-xl-flex {
+    margin: 0 calc((300px + 1.5rem) / 2) !important;
+    transition: none !important;
+}
+
+body.pf-new-show>.container-fluid.m-0.p-0 .pf-header .logo[href*="hombre.perfil.com"] img {
+    width: 40px !important;
+}
+.row.m-0 {
+    justify-content: center !important;
+}
+
+@media (max-width: 1199px) {
+    body.pf-new-show>.container-fluid.m-0.p-0 .pf-header-top .time-top {
+        top: 88px !important;
+    }
+}
+@media (min-width: 992px) {
+    .offset-lg-2{
+        margin-right: 16.66666667% !important;
+    }
+    .pf-disp-bloque-inferior .row {
+        justify-content: center !important;
+    }
+}
+
+@media (min-width: 1020px) {
+    .row.mx-0 {
+        justify-content: center !important;
+    }
+    .row.mx-0:has(*[class*="ads"]) .col-lg-4.contiene-nota {
+        margin-left: 16.66666666% !important;
+    }
+    .row.mx-0:has(*[class*="ads"]) .col-lg-4:not(:has(.contiene-nota)) + .col-lg-4.contiene-nota {
+        margin-left: 0 !important;
+        margin-right: 16.66666666% !important;
+    }
+    .channel__wrapper:has(.col-fixed.sidebar > * > .ads-space):not(:has(.col-fixed.sidebar > * > :not(.ads-space))) .channel__news {
+        grid-template-columns: repeat(3,1fr) !important;
+    }
+    .las-mas-leidas ul li:not(:first-child) {
+        width: 24.95% !important;
+    }
+    .las-mas-leidas ul li:nth-child(3) {
+        width: 25% !important;
+    }
+}
+@media (min-width: 1200px) {
+    body.pf-new-show>.container-fluid.m-0.p-0 .pf-header .logo[href*="hombre.perfil.com"] img {
+        width: 77px !important;
+    }
+}
+@media (min-width: 1360px){
+    .channel__wrapper:has(.col-fixed.sidebar > * > .ads-space):not(:has(.col-fixed.sidebar > * > :not(.ads-space))) .channel__news {
+        grid-template-columns: repeat(4,1fr) !important;
+    }
+}
+@media (min-width: 1295px) {
+    .contenedor-general:has(>*[class*="ads"]):has(.ad-sidebar-300x600) .destacada,
+    .celebrities__wrapper:has(.ads-space) {
+        grid-template-areas: "a a b""c d e" !important;
+        grid-template-columns: 1fr 1fr 1fr !important;
+        width: auto !important;
+        margin: 0 calc((100% - 6em) / 8 + 1em) !important;
+    }
+}
+
+/* NET TV */
+._main-section__content {
+    margin: 0 auto !important;
 }

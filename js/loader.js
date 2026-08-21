@@ -50,5 +50,8 @@ if (typeof window.__dlLoaderLoaded === 'undefined') {
         document.documentElement.dataset.dlSuscriptores   = cfg.feature_suscriptores;
         document.documentElement.dataset.dlPublicidad     = cfg.feature_publicidad;
         document.documentElement.dataset.dlNotificaciones = cfg.feature_notificaciones;
+
+        // Notificar al mundo MAIN que la config ya está disponible en el dataset.
+        document.dispatchEvent(new CustomEvent('dl:configReady'));
     });
 }

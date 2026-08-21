@@ -6,8 +6,39 @@ div[class*="container --ads"],
 div[class*="default-creative-container"],
 div[class*="cll-banner"],
 iframe[src*="https://imasdk.googleapis.com"],
-aside.ln-aside.--tablet-lg-none.grid-item.--1.--col-lg-4.--col-xl-4 {
+div[data-banner-id*="b"],
+#megatop_dsk,
+.ln-banner-container,
+.ds-banner-background,
+.ds-banner,
+*[id*="google_ads_iframe"],
+.ln-banner-container:before,
+.fusion-static-enter\:megatop_dsk,
+aside.ln-aside.--tablet-lg-none.grid-item.--1.--col-lg-4.--col-xl-4,
+.brand-anexo,
+.wrapper-partners,
+#anexo-responsive-f0fnlbFxyKo62qm,
+#anexo-f0fnlbFxyKo62qm,
+#anexo-responsive-f0fs0kItHTr928r,
+.top-banner-reserved,
+.NewsletterModal-module-scss-module__VpLf8a__wrapper,
+.AdBelt-module-scss-module__qCHboa__desktop,
+.Ad-module-scss-module__Qct9wG__ad_container,
+.SectionsContainer-module-scss-module__V_N8dG__col_right:has(.Ad-module-scss-module__Qct9wG__ad_container),
+.SectionsContainer-module-scss-module__V_N8dG__col_right:empty,
+.HeaderAd-module-scss-module__CMSPEG__desktop,
+.AdParagraph-module-scss-module__f7hbba__desktop,
+/* RollingStone */
+.elementor-popup-modal .dialog-message,
+/*.elementor-14400 .elementor-element.elementor-element-5f8aee0,*/
+*[class*="elementor-"] *[class*="elementor-element-"].elementor-element:has(script[src*="ads"]),
+div[class*="elementor-"] div[class*="elementor-element-"].elementor-element:has(.elementor-shortcode):has(*[id*="gpt-ad"]):not(:has(.elementor-element-populated)),
+*[id*="gpt-ad"],
+.elementor-45710 *[class*="elementor-element-"].elementor-element:has(*[id*="ad"]),
+.elementor-element.e-con-full.e-flex.e-con.e-child:has(a[href*="rollingstone.com/suscripciones-digital"]),
+*[class*="elementor-"]  .elementor-element > .elementor-widget-wrap > .elementor-widget:not(.elementor-widget__width-auto):not(.elementor-widget__width-initial):not(:last-child):not(.elementor-absolute):has(a[href*="rollingstone.com/suscripciones-digital"]) {
     display: none !important;
+    width: 0 !important;
     height: 0 !important;
     overflow: hidden !important;
     margin: 0 !important;
@@ -15,4 +46,182 @@ aside.ln-aside.--tablet-lg-none.grid-item.--1.--col-lg-4.--col-xl-4 {
     border: none !important;
     visibility: hidden !important;
     z-index: -1 !important;
+}
+
+
+
+/* Mejoras de distribución UI */
+
+/* Botón para suscribirse */
+body [data-tw] a[href*="suscripciones.lanacion.com.ar"].ds-button.inline-flex.bg-subscription-default,
+.button.foodit-button.bg-subscription-positive,
+.button.foodit-button.bg-subscription-positive+.tooltip,
+a.button[href*="suscripciones.lanacion.com.ar"] {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    margin: 0 -40px 0 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    visibility: hidden !important;
+    z-index: -1 !important;
+    position: absolute !important;
+    top: -10000px !important;
+}
+
+/* Banner de Radio */
+[data-tw] .bg-\[url\(\"\/pf\/resources\/images\/ln-fondo-radio-negro\.webp\"\)\],
+div[data-tw]:has(.bg-\[url\(\"\/pf\/resources\/images\/ln-fondo-radio-negro\.webp\"\)\]),
+[data-tw]:has(.bg-\[url\(\"\/pf\/resources\/images\/ln-fondo-radio-amarillo\.webp\"\)\]) {
+    display: none !important;
+}
+
+/* Secciones generales */
+.sidebar__aside .py-32 {
+    padding-block: 0rem !important;
+}
+.sidebar__aside:has(.ln-banner-container):not(:has(> :not(.ln-banner-container))),
+.sidebar__aside:has(.ln-banner-container):not(:has(li[data-article-box="Ranking"])){
+    display: none !important;
+}
+
+#wrapper:not(:has(.horoscope-box)) *:has(>.sidebar__aside):has(.ln-banner-container):not(:has(li[data-article-box="Ranking"])) > .sidebar__main{
+    flex-basis: 100% !important;
+}
+@media (min-width: 1280px) {
+    #wrapper:not(:has(.horoscope-box)) *:has(>.sidebar__aside):has(.ln-banner-container):not(:has(li[data-article-box="Ranking"])) > .sidebar__main .row-gap-tablet-3 {
+        grid-template-columns: repeat(4, 1fr) !important;
+    }
+}
+
+/* Debajo de notas */
+.sidebar__main>div:has(.newsletterbox),
+.lay-sidebar:last-of-type>.sidebar__aside,
+.grid+.flex.w-100>.sidebar__aside.hlp-tabletlm-none,
+.viafoura .vf3-conversations-footer> *,
+.sidebar__aside:has(.ln-banner-container):not(:has(> :not(.ln-banner-container))) {
+    display: none !important;
+}
+#wrapper.nota .sidebar__main,
+.grid+.flex.w-100>.sidebar__main,
+.lay-sidebar .sidebar__main{
+    margin: 0 auto !important;
+}
+
+
+/* Campo */
+.sidebar__main .com-anexo.pym,
+body#remates main.wrapperFull>div:has(.wrapper-vertical-banners),
+body#remates .cont-sponsor,
+body#remates:not(.modal-open) .col-xl-4.wrapper-filtros2 {
+    display: none !important;
+}
+body#remates main.wrapperFull>section {
+    margin-top: 40px !important;
+}
+body#remates .col-xl-8 {
+    margin: 0 auto !important;
+}
+
+/* Movilidad */
+#wrapper.autos .ln-roof{
+    padding-top: 0rem !important;
+}
+
+
+/* Economía */
+#wrapper.acumulado.economia .ln-roof {
+    padding-top: 0rem !important;
+}
+@media (min-width: 80rem) {
+    .grid .ln-main.grid-item.--col-xl-12 {
+        grid-column-start: 3 !important;
+        grid-column-end: 15 !important;
+    }
+}
+
+/* LN+ */
+/*@media (min-width: 64em) {
+    .acumulado.--color #content .--top {
+        padding-top: 2rem !important;
+    }
+}*/
+
+/* Salud */
+#wrapper.salud #content-main{
+    padding-top: 2rem !important;
+}
+
+/* Qué sale */
+#wrapper.que-sale .ln-roof {
+    padding-top: 0rem !important;
+}
+
+/* Sponsors arriba de anexos secciones */
+html body.anexos#APartners_mercados .wrapperFull,
+html body.anexos#ARemates .full,
+html body.anexos#ARemates .wrapperFull,
+html body.anexos#AbarriosIndicadores>.wrapperFull,
+#AMovilidad .wrapperFull,
+body.anexos#APartners_bienestar .wrapperFull{
+    height: auto !important;
+}
+@media (min-width: 1024px) {
+    #anexo-responsive-f0fRoB59qCY25Yn,
+    #anexo-responsive-f0ffuKdEILyibed,
+    #anexo-responsive-f0f4Qca9AylR8ps {
+        height: 345px !important;
+    }
+    #anexo-responsive-f0fTL1c62s3J4pc {
+        height: 315px !important;
+    }
+    #anexo-responsive-f0frPWpH4XfA1KO {
+        height: 415px !important;
+    }
+}
+
+
+/* Ohlalá */
+.NavBarClient-module-scss-module__DRHLEq__wrapper .NavBarClient-module-scss-module__DRHLEq__actions .NavBarClient-module-scss-module__DRHLEq__subscription_btn,
+.NewsletterCard-module-scss-module__SNWDRq__wrapper {
+    display: none !important;
+}
+.SectionsContainer-module-scss-module__V_N8dG__wrapper .SectionsContainer-module-scss-module__V_N8dG__col_left {
+    grid-area: auto !important;
+}
+@media screen and (min-width: 1200px) {
+    .SectionsContainer-module-scss-module__V_N8dG__wrapper {
+        grid-template-columns: 100% !important;
+        padding: 0 181px !important;
+        grid-template-areas: none !important;
+    }
+    .ViewMore-module-scss-module__2ayJda__container .ViewMore-module-scss-module__2ayJda__wrapper {
+        grid-template-columns: 100% !important;
+        /*grid-template-areas: none !important;*/
+    }
+    .ViewMore-module-scss-module__2ayJda__container .ViewMore-module-scss-module__2ayJda__wrapper .ViewMore-module-scss-module__2ayJda__col_left{
+        max-width: 940px !important;
+        margin: 0 auto !important;
+    }
+}
+
+/* Rolling Stone */
+.e-con.e-con>.e-con-inner>.elementor-widget,
+.elementor.elementor .e-con>.elementor-widget {
+        margin: 0 auto !important;
+}
+
+
+/* Foodit */
+.bg-positive.relative.w-100vw.as-center,
+*:has(>.mw-miniwall) {
+    display: none !important;
+}
+.difumination {
+    position: relative;
+    overflow: visible !important;
+    max-height: auto !important;
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
 }

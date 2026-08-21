@@ -1,6 +1,6 @@
 
 // Suscriptores - URL del ícono de suscriptores de la extensión (reemplaza el original del sitio)
-const imageUrl = chrome.runtime.getURL("recursos/suscriptores_lacapital.svg");
+const imageUrl = chrome.runtime.getURL("imagenes/recursos/suscriptores_lacapital.svg");
 
 getConfig().then(cfg => {
     if (!cfg.feature_suscriptores) return;
@@ -20,24 +20,27 @@ getConfig().then(cfg => {
             conteo++;
         });
 
-        if(conteo === 0) {
+        if (conteo === 0) {
             sinReemplazos++;
-        }else {
+        } else {
             sinReemplazos = 0;
         }
 
-        if(sinReemplazos < 100) {
+        if (sinReemplazos < 100) {
             setTimeout(cambiarImagenes, 100);
         }
 
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
-        if(document.body){
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
             // Reemplazamos las imágenes al cargar la página
             cambiarImagenes();
-        }
-    });
+        });
+    } else {
+        // El DOM ya cargó antes de que getConfig() resolviera: ejecutamos directo.
+        cambiarImagenes();
+    }
 });
 
 

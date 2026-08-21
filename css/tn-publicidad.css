@@ -11,3 +11,25 @@
     visibility: hidden !important;
     z-index: -1 !important;
 }
+
+
+/* Mejoras de distribución UI */
+*:has(.ad-container):not(:has(> :not(.ad-container))),
+aside.col-right-rail:has(.ad-container):has(> .sticky_top > .ad-container):not(:has(> :not(.ad-container):not(.sticky_top))):not(:has(> .sticky_top > *:not(.ad-container))),
+.marfeel-readmore-slot:empty,
+.marfeel-readmore-slot:not(:has(*)) {
+    display: none !important;
+}
+.brick-full-width-background {
+    margin-left: calc(50% - var(--vw, 1vw)*50) !important;
+    width: calc(var(--vw, 1vw)*100) !important;
+}
+
+.wrapper-layout.live > .col-content {
+    max-width: 810px !important;
+}
+@media (min-width: 64.75rem) {
+    .liveblogging__header .col-content {
+        padding: 0 10.78125rem !important;
+    }
+}

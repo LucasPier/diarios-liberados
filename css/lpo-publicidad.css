@@ -11,3 +11,23 @@
     visibility: hidden !important;
     z-index: -1 !important;
 }
+
+
+/* Mejoras de distribución UI */
+
+
+.block1.block-child:has(*[id*="localNews"]:empty),
+.block1.block-child:has(*[id*="localNews"]:empty) + .separator,
+#footer #credits {
+    display: none !important;
+}
+
+#footer {
+    height: 160px !important;
+}
+
+@media (min-width: 800px) and (max-width: 1082px) {
+    #footer {
+        height: 215px !important;
+    }
+}

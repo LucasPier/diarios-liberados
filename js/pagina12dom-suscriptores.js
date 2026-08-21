@@ -39,6 +39,9 @@ function definirInterceptador(prop, transformFn) {
             },
             configurable: true
         });
+        // Si la propiedad ya tenía valor cuando instalamos el interceptador,
+        // el setter nunca se va a disparar. Llamamos transformFn ahora.
+        if (internalVal) transformFn(internalVal);
     } catch (e) {
         console.warn(`No se pudo definir interceptador para ${prop}:`, e);
         if (window[prop]) transformFn(window[prop]);
@@ -46,74 +49,80 @@ function definirInterceptador(prop, transformFn) {
 }
 
 function iniciar() {
-(function () {
-    // Suscriptores - Intenta leer las URLs directamente del dataset síncrono o via postMessage
-    let urlImagenSocios  = document.documentElement.dataset.dlSociosUrl  || '',
-        urlImagenSocios2 = document.documentElement.dataset.dlSociosUrl2 || '';
+    (function () {
+        // Suscriptores - Intenta leer las URLs directamente del dataset síncrono o via postMessage
+        let urlImagenSocios = document.documentElement.dataset.dlSociosUrl || '',
+            urlImagenSocios2 = document.documentElement.dataset.dlSociosUrl2 || '';
 
-    window.addEventListener("message", (event) => {
-        if (event.data && event.data.type === "FROM_EXT") {
-            urlImagenSocios  = event.data.url  || urlImagenSocios;
-            urlImagenSocios2 = event.data.url2 || urlImagenSocios2;
+        window.addEventListener("message", (event) => {
+            if (event.data && event.data.type === "FROM_EXT") {
+                urlImagenSocios = event.data.url || urlImagenSocios;
+                urlImagenSocios2 = event.data.url2 || urlImagenSocios2;
 
-            // Si el banner ya fue renderizado previamente con src vacía, le actualizamos la imagen
-            const imgBanner = document.querySelector('.p12-partners-top-bar .svg-container img');
-            if (imgBanner && urlImagenSocios) {
-                imgBanner.src = urlImagenSocios;
-            }
-        }
-    });
-
-    // Suscriptores - Inserta el banner "Exclusivo para SOCI@S" en el artículo.
-    const agregarBanner = () => {
-        // Asegurar que leemos la URL del dataset si aún no fue seteada por mensaje
-        if (!urlImagenSocios) {
-            urlImagenSocios = document.documentElement.dataset.dlSociosUrl || '';
-        }
-
-        const contenedor = document.querySelector("main>.article-wrapper");
-        const hayBanner = contenedor && contenedor.querySelector('.p12-partners-top-bar .svg-container') !== null;
-        if (!hayBanner && contenedor != null) {
-
-            const banner = document.createElement("div");
-            banner.innerHTML = `<div class="p12-partners-top-bar " style="background-image: url(&quot;/pf/resources/p12/Partners-Top-Bar/Fondo.jpg?d=91&quot;);"><div class="p12-partners-top-bar--inner"><div class="left-col"><span class="text social-text">Exclusivo para</span><div class="svg-container"><img src="${urlImagenSocios}" width="90" height="22" alt="SOCI@S"></div></div></div></div>`;
-            contenedor.insertBefore(banner, contenedor.children[0]);
-
-            const verificarNode = (node)=>{
-                if (typeof node === "object" && node.querySelector && node.querySelector('main>.article-wrapper>div>.p12-partners-top-bar .svg-container')) {
-                    observer.disconnect();
-                    agregarBanner();
+                // Si el banner ya fue renderizado previamente con src vacía, le actualizamos la imagen
+                const imgBanner = document.querySelector('.p12-partners-top-bar .svg-container img');
+                if (imgBanner && urlImagenSocios) {
+                    imgBanner.src = urlImagenSocios;
                 }
-            };
+            }
+        });
 
-            const observer = new MutationObserver((mutations) => {
-                mutations.forEach((mutation) => {
-                    mutation.removedNodes.forEach((node) => {
-                        verificarNode(node);
-                    });
-                    mutation.addedNodes.forEach((node) => {
-                        verificarNode(node);
+        // Suscriptores - Inserta el banner "Exclusivo para SOCI@S" en el artículo.
+        const agregarBanner = () => {
+            // Asegurar que leemos la URL del dataset si aún no fue seteada por mensaje
+            if (!urlImagenSocios) {
+                urlImagenSocios = document.documentElement.dataset.dlSociosUrl || '';
+            }
+
+            const contenedor = document.querySelector("main>.article-wrapper");
+            const hayBanner = contenedor && contenedor.querySelector('.p12-partners-top-bar .svg-container') !== null;
+            if (!hayBanner && contenedor != null) {
+
+                const banner = document.createElement("div");
+                banner.innerHTML = `<div class="p12-partners-top-bar " style="background-image: url(&quot;/pf/resources/p12/Partners-Top-Bar/Fondo.jpg?d=91&quot;);"><div class="p12-partners-top-bar--inner"><div class="left-col"><span class="text social-text">Exclusivo para</span><div class="svg-container"><img src="${urlImagenSocios}" width="90" height="22" alt="SOCI@S"></div></div></div></div>`;
+                contenedor.insertBefore(banner, contenedor.children[0]);
+
+                const verificarNode = (node) => {
+                    if (typeof node === "object" && node.querySelector && node.querySelector('main>.article-wrapper>div>.p12-partners-top-bar .svg-container')) {
+                        observer.disconnect();
+                        agregarBanner();
+                    }
+                };
+
+                const observer = new MutationObserver((mutations) => {
+                    mutations.forEach((mutation) => {
+                        mutation.removedNodes.forEach((node) => {
+                            verificarNode(node);
+                        });
+                        mutation.addedNodes.forEach((node) => {
+                            verificarNode(node);
+                        });
                     });
                 });
-            });
-            observer.observe(document.body, {
-                childList: true,
-                subtree: true
-            });
+                observer.observe(document.body, {
+                    childList: true,
+                    subtree: true
+                });
 
-        } else if (contenedor == null) {
-            setTimeout(agregarBanner, 100);
-        }
-    };
+            } else if (contenedor == null) {
+                setTimeout(agregarBanner, 100);
+            }
+        };
 
-    // Suscriptores - Intercepta la asignación del objeto global `Fusion`
-    definirInterceptador('Fusion', (val) => {
-        if (val && val.globalContent && val.globalContent.content_restrictions) {
-            val.globalContent.content_restrictions = undefined;
-            agregarBanner();
-        }
-    });
+        // Suscriptores - Intercepta la asignación del objeto global `Fusion`
+        definirInterceptador('Fusion', (val) => {
+            if (val && val.globalContent && val.globalContent.content_restrictions) {
+                val.globalContent.content_restrictions = undefined;
+                agregarBanner();
+            }
+        });
 
-})();
+    })();
 }
+// Escucha el evento que dispara loader.js (mundo ISOLATED) cuando la config
+// ya fue escrita en el dataset. Elimina la race condition contra getConfig() async.
+document.addEventListener('dl:configReady', () => iniciarSiHabilitado(0), { once: true });
+
+// Fallback: si el evento se disparó antes de que este listener se registrara
+// (improbable en document_start, pero defensivo), reintentamos con polling corto.
 iniciarSiHabilitado(1);

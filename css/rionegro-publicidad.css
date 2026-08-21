@@ -3,7 +3,8 @@
 .ad-slot,
 ads-component,
 *[class*="banner"],
-*[class*="ad-slot"]{
+*[class*="ad-slot"],
+#sticky-ad {
     display: none !important;
     height: 0 !important;
     overflow: hidden !important;
@@ -13,3 +14,42 @@ ads-component,
     visibility: hidden !important;
     z-index: -1 !important;
 }
+
+/* Mejoras de distribución UI */
+#sticky-header{
+    top: 0 !important;
+}
+
+body {
+    overflow-x: hidden !important;
+}
+
+.sticky__wrapper {
+    justify-content: center !important;
+}
+
+.sticky__sidebar:has(sidebar-sticky[content*='"ad"']):not(:has(> :not(sidebar-sticky[content*='"ad"']))),
+.sticky__sidebar:has(>.sticky>ads-component):not(:has(>.sticky>:not(ads-component))),
+.sticky__sidebar:has(>.sticky>*[class*="ad-slot"]):not(:has(>.sticky>:not(*[class*="ad-slot"]))) {
+    display: none !important;
+}
+
+.sticky__wrapper:not(.newsfull__content) .sticky__main h3.mod__title,
+.sticky__main .category-simple:not([style*="background-color: #f0f0f1"]) .mod__header > h3 {
+    position: relative !important;
+    left: -16.5% !important;
+}
+.sticky__main .mod--lastesnews>.mod__header > h3.mod__title,
+.sticky__main .mod--topic.category-simple:not([style*="background-color: #ffffff"]) .mod__header > h3{
+    left: auto !important;
+}
+.sticky__main .mod__header:has(h3){
+    overflow: visible !important;
+}
+
+.sticky__main .mod--topic.category-simple.mod--sidebar--true[style*="background-color: #ffffff"] {
+    padding: 0 !important;
+}
+/*.mod--sidebar--true{
+    padding: 0 !important;
+}*/

@@ -1,6 +1,7 @@
 /* Publicidad - Oculta banners y contenedor de ads */
 .ad-container,
-.banner {
+.banner,
+.main-footer__bottom-region:has(>a[class*="developer-signature"]) {
     display: none !important;
     height: 0 !important;
     overflow: hidden !important;
@@ -11,12 +12,52 @@
     z-index: -1 !important;
 }
 
-/* Publicidad - Corrige la posición del header sticky cuando había un banner superior */
+
+/* Mejoras de distribución UI */
+
 body.body--banner-sticky.with-banner-sticky #headerSticky.main-header__sticky-wrapper {
     top: 0px !important;
 }
-
-/* Publicidad - Colapsa el espacio reservado para el anuncio del header */
 body .header-ad {
     padding: 0 !important;
+}
+
+*:has(.banner):not(:has(> :not(.banner))),
+.col-12.col-md-3.residual-column {
+    display: none !important;
+}
+
+main > .row.row--eq-height {
+    justify-content: center !important;
+}
+
+/*.sticky__sidebar:has(>.sticky>*[class*="ad-slot"]):not(:has(>.sticky>:not(*[class*="ad-slot"]))) */
+.row.row--eq-height:has( > .col-md-4 > .banner):not(:has( > .col-md-4 > :not(.banner))) > .col-md-8,
+.row.row--eq-height:has( > .col-md-4 > .container > .banner):not(:has( > .col-md-4 > .container > :not(.banner))) > .col-md-8 {
+    width: 100% !important;
+}
+.row.row--eq-height:has( > .col-md-4 > .banner):not(:has( > .col-md-4 > :not(.banner))) > .col-md-8 .col-md-6,
+.row.row--eq-height:has( > .col-md-4 > .container > .banner):not(:has( > .col-md-4 > .container > :not(.banner))) > .col-md-8 .col-md-6 {
+    width: 33.333% !important;
+}
+
+.col-12.col-md-3.no-residual-column:has(.news-article__timeline-list) {
+    width: 75% !important;
+}
+.top-ranked-news__news-article-title {
+    min-height: 2.4em !important;
+}
+
+.news-article__timeline-list .news-article__note:after {
+    height: 100% !important;
+}
+.main-footer__bottom-region:first-of-type {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+}
+@media (max-width: 1280px) {
+    .col-md-9,
+    .col-12.col-md-3.no-residual-column:has(.news-article__timeline-list) {
+        width: 100% !important;
+    }
 }

@@ -8,7 +8,11 @@
  *  3. Detectar si hay tabs abiertas en dominios cubiertos por la extensión
  *     y mostrar el banner de recarga si es necesario.
  *  4. Disparar la recarga de esas tabs al presionar "Recargar ahora".
+ *  5. Abrir la página de la extensión para comprobar si hay una versión nueva.
  */
+
+// Página de presentación de la extensión (GitHub Pages)
+const URL_LANDING = 'https://lucaspier.github.io/diarios-liberados/';
 
 // Dominios cubiertos por la extensión (subset de host_permissions del manifest)
 const DOMINIOS_CUBIERTOS = [
@@ -19,8 +23,23 @@ const DOMINIOS_CUBIERTOS = [
     "ole.com.ar", "elciudadanoweb.com", "viapais.com.ar", "diariopopular.com.ar",
     "eltrecetv.com.ar", "radiomitre.com.ar", "tycsports.com", "ciudad.com.ar",
     "tn.com.ar", "cienradios.com", "minutouno.com", "letrap.com.ar", "mdzol.com",
-    "losandes.com.ar", "eldia.com", "rionegro.com.ar", "diariouno.com.ar"
+    "losandes.com.ar", "eldia.com", "rionegro.com.ar", "diariouno.com.ar",
+    "unosantafe.com.ar", "unoentrerios.com.ar", "elonce.com", "airedesantafe.com.ar",
+    "cadena3.com", "rosarioplus.com", "somosohlala.com", "rollingstone.com"
 ];
+
+/**
+ * Devuelve la versión instalada leyéndola del manifest.
+ * Es la única fuente de verdad: no se repite el número en ningún otro lado.
+ * @returns {string|null}
+ */
+function obtenerVersionExtension() {
+    try {
+        return chrome.runtime.getManifest().version;
+    } catch {
+        return null;
+    }
+}
 
 /** Verifica si una URL pertenece a alguno de los dominios cubiertos */
 function esDominioCubierto(url) {
@@ -68,17 +87,26 @@ async function actualizarBannerRecarga() {
 document.addEventListener('DOMContentLoaded', async () => {
 
     // ── Versión ──────────────────────────────────────────────────────────────
+    const version = obtenerVersionExtension();
+
     const versionElement = document.getElementById('extension-version');
     if (versionElement) {
-        try {
-            const manifest = typeof chrome !== 'undefined' && chrome.runtime && chrome.runtime.getManifest
-                ? chrome.runtime.getManifest()
-                : null;
-            const version = manifest ? manifest.version : '1.2.0';
-            versionElement.textContent = `v${version}`;
-        } catch (e) {
-            versionElement.textContent = 'v1.2.0';
-        }
+        versionElement.textContent = version ? `v${version}` : '';
+        versionElement.hidden = !version;
+    }
+
+    // ── Buscar actualizaciones ───────────────────────────────────────────────
+    // Se delega la comparación a la página de la extensión, que conoce la
+    // última versión publicada. Se le pasa la instalada por query string.
+    const btnBuscarUpdate = document.getElementById('btn-check-update');
+    if (btnBuscarUpdate) {
+        btnBuscarUpdate.addEventListener('click', () => {
+            const url = version
+                ? `${URL_LANDING}?version=${encodeURIComponent(version)}`
+                : URL_LANDING;
+            chrome.tabs.create({ url });
+            window.close();
+        });
     }
 
     // ── Leer config actual y reflejar en toggles ──────────────────────────────

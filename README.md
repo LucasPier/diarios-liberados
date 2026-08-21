@@ -7,6 +7,12 @@
 
 Una extensión compatible con múltiples navegadores (Chrome, Edge, Brave, Opera, Vivaldi, etc.) que **mejora la experiencia de lectura en más de 50 portales de medios argentinos**. En los medios que lo requieren, desbloquea notas exclusivas para suscriptores o socios, además elimina publicidades intrusivas y bloquea diálogos de notificaciones. Todas estas características son configurables e independientes desde el menú de la extensión (podés elegir en todo momento si activar o desactivar el desbloqueo de contenidos exclusivos, el bloqueo de publicidad o el ocultamiento de notificaciones). Algunos portales incluyen funcionalidades adicionales: visualización de versiones impresas (La Capital), resúmenes generados por IA y escucha de notas (La Nación), y cobertura extendida a los grupos editoriales completos de Clarín y Perfil. Se irán agregando nuevos medios y funcionalidades con el paso del tiempo.
 
+> 🔗 **Compartí la extensión**
+>
+> ¿Se la querés recomendar a alguien? Pasale este enlace en lugar del repositorio: tiene la presentación, los medios soportados y la instalación explicada paso a paso, pensada para quien nunca instaló una extensión.
+>
+> ### 👉 <https://lucaspier.github.io/diarios-liberados/>
+
 ## Portales soportados
 
 <table>
@@ -27,24 +33,40 @@ Una extensión compatible con múltiples navegadores (Chrome, Edge, Brave, Opera
     <td align="center" width="160"><a href="#el-día"><img src="imagenes/logos/eldia.svg" width="160" alt="El Día"/><br/><sub>El Día</sub></a></td>
   </tr>
   <tr>
+    <td align="center" width="160"><a href="#río-negro"><img src="imagenes/logos/rionegro.svg" width="160" alt="Río Negro"/><br/><sub>Río Negro</sub></a></td>
+    <td align="center" width="160"><a href="#elonce"><img src="imagenes/logos/elonce.svg" width="160" alt="Elonce"/><br/><sub>Elonce</sub></a></td>
     <td align="center" width="160"><a href="#el-ciudadano"><img src="imagenes/logos/elciudadano.svg" width="160" alt="El Ciudadano"/><br/><sub>El Ciudadano</sub></a></td>
     <td align="center" width="160"><a href="#rosario3"><img src="imagenes/logos/rosario3.svg" width="160" alt="Rosario3"/><br/><sub>Rosario3</sub></a></td>
-    <td align="center" width="160"><a href="#mdz-online"><img src="imagenes/logos/mdz.svg" width="160" alt="MDZ Online"/><br/><sub>MDZ Online</sub></a></td>
-    <td align="center" width="160"><a href="#diario-uno"><img src="imagenes/logos/uno.svg" width="160" alt="Diario Uno"/><br/><sub>Diario Uno</sub></a></td>
-    <td align="center" width="160"><a href="#río-negro"><img src="imagenes/logos/rionegro.svg" width="160" alt="Río Negro"/><br/><sub>Río Negro</sub></a></td>
-    <td align="center" width="160"><a href="#el-cronista"><img src="imagenes/logos/elcronista.svg" width="160" alt="El Cronista"/><br/><sub>El Cronista</sub></a></td>
+    <td align="center" width="160"><a href="#cadena-3"><img src="imagenes/logos/cadena3.svg" width="160" alt="Cadena 3"/><br/><sub>Cadena 3</sub></a></td>
+    <td align="center" width="160"><a href="#aire-de-santa-fe"><img src="imagenes/logos/airedesantafe.svg" width="160" alt="Aire de Santa Fe"/><br/><sub>Aire de Santa Fe</sub></a></td>
   </tr>
   <tr>
-    <td align="center" width="160"><a href="#ámbito"><img src="imagenes/logos/ambito.svg" width="160" alt="Ámbito"/><br/><sub>Ámbito</sub></a></td>
+    <td align="center" width="160"><a href="#mdz-online"><img src="imagenes/logos/mdz.svg" width="160" alt="MDZ Online"/><br/><sub>MDZ Online</sub></a></td>
+    <td align="center" width="160"><a href="#diario-uno"><img src="imagenes/logos/uno.svg" width="160" alt="Diario Uno"/><br/><sub>Diario Uno</sub></a></td>
+    <td align="center" width="160"><a href="#rosario-plus"><img src="imagenes/logos/rosarioplus.svg" width="160" alt="Rosario Plus"/><br/><sub>Rosario Plus</sub></a></td>
+    <td align="center" width="160"><a href="#diario-uno-entre-ríos"><img src="imagenes/logos/unoentrerios.svg" width="160" alt="Diario Uno Entre Ríos"/><br/><sub>Diario Uno Entre Ríos</sub></a></td>
+    <td align="center" width="160"><a href="#diario-uno-santa-fe"><img src="imagenes/logos/unosantafe.svg" width="160" alt="Diario Uno Santa Fe"/><br/><sub>Diario Uno Santa Fe</sub></a></td>
+    <td align="center" width="160"><a href="#vía-país"><img src="imagenes/logos/viapais.svg" width="160" alt="Vía País"/><br/><sub>Vía País</sub></a></td>
+  </tr>
+  <tr>
     <td align="center" width="160"><a href="#minuto-uno"><img src="imagenes/logos/minutouno.svg" width="160" alt="Minuto Uno"/><br/><sub>Minuto Uno</sub></a></td>
-    <td align="center" width="160"><a href="#diario-popular"><img src="imagenes/logos/diariopopular.svg" width="160" alt="Diario Popular"/><br/><sub>Diario Popular</sub></a></td>
-    <td align="center" width="160"><a href="#olé"><img src="imagenes/logos/ole.svg" width="160" alt="Olé"/><br/><sub>Olé</sub></a></td>
     <td align="center" width="160"><a href="#la-política-online"><img src="imagenes/logos/lpo.svg" width="160" alt="La Política Online"/><br/><sub>La Política Online</sub></a></td>
     <td align="center" width="160"><a href="#letra-p"><img src="imagenes/logos/letrap.svg" width="160" alt="Letra P"/><br/><sub>Letra P</sub></a></td>
+    <td align="center" width="160"><a href="#diario-popular"><img src="imagenes/logos/diariopopular.svg" width="160" alt="Diario Popular"/><br/><sub>Diario Popular</sub></a></td>
+    <td align="center" width="160"><a href="#el-cronista"><img src="imagenes/logos/elcronista.svg" width="160" alt="El Cronista"/><br/><sub>El Cronista</sub></a></td>
+    <td align="center" width="160"><a href="#ámbito"><img src="imagenes/logos/ambito.svg" width="160" alt="Ámbito"/><br/><sub>Ámbito</sub></a></td>
+  </tr>
+  <tr>
+    <td align="center" width="160"><a href="#tn"><img src="imagenes/logos/tn.svg" width="160" alt="TN"/><br/><sub>TN</sub></a></td>
+    <td align="center" width="160"><a href="#olé"><img src="imagenes/logos/ole.svg" width="160" alt="Olé"/><br/><sub>Olé</sub></a></td>
+    <td align="center" width="160"><a href="#tyc-sports"><img src="imagenes/logos/tycsports.svg" width="160" alt="TyC Sports"/><br/><sub>TyC Sports</sub></a></td>
+    <td align="center" width="160"></td>
+    <td align="center" width="160"></td>
+    <td align="center" width="160"></td>
   </tr>
 </table>
 
-> 💡 **Dato:** La extensión también cubre otros sitios del Grupo Clarín y la Editorial Perfil, como: TN, TyC Sports, Ciudad Magazine, El Trece TV, Radio Mitre, La 100, Ciudad, Elle, Cienradios, VíaPaís, 442, Noticias, Caras, Para Ti, Fortuna, Weekend, Parabrisas, Super Campo, Look, Luz, Mia, Lunateen, Horizonte, Exitoina, Marie Claire, Radio Perfil, Rouge, Hombre, Perfil Brasil, Buenos Aires Times y Canal Net TV. Además, incluye Puerto Negocios del grupo El Litoral.
+> 💡 **Dato:** La extensión también cubre otros sitios del Grupo Clarín y la Editorial Perfil, como: Ciudad Magazine, El Trece TV, Radio Mitre, La 100, Elle, Cienradios, Rolling Stone, Ohlalá!, 442, Noticias, Caras, Para Ti, Fortuna, Weekend, Parabrisas, Super Campo, Look, Luz, Mia, Lunateen, Horizonte, Exitoina, Marie Claire, Radio Perfil, Rouge, Hombre, Perfil Brasil, Buenos Aires Times y Canal Net TV. Además, incluye Puerto Negocios del grupo El Litoral.
 
 ## Instalación paso a paso
 
@@ -70,7 +92,7 @@ Una extensión compatible con múltiples navegadores (Chrome, Edge, Brave, Opera
 
 ✅ Se bloquean diálogos de notificaciones
 
-✅ Incluye todos los medios del Grupo Clarín: Olé, TN, TyC Sports, Ciudad Magazine, El Trece TV, Radio Mitre, La 100, Ciudad, Elle, Cienradios y VíaPaís.
+✅ Incluye todos los medios del Grupo Clarín: Ciudad Magazine, El Trece TV, Radio Mitre, La 100, Elle y Cienradios.
 
 ### La Nación
 
@@ -170,6 +192,22 @@ Una extensión compatible con múltiples navegadores (Chrome, Edge, Brave, Opera
 
 ✅ Se bloquean diálogos de notificaciones
 
+### Río Negro
+
+ℹ️ El medio no requiere suscripción para leer sus notas
+
+✅ Se quitan las publicidades de todo el sitio
+
+✅ Se bloquean diálogos de notificaciones
+
+### Elonce
+
+ℹ️ El medio no requiere suscripción para leer sus notas
+
+✅ Se quitan las publicidades de todo el sitio
+
+✅ Se bloquean diálogos de notificaciones
+
 ### El Ciudadano
 
 ℹ️ El medio no requiere suscripción para leer sus notas
@@ -179,6 +217,22 @@ Una extensión compatible con múltiples navegadores (Chrome, Edge, Brave, Opera
 ✅ Se bloquean diálogos de notificaciones
 
 ### Rosario3
+
+ℹ️ El medio no requiere suscripción para leer sus notas
+
+✅ Se quitan las publicidades de todo el sitio
+
+✅ Se bloquean diálogos de notificaciones
+
+### Cadena 3
+
+ℹ️ El medio no requiere suscripción para leer sus notas
+
+✅ Se quitan las publicidades de todo el sitio
+
+✅ Se bloquean diálogos de notificaciones
+
+### Aire de Santa Fe
 
 ℹ️ El medio no requiere suscripción para leer sus notas
 
@@ -202,7 +256,63 @@ Una extensión compatible con múltiples navegadores (Chrome, Edge, Brave, Opera
 
 ✅ Se bloquean diálogos de notificaciones
 
-### Río Negro
+### Rosario Plus
+
+ℹ️ El medio no requiere suscripción para leer sus notas
+
+✅ Se quitan las publicidades de todo el sitio
+
+✅ Se bloquean diálogos de notificaciones
+
+### Diario Uno Entre Ríos
+
+ℹ️ El medio no requiere suscripción para leer sus notas
+
+✅ Se quitan las publicidades de todo el sitio
+
+✅ Se bloquean diálogos de notificaciones
+
+### Diario Uno Santa Fe
+
+ℹ️ El medio no requiere suscripción para leer sus notas
+
+✅ Se quitan las publicidades de todo el sitio
+
+✅ Se bloquean diálogos de notificaciones
+
+### Vía País
+
+ℹ️ El medio no requiere suscripción para leer sus notas
+
+✅ Se quitan las publicidades de todo el sitio
+
+✅ Se bloquean diálogos de notificaciones
+
+### Minuto Uno
+
+ℹ️ El medio no requiere suscripción para leer sus notas
+
+✅ Se quitan las publicidades de todo el sitio
+
+✅ Se bloquean diálogos de notificaciones
+
+### La Política Online
+
+ℹ️ El medio no requiere suscripción para leer sus notas
+
+✅ Se quitan las publicidades de todo el sitio
+
+✅ Se bloquean diálogos de notificaciones
+
+### Letra P
+
+ℹ️ El medio no requiere suscripción para leer sus notas
+
+✅ Se quitan las publicidades de todo el sitio
+
+✅ Se bloquean diálogos de notificaciones
+
+### Diario Popular
 
 ℹ️ El medio no requiere suscripción para leer sus notas
 
@@ -226,15 +336,7 @@ Una extensión compatible con múltiples navegadores (Chrome, Edge, Brave, Opera
 
 ✅ Se bloquean diálogos de notificaciones
 
-### Minuto Uno
-
-ℹ️ El medio no requiere suscripción para leer sus notas
-
-✅ Se quitan las publicidades de todo el sitio
-
-✅ Se bloquean diálogos de notificaciones
-
-### Diario Popular
+### TN
 
 ℹ️ El medio no requiere suscripción para leer sus notas
 
@@ -250,15 +352,7 @@ Una extensión compatible con múltiples navegadores (Chrome, Edge, Brave, Opera
 
 ✅ Se bloquean diálogos de notificaciones
 
-### La Política Online
-
-ℹ️ El medio no requiere suscripción para leer sus notas
-
-✅ Se quitan las publicidades de todo el sitio
-
-✅ Se bloquean diálogos de notificaciones
-
-### Letra P
+### TyC Sports
 
 ℹ️ El medio no requiere suscripción para leer sus notas
 

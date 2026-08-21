@@ -39,6 +39,9 @@ function definirInterceptador(prop, transformFn) {
             },
             configurable: true
         });
+        // Si la propiedad ya tenía valor cuando instalamos el interceptador,
+        // el setter nunca se va a disparar. Llamamos transformFn ahora.
+        if (internalVal) transformFn(internalVal);
     } catch (e) {
         console.warn(`No se pudo definir interceptador para ${prop}:`, e);
         if (window[prop]) transformFn(window[prop]);
@@ -46,20 +49,26 @@ function definirInterceptador(prop, transformFn) {
 }
 
 function iniciar() {
-(function () {
-    console.log("¡Fusion iniciado!");
+    (function () {
+        console.log("¡Fusion iniciado!");
 
-    // Suscriptores - Intercepta la asignación del objeto global `Fusion` (framework de La Nación)
-    // antes de que el sitio lo lea. Al poner IS_DEV=true y API_ENV="dev" se fuerza el modo
-    // desarrollo, que omite las validaciones de paywall en el front-end.
-    definirInterceptador('Fusion', (val) => {
-        if (val && val.environment && typeof val.environment.IS_DEV !== "undefined") {
-            console.log("¡Fusion interceptado!", val);
-            val.environment.IS_DEV = true;
-            val.environment.API_ENV = "dev";
-        }
-    });
+        // Suscriptores - Intercepta la asignación del objeto global `Fusion` (framework de La Nación)
+        // antes de que el sitio lo lea. Al poner IS_DEV=true y API_ENV="dev" se fuerza el modo
+        // desarrollo, que omite las validaciones de paywall en el front-end.
+        definirInterceptador('Fusion', (val) => {
+            if (val && val.environment && typeof val.environment.IS_DEV !== "undefined") {
+                console.log("¡Fusion interceptado!", val);
+                val.environment.IS_DEV = true;
+                val.environment.API_ENV = "dev";
+            }
+        });
 
-})();
+    })();
 }
+// Escucha el evento que dispara loader.js (mundo ISOLATED) cuando la config
+// ya fue escrita en el dataset. Elimina la race condition contra getConfig() async.
+document.addEventListener('dl:configReady', () => iniciarSiHabilitado(0), { once: true });
+
+// Fallback: si el evento se disparó antes de que este listener se registrara
+// (improbable en document_start, pero defensivo), reintentamos con polling corto.
 iniciarSiHabilitado(1);

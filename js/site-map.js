@@ -189,6 +189,30 @@ var SITE_CSS_MAP = window.SITE_CSS_MAP || (function () {
         suscriptores:   []
     };
 
+    const elonceConfig = {
+        publicidad:     ['css/elonce-publicidad.css'],
+        notificaciones: ['css/elonce-notificaciones.css'],
+        suscriptores:   []
+    };
+
+    const airedesantafeConfig = {
+        publicidad:     ['css/airedesantafe-publicidad.css'],
+        notificaciones: ['css/airedesantafe-notificaciones.css'],
+        suscriptores:   []
+    };
+
+    const cadena3Config = {
+        publicidad:     ['css/cadena3-publicidad.css'],
+        notificaciones: ['css/cadena3-notificaciones.css'],
+        suscriptores:   []
+    };
+
+    const rosarioplusConfig = {
+        publicidad:     ['css/rosarioplus-publicidad.css'],
+        notificaciones: ['css/rosarioplus-notificaciones.css'],
+        suscriptores:   []
+    };
+
     return {
         // ── Clarín / Olé ─────────────────────────────────────────
         'www.clarin.com': clarinConfig,
@@ -198,21 +222,38 @@ var SITE_CSS_MAP = window.SITE_CSS_MAP || (function () {
         'elle.clarin.com': { publicidad: ['css/clarin-publicidad.css'], notificaciones: [], suscriptores: [] },
 
         // ── La Nación ─────────────────────────────────────────────
-        'www.lanacion.com.ar': lanacionConfig,
-        'lanacion.com.ar':     lanacionConfig,
+        'www.lanacion.com.ar':              lanacionConfig,
+        'lncampo.lanacion.com.ar':          lanacionConfig,
+        'lnpropiedades.lanacion.com.ar':    lanacionConfig,
+        'lnmovilidad.lanacion.com.ar':      lanacionConfig,
+        'lnbienestar.lanacion.com.ar':      lanacionConfig,
+        'widgets-partners.lanacion.com.ar': lanacionConfig,
+        'canchallena.lanacion.com.ar':      lanacionConfig,
+        'foodit.lanacion.com.ar':           lanacionConfig,
+        'lanacion.com.ar':                  lanacionConfig,
+        'www.somosohlala.com':              lanacionConfig,
+        'rollingstone.com':                 lanacionConfig,
+        'es.rollingstone.com':              lanacionConfig,
+        'somosohlala.com':                  lanacionConfig,
 
-        // ── La Capital / Flipbook ─────────────────────────────────
+        // ── La Capital / UNO Santa Fe / UNO Entre Ríos ────────────
         'www.lacapital.com.ar':      lacapitalConfig,
         'lacapital.com.ar':          lacapitalConfig,
         'flipbook.lacapital.com.ar': lacapitalConfig,
+        'df.lacapital.com.ar':       lacapitalConfig,
+        'www.unosantafe.com.ar':     lacapitalConfig,
+        'unosantafe.com.ar':         lacapitalConfig,
+        'www.unoentrerios.com.ar':   lacapitalConfig,
+        'unoentrerios.com.ar':       lacapitalConfig,
 
         // ── La Voz ────────────────────────────────────────────────
-        'www.lavoz.com.ar': lavozConfig,
-        'lavoz.com.ar':     lavozConfig,
+        'www.lavoz.com.ar':         lavozConfig,
+        'servicios.lavoz.com.ar':   lavozConfig,
+        'lavoz.com.ar':             lavozConfig,
 
         // ── La Gaceta ─────────────────────────────────────────────
-        'www.lagaceta.com.ar': lagacetaConfig,
-        'lagaceta.com.ar':     lagacetaConfig,
+        'www.lagaceta.com.ar':       lagacetaConfig,
+        'lagaceta.com.ar':           lagacetaConfig,
 
         // ── Infobae ───────────────────────────────────────────────
         'www.infobae.com': infobaeConfig,
@@ -338,7 +379,24 @@ var SITE_CSS_MAP = window.SITE_CSS_MAP || (function () {
 
         // ── Diario Uno ────────────────────────────────────────────
         'www.diariouno.com.ar': diariounoConfig,
-        'diariouno.com.ar':     diariounoConfig
+        'diariouno.com.ar':     diariounoConfig,
+
+        // ── El Once ───────────────────────────────────────────────
+        'www.elonce.com':           elonceConfig,
+        'elonce.com':               elonceConfig,
+        'datafactory.elonce.com':   elonceConfig,
+
+        // ── Aire de Santa Fe ──────────────────────────────────────
+        'www.airedesantafe.com.ar': airedesantafeConfig,
+        'airedesantafe.com.ar':     airedesantafeConfig,
+
+        // ── Cadena 3 ───────────────────────────────────────────────
+        'www.cadena3.com': cadena3Config,
+        'cadena3.com':     cadena3Config,
+
+        // ── Rosario Plus ───────────────────────────────────────────
+        'www.rosarioplus.com': rosarioplusConfig,
+        'rosarioplus.com':     rosarioplusConfig
 
     };
 })();
