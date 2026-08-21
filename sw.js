@@ -1,3 +1,13 @@
+// Catálogo declarativo de cookies de suscripción, compartido con los content scripts.
+// Expone COOKIE_TTL_MINUTOS, COOKIE_RENOVACION_MINUTOS, COOKIES_SUSCRIPTORES y valorCookie().
+// Va en try/catch por el mismo motivo que la guarda de apisDeCookiesDisponibles(): si el
+// catálogo no carga, el heartbeat se desactiva solo pero las reglas de red siguen andando.
+try {
+    importScripts("/js/cookies-suscriptores.js");
+} catch (e) {
+    console.error("No se pudo cargar el catálogo de cookies de suscriptores:", e);
+}
+
 const BASE_DOMAINS = [
     "lacapital.com.ar", "flipbook.lacapital.com.ar", "lavoz.com.ar", "lagaceta.com.ar",
     "clarin.com", "elle.clarin.com", "lanacion.com.ar", "infobae.com", "ellitoral.com",
@@ -788,3 +798,193 @@ chrome.storage.onChanged.addListener((changes, area) => {
         applyRules();
     }
 });
+
+// ============================================================================
+// Suscriptores - Heartbeat de cookies
+//
+// Chrome no ofrece ningún hook de desinstalación o desactivación donde correr limpieza, así
+// que las cookies no pueden depender de que alguien las borre: tienen que morir solas. Las
+// escribimos con TTL corto y las renovamos desde acá mientras la extensión esté viva. Al
+// desactivarla o desinstalarla el service worker deja de existir, la alarma no vuelve a
+// dispararse y las cookies vencen sin intervención de nadie.
+//
+// El heartbeat corre en el service worker y no en los content scripts por tres motivos:
+// mantiene las cookies vigentes sin ninguna pestaña del diario abierta (así viajan en la
+// primera request de navegación), es inmune al throttling de timers de las pestañas de fondo,
+// y muere de verdad cuando la extensión muere (un content script huérfano seguiría corriendo).
+// Ver cookies-suscriptores.js para el porqué de los valores de TTL y renovación.
+// ============================================================================
+
+const COOKIE_ALARMA = "renovar-cookies-suscriptores";
+
+// El service worker despierta por la alarma y vuelve a evaluar su scope global, con lo cual el
+// arranque y el onAlarm pedirían renovar dos veces seguidas. Este guard colapsa esos duplicados
+// dentro de una misma instancia.
+let ultimaRenovacionCookies = 0;
+
+async function leerOverridesCookies() {
+    try {
+        const { cookie_overrides } = await chrome.storage.local.get({ cookie_overrides: {} });
+        return cookie_overrides;
+    } catch {
+        return {};
+    }
+}
+
+/**
+ * ¿La cookie es nuestra? Si está marcada preservarExistente y ya hay una con un valor distinto
+ * del que escribiríamos, es la credencial real del usuario: ni la pisamos ni la borramos.
+ */
+async function esCookiePropia(url, cookie) {
+    if (!cookie.preservarExistente) return true;
+    try {
+        const actual = await chrome.cookies.get({ url, name: cookie.nombre });
+        return !actual || actual.value === cookie.valor;
+    } catch {
+        return false;
+    }
+}
+
+/**
+ * Recorre el catálogo aplicando `accion` a cada par (url, cookie) que nos pertenece.
+ *
+ * Una tarea que falla no aborta al resto: cada host y cada cookie son independientes, y perder
+ * una no tiene por qué costar las otras 165. El detalle se reporta por nombre porque
+ * chrome.cookies.set valida el valor más estricto que document.cookie (la coma de
+ * ProductoPremiumId, por ejemplo): si alguna cookie del catálogo no le gusta, tiene que
+ * aparecer identificada en la consola del service worker y no como un número.
+ */
+async function recorrerCookiesSuscriptores(accion) {
+    const overrides = await leerOverridesCookies();
+    const tareas = [];
+    const fallidas = [];
+
+    for (const grupo of COOKIES_SUSCRIPTORES) {
+        const valores = overrides[grupo.id];
+        for (const host of grupo.hosts) {
+            const url = `https://${host}/`;
+            for (const cookie of grupo.cookies) {
+                tareas.push((async () => {
+                    try {
+                        if (!await esCookiePropia(url, cookie)) return;
+                        await accion(url, cookie, valores);
+                    } catch (e) {
+                        fallidas.push(`${host}/${cookie.nombre}: ${e?.message || e}`);
+                    }
+                })());
+            }
+        }
+    }
+
+    await Promise.all(tareas);
+
+    if (fallidas.length) {
+        // Se agrupan por cookie: si falla una, falla en todos sus hosts y el log sería ilegible.
+        const porCookie = [...new Set(fallidas.map(f => f.split("/")[1]))];
+        console.warn(`Cookies de suscriptores: fallaron ${fallidas.length} de ${tareas.length} operaciones.`, porCookie);
+    }
+    return tareas.length - fallidas.length;
+}
+
+/** Reescribe todas las cookies del catálogo con un vencimiento nuevo de COOKIE_TTL_MINUTOS. */
+async function renovarCookies() {
+    if (Date.now() - ultimaRenovacionCookies < 5000) return;
+    ultimaRenovacionCookies = Date.now();
+
+    const expirationDate = Math.floor(Date.now() / 1000) + COOKIE_TTL_MINUTOS * 60;
+
+    // Sin atributo `domain`: quedan host-only, igual que cuando las escribía document.cookie.
+    await recorrerCookiesSuscriptores((url, cookie, valores) => chrome.cookies.set({
+        url,
+        name: cookie.nombre,
+        value: valorCookie(cookie, valores),
+        path: "/",
+        expirationDate,
+    }));
+}
+
+/**
+ * Borra las cookies sin esperar a que venzan. Se usa cuando el usuario apaga la feature desde
+ * el popup: antes había que visitar cada diario para que su content script las limpiara, y si
+ * no lo hacías quedaban los 90 días completos.
+ */
+async function borrarCookiesSuscriptores() {
+    ultimaRenovacionCookies = 0;
+    const borradas = await recorrerCookiesSuscriptores((url, cookie) => chrome.cookies.remove({
+        url,
+        name: cookie.nombre,
+    }));
+    console.log(`Cookies de suscriptores eliminadas (${borradas} operaciones).`);
+}
+
+/** Alinea el heartbeat con la config: lo enciende y renueva, o lo apaga y limpia. */
+async function sincronizarCookies() {
+    try {
+        const { feature_suscriptores } = await chrome.storage.sync.get({ feature_suscriptores: true });
+
+        if (!feature_suscriptores) {
+            await chrome.alarms.clear(COOKIE_ALARMA);
+            await borrarCookiesSuscriptores();
+            return;
+        }
+
+        await chrome.alarms.create(COOKIE_ALARMA, { periodInMinutes: COOKIE_RENOVACION_MINUTOS });
+        await renovarCookies();
+    } catch (e) {
+        console.error("Error al sincronizar las cookies de suscriptores:", e);
+    }
+}
+
+/**
+ * ¿Están disponibles las APIs que necesita el heartbeat?
+ *
+ * Al recargar una extensión desempaquetada después de tocar "permissions", Chrome refresca el
+ * código pero no siempre re-aplica los permisos: el service worker nuevo corre con chrome.cookies
+ * y chrome.alarms todavía en undefined. Sin esta guarda, el TypeError resultante aborta la
+ * evaluación del service worker COMPLETO y se caen también las reglas de publicidad y de
+ * notificaciones. El heartbeat es una feature opcional: si no puede arrancar, se desactiva sola
+ * y deja el resto funcionando.
+ */
+function apisDeCookiesDisponibles() {
+    const faltantes = [];
+    if (!chrome.cookies) faltantes.push("cookies");
+    if (!chrome.alarms) faltantes.push("alarms");
+    if (typeof COOKIES_SUSCRIPTORES === "undefined") faltantes.push("catálogo cookies-suscriptores.js");
+
+    if (faltantes.length) {
+        console.error(
+            `Heartbeat de cookies desactivado, falta: ${faltantes.join(", ")}. ` +
+            `Si los permisos están en el manifest, Chrome no lo releyó: quitá la extensión ` +
+            `y volvé a cargarla en chrome://extensions (recargar no alcanza al cambiar permisos).`
+        );
+        return false;
+    }
+    return true;
+}
+
+if (apisDeCookiesDisponibles()) {
+    chrome.alarms.onAlarm.addListener(alarma => {
+        if (alarma.name === COOKIE_ALARMA) renovarCookies();
+    });
+
+    // onInstalled cubre la migración: pisa las cookies de 90 días de versiones anteriores con el
+    // TTL corto (mismo nombre, host y path = misma cookie), sin necesidad de visitar los diarios.
+    chrome.runtime.onInstalled.addListener(sincronizarCookies);
+    chrome.runtime.onStartup.addListener(sincronizarCookies);
+
+    chrome.storage.onChanged.addListener((changes, area) => {
+        if (area === 'sync' && 'feature_suscriptores' in changes) {
+            sincronizarCookies();
+            return;
+        }
+        // Un content script publicó valores calculados desde la página (ej. el ID de usuario real
+        // de La Nación): reescribimos para no seguir renovando con el default del catálogo.
+        if (area === 'local' && 'cookie_overrides' in changes) {
+            ultimaRenovacionCookies = 0;
+            renovarCookies();
+        }
+    });
+
+    // Arranque en frío del service worker
+    sincronizarCookies();
+}

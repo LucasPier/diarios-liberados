@@ -4,3 +4,4 @@ _metadata/
 # Privado
 .agents/
 notas.md
+*.stackdump

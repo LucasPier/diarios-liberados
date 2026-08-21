@@ -1,24 +1,9 @@
-// Suscriptores - Asigna cookies que simulan un usuario con suscripción activa
-const setCookie = (cname, cvalue, exdays) => {
-    const d = new Date();
-    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-    let expires = "expires=" + d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-}
+// Suscriptores - Las cookies que simulan la suscripción están declaradas en
+// js/cookies-suscriptores.js y las escribe y renueva js/cookies-runtime.js.
+// Este archivo se ocupa sólo de los ajustes visuales del sitio.
 
 getConfig().then(cfg => {
-    if (!cfg.feature_suscriptores) {
-        // Suscriptores - Cookie de estado de suscripción
-        setCookie("crprm", "Suscriptor", 0);
-        // Suscriptores - Cookie de suscripción
-        setCookie("userIsPremium", "1", 0);
-        return;
-    };
-
-    // Suscriptores - Cookie de estado de suscripción
-    setCookie("crprm", "Suscriptor", 90);
-    // Suscriptores - Cookie de suscripción
-    setCookie("userIsPremium", "1", 90);
+    if (!cfg.feature_suscriptores) return;
 
     // Suscriptores - URL del SVG de la extensión para el ícono de artículos restringidos
     const imageUrl = chrome.runtime.getURL("imagenes/recursos/diarios.svg");
