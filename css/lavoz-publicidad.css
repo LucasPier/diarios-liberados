@@ -10,7 +10,9 @@ div[class*="review-topsite"],
 *[class*="bloque-ads"],
 *[class*="block-banner"],
 .CONTAINER-WRAPPER:has(.WIDGET-BOX>.bg-lvi-hotdays-blue),
-.imgSponsor {
+.imgSponsor,
+a.beans-block,
+.viafoura .vf3-conversations-footer__branding {
     display: none !important;
     height: 0 !important;
     overflow: hidden !important;
