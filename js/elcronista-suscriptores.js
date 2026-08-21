@@ -21,7 +21,7 @@ getConfig().then(cfg => {
     setCookie("userIsPremium", "1", 90);
 
     // Suscriptores - URL del SVG de la extensión para el ícono de artículos restringidos
-    const imageUrl = chrome.runtime.getURL("recursos/diarios.svg");
+    const imageUrl = chrome.runtime.getURL("imagenes/recursos/diarios.svg");
 
     // Suscriptores - Inyecta un estilo que pone el ícono de la extensión como background del
     // pseudo-elemento ::before definido en elcronista-suscriptores.css para los badges de artículo restringido

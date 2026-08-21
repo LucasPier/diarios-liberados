@@ -1,6 +1,6 @@
 
 // Suscriptores - URL del ícono de suscriptores de la extensión (reemplaza el original del sitio)
-const imageUrl = chrome.runtime.getURL("recursos/suscriptores_lacapital.svg");
+const imageUrl = chrome.runtime.getURL("imagenes/recursos/suscriptores_lacapital.svg");
 
 getConfig().then(cfg => {
     if (!cfg.feature_suscriptores) return;

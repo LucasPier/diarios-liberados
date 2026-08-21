@@ -1,5 +1,5 @@
 // Suscriptores - URL del ícono de suscriptores de la extensión (reemplaza el original del sitio)
-const imageUrl = chrome.runtime.getURL("recursos/diarios.svg");
+const imageUrl = chrome.runtime.getURL("imagenes/recursos/diarios.svg");
 
 getConfig().then(cfg => {
     if (!cfg.feature_suscriptores) return;

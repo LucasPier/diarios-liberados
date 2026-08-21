@@ -1,7 +1,7 @@
 // Suscriptores - URLs de los SVG de socios de la extensión (reemplazan los del sitio)
-const urlImagenSocios = chrome.runtime.getURL("recursos/socios_p12.svg");
-const urlImagenSocios2 = chrome.runtime.getURL("recursos/socios_v2_p12.svg");
-const urlImagenSocios3 = chrome.runtime.getURL("recursos/socios_p12_2.svg");
+const urlImagenSocios = chrome.runtime.getURL("imagenes/recursos/socios_p12.svg");
+const urlImagenSocios2 = chrome.runtime.getURL("imagenes/recursos/socios_v2_p12.svg");
+const urlImagenSocios3 = chrome.runtime.getURL("imagenes/recursos/socios_p12_2.svg");
 
 // Guardamos en dataset y enviamos postMessage de forma SÍNCRONA apenas carga el script en contexto ISOLATED
 // para que el contexto MAIN (pagina12dom-suscriptores.js) las tenga disponibles sin esperar promesas.

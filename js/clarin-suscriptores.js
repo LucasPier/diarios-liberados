@@ -21,7 +21,7 @@ getConfig().then(cfg => {
     setCookie("susTemp", "true", 90);
 
     // Suscriptores - URL del ícono de suscriptores de la extensión (reemplaza el original del sitio)
-    const imageUrl = chrome.runtime.getURL("recursos/suscriptores_blanco_clarin.svg");
+    const imageUrl = chrome.runtime.getURL("imagenes/recursos/suscriptores_blanco_clarin.svg");
 
     // Suscriptores - Reemplaza el ícono de suscriptores del sitio por el de la extensión,
     // evitando que quede en blanco (el sitio bloquea la imagen original para no suscriptores).

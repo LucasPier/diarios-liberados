@@ -2,9 +2,9 @@
 getConfig().then(cfg => {
     if (!cfg.feature_suscriptores) return;
 
-    const imageUrl = chrome.runtime.getURL("recursos/suscripciones_lavoz.svg");
-    const imageUrl2 = chrome.runtime.getURL("recursos/crown-icon_lavoz.svg");
-    const imageUrl3 = chrome.runtime.getURL("recursos/crown-fill-black_lavoz.svg");
+    const imageUrl = chrome.runtime.getURL("imagenes/recursos/suscripciones_lavoz.svg");
+    const imageUrl2 = chrome.runtime.getURL("imagenes/recursos/suscriptores_lavoz.svg");
+    const imageUrl3 = chrome.runtime.getURL("imagenes/recursos/suscriptores_negro_lavoz.svg");
 
     // Suscriptores - Inyecta CSS para forzar el ícono de suscripción en los backgrounds CSS
     const style = document.createElement('style');
