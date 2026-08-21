@@ -4,6 +4,11 @@
     box-sizing: border-box;
 }
 
+/* El atributo hidden debe ganarle a cualquier display de autor */
+[hidden] {
+    display: none !important;
+}
+
 body {
     width: 410px;
     margin: 0;
