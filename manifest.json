@@ -31,6 +31,8 @@
         "*://d323qqnnjmo65t.cloudfront.net/*",
         "*://*.clarin.com/*",
         "*://*.lanacion.com.ar/*",
+        "*://*.somosohlala.com/*",
+        "*://*.rollingstone.com/*",
         "*://*.infobae.com/*",
         "*://*.ellitoral.com/*",
         "*://*.puertonegocios.com/*",
@@ -207,8 +209,11 @@
                 "js/lanacionpre-suscriptores.js"
             ],
             "matches": [
-                "*://*.lanacion.com.ar/*"
+                "*://*.lanacion.com.ar/*",
+                "*://*.somosohlala.com/*",
+                "*://*.rollingstone.com/*"
             ],
+            "all_frames": true,
             "run_at": "document_start"
         },
         {
@@ -216,7 +221,9 @@
                 "js/lanaciondom-suscriptores.js"
             ],
             "matches": [
-                "*://*.lanacion.com.ar/*"
+                "*://*.lanacion.com.ar/*",
+                "*://*.somosohlala.com/*",
+                "*://*.rollingstone.com/*"
             ],
             "world": "MAIN",
             "run_at": "document_start"
@@ -230,7 +237,9 @@
                 "js/lanacion-edicion-impresa.js"
             ],
             "matches": [
-                "*://*.lanacion.com.ar/*"
+                "*://*.lanacion.com.ar/*",
+                "*://*.somosohlala.com/*",
+                "*://*.rollingstone.com/*"
             ],
             "run_at": "document_end"
         },
@@ -249,6 +258,7 @@
                 "*://*.unosantafe.com.ar/*",
                 "*://*.unoentrerios.com.ar/*"
             ],
+            "all_frames": true,
             "run_at": "document_start"
         },
         {
@@ -426,6 +436,7 @@
             "matches": [
                 "*://*.perfil.com/*",
                 "*://batimes.com.ar/*",
+                "*://*.batimes.com.ar/*",
                 "*://*.canalnet.tv/*"
             ],
             "run_at": "document_start"
@@ -634,6 +645,7 @@
             "matches": [
                 "*://*.elonce.com/*"
             ],
+            "all_frames": true,
             "run_at": "document_start"
         },
         {

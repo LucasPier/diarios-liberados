@@ -14,7 +14,7 @@ const BASE_DOMAINS = [
     "mia.cienradios.com", "kenja.tech", "minutouno.com", "letrap.com.ar", "mdzol.com",
     "losandes.com.ar", "eldia.com", "rionegro.com.ar", "diariouno.com.ar", "unosantafe.com.ar",
     "unoentrerios.com.ar", "elonce.com", "airedesantafe.com.ar", "cadena3.com", "rosarioplus.com",
-    "imasdk.googleapis.com"
+    "imasdk.googleapis.com", "somosohlala.com", "rollingstone.com", "datafactory.elonce.com"
 ];
 
 // Incluye dominios apex y subdominios www. para matchear sin importar si el usuario usa www o no
@@ -27,13 +27,13 @@ const DOMAINS = Array.from(new Set([
 // Todas las reglas de este bloque corresponden a: Publicidad
 const RULES_PUBLICIDAD = [
     {
-        // Publicidad - Red publicitaria DoubleClick/Google Ads (excluye Diario Popular por incompatibilidad)
+        // Publicidad - Red publicitaria DoubleClick/Google Ads (excluye Diario Popular y Ohlalá por incompatibilidad)
         id: 2,
         priority: 1,
         action: { type: "block" },
         condition: {
-            urlFilter: ".doubleclick.net",
-            initiatorDomains: DOMAINS.filter(d => d !== "www.diariopopular.com.ar" && d !== "diariopopular.com.ar"),
+            urlFilter: "doubleclick.net",
+            initiatorDomains: DOMAINS.filter(d => d !== "www.diariopopular.com.ar" && d !== "diariopopular.com.ar" && d !== "www.somosohlala.com" && d !== "somosohlala.com"),
         },
     },
     {
@@ -285,6 +285,336 @@ const RULES_PUBLICIDAD = [
             urlFilter: "static/adder",
             initiatorDomains: ["www.rosarioplus.com", "rosarioplus.com"],
         },
+    },
+    {
+        // Publicidad - Bloqueo de scripts de Google Ads (pagead2.googlesyndication.com)
+        id: 36,
+        priority: 1,
+        action: { type: "block" },
+        condition: {
+            urlFilter: "pagead2.googlesyndication.com",
+            initiatorDomains: DOMAINS,
+        },
+    },
+    {
+        // Publicidad - Bloqueo de scripts de Advanced Ads (plugin de WordPress para gestión de publicidad)
+        id: 37,
+        priority: 1,
+        action: { type: "block" },
+        condition: {
+            urlFilter: "wp-content/plugins/advanced-ads",
+            initiatorDomains: DOMAINS,
+        },
+    },
+    {
+        // Publicidad - Bloqueo de scripts de remarketing de Google Ads (google.com/rmkt)
+        id: 38,
+        priority: 1,
+        action: { type: "block" },
+        condition: {
+            urlFilter: "google.com/rmkt",
+            initiatorDomains: DOMAINS,
+        },
+    },
+    {
+        // Publicidad - Bloqueo de scripts de LinkedIn Ads (ads.linkedin.com)
+        id: 39,
+        priority: 1,
+        action: { type: "block" },
+        condition: {
+            urlFilter: "ads.linkedin.com",
+            initiatorDomains: DOMAINS,
+        },
+    },
+    {
+        // Publicidad - Bloqueo de scripts de LinkedIn Ads (ads.linkedin.com)
+        id: 40,
+        priority: 1,
+        action: { type: "block" },
+        condition: {
+            urlFilter: "ads.linkedin.com",
+            initiatorDomains: DOMAINS,
+        },
+    },
+    {
+        // Publicidad - Bloqueo de scripts de Google Ads (google.com.ar/ads)
+        id: 41,
+        priority: 1,
+        action: { type: "block" },
+        condition: {
+            urlFilter: "google.com.ar/ads",
+            initiatorDomains: DOMAINS,
+        },
+    },
+    {
+        // Publicidad - Bloqueo de scripts de Google Ads (google.com/ccm)
+        id: 42,
+        priority: 1,
+        action: { type: "block" },
+        condition: {
+            urlFilter: "google.com/ccm",
+            initiatorDomains: DOMAINS,
+        },
+    },
+    {
+        // Publicidad - Bloqueo de scripts de Amazon Ads (amazon-adsystem.com)
+        id: 43,
+        priority: 1,
+        action: { type: "block" },
+        condition: {
+            urlFilter: "amazon-adsystem.com",
+            initiatorDomains: DOMAINS,
+        },
+    },
+    {
+        // Publicidad - Bloqueo de scripts de Google Ads (googleadservices.com)
+        id: 44,
+        priority: 1,
+        action: { type: "block" },
+        condition: {
+            urlFilter: "googleadservices.com",
+            initiatorDomains: DOMAINS,
+        },
+    },
+    {
+        // Publicidad - Bloqueo de scripts de Google Ads (google.com/pagead)
+        id: 45,
+        priority: 1,
+        action: { type: "block" },
+        condition: {
+            urlFilter: "google.com/pagead",
+            initiatorDomains: DOMAINS,
+        },
+    },
+    {
+        // Publicidad - Bloqueo de scripts de Ad Delivery (ad-delivery.net)
+        id: 46,
+        priority: 1,
+        action: { type: "block" },
+        condition: {
+            urlFilter: "ad-delivery.net",
+            initiatorDomains: DOMAINS,
+        },
+    },
+    {
+        // Publicidad - Bloqueo de scripts de Teads (teads.tv)
+        id: 47,
+        priority: 1,
+        action: { type: "block" },
+        condition: {
+            urlFilter: "teads.tv",
+            initiatorDomains: DOMAINS,
+        },
+    },
+    {
+        // Publicidad - Bloqueo de scripts de MFAdsRvr (mfadsrvr.com)
+        id: 48,
+        priority: 1,
+        action: { type: "block" },
+        condition: {
+            urlFilter: "mfadsrvr.com",
+            initiatorDomains: DOMAINS,
+        },
+    },
+    {
+        // Publicidad - Bloqueo de scripts de Smart AdServer (smartadserver.com)
+        id: 49,
+        priority: 1,
+        action: { type: "block" },
+        condition: {
+            urlFilter: "smartadserver.com",
+            initiatorDomains: DOMAINS,
+        },
+    },
+    {
+        // Publicidad - Bloqueo de scripts de OneTag (onetag-sys.com)
+        id: 50,
+        priority: 1,
+        action: { type: "block" },
+        condition: {
+            urlFilter: "onetag-sys.com",
+            initiatorDomains: DOMAINS,
+        },
+    },
+    {
+        // Publicidad - Bloqueo de scripts de PubMatic (pubmatic.com)
+        id: 51,
+        priority: 1,
+        action: { type: "block" },
+        condition: {
+            urlFilter: "pubmatic.com",
+            initiatorDomains: DOMAINS,
+        },
+    },
+    {
+        // Publicidad - Bloqueo de scripts de The Moneytizer (themoneytizer.com)
+        id: 52,
+        priority: 1,
+        action: { type: "block" },
+        condition: {
+            urlFilter: "themoneytizer.com",
+            initiatorDomains: DOMAINS,
+        },
+    },
+    {
+        // Publicidad - Bloqueo de scripts de Between Digital (betweendigital.com)
+        id: 53,
+        priority: 1,
+        action: { type: "block" },
+        condition: {
+            urlFilter: "betweendigital.com",
+            initiatorDomains: DOMAINS,
+        },
+    },
+    {
+        // Publicidad - Bloqueo de scripts de 4Dex (c.4dex.io)
+        id: 54,
+        priority: 1,
+        action: { type: "block" },
+        condition: {
+            urlFilter: "c.4dex.io",
+            initiatorDomains: DOMAINS,
+        },
+    },
+    {
+        // Publicidad - Bloqueo de scripts de Adnami (adnami.io)
+        id: 55,
+        priority: 1,
+        action: { type: "block" },
+        condition: {
+            urlFilter: "adnami.io",
+            initiatorDomains: DOMAINS,
+        },
+    },
+    {
+        // Publicidad - Bloqueo de scripts de The Trade Desk (adsrvr.org)
+        id: 56,
+        priority: 1,
+        action: { type: "block" },
+        condition: {
+            urlFilter: "adsrvr.org",
+            initiatorDomains: DOMAINS,
+        },
+    },
+    {
+        // Publicidad - Bloqueo de scripts de DoubleVerify (doubleverify.com)
+        id: 57,
+        priority: 1,
+        action: { type: "block" },
+        condition: {
+            urlFilter: "doubleverify.com",
+            initiatorDomains: DOMAINS,
+        },
+    },
+    {
+        // Publicidad - Bloqueo de scripts de AdsWizz (adswizz.com)
+        id: 58,
+        priority: 1,
+        action: { type: "block" },
+        condition: {
+            urlFilter: "adswizz.com",
+            initiatorDomains: DOMAINS,
+        },
+    },
+    {
+        // Publicidad - Bloqueo de scripts de Google Ads Measurement (google.com/measurement)
+        id: 59,
+        priority: 1,
+        action: { type: "block" },
+        condition: {
+            urlFilter: "google.com/measurement",
+            initiatorDomains: DOMAINS,
+        },
+    },
+    {
+        // Publicidad - Bloqueo de scripts de Google Analytics (analytics.google.com)
+        id: 60,
+        priority: 1,
+        action: { type: "block" },
+        condition: {
+            urlFilter: "analytics.google.com",
+            initiatorDomains: DOMAINS,
+        },
+    },
+    {
+        // Publicidad - Bloqueo de scripts de Google Analytics (google-analytics.com)
+        id: 61,
+        priority: 1,
+        action: { type: "block" },
+        condition: {
+            urlFilter: "google-analytics.com",
+            initiatorDomains: DOMAINS.filter(d => d !== "perfil.com" && !d.endsWith(".perfil.com")),
+        },
+    },
+    {
+        // Publicidad - Bloqueo de scripts de Google Ads Collect (google.com/g/collect)
+        id: 62,
+        priority: 1,
+        action: { type: "block" },
+        condition: {
+            urlFilter: "google.com/g/collect",
+            initiatorDomains: DOMAINS,
+        },
+    },
+    {
+        // Publicidad - Bloqueo de scripts de Chartbeat (chartbeat.com)
+        id: 63,
+        priority: 1,
+        action: { type: "block" },
+        condition: {
+            urlFilter: "chartbeat.",
+            initiatorDomains: DOMAINS,
+        },
+    },
+    {
+        // Publicidad - Bloqueo de scripts de publicidad de video (Rosario3)
+        id: 64,
+        priority: 1,
+        action: { type: "block" },
+        condition: {
+            urlFilter: "videojs.ads.min.js",
+            initiatorDomains: DOMAINS,
+        },
+    },
+    {
+        // Publicidad - Bloqueo de scripts de retargetly.com (ambito.com)
+        id: 65,
+        priority: 1,
+        action: { type: "block" },
+        condition: {
+            urlFilter: "retargetly.com",
+            initiatorDomains: DOMAINS,
+        },
+    },
+    {
+        // Publicidad - Bloqueo de scripts de viads.com (minutouno.com)
+        id: 66,
+        priority: 1,
+        action: { type: "block" },
+        condition: {
+            urlFilter: "viads.com",
+            initiatorDomains: DOMAINS,
+        },
+    },
+    {
+        // Publicidad - Bloqueo de script videojs-contrib-ads (minutouno.com)
+        id: 67,
+        priority: 1,
+        action: { type: "block" },
+        condition: {
+            urlFilter: "videojs.ads",
+            initiatorDomains: DOMAINS,
+        },
+    },
+    {
+        // Publicidad - Bloqueo de script brilliantchap.com (Perfil)
+        id: 68,
+        priority: 1,
+        action: { type: "block" },
+        condition: {
+            urlFilter: "brilliantchap.com",
+            initiatorDomains: DOMAINS,
+        },
     }
 ];
 
@@ -373,6 +703,16 @@ const RULES_NOTIFICACIONES = [
         action: { type: "block" },
         condition: {
             urlFilter: "OneSignalSDKFiles",
+            initiatorDomains: DOMAINS,
+        },
+    },
+    {
+        // Notificaciones - Bloqueo de InMobi para desactivar modales
+        id: 69,
+        priority: 1,
+        action: { type: "block" },
+        condition: {
+            urlFilter: "inmobi.com",
             initiatorDomains: DOMAINS,
         },
     }

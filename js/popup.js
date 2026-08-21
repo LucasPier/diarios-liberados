@@ -21,7 +21,7 @@ const DOMINIOS_CUBIERTOS = [
     "tn.com.ar", "cienradios.com", "minutouno.com", "letrap.com.ar", "mdzol.com",
     "losandes.com.ar", "eldia.com", "rionegro.com.ar", "diariouno.com.ar",
     "unosantafe.com.ar", "unoentrerios.com.ar", "elonce.com", "airedesantafe.com.ar",
-    "cadena3.com", "rosarioplus.com"
+    "cadena3.com", "rosarioplus.com", "somosohlala.com", "rollingstone.com"
 ];
 
 /** Verifica si una URL pertenece a alguno de los dominios cubiertos */
