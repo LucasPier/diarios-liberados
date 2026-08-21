@@ -7,6 +7,12 @@
 
 Una extensión compatible con múltiples navegadores (Chrome, Edge, Brave, Opera, Vivaldi, etc.) que **mejora la experiencia de lectura en más de 50 portales de medios argentinos**. En los medios que lo requieren, desbloquea notas exclusivas para suscriptores o socios, además elimina publicidades intrusivas y bloquea diálogos de notificaciones. Todas estas características son configurables e independientes desde el menú de la extensión (podés elegir en todo momento si activar o desactivar el desbloqueo de contenidos exclusivos, el bloqueo de publicidad o el ocultamiento de notificaciones). Algunos portales incluyen funcionalidades adicionales: visualización de versiones impresas (La Capital), resúmenes generados por IA y escucha de notas (La Nación), y cobertura extendida a los grupos editoriales completos de Clarín y Perfil. Se irán agregando nuevos medios y funcionalidades con el paso del tiempo.
 
+> 🔗 **Compartí la extensión**
+>
+> ¿Se la querés recomendar a alguien? Pasale este enlace en lugar del repositorio: tiene la presentación, los medios soportados y la instalación explicada paso a paso, pensada para quien nunca instaló una extensión.
+>
+> ### 👉 <https://lucaspier.github.io/diarios-liberados/>
+
 ## Portales soportados
 
 <table>
