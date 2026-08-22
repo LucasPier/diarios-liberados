@@ -177,6 +177,114 @@ function configurarEnlacesAMedios() {
     }
 }
 
+/**
+ * Identifica el navegador Chromium desde el que se visita la página.
+ *
+ * Se consulta de más específico a más genérico, porque varios navegadores
+ * declaran también las marcas de las que derivan (Edge y Opera incluyen
+ * "Chromium", por ejemplo) y quedarse con la primera coincidencia genérica
+ * daría un resultado equivocado.
+ *
+ * Limitación conocida: Vivaldi se presenta como Chrome salvo que el usuario
+ * active el enmascarado de marca, así que se lo detecta como Chrome.
+ *
+ * @returns {Promise<string|null>} slug del navegador, o null si no se pudo determinar
+ */
+async function detectarNavegador() {
+    // Brave expone una API propia. Puede no estar disponible: el navegador la
+    // deshabilita en sitios donde detecta bloqueos o fallos de compatibilidad.
+    try {
+        if (navigator.brave && typeof navigator.brave.isBrave === 'function') {
+            if (await navigator.brave.isBrave()) return 'brave';
+        }
+    } catch {
+        // Si la consulta falla se sigue con el resto de las comprobaciones
+    }
+
+    const marcas = navigator.userAgentData && navigator.userAgentData.brands;
+    if (!Array.isArray(marcas)) return null;
+
+    // La lista incluye una entrada señuelo ("Not;A=Brand") cuya grafía y
+    // posición varían a propósito, así que se recorre buscando por nombre.
+    const incluye = texto => marcas.some(
+        m => typeof m.brand === 'string' && m.brand.toLowerCase().includes(texto)
+    );
+
+    if (incluye('brave'))         return 'brave';
+    if (incluye('microsoft edge')) return 'edge';
+    if (incluye('opera'))         return 'opera';
+    if (incluye('vivaldi'))       return 'vivaldi';
+    if (incluye('google chrome')) return 'chrome';
+    if (incluye('chromium'))      return 'chromium';
+    return null;
+}
+
+/**
+ * Determina si el navegador es de la familia Chromium.
+ * Se recurre al user agent como respaldo porque userAgentData no existe en
+ * versiones de Chromium anteriores a 2021 ni fuera de un contexto seguro.
+ */
+function esChromium() {
+    if (navigator.userAgentData) return true;
+    return /\bChrom(e|ium)\//.test(navigator.userAgent);
+}
+
+/** Nombre del navegador no compatible, si se puede reconocer */
+function nombrarNavegadorIncompatible() {
+    const ua = navigator.userAgent;
+    if (/Firefox\//.test(ua))  return 'Firefox';
+    if (/FxiOS\//.test(ua))    return 'Firefox para iOS';
+    if (/CriOS\//.test(ua))    return 'Chrome para iOS';
+    if (/Safari\//.test(ua) && !/Chrom/.test(ua)) return 'Safari';
+    return null;
+}
+
+/** Muestra el aviso de navegador no compatible */
+function avisarNoCompatible() {
+    const aviso  = document.getElementById('navegadores-aviso');
+    const titulo = document.getElementById('navegadores-aviso-titulo');
+    const texto  = document.getElementById('navegadores-aviso-texto');
+    if (!aviso || !titulo || !texto) return;
+
+    const nombre = nombrarNavegadorIncompatible();
+    titulo.textContent = nombre
+        ? `Estás navegando en ${nombre}`
+        : 'Tu navegador no es compatible';
+    texto.textContent = 'La extensión necesita un navegador basado en Chromium. '
+        + 'Abrí esta página desde alguno de los que figuran abajo para poder instalarla.';
+
+    aviso.hidden = false;
+}
+
+/**
+ * Resalta el navegador en uso dentro de la franja y, si no es compatible,
+ * lo advierte antes de que el usuario recorra toda la instalación.
+ */
+async function marcarNavegadorEnUso() {
+    if (!document.querySelector('.navegadores-franja')) return;
+
+    if (!esChromium()) {
+        avisarNoCompatible();
+        return;
+    }
+
+    const slug = await detectarNavegador();
+    // Ante la duda no se marca nada: señalar el navegador equivocado sería
+    // peor que no señalar ninguno.
+    if (!slug) return;
+
+    const tarjeta = document.querySelector(`.navegador[data-navegador="${slug}"]`);
+    if (!tarjeta) return;
+
+    tarjeta.classList.add('is-actual');
+    tarjeta.setAttribute('aria-current', 'true');
+
+    const chip = document.createElement('span');
+    chip.className = 'navegador-chip';
+    chip.textContent = 'El tuyo';
+    tarjeta.appendChild(chip);
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
 
     // ── Enlaces de descarga ──────────────────────────────────────────────────
@@ -186,6 +294,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // ── Grilla de portales → detalle por medio ───────────────────────────────
     configurarEnlacesAMedios();
+
+    // ── Navegador en uso ─────────────────────────────────────────────────────
+    marcarNavegadorEnUso();
 
     // ── Versión publicada ────────────────────────────────────────────────────
     const versionPublicada = await obtenerVersionPublicada();
