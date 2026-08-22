@@ -409,6 +409,122 @@ section {
 }
 
 /* ═══════════════════════════════════════════════════════════
+   Navegadores compatibles
+   ═══════════════════════════════════════════════════════════ */
+.navegadores-franja {
+    display: flex;
+    gap: 10px;
+    /* En pantallas angostas la franja se desplaza en horizontal en lugar de
+       apilarse: mantiene la altura baja y evita depender de un carrusel. */
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    padding-bottom: 6px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.14) transparent;
+}
+
+.navegadores-franja::-webkit-scrollbar {
+    height: 5px;
+}
+
+.navegadores-franja::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.navegadores-franja::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.14);
+    border-radius: 999px;
+}
+
+.navegador {
+    /* Crecen para repartirse el ancho disponible, pero nunca se encogen:
+       cuando no entran, la franja pasa a desplazarse. */
+    flex: 1 0 auto;
+    min-width: 132px;
+    scroll-snap-align: start;
+    display: flex;
+    /* Permite que la franja de "El tuyo" baje a su propia línea a todo el ancho */
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    /* Sin separación entre líneas: la de la franja la fija su propio margen */
+    gap: 0 9px;
+    padding: 10px 14px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 8px;
+    opacity: 0.75;
+    filter: grayscale(0.85);
+    /* No son enlaces: se evita el cursor de texto sobre el nombre */
+    cursor: default;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Sin desplazamiento ni sombra al pasar el mouse: el overflow-x de la franja
+   recorta todo lo que se salga de su caja, así que ambos efectos quedaban
+   cortados por arriba. El realce se resuelve solo con color y borde. */
+.navegador:hover {
+    opacity: 1;
+    filter: grayscale(0);
+    background: var(--surface-hover);
+    border-color: rgba(255, 255, 255, 0.18);
+}
+
+/* Navegador desde el que se está visitando la página: se distingue con el
+   mismo lenguaje que el hover (borde y color plenos), no con el acento rojo. */
+.navegador.is-actual {
+    opacity: 1;
+    filter: grayscale(0);
+    background: var(--surface-hover);
+    border-color: rgba(255, 255, 255, 0.35);
+    /* Sin padding lateral: así el área de contenido llega hasta los bordes
+       y la franja inferior puede ocuparlos por completo. */
+    padding: 10px 0;
+}
+
+/* Franja inferior a todo el ancho de la tarjeta: se lee como un borde
+   inferior engrosado que contiene al texto.
+
+   Los márgenes laterales negativos parecen redundantes, porque .is-actual ya
+   anula el padding lateral y la franja llegaría a los bordes igual. No lo son:
+   como las tarjetas son `flex: 1 0 auto`, su ancho base se calcula a partir
+   del contenido, y sin esos -14px el chip ensancharía 14px la tarjeta marcada
+   respecto de las demás. El margen inferior compensa el padding vertical. */
+.navegador-chip {
+    flex-basis: 100%;
+    margin: 9px -14px -10px;
+    padding: 4px 14px 3px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 10px;
+    font-weight: 700;
+    color: #8f8f8f;
+    background: rgb(0 0 0 / 40%);
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+    /* 7px = los 8px de la tarjeta menos su borde de 1px */
+    border-radius: 0 0 7px 7px;
+    white-space: nowrap;
+}
+
+.navegador img {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    object-fit: contain;
+}
+
+/* Solo el nombre del navegador: se excluye la franja inferior, que es también
+   un span y de otro modo heredaría de acá tamaño, peso y color. Un selector de
+   tipo (.navegador span) pesa más que una clase suelta (.navegador-chip), así
+   que sin esta exclusión ganaría siempre, estuviera donde estuviera. */
+.navegador span:not(.navegador-chip) {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--text-strong);
+    white-space: nowrap;
+}
+
+/* ═══════════════════════════════════════════════════════════
    Instalación paso a paso
    ═══════════════════════════════════════════════════════════ */
 .pasos {
@@ -481,6 +597,12 @@ code {
     border: 1px solid rgba(239, 68, 68, 0.22);
     border-left: 3px solid rgba(239, 68, 68, 0.6);
     border-radius: 6px;
+}
+
+/* Variante para cuando el callout precede al contenido en vez de seguirlo */
+.callout-top {
+    margin-top: 0;
+    margin-bottom: 18px;
 }
 
 .callout-icon {
