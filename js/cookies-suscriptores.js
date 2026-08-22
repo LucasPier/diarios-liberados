@@ -53,8 +53,8 @@ var COOKIE_RENOVACION_MINUTOS = globalThis.COOKIE_RENOVACION_MINUTOS || 1;
 var COOKIES_SUSCRIPTORES = globalThis.COOKIES_SUSCRIPTORES || [
     {
         id: "clarin",
-        dominios: ["clarin.com"],
-        hosts: ["clarin.com", "www.clarin.com", "elle.clarin.com"],
+        dominios: ["clarin.com", "ole.com.ar"],
+        hosts: ["clarin.com", "www.clarin.com", "elle.clarin.com", "ole.com.ar", "www.ole.com.ar"],
         cookies: [
             { nombre: "statusSus", valor: "1" },    // Estado de suscripción (1 = suscriptor activo)
             { nombre: "susTemp", valor: "true" },   // Suscripción temporal (true = acceso habilitado)

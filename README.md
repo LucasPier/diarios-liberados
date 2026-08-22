@@ -322,7 +322,7 @@ Una extensión compatible con múltiples navegadores (Chrome, Edge, Brave, Opera
 
 ### El Cronista
 
-✅ Permite el acceso a notas para suscriptores (members)
+✅ Permite el acceso a notas y contenidos para suscriptores (members)
 
 ✅ Se quitan las publicidades de todo el sitio
 
@@ -346,7 +346,7 @@ Una extensión compatible con múltiples navegadores (Chrome, Edge, Brave, Opera
 
 ### Olé
 
-ℹ️ El medio no requiere suscripción para leer sus notas
+✅ Permite el acceso a notas para suscriptores
 
 ✅ Se quitan las publicidades de todo el sitio
 
