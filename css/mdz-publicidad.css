@@ -12,8 +12,6 @@
 }
 
 /* Mejoras de distribución UI */
-
-
 .widget-grid__row,
 .container.section-detail>.gap-x-8,
 .lg\:container .flex-col.gap-x-6.lg\:flex-row{
@@ -28,13 +26,6 @@ body.radio-mdz .lg\:w-4\/12:has(div>.banner) {
     display: none !important;
 }
 
-@media (min-width: 640px) {
-    .md\:after\:content-\[\'\'\]:last-of-type::after,
-    .widget-grid__region.lg\:w-8\/12:not(:last-child):after {
-        display: none !important;
-    }
-}
-
 body .lg\:w-8\/12 {
     width: 100% !important;
     max-width: 760px !important;
@@ -42,4 +33,16 @@ body .lg\:w-8\/12 {
 
 p:has(#mdz-gamesnacks) {
     width: 100% !important;
+}
+
+@media (min-width: 640px) {
+    .md\:after\:content-\[\'\'\]:last-of-type::after,
+    .widget-grid__region.lg\:w-8\/12:not(:last-child):after {
+        display: none !important;
+    }
+}
+
+/* Fix bug headear sticky que no funciona */
+main[role="main"] > div:has(header.main-header.sticky) {
+    display: initial !important;
 }
