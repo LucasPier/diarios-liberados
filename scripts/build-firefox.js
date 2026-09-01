@@ -119,6 +119,13 @@ const ARCHIVOS = ["sw.js", "rules.json", "popup.html"];
 const DIRECTORIOS = ["js", "css", "imagenes"];
 
 // Rutas relativas al repo que NO van al paquete aunque vivan dentro de un directorio incluido.
+//
+// Excluir de acá hay que hacerlo mirando QUIÉN REFERENCIA el archivo, no por su nombre. Ya pasó
+// con `imagenes/lucas.webp`: parecía material de la landing, la usaba el popup desde un
+// `background: url()` de popup.css, y en el paquete quedó la foto rota. Hoy vuelve a estar
+// excluida porque el popup dejó de usarla —la landing sí la usa— y son 232 KB sobre un paquete
+// de 300. Si un archivo excluido vuelve a hacer falta, la verificación de referencias del final
+// corta el build en vez de dejar pasar el hueco.
 const EXCLUIDOS = new Set([
     path.join("js", "landing.js"),
     path.join("css", "landing.css"),
@@ -401,6 +408,59 @@ function generarUpdates(rutaXpi) {
     return { destino, version, hash };
 }
 
+/**
+ * Busca referencias a archivos locales que no existan dentro del paquete.
+ *
+ * POR QUÉ HACE FALTA
+ * Verificar sólo lo que el manifest declara no alcanza: deja afuera todo lo que se referencia
+ * desde el CSS y el HTML. Un `background: url(../imagenes/algo.png)` que no llegó al paquete no
+ * rompe nada visible —la extensión carga, el popup abre— y el agujero recién aparece cuando
+ * alguien mira esa parte de la interfaz. Ya pasó una vez con la foto del footer del popup.
+ *
+ * Cubre: `url()` de los CSS, `src`/`href` de los HTML, y los iconos y rutas del manifest.
+ */
+function referenciasRotas() {
+    const rotas = [];
+
+    const revisar = (origen, referencia, resueltoDesde) => {
+        if (/^(https?:|data:|moz-extension:|chrome-extension:|#|mailto:)/i.test(referencia)) return;
+        const limpio = referencia.split("?")[0].split("#")[0];
+        if (!limpio) return;
+
+        const destino = limpio.startsWith("/")
+            ? path.join(DESTINO, limpio)
+            : path.resolve(path.dirname(path.join(DESTINO, resueltoDesde)), limpio);
+
+        if (!fs.existsSync(destino)) {
+            const rel = path.relative(DESTINO, destino).split(path.sep).join("/");
+            const enRepo = fs.existsSync(path.join(RAIZ, rel)) ? " (existe en el repo: ¿está en EXCLUIDOS?)" : "";
+            rotas.push(`${origen} → ${referencia}   falta: ${rel}${enRepo}`);
+        }
+    };
+
+    for (const relativo of listarRelativos(DESTINO)) {
+        if (relativo.endsWith(".css")) {
+            const css = fs.readFileSync(path.join(DESTINO, relativo), "utf8");
+            for (const m of css.matchAll(/url\(\s*['"]?([^'")]+)['"]?\s*\)/gi)) {
+                revisar(relativo, m[1].trim(), relativo);
+            }
+        } else if (relativo.endsWith(".html")) {
+            const html = fs.readFileSync(path.join(DESTINO, relativo), "utf8");
+            for (const m of html.matchAll(/(?:src|href)\s*=\s*["']([^"']+)["']/gi)) {
+                revisar(relativo, m[1].trim(), relativo);
+            }
+        }
+    }
+
+    const manifest = JSON.parse(fs.readFileSync(path.join(DESTINO, "manifest.json"), "utf8"));
+    for (const ruta of Object.values(manifest.icons || {})) revisar("manifest.icons", ruta, "manifest.json");
+    for (const ruta of Object.values(manifest.action?.default_icon || {})) revisar("manifest.action.default_icon", ruta, "manifest.json");
+    if (manifest.action?.default_popup) revisar("manifest.action.default_popup", manifest.action.default_popup, "manifest.json");
+    for (const r of manifest.declarative_net_request?.rule_resources || []) revisar("manifest.rule_resources", r.path, "manifest.json");
+
+    return rotas;
+}
+
 function contarArchivos(dir) {
     let total = 0;
     for (const entrada of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -472,7 +532,14 @@ function main() {
         process.exit(1);
     }
 
-    console.log("\nOK: todos los scripts y recursos declarados están en el paquete.");
+    const rotas = referenciasRotas();
+    if (rotas.length) {
+        console.error("\nREFERENCIAS ROTAS dentro del paquete:");
+        for (const r of rotas) console.error(`  - ${r}`);
+        process.exit(1);
+    }
+
+    console.log("\nOK: scripts, recursos declarados y referencias de CSS/HTML resuelven en el paquete.");
 
     if (process.argv.includes("--xpi")) {
         const { destino, cantidad } = empaquetarXpi(manifest.version);
