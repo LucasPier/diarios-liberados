@@ -21,6 +21,9 @@
  *     node scripts/build-firefox.js --xpi              además empaqueta el .xpi
  *     node scripts/build-firefox.js --updates <xpi>    escribe updates.json desde el .xpi FIRMADO
  *
+ *     --version 1.5.0.3   pisa la versión sólo para esta corrida, sin tocar manifest.json.
+ *                         Para firmar builds de prueba sin quemar números públicos en AMO.
+ *
  * El resultado se carga en about:debugging#/runtime/this-firefox → "Cargar complemento temporal",
  * eligiendo `firefox/manifest.json`. Esa instalación **se pierde al cerrar Firefox**: es sólo para
  * desarrollo. Para tener la extensión instalada de verdad hay dos caminos, y los dos parten del
@@ -69,6 +72,42 @@ const urlXpi = (version) =>
 // Archivo de actualización que consume Firefox, servido por GitHub Pages desde la raíz del repo.
 const ARCHIVO_UPDATES = "updates.json";
 
+// Formato de versión que exige el addons-linter en MV3: de 1 a 4 números separados por puntos, de
+// hasta 9 dígitos, sin ceros a la izquierda y SIN LETRAS. Los sufijos tipo "1.5.1b1" o "1.5.1pre"
+// sólo se toleran en MV2; acá los rechaza con VERSION_FORMAT_INVALID. Se valida local para no
+// enterarse recién cuando AMO devuelve el error.
+const VERSION_VALIDA = /^(0|[1-9][0-9]{0,8})(\.(0|[1-9][0-9]{0,8})){0,3}$/;
+
+/**
+ * Versión con la que se arma el paquete. Por defecto la de `manifest.json`.
+ *
+ * `--version 1.5.0.3` la pisa sólo para esta corrida, sin tocar el archivo versionado. Sirve para
+ * firmar builds de prueba: AMO **quema el número apenas lo subís** —borrar la versión no lo
+ * libera, contesta "was uploaded before and deleted"— así que probar con números públicos deja
+ * huecos en los releases del repo.
+ *
+ * La convención es usar un cuarto componente sobre la última pública: si la próxima pública va a
+ * ser 1.5.1, las pruebas van 1.5.0.1, 1.5.0.2, … Firefox ordena 1.5.0 < 1.5.0.1 < 1.5.1, así que
+ * cada prueba actualiza a la anterior y la pública actualiza a todas.
+ */
+function versionDeEstaCorrida(manifest) {
+    const indice = process.argv.indexOf("--version");
+    if (indice === -1) return manifest.version;
+
+    const pedida = process.argv[indice + 1];
+    if (!pedida || pedida.startsWith("--")) {
+        throw new Error("Falta el número: node scripts/build-firefox.js --xpi --version 1.5.0.3");
+    }
+    if (!VERSION_VALIDA.test(pedida)) {
+        throw new Error(
+            `"${pedida}" no es una versión válida para MV3.\n` +
+            `  De 1 a 4 números separados por puntos, sin letras y sin ceros a la izquierda.\n` +
+            `  Ejemplos válidos: 1.5.1 · 1.5.0.3 · 1.5.0.20260901`
+        );
+    }
+    return pedida;
+}
+
 /**
  * Qué entra al paquete.
  *
@@ -93,10 +132,15 @@ const EXCLUIDOS = new Set([
  * Reconstruye el objeto clave por clave en vez de mutarlo para que `browser_specific_settings`
  * quede junto a `manifest_version` y el diff entre los dos manifests siga siendo legible.
  */
-function manifestFirefox(original) {
+function manifestFirefox(original, version) {
     const salida = {};
 
     for (const [clave, valor] of Object.entries(original)) {
+        if (clave === "version") {
+            salida.version = version;
+            continue;
+        }
+
         if (clave === "background") {
             // Firefox: event page. El catálogo de cookies entra por el array `scripts` porque
             // importScripts() no existe fuera de un service worker (sw.js lo guarda con typeof).
@@ -328,7 +372,7 @@ function generarUpdates(rutaXpi) {
         throw new Error(`No existe "${rutaXpi}".`);
     }
 
-    const version = JSON.parse(fs.readFileSync(path.join(RAIZ, "manifest.json"), "utf8")).version;
+    const version = versionDeEstaCorrida(JSON.parse(fs.readFileSync(path.join(RAIZ, "manifest.json"), "utf8")));
     const hash = crypto.createHash("sha256").update(fs.readFileSync(rutaXpi)).digest("hex");
 
     const updates = {
@@ -395,7 +439,7 @@ function main() {
     for (const archivo of ARCHIVOS) copiar(archivo);
     for (const dir of DIRECTORIOS) copiar(dir);
 
-    const manifest = manifestFirefox(original);
+    const manifest = manifestFirefox(original, versionDeEstaCorrida(original));
     fs.writeFileSync(
         path.join(DESTINO, "manifest.json"),
         JSON.stringify(manifest, null, 4) + "\n",
