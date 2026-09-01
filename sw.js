@@ -2,10 +2,16 @@
 // Expone COOKIE_TTL_MINUTOS, COOKIE_RENOVACION_MINUTOS, COOKIES_SUSCRIPTORES y valorCookie().
 // Va en try/catch por el mismo motivo que la guarda de apisDeCookiesDisponibles(): si el
 // catálogo no carga, el heartbeat se desactiva solo pero las reglas de red siguen andando.
-try {
-    importScripts("/js/cookies-suscriptores.js");
-} catch (e) {
-    console.error("No se pudo cargar el catálogo de cookies de suscriptores:", e);
+//
+// El typeof es por Firefox: allá el background es una event page (contexto DOM) y no un service
+// worker, así que importScripts ni existe —es de WorkerGlobalScope, no de Window—. En ese motor
+// el catálogo lo carga el array background.scripts del manifest, antes que este archivo.
+if (typeof importScripts === "function") {
+    try {
+        importScripts("/js/cookies-suscriptores.js");
+    } catch (e) {
+        console.error("No se pudo cargar el catálogo de cookies de suscriptores:", e);
+    }
 }
 
 const BASE_DOMAINS = [
