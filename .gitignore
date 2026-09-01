@@ -5,3 +5,5 @@ _metadata/
 .agents/
 notas.md
 *.stackdump
+AGENTS.md
+CLAUDE.md
