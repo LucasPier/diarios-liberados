@@ -822,6 +822,11 @@ const COOKIE_ALARMA = "renovar-cookies-suscriptores";
 // dentro de una misma instancia.
 let ultimaRenovacionCookies = 0;
 
+// Cookie stores que alcanzó el último recorrido. Vive en memoria a propósito: si el background se
+// suspende y vuelve, arranca vacío y la primera pestaña fuerza una renovación, que es justo lo que
+// conviene después de despertar.
+let storesAtendidos = new Set();
+
 async function leerOverridesCookies() {
     try {
         const { cookie_overrides } = await chrome.storage.local.get({ cookie_overrides: {} });
@@ -832,13 +837,54 @@ async function leerOverridesCookies() {
 }
 
 /**
+ * Cookie stores sobre los que trabaja el heartbeat.
+ *
+ * EL PROBLEMA
+ * Sin `storeId`, chrome.cookies.set escribe en el store del contexto que la llama, y el del
+ * background es siempre el default. Eso dejaba afuera dos casos reales: los contenedores de
+ * Firefox (Multi-Account Containers) y las ventanas privadas o de incógnito, que tienen store
+ * propio. Ahí el heartbeat no llegaba nunca y la cookie recién aparecía cuando cookies-runtime.js
+ * la escribía desde la pestaña — o sea, DESPUÉS de la primera request de navegación, que es
+ * justo la que el heartbeat existe para cubrir. Verificado en Firefox: en un contenedor limpio
+ * esa primera request sale sin las cookies; en el default, con ellas.
+ *
+ * POR QUÉ NO ES INVASIVO
+ * Escribir en todos los stores no cruza datos entre contenedores: son cookies nuestras, con un
+ * valor fijo del catálogo, no credenciales del usuario. Las reales las sigue protegiendo
+ * preservarExistente, que ahora también se evalúa por store.
+ *
+ * EL COSTO
+ * getAllCookieStores() devuelve los stores existentes en el momento, así que las operaciones
+ * crecen con lo que el usuario tenga abierto y no con todos los contenedores que haya creado.
+ * Si sólo existe el default —el caso de la enorme mayoría— el comportamiento es idéntico al de
+ * antes de este cambio.
+ */
+async function storesDeCookies() {
+    try {
+        const stores = await chrome.cookies.getAllCookieStores();
+        const ids = stores.map(s => s.id).filter(Boolean);
+        return ids.length ? ids : [null];
+    } catch {
+        // Sin la API disponible se opera sobre el store por defecto, como antes.
+        return [null];
+    }
+}
+
+/** Agrega storeId al pedido sólo si hay uno: pasarlo en undefined no es lo mismo que omitirlo. */
+function conStore(pedido, storeId) {
+    return storeId ? { ...pedido, storeId } : pedido;
+}
+
+/**
  * ¿La cookie es nuestra? Si está marcada preservarExistente y ya hay una con un valor distinto
  * del que escribiríamos, es la credencial real del usuario: ni la pisamos ni la borramos.
+ *
+ * Se evalúa por store: el usuario puede ser suscriptor real en un contenedor y no en otro.
  */
-async function esCookiePropia(url, cookie) {
+async function esCookiePropia(url, cookie, storeId) {
     if (!cookie.preservarExistente) return true;
     try {
-        const actual = await chrome.cookies.get({ url, name: cookie.nombre });
+        const actual = await chrome.cookies.get(conStore({ url, name: cookie.nombre }, storeId));
         return !actual || actual.value === cookie.valor;
     } catch {
         return false;
@@ -846,32 +892,40 @@ async function esCookiePropia(url, cookie) {
 }
 
 /**
- * Recorre el catálogo aplicando `accion` a cada par (url, cookie) que nos pertenece.
+ * Recorre el catálogo aplicando `accion` a cada terna (url, cookie, store) que nos pertenece.
  *
- * Una tarea que falla no aborta al resto: cada host y cada cookie son independientes, y perder
- * una no tiene por qué costar las otras 165. El detalle se reporta por nombre porque
+ * Una tarea que falla no aborta al resto: cada store, cada host y cada cookie son independientes,
+ * y perder uno no tiene por qué costar los demás. El detalle se reporta por nombre porque
  * chrome.cookies.set valida el valor más estricto que document.cookie (la coma de
  * ProductoPremiumId, por ejemplo): si alguna cookie del catálogo no le gusta, tiene que
  * aparecer identificada en la consola del service worker y no como un número.
+ *
+ * Un store puede fallar entero y es esperable: si la extensión no está habilitada en ventanas
+ * privadas, su store rechaza la escritura. Por eso tampoco aborta nada.
  */
 async function recorrerCookiesSuscriptores(accion) {
     const overrides = await leerOverridesCookies();
+    const stores = await storesDeCookies();
     const tareas = [];
     const fallidas = [];
+
+    storesAtendidos = new Set(stores.filter(Boolean));
 
     for (const grupo of COOKIES_SUSCRIPTORES) {
         const valores = overrides[grupo.id];
         for (const host of grupo.hosts) {
             const url = `https://${host}/`;
             for (const cookie of grupo.cookies) {
-                tareas.push((async () => {
-                    try {
-                        if (!await esCookiePropia(url, cookie)) return;
-                        await accion(url, cookie, valores);
-                    } catch (e) {
-                        fallidas.push(`${host}/${cookie.nombre}: ${e?.message || e}`);
-                    }
-                })());
+                for (const storeId of stores) {
+                    tareas.push((async () => {
+                        try {
+                            if (!await esCookiePropia(url, cookie, storeId)) return;
+                            await accion(url, cookie, valores, storeId);
+                        } catch (e) {
+                            fallidas.push(`${host}/${cookie.nombre}: ${e?.message || e}`);
+                        }
+                    })());
+                }
             }
         }
     }
@@ -894,13 +948,19 @@ async function renovarCookies() {
     const expirationDate = Math.floor(Date.now() / 1000) + COOKIE_TTL_MINUTOS * 60;
 
     // Sin atributo `domain`: quedan host-only, igual que cuando las escribía document.cookie.
-    await recorrerCookiesSuscriptores((url, cookie, valores) => chrome.cookies.set({
+    //
+    // sameSite va explícito y no por default: Firefox cambió el suyo en la 140 (de no_restriction
+    // a unspecified), así que omitirlo da comportamiento distinto según la versión. "lax" replica
+    // lo que ya hacía document.cookie —y lo que Chrome venía aplicando por su default— y es lo que
+    // necesitamos: que la cookie viaje en la navegación top-level, que es la request que importa.
+    await recorrerCookiesSuscriptores((url, cookie, valores, storeId) => chrome.cookies.set(conStore({
         url,
         name: cookie.nombre,
         value: valorCookie(cookie, valores),
         path: "/",
+        sameSite: "lax",
         expirationDate,
-    }));
+    }, storeId)));
 }
 
 /**
@@ -910,10 +970,10 @@ async function renovarCookies() {
  */
 async function borrarCookiesSuscriptores() {
     ultimaRenovacionCookies = 0;
-    const borradas = await recorrerCookiesSuscriptores((url, cookie) => chrome.cookies.remove({
+    const borradas = await recorrerCookiesSuscriptores((url, cookie, valores, storeId) => chrome.cookies.remove(conStore({
         url,
         name: cookie.nombre,
-    }));
+    }, storeId)));
     console.log(`Cookies de suscriptores eliminadas (${borradas} operaciones).`);
 }
 
@@ -966,6 +1026,30 @@ if (apisDeCookiesDisponibles()) {
     chrome.alarms.onAlarm.addListener(alarma => {
         if (alarma.name === COOKIE_ALARMA) renovarCookies();
     });
+
+    // Una pestaña en un cookie store que todavía no tocamos: hay que escribir las cookies YA, sin
+    // esperar el próximo tick de la alarma.
+    //
+    // El heartbeat sólo alcanza los stores que existían cuando corrió, y Firefox reporta como
+    // existentes únicamente a los contenedores CON pestañas abiertas: un contenedor recién abierto
+    // no estuvo en ningún ciclo previo. Si el usuario navega a un diario dentro del minuto que
+    // falta para el próximo tick, la primera request sale sin cookies — que es exactamente el
+    // agujero que esto cierra. En Chrome cubre el equivalente: la primera ventana de incógnito.
+    //
+    // El store se marca como atendido antes de renovar para no disparar un ciclo por cada pestaña
+    // que se abra en el mismo contexto.
+    if (chrome.tabs && chrome.tabs.onCreated) {
+        chrome.tabs.onCreated.addListener(tab => {
+            // Firefox identifica el contenedor en cookieStoreId; Chrome no expone esa propiedad y
+            // marca el incógnito con un booleano.
+            const store = tab.cookieStoreId || (tab.incognito ? "__incognito__" : null);
+            if (!store || storesAtendidos.has(store)) return;
+
+            storesAtendidos.add(store);
+            ultimaRenovacionCookies = 0;   // saltea el guard antiduplicados: esto es urgente
+            renovarCookies();
+        });
+    }
 
     // onInstalled cubre la migración: pisa las cookies de 90 días de versiones anteriores con el
     // TTL corto (mismo nombre, host y path = misma cookie), sin necesidad de visitar los diarios.
