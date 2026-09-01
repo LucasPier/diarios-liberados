@@ -151,6 +151,21 @@ async function actualizarBannerRecarga() {
     }
 }
 
+// Los links del popup se abren en una pestaña del navegador, no dentro del popup.
+//
+// En escritorio, target="_blank" ya hace eso. Pero en Firefox para Android el popup es una vista
+// embebida dentro de la app: la navegación ocurre ADENTRO del panel y el usuario queda atrapado
+// en un navegador sin barra de direcciones ni forma de volver. tabs.create() se comporta igual en
+// las dos plataformas, así que no hace falta preguntar en cuál estamos.
+document.addEventListener('click', (evento) => {
+    const enlace = evento.target.closest('a[href^="http"]');
+    if (!enlace) return;
+
+    evento.preventDefault();
+    chrome.tabs.create({ url: enlace.href });
+    window.close();
+});
+
 document.addEventListener('DOMContentLoaded', async () => {
 
     // ── Versión ──────────────────────────────────────────────────────────────
