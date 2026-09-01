@@ -55,6 +55,10 @@ function iniciar() {
             urlImagenSocios2 = document.documentElement.dataset.dlSociosUrl2 || '';
 
         window.addEventListener("message", (event) => {
+            // Sólo mensajes de esta misma ventana. Este script vive en el mundo MAIN, así que
+            // cualquier script del sitio puede emitir un postMessage con este mismo type y
+            // hacernos usar la URL que quiera.
+            if (event.source !== window) return;
             if (event.data && event.data.type === "FROM_EXT") {
                 urlImagenSocios = event.data.url || urlImagenSocios;
                 urlImagenSocios2 = event.data.url2 || urlImagenSocios2;
@@ -78,8 +82,41 @@ function iniciar() {
             const hayBanner = contenedor && contenedor.querySelector('.p12-partners-top-bar .svg-container') !== null;
             if (!hayBanner && contenedor != null) {
 
+                // El banner se arma nodo por nodo y no con innerHTML: urlImagenSocios puede llegar
+                // por postMessage, y en el mundo MAIN cualquier script del sitio puede mandar uno.
+                // Interpolarla en una plantilla de HTML era una inyección esperando ocurrir.
                 const banner = document.createElement("div");
-                banner.innerHTML = `<div class="p12-partners-top-bar " style="background-image: url(&quot;/pf/resources/p12/Partners-Top-Bar/Fondo.jpg?d=91&quot;);"><div class="p12-partners-top-bar--inner"><div class="left-col"><span class="text social-text">Exclusivo para</span><div class="svg-container"><img src="${urlImagenSocios}" width="90" height="22" alt="SOCI@S"></div></div></div></div>`;
+
+                const barra = document.createElement("div");
+                barra.className = "p12-partners-top-bar";
+                barra.style.backgroundImage = 'url("/pf/resources/p12/Partners-Top-Bar/Fondo.jpg?d=91")';
+
+                const interior = document.createElement("div");
+                interior.className = "p12-partners-top-bar--inner";
+
+                const columna = document.createElement("div");
+                columna.className = "left-col";
+
+                const leyenda = document.createElement("span");
+                leyenda.className = "text social-text";
+                leyenda.textContent = "Exclusivo para";
+
+                const contenedorSvg = document.createElement("div");
+                contenedorSvg.className = "svg-container";
+
+                const imagen = document.createElement("img");
+                imagen.src = urlImagenSocios;
+                imagen.width = 90;
+                imagen.height = 22;
+                imagen.alt = "SOCI@S";
+
+                contenedorSvg.appendChild(imagen);
+                columna.appendChild(leyenda);
+                columna.appendChild(contenedorSvg);
+                interior.appendChild(columna);
+                barra.appendChild(interior);
+                banner.appendChild(barra);
+
                 contenedor.insertBefore(banner, contenedor.children[0]);
 
                 const verificarNode = (node) => {
