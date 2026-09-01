@@ -8,7 +8,16 @@
 }
 
 body {
+    /* 410px es el ancho del panel en escritorio. El max-width es por Firefox para Android, donde el
+       popup ocupa la pantalla completa y un teléfono puede ser más angosto que 410px.
+       Tiene que ser 100% y NO 100vw: vw incluye el ancho de la barra de scroll, y como el popup se
+       dimensiona a partir de su contenido, eso arma un bucle —body de 410 → aparece la barra →
+       el área queda en ~395 → desborda → el navegador reajusta la ventana → vuelve a empezar— que
+       se ve como un popup temblando de ancho al abrirse y cada vez que cambia la altura del
+       contenido. El porcentaje se resuelve contra el bloque contenedor, sin la barra, y no
+       participa del cálculo del ancho preferido. */
     width: 410px;
+    max-width: 100%;
     margin: 0;
     padding: 0;
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
