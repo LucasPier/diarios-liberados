@@ -9,6 +9,7 @@
  *     y mostrar el banner de recarga si es necesario.
  *  4. Disparar la recarga de esas tabs al presionar "Recargar ahora".
  *  5. Abrir la página de la extensión para comprobar si hay una versión nueva.
+ *  6. Detectar host permissions no otorgados y ofrecer pedirlos.
  */
 
 // Página de presentación de la extensión (GitHub Pages)
@@ -39,6 +40,72 @@ function obtenerVersionExtension() {
     } catch {
         return null;
     }
+}
+
+// ── Permisos de host ────────────────────────────────────────────────────────
+//
+// EL PROBLEMA (Firefox)
+// En MV3 los host permissions se otorgan al instalar, pero el usuario puede revocarlos cuando
+// quiera desde about:addons, y los que se AGREGAN en una actualización no se otorgan solos
+// (bug 1893232 de Mozilla, todavía abierto). O sea: cada vez que sumamos un diario nuevo, quien
+// ya tenía la extensión no lo ve funcionar. Y cuando falta el permiso no hay ningún error: los
+// content scripts simplemente no se inyectan y las reglas modifyHeaders se ignoran en silencio.
+//
+// En Chrome esto casi nunca se dispara, porque los permisos declarados se conceden al instalar.
+// Si no falta ninguno el banner no se muestra, así que el popup queda igual que siempre.
+//
+// La lista sale de host_permissions del manifest y no de una constante nueva: DOMINIOS_CUBIERTOS
+// ya duplica dominios y no hace falta una tercera lista que se desincronice.
+
+/** Orígenes pendientes de otorgar. Se calcula al abrir el popup. */
+let origenesFaltantes = [];
+
+/**
+ * Chequea uno por uno los orígenes declarados en el manifest.
+ * De a uno y no todos juntos porque permissions.contains() con varios orígenes devuelve un único
+ * booleano: diría que falta algo sin decir qué, y el pedido terminaría incluyendo los ya otorgados.
+ * @returns {Promise<string[]>}
+ */
+async function calcularOrigenesFaltantes() {
+    if (!chrome.permissions) return [];
+
+    let declarados;
+    try {
+        declarados = chrome.runtime.getManifest().host_permissions || [];
+    } catch {
+        return [];
+    }
+
+    const resultados = await Promise.all(declarados.map(async (origen) => {
+        try {
+            return await chrome.permissions.contains({ origins: [origen] }) ? null : origen;
+        } catch {
+            // Origen que este navegador no sabe evaluar: no lo reportamos como faltante para no
+            // mostrar un banner que el usuario no puede resolver.
+            return null;
+        }
+    }));
+
+    return resultados.filter(Boolean);
+}
+
+/** Muestra u oculta el banner de permisos según lo que falte. */
+async function actualizarBannerPermisos() {
+    const wrapper = document.getElementById('permisos-banner-wrapper');
+    const textSpan = document.getElementById('permisos-banner-text');
+    if (!wrapper || !textSpan) return;
+
+    origenesFaltantes = await calcularOrigenesFaltantes();
+
+    if (origenesFaltantes.length === 0) {
+        wrapper.classList.remove('visible');
+        return;
+    }
+
+    textSpan.textContent = origenesFaltantes.length === 1
+        ? 'Falta el permiso de un sitio: ahí la extensión no se activa'
+        : `Faltan los permisos de ${origenesFaltantes.length} sitios: ahí la extensión no se activa`;
+    wrapper.classList.add('visible');
 }
 
 /** Verifica si una URL pertenece a alguno de los dominios cubiertos */
@@ -108,6 +175,30 @@ document.addEventListener('DOMContentLoaded', async () => {
             window.close();
         });
     }
+
+    // ── Permisos faltantes ───────────────────────────────────────────────────
+    const btnPermisos = document.getElementById('btn-permisos');
+    if (btnPermisos) {
+        btnPermisos.addEventListener('click', () => {
+            if (!origenesFaltantes.length) return;
+
+            // request() sale de forma SÍNCRONA desde el click: si se interpone un await, el
+            // navegador ya no lo considera respuesta a un gesto del usuario y descarta el pedido.
+            // Por eso origenesFaltantes se calcula al abrir el popup y no acá.
+            chrome.permissions.request({ origins: origenesFaltantes })
+                .catch(() => { /* el usuario canceló o el navegador rechazó el pedido */ });
+
+            // Firefox ancla su diálogo de permisos al mismo botón de la barra del que cuelga este
+            // popup, así que uno tapa al otro. Cerramos para despejarlo.
+            //
+            // No se espera la respuesta del pedido: al cerrar, este documento deja de existir y no
+            // habría a quién avisarle. Tampoco hace falta, porque el banner se recalcula solo la
+            // próxima vez que se abra el popup.
+            window.close();
+        });
+    }
+
+    actualizarBannerPermisos();
 
     // ── Leer config actual y reflejar en toggles ──────────────────────────────
     const cfg = await chrome.storage.sync.get({

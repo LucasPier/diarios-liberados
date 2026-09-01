@@ -97,6 +97,64 @@ main {
 }
 
 /* Banner de recarga animado (wrapper colapsable) */
+/* Banner de permisos faltantes.
+   Comparte la mecánica de animación del banner de recarga (grid-template-rows 0fr -> 1fr, que
+   permite animar una altura desconocida) pero va en ámbar y no en rojo: son dos avisos distintos
+   y pueden estar visibles al mismo tiempo. */
+.permisos-banner-wrapper {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    transition: grid-template-rows 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.25s ease,
+                margin-bottom 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    margin-bottom: 0;
+}
+
+.permisos-banner-wrapper.visible {
+    grid-template-rows: 1fr;
+    opacity: 1;
+    margin-bottom: 12px;
+}
+
+.permisos-banner {
+    min-height: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    background: rgba(245, 158, 11, 0.08);
+    border: 1px solid rgba(245, 158, 11, 0.25);
+    border-radius: 7px;
+    font-size: 11px;
+    color: #fcd34d;
+}
+
+.permisos-banner svg {
+    flex-shrink: 0;
+    color: #f59e0b;
+}
+
+.btn-permisos {
+    flex-shrink: 0;
+    font-family: inherit;
+    font-size: 10.5px;
+    font-weight: 600;
+    color: #121318;
+    background: rgba(245, 158, 11, 0.85);
+    border: none;
+    border-radius: 5px;
+    padding: 4px 10px;
+    cursor: pointer;
+    transition: background 0.18s ease;
+    white-space: nowrap;
+}
+
+.btn-permisos:hover {
+    background: rgba(245, 158, 11, 1);
+}
+
 .reload-banner-wrapper {
     display: grid;
     grid-template-rows: 0fr;
