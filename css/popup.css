@@ -107,7 +107,10 @@ main {
 /* Banner de permisos faltantes.
    Comparte la mecánica de animación del banner de recarga (grid-template-rows 0fr -> 1fr, que
    permite animar una altura desconocida) pero va en ámbar y no en rojo: son dos avisos distintos
-   y pueden estar visibles al mismo tiempo. */
+   y pueden estar visibles al mismo tiempo.
+
+   La clase .visible es SÓLO la animación: un wrapper sin ella mide 0 de alto pero sigue ocupando
+   su lugar en el layout. Quien lo saca del flujo es el atributo hidden que pone js/popup.js. */
 .permisos-banner-wrapper {
     display: grid;
     grid-template-rows: 0fr;
@@ -160,6 +163,54 @@ main {
 
 .btn-permisos:hover {
     background: rgba(245, 158, 11, 1);
+}
+
+/* Aviso del límite de La Nación.
+   Misma mecánica y misma paleta ámbar que el banner de permisos, pero es informativo: no hay nada
+   que el usuario pueda hacer al respecto, así que no lleva botón y el texto ocupa todo el ancho. */
+.limite-banner-wrapper {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    transition: grid-template-rows 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.25s ease,
+                margin-bottom 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    margin-bottom: 0;
+}
+
+.limite-banner-wrapper.visible {
+    grid-template-rows: 1fr;
+    opacity: 1;
+    margin-bottom: 12px;
+}
+
+.limite-banner {
+    min-height: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    background: rgba(245, 158, 11, 0.08);
+    border: 1px solid rgba(245, 158, 11, 0.25);
+    border-radius: 7px;
+    font-size: 11px;
+    color: #fcd34d;
+}
+
+.limite-banner svg {
+    flex-shrink: 0;
+    color: #f59e0b;
+}
+
+.limite-banner span {
+    flex: 1;
+    line-height: 1.35;
+}
+
+.limite-banner strong {
+    font-weight: 700;
+    color: #fde68a;
 }
 
 .reload-banner-wrapper {
