@@ -1,30 +1,78 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-AR">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diarios Liberados — Mejorá tu lectura en los diarios argentinos</title>
     <meta name="description"
-        content="Extensión gratuita y de código abierto que mejora la experiencia de lectura en más de 50 portales de medios argentinos: desbloquea notas exclusivas, elimina publicidades y bloquea diálogos de notificaciones.">
+        content="Extensión gratuita que desbloquea notas de suscriptores, quita publicidades y bloquea notificaciones en más de 50 medios argentinos. Chrome, Firefox y Android.">
     <meta name="author" content="Lucas Pier">
     <meta name="theme-color" content="#121318">
+
+    <!-- El popup abre esta página con ?version=X.Y.Z, así que existen tantas URLs
+         distintas como versiones publicadas. El canonical las consolida en una. -->
+    <link rel="canonical" href="https://lucaspier.github.io/diarios-liberados/">
+    <meta name="robots" content="index, follow, max-image-preview:large">
 
     <link rel="icon" type="image/png" sizes="32x32" href="imagenes/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="imagenes/favicon-96x96.png">
     <link rel="apple-touch-icon" href="imagenes/favicon-144x144.png">
 
+    <!-- Open Graph. Las URLs van absolutas a propósito: los scrapers de las redes
+         y de los mensajeros no resuelven rutas relativas y dejarían la tarjeta sin
+         imagen. -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Diarios Liberados">
+    <meta property="og:site_name" content="Diarios Liberados">
+    <meta property="og:locale" content="es_AR">
+    <meta property="og:url" content="https://lucaspier.github.io/diarios-liberados/">
+    <meta property="og:title" content="Diarios Liberados — Mejorá tu lectura en los diarios argentinos">
     <meta property="og:description"
-        content="Mejorá la experiencia de lectura en más de 50 portales de medios argentinos.">
-    <meta property="og:image" content="imagenes/favicon-512x512.png">
+        content="Extensión gratuita que desbloquea notas de suscriptores, quita publicidades y bloquea notificaciones en más de 50 medios argentinos. Chrome, Firefox y Android.">
+    <meta property="og:image" content="https://lucaspier.github.io/diarios-liberados/imagenes/ogimage.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Diarios Liberados: extensión para leer los diarios argentinos sin publicidades ni muros de pago">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Diarios Liberados — Mejorá tu lectura en los diarios argentinos">
+    <meta name="twitter:description"
+        content="Extensión gratuita que desbloquea notas de suscriptores, quita publicidades y bloquea notificaciones en más de 50 medios argentinos.">
+    <meta name="twitter:image" content="https://lucaspier.github.io/diarios-liberados/imagenes/ogimage.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="css/landing.css">
+
+    <!-- Datos estructurados para los buscadores.
+         Sin `softwareVersion` a propósito: el número de versión vive únicamente en
+         manifest.json y acá quedaría desactualizado en cada release. -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Diarios Liberados",
+        "applicationCategory": "BrowserApplication",
+        "operatingSystem": "Windows, macOS, Linux, Android",
+        "url": "https://lucaspier.github.io/diarios-liberados/",
+        "image": "https://lucaspier.github.io/diarios-liberados/imagenes/ogimage.png",
+        "description": "Extensión gratuita y de código abierto que mejora la lectura en más de 50 portales de medios argentinos: desbloquea notas de suscriptores, quita publicidades y bloquea los diálogos de notificaciones. Disponible para navegadores basados en Chromium, para Firefox y para Firefox en Android.",
+        "inLanguage": "es-AR",
+        "isAccessibleForFree": true,
+        "author": {
+            "@type": "Person",
+            "name": "Lucas Pier"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "ARS"
+        },
+        "codeRepository": "https://github.com/LucasPier/diarios-liberados"
+    }
+    </script>
 </head>
 
 <body>
@@ -34,8 +82,8 @@
          ═══════════════════════════════════════════════════════ -->
     <header class="hero">
         <div class="wrap">
-            <img src="imagenes/lector.png" alt="" class="hero-logo">
-            <h1><img src="imagenes/favicon-96x96.png" alt="">Diarios Liberados</h1>
+            <img src="imagenes/lector.png" alt="" class="hero-logo" width="512" height="512" fetchpriority="high">
+            <h1><img src="imagenes/favicon-96x96.png" alt="" width="32" height="32">Diarios Liberados</h1>
 
             <p class="hero-desc">
                 Una extensión gratuita y de código abierto que mejora la experiencia de lectura en
@@ -154,39 +202,39 @@
                 <p class="section-lead">Se van agregando nuevos medios y funcionalidades con el paso del tiempo.</p>
 
                 <div class="portales-grid">
-                    <a class="portal-card" href="#medio-clarin" title="Ver qué hace la extensión en Clarín"><img src="imagenes/logos/clarin.svg" alt="Clarín"></a>
-                    <a class="portal-card" href="#medio-lanacion" title="Ver qué hace la extensión en La Nación"><img src="imagenes/logos/lanacion.svg" alt="La Nación"></a>
-                    <a class="portal-card" href="#medio-infobae" title="Ver qué hace la extensión en Infobae"><img src="imagenes/logos/infobae.svg" alt="Infobae"></a>
-                    <a class="portal-card" href="#medio-pagina12" title="Ver qué hace la extensión en Página/12"><img src="imagenes/logos/pagina12.svg" alt="Página/12"></a>
-                    <a class="portal-card" href="#medio-perfil" title="Ver qué hace la extensión en Perfil"><img src="imagenes/logos/perfil.svg" alt="Perfil"></a>
-                    <a class="portal-card" href="#medio-eldestape" title="Ver qué hace la extensión en El Destape"><img src="imagenes/logos/eldestape.svg" alt="El Destape"></a>
-                    <a class="portal-card" href="#medio-lacapital" title="Ver qué hace la extensión en La Capital"><img src="imagenes/logos/lacapital.svg" alt="La Capital"></a>
-                    <a class="portal-card" href="#medio-lavoz" title="Ver qué hace la extensión en La Voz del Interior"><img src="imagenes/logos/lavoz.svg" alt="La Voz del Interior"></a>
-                    <a class="portal-card" href="#medio-lagaceta" title="Ver qué hace la extensión en La Gaceta"><img src="imagenes/logos/lagaceta.svg" alt="La Gaceta"></a>
-                    <a class="portal-card" href="#medio-ellitoral" title="Ver qué hace la extensión en El Litoral"><img src="imagenes/logos/ellitoral.svg" alt="El Litoral"></a>
-                    <a class="portal-card" href="#medio-losandes" title="Ver qué hace la extensión en Los Andes"><img src="imagenes/logos/losandes.svg" alt="Los Andes"></a>
-                    <a class="portal-card" href="#medio-eldia" title="Ver qué hace la extensión en El Día"><img src="imagenes/logos/eldia.svg" alt="El Día"></a>
-                    <a class="portal-card" href="#medio-rionegro" title="Ver qué hace la extensión en Río Negro"><img src="imagenes/logos/rionegro.svg" alt="Río Negro"></a>
-                    <a class="portal-card" href="#medio-elonce" title="Ver qué hace la extensión en Elonce"><img src="imagenes/logos/elonce.svg" alt="Elonce"></a>
-                    <a class="portal-card" href="#medio-elciudadano" title="Ver qué hace la extensión en El Ciudadano"><img src="imagenes/logos/elciudadano.svg" alt="El Ciudadano"></a>
-                    <a class="portal-card" href="#medio-rosario3" title="Ver qué hace la extensión en Rosario3"><img src="imagenes/logos/rosario3.svg" alt="Rosario3"></a>
-                    <a class="portal-card" href="#medio-cadena3" title="Ver qué hace la extensión en Cadena 3"><img src="imagenes/logos/cadena3.svg" alt="Cadena 3"></a>
-                    <a class="portal-card" href="#medio-airedesantafe" title="Ver qué hace la extensión en Aire de Santa Fe"><img src="imagenes/logos/airedesantafe.svg" alt="Aire de Santa Fe"></a>
-                    <a class="portal-card" href="#medio-mdz" title="Ver qué hace la extensión en MDZ Online"><img src="imagenes/logos/mdz.svg" alt="MDZ Online"></a>
-                    <a class="portal-card" href="#medio-uno" title="Ver qué hace la extensión en Diario Uno"><img src="imagenes/logos/uno.svg" alt="Diario Uno"></a>
-                    <a class="portal-card" href="#medio-rosarioplus" title="Ver qué hace la extensión en Rosario Plus"><img src="imagenes/logos/rosarioplus.svg" alt="Rosario Plus"></a>
-                    <a class="portal-card" href="#medio-unoentrerios" title="Ver qué hace la extensión en Diario Uno Entre Ríos"><img src="imagenes/logos/unoentrerios.svg" alt="Diario Uno Entre Ríos"></a>
-                    <a class="portal-card" href="#medio-unosantafe" title="Ver qué hace la extensión en Diario Uno Santa Fe"><img src="imagenes/logos/unosantafe.svg" alt="Diario Uno Santa Fe"></a>
-                    <a class="portal-card" href="#medio-viapais" title="Ver qué hace la extensión en Vía País"><img src="imagenes/logos/viapais.svg" alt="Vía País"></a>
-                    <a class="portal-card" href="#medio-minutouno" title="Ver qué hace la extensión en Minuto Uno"><img src="imagenes/logos/minutouno.svg" alt="Minuto Uno"></a>
-                    <a class="portal-card" href="#medio-lpo" title="Ver qué hace la extensión en La Política Online"><img src="imagenes/logos/lpo.svg" alt="La Política Online"></a>
-                    <a class="portal-card" href="#medio-letrap" title="Ver qué hace la extensión en Letra P"><img src="imagenes/logos/letrap.svg" alt="Letra P"></a>
-                    <a class="portal-card" href="#medio-diariopopular" title="Ver qué hace la extensión en Diario Popular"><img src="imagenes/logos/diariopopular.svg" alt="Diario Popular"></a>
-                    <a class="portal-card" href="#medio-elcronista" title="Ver qué hace la extensión en El Cronista"><img src="imagenes/logos/elcronista.svg" alt="El Cronista"></a>
-                    <a class="portal-card" href="#medio-ambito" title="Ver qué hace la extensión en Ámbito"><img src="imagenes/logos/ambito.svg" alt="Ámbito"></a>
-                    <a class="portal-card" href="#medio-tn" title="Ver qué hace la extensión en TN"><img src="imagenes/logos/tn.svg" alt="TN"></a>
-                    <a class="portal-card" href="#medio-ole" title="Ver qué hace la extensión en Olé"><img src="imagenes/logos/ole.svg" alt="Olé"></a>
-                    <a class="portal-card" href="#medio-tycsports" title="Ver qué hace la extensión en TyC Sports"><img src="imagenes/logos/tycsports.svg" alt="TyC Sports"></a>
+                    <a class="portal-card" href="#medio-clarin" title="Ver qué hace la extensión en Clarín"><img src="imagenes/logos/clarin.svg" alt="Clarín" loading="lazy"></a>
+                    <a class="portal-card" href="#medio-lanacion" title="Ver qué hace la extensión en La Nación"><img src="imagenes/logos/lanacion.svg" alt="La Nación" loading="lazy"></a>
+                    <a class="portal-card" href="#medio-infobae" title="Ver qué hace la extensión en Infobae"><img src="imagenes/logos/infobae.svg" alt="Infobae" loading="lazy"></a>
+                    <a class="portal-card" href="#medio-pagina12" title="Ver qué hace la extensión en Página/12"><img src="imagenes/logos/pagina12.svg" alt="Página/12" loading="lazy"></a>
+                    <a class="portal-card" href="#medio-perfil" title="Ver qué hace la extensión en Perfil"><img src="imagenes/logos/perfil.svg" alt="Perfil" loading="lazy"></a>
+                    <a class="portal-card" href="#medio-eldestape" title="Ver qué hace la extensión en El Destape"><img src="imagenes/logos/eldestape.svg" alt="El Destape" loading="lazy"></a>
+                    <a class="portal-card" href="#medio-lacapital" title="Ver qué hace la extensión en La Capital"><img src="imagenes/logos/lacapital.svg" alt="La Capital" loading="lazy"></a>
+                    <a class="portal-card" href="#medio-lavoz" title="Ver qué hace la extensión en La Voz del Interior"><img src="imagenes/logos/lavoz.svg" alt="La Voz del Interior" loading="lazy"></a>
+                    <a class="portal-card" href="#medio-lagaceta" title="Ver qué hace la extensión en La Gaceta"><img src="imagenes/logos/lagaceta.svg" alt="La Gaceta" loading="lazy"></a>
+                    <a class="portal-card" href="#medio-ellitoral" title="Ver qué hace la extensión en El Litoral"><img src="imagenes/logos/ellitoral.svg" alt="El Litoral" loading="lazy"></a>
+                    <a class="portal-card" href="#medio-losandes" title="Ver qué hace la extensión en Los Andes"><img src="imagenes/logos/losandes.svg" alt="Los Andes" loading="lazy"></a>
+                    <a class="portal-card" href="#medio-eldia" title="Ver qué hace la extensión en El Día"><img src="imagenes/logos/eldia.svg" alt="El Día" loading="lazy"></a>
+                    <a class="portal-card" href="#medio-rionegro" title="Ver qué hace la extensión en Río Negro"><img src="imagenes/logos/rionegro.svg" alt="Río Negro" loading="lazy"></a>
+                    <a class="portal-card" href="#medio-elonce" title="Ver qué hace la extensión en Elonce"><img src="imagenes/logos/elonce.svg" alt="Elonce" loading="lazy"></a>
+                    <a class="portal-card" href="#medio-elciudadano" title="Ver qué hace la extensión en El Ciudadano"><img src="imagenes/logos/elciudadano.svg" alt="El Ciudadano" loading="lazy"></a>
+                    <a class="portal-card" href="#medio-rosario3" title="Ver qué hace la extensión en Rosario3"><img src="imagenes/logos/rosario3.svg" alt="Rosario3" loading="lazy"></a>
+                    <a class="portal-card" href="#medio-cadena3" title="Ver qué hace la extensión en Cadena 3"><img src="imagenes/logos/cadena3.svg" alt="Cadena 3" loading="lazy"></a>
+                    <a class="portal-card" href="#medio-airedesantafe" title="Ver qué hace la extensión en Aire de Santa Fe"><img src="imagenes/logos/airedesantafe.svg" alt="Aire de Santa Fe" loading="lazy"></a>
+                    <a class="portal-card" href="#medio-mdz" title="Ver qué hace la extensión en MDZ Online"><img src="imagenes/logos/mdz.svg" alt="MDZ Online" loading="lazy"></a>
+                    <a class="portal-card" href="#medio-uno" title="Ver qué hace la extensión en Diario Uno"><img src="imagenes/logos/uno.svg" alt="Diario Uno" loading="lazy"></a>
+                    <a class="portal-card" href="#medio-rosarioplus" title="Ver qué hace la extensión en Rosario Plus"><img src="imagenes/logos/rosarioplus.svg" alt="Rosario Plus" loading="lazy"></a>
+                    <a class="portal-card" href="#medio-unoentrerios" title="Ver qué hace la extensión en Diario Uno Entre Ríos"><img src="imagenes/logos/unoentrerios.svg" alt="Diario Uno Entre Ríos" loading="lazy"></a>
+                    <a class="portal-card" href="#medio-unosantafe" title="Ver qué hace la extensión en Diario Uno Santa Fe"><img src="imagenes/logos/unosantafe.svg" alt="Diario Uno Santa Fe" loading="lazy"></a>
+                    <a class="portal-card" href="#medio-viapais" title="Ver qué hace la extensión en Vía País"><img src="imagenes/logos/viapais.svg" alt="Vía País" loading="lazy"></a>
+                    <a class="portal-card" href="#medio-minutouno" title="Ver qué hace la extensión en Minuto Uno"><img src="imagenes/logos/minutouno.svg" alt="Minuto Uno" loading="lazy"></a>
+                    <a class="portal-card" href="#medio-lpo" title="Ver qué hace la extensión en La Política Online"><img src="imagenes/logos/lpo.svg" alt="La Política Online" loading="lazy"></a>
+                    <a class="portal-card" href="#medio-letrap" title="Ver qué hace la extensión en Letra P"><img src="imagenes/logos/letrap.svg" alt="Letra P" loading="lazy"></a>
+                    <a class="portal-card" href="#medio-diariopopular" title="Ver qué hace la extensión en Diario Popular"><img src="imagenes/logos/diariopopular.svg" alt="Diario Popular" loading="lazy"></a>
+                    <a class="portal-card" href="#medio-elcronista" title="Ver qué hace la extensión en El Cronista"><img src="imagenes/logos/elcronista.svg" alt="El Cronista" loading="lazy"></a>
+                    <a class="portal-card" href="#medio-ambito" title="Ver qué hace la extensión en Ámbito"><img src="imagenes/logos/ambito.svg" alt="Ámbito" loading="lazy"></a>
+                    <a class="portal-card" href="#medio-tn" title="Ver qué hace la extensión en TN"><img src="imagenes/logos/tn.svg" alt="TN" loading="lazy"></a>
+                    <a class="portal-card" href="#medio-ole" title="Ver qué hace la extensión en Olé"><img src="imagenes/logos/ole.svg" alt="Olé" loading="lazy"></a>
+                    <a class="portal-card" href="#medio-tycsports" title="Ver qué hace la extensión en TyC Sports"><img src="imagenes/logos/tycsports.svg" alt="TyC Sports" loading="lazy"></a>
                 </div>
 
                 <div class="otros">
@@ -234,15 +282,15 @@
         </section>
 
         <!-- ═══════════════════════════════════════════════════
-             Navegadores compatibles
+             Instalación — navegadores compatibles + pasos
              ═══════════════════════════════════════════════════ -->
-        <section id="navegadores">
+        <section id="instalacion">
             <div class="wrap">
-                <h2 class="section-title"><span class="badge-dot"></span> Compatible con estos navegadores</h2>
-                <p class="section-lead">Funciona en cualquier navegador basado en Chromium. Estos son los más
-                    usados.</p>
+                <h2 class="section-title"><span class="badge-dot"></span> Instalación paso a paso</h2>
+                <p class="section-lead">Elegí dónde la vas a usar y con qué navegador: abajo aparecen los pasos que te
+                    tocan a vos. No hace falta saber nada de programación y se hace una sola vez.</p>
 
-                <!-- Aviso para navegadores no compatibles: lo completa js/landing.js -->
+                <!-- Aviso contextual: lo completa js/landing.js según el navegador y la plataforma -->
                 <div class="callout callout-top" id="navegadores-aviso" hidden>
                     <span class="callout-icon" aria-hidden="true">⚠</span>
                     <p>
@@ -251,115 +299,330 @@
                     </p>
                 </div>
 
-                <div class="navegadores-franja">
-                    <div class="navegador" data-navegador="chrome">
-                        <img src="imagenes/navegadores/chrome.svg" alt="" width="22" height="22">
-                        <span>Chrome</span>
-                    </div>
-                    <div class="navegador" data-navegador="edge">
-                        <img src="imagenes/navegadores/edge.svg" alt="" width="22" height="22">
-                        <span>Edge</span>
-                    </div>
-                    <div class="navegador" data-navegador="brave">
-                        <img src="imagenes/navegadores/brave.svg" alt="" width="22" height="22">
-                        <span>Brave</span>
-                    </div>
-                    <div class="navegador" data-navegador="opera">
-                        <img src="imagenes/navegadores/opera.svg" alt="" width="22" height="22">
-                        <span>Opera</span>
-                    </div>
-                    <div class="navegador" data-navegador="vivaldi">
-                        <img src="imagenes/navegadores/vivaldi.svg" alt="" width="22" height="22">
-                        <span>Vivaldi</span>
-                    </div>
-                    <div class="navegador" data-navegador="chromium">
-                        <img src="imagenes/navegadores/chromium.svg" alt="" width="22" height="22">
-                        <span>Chromium</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ═══════════════════════════════════════════════════
-             Instalación
-             ═══════════════════════════════════════════════════ -->
-        <section id="instalacion">
-            <div class="wrap">
-                <h2 class="section-title"><span class="badge-dot"></span> Instalación paso a paso</h2>
-                <p class="section-lead">No hace falta saber nada de programación. Son cinco minutos y se hace una sola
-                    vez.</p>
-
-                <ol class="pasos">
-                    <li>
-                        <strong>Descargar el archivo.</strong>
-                        <span class="paso-extra">
-                            <a class="btn btn-accent btn-sm" data-zip-link
-                                href="https://github.com/LucasPier/diarios-liberados/archive/refs/heads/main.zip">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"
-                                    aria-hidden="true">
-                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                                    <polyline points="7 10 12 15 17 10" />
-                                    <line x1="12" y1="15" x2="12" y2="3" />
-                                </svg>
-                                Descargar ZIP
-                            </a>
-                        </span>
-                    </li>
-                    <li>
-                        <strong>Descomprimir.</strong> Extraé el contenido del ZIP en una carpeta de tu compu que no
-                        vayas a borrar después.
-                        <span class="paso-extra">La carpeta que se crea al descomprimir se llama
-                            <code>diarios-liberados-main</code>. Acordate de dónde la dejaste, la vas a necesitar en el
-                            paso 6.</span>
-                    </li>
-                    <li>
-                        <strong>Abrir la sección de extensiones.</strong> Escribí <code>chrome://extensions/</code> en
-                        la barra de direcciones de tu navegador y apretá Enter.
-                        <span class="paso-extra">Según el navegador que uses puede ser
-                            <code>edge://extensions/</code>, <code>brave://extensions/</code>,
-                            <code>opera://extensions/</code> o <code>vivaldi://extensions/</code>.</span>
-                    </li>
-                    <li>
-                        <strong>Activar el Modo de desarrollador.</strong> Es un interruptor que suele estar arriba a la
-                        derecha de esa pantalla.
-                    </li>
-                    <li>
-                        <strong>Cargar la extensión.</strong> Hacé clic en el botón <em>“Cargar descomprimida”</em> (o
-                        <em>“Load unpacked”</em>), que aparece recién después de activar el modo de desarrollador.
-                    </li>
-                    <li>
-                        <strong>Seleccionar la carpeta.</strong> Elegí la carpeta
-                        <code>diarios-liberados-main</code> que extrajiste en el paso 2.
-                        <span class="paso-extra">Fijate de seleccionar la carpeta que tiene los archivos directamente
-                            adentro (la que contiene el <code>manifest.json</code>), no una carpeta que contenga a otra
-                            carpeta.</span>
-                    </li>
-                    <li>
-                        <strong>Permitir en modo incógnito (recomendado).</strong> Entrá en los <em>Detalles</em> de la
-                        extensión recién instalada y activá <em>“Permitir en modo incógnito”</em>.
-                        <span class="paso-extra">Esto evita problemas y bloqueos en varios de los medios
-                            soportados.</span>
-                    </li>
-                </ol>
-
-                <div class="callout">
-                    <span class="callout-icon" aria-hidden="true">⚠</span>
-                    <p>
-                        <strong>¿Se puede usar en celulares?</strong>
-                        Lamentablemente no. Las versiones móviles de la mayoría de los navegadores no permiten instalar
-                        extensiones de PC. Esto está diseñado para usarse solo desde la computadora.
-                    </p>
+                <!-- Pestañas de plataforma. Sin JS quedan ocultas y los dos paneles se
+                     muestran apilados: la sección sigue explicando cómo instalar. -->
+                <div class="plataforma-tabs" id="plataforma-tabs" role="tablist"
+                    aria-label="Dónde vas a usar la extensión" hidden>
+                    <button type="button" class="plataforma-tab" role="tab" id="tab-escritorio"
+                        aria-controls="panel-escritorio" aria-selected="true" data-plataforma="escritorio">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <rect x="2" y="3" width="20" height="14" rx="2" />
+                            <line x1="8" y1="21" x2="16" y2="21" />
+                            <line x1="12" y1="17" x2="12" y2="21" />
+                        </svg>
+                        Computadora
+                    </button>
+                    <button type="button" class="plataforma-tab" role="tab" id="tab-movil" aria-controls="panel-movil"
+                        aria-selected="false" tabindex="-1" data-plataforma="movil">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <rect x="5" y="2" width="14" height="20" rx="2.5" />
+                            <line x1="10.5" y1="18.5" x2="13.5" y2="18.5" />
+                        </svg>
+                        Teléfono
+                    </button>
                 </div>
 
-                <div class="callout" style="border-left-color:rgba(96,165,250,.6);border-color:rgba(96,165,250,.22);background:rgba(96,165,250,.05)">
-                    <span class="callout-icon" aria-hidden="true" style="color:#60a5fa">↻</span>
-                    <p>
-                        <strong>¿Cómo actualizo a una versión nueva?</strong>
-                        Descargá el ZIP otra vez, reemplazá el contenido de la carpeta anterior por el nuevo y entrá en
-                        <code>chrome://extensions/</code> para hacer clic en el botón de recargar (↻) de la extensión.
-                        No hace falta desinstalarla ni volver a configurarla.
-                    </p>
+                <!-- ── Computadora ──────────────────────────────────────────────── -->
+                <div class="plataforma-panel" id="panel-escritorio" role="tabpanel" aria-labelledby="tab-escritorio">
+
+                    <h3 class="plataforma-titulo">En la computadora</h3>
+
+                    <div id="navegadores">
+                        <div class="navegadores-grupo">
+                            <p class="navegadores-grupo-titulo">Basados en Chromium</p>
+                            <div class="navegadores-franja">
+                                <button type="button" class="navegador" data-navegador="chrome" data-camino="chromium"
+                                    data-esquema="chrome" data-nombre="Chrome">
+                                    <img src="imagenes/navegadores/chrome.svg" alt="" width="22" height="22">
+                                    <span>Chrome</span>
+                                </button>
+                                <button type="button" class="navegador" data-navegador="edge" data-camino="chromium"
+                                    data-esquema="edge" data-nombre="Edge">
+                                    <img src="imagenes/navegadores/edge.svg" alt="" width="22" height="22">
+                                    <span>Edge</span>
+                                </button>
+                                <button type="button" class="navegador" data-navegador="brave" data-camino="chromium"
+                                    data-esquema="brave" data-nombre="Brave">
+                                    <img src="imagenes/navegadores/brave.svg" alt="" width="22" height="22">
+                                    <span>Brave</span>
+                                </button>
+                                <button type="button" class="navegador" data-navegador="opera" data-camino="chromium"
+                                    data-esquema="opera" data-nombre="Opera">
+                                    <img src="imagenes/navegadores/opera.svg" alt="" width="22" height="22">
+                                    <span>Opera</span>
+                                </button>
+                                <button type="button" class="navegador" data-navegador="vivaldi" data-camino="chromium"
+                                    data-esquema="vivaldi" data-nombre="Vivaldi">
+                                    <img src="imagenes/navegadores/vivaldi.svg" alt="" width="22" height="22">
+                                    <span>Vivaldi</span>
+                                </button>
+                                <button type="button" class="navegador" data-navegador="chromium" data-camino="chromium"
+                                    data-esquema="chrome" data-nombre="Chromium">
+                                    <img src="imagenes/navegadores/chromium.svg" alt="" width="22" height="22">
+                                    <span>Chromium</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="navegadores-grupo">
+                            <p class="navegadores-grupo-titulo">Basados en Firefox</p>
+                            <div class="navegadores-franja">
+                                <button type="button" class="navegador" data-navegador="firefox" data-camino="firefox"
+                                    data-nombre="Firefox">
+                                    <img src="imagenes/navegadores/firefox.svg" alt="" width="22" height="22">
+                                    <span>Firefox</span>
+                                </button>
+                                <button type="button" class="navegador" data-navegador="floorp" data-camino="firefox"
+                                    data-nombre="Floorp">
+                                    <img src="imagenes/navegadores/floorp.svg" alt="" width="22" height="22">
+                                    <span>Floorp</span>
+                                </button>
+                                <button type="button" class="navegador" data-navegador="zen" data-camino="firefox"
+                                    data-nombre="Zen">
+                                    <img src="imagenes/navegadores/zen.svg" alt="" width="22" height="22">
+                                    <span>Zen</span>
+                                </button>
+                                <button type="button" class="navegador" data-navegador="librewolf" data-camino="firefox"
+                                    data-nombre="LibreWolf">
+                                    <img src="imagenes/navegadores/librewolf.svg" alt="" width="22" height="22">
+                                    <span>LibreWolf</span>
+                                </button>
+                                <button type="button" class="navegador" data-navegador="waterfox" data-camino="firefox"
+                                    data-nombre="Waterfox">
+                                    <img src="imagenes/navegadores/waterfox.svg" alt="" width="22" height="22">
+                                    <span>Waterfox</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ── Camino: Chromium ─────────────────────────────────────── -->
+                    <div class="camino" id="camino-chromium">
+                        <h3 class="camino-titulo">Pasos para <span data-token="nombre">Chrome, Edge, Brave, Opera,
+                                Vivaldi y Chromium</span></h3>
+
+                        <ol class="pasos">
+                            <li>
+                                <strong>Descargar el archivo.</strong>
+                                <span class="paso-extra">
+                                    <a class="btn btn-accent btn-sm" data-zip-link
+                                        href="https://github.com/LucasPier/diarios-liberados/archive/refs/heads/main.zip">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                                            stroke-linejoin="round" aria-hidden="true">
+                                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                            <polyline points="7 10 12 15 17 10" />
+                                            <line x1="12" y1="15" x2="12" y2="3" />
+                                        </svg>
+                                        Descargar ZIP
+                                    </a>
+                                </span>
+                            </li>
+                            <li>
+                                <strong>Descomprimir.</strong> Extraé el contenido del ZIP en una carpeta de tu compu que
+                                no vayas a borrar después.
+                                <span class="paso-extra">La carpeta que se crea al descomprimir se llama
+                                    <code>diarios-liberados-main</code>. Acordate de dónde la dejaste, la vas a necesitar
+                                    en el paso 6.</span>
+                            </li>
+                            <li>
+                                <strong>Abrir la sección de extensiones.</strong> Escribí <code
+                                    data-token="esquema">chrome://extensions/</code> en la barra de direcciones de tu
+                                navegador y apretá Enter.
+                                <span class="paso-extra" data-generico>Según el navegador que uses puede ser
+                                    <code>edge://extensions/</code>, <code>brave://extensions/</code>,
+                                    <code>opera://extensions/</code> o <code>vivaldi://extensions/</code>.</span>
+                            </li>
+                            <li>
+                                <strong>Activar el Modo de desarrollador.</strong> Es un interruptor que suele estar
+                                arriba a la derecha de esa pantalla.
+                            </li>
+                            <li>
+                                <strong>Cargar la extensión.</strong> Hacé clic en el botón <em>“Cargar
+                                    descomprimida”</em> (o <em>“Load unpacked”</em>), que aparece recién después de
+                                activar el modo de desarrollador.
+                            </li>
+                            <li>
+                                <strong>Seleccionar la carpeta.</strong> Elegí la carpeta
+                                <code>diarios-liberados-main</code> que extrajiste en el paso 2.
+                                <span class="paso-extra">Fijate de seleccionar la carpeta que tiene los archivos
+                                    directamente adentro (la que contiene el <code>manifest.json</code>), no una carpeta
+                                    que contenga a otra carpeta.</span>
+                            </li>
+                            <li>
+                                <strong>Permitir en modo incógnito (recomendado).</strong> Entrá en los <em>Detalles</em>
+                                de la extensión recién instalada y activá <em>“Permitir en modo incógnito”</em>.
+                                <span class="paso-extra">Esto permite que puedas usar la extensión en modo
+                                    incógnito.</span>
+                            </li>
+                        </ol>
+
+                        <div class="callout callout-info">
+                            <span class="callout-icon" aria-hidden="true">↻</span>
+                            <p>
+                                <strong>¿Cómo actualizo a una versión nueva?</strong>
+                                Descargá el ZIP otra vez, reemplazá el contenido de la carpeta anterior por el nuevo y
+                                entrá en <code data-token="esquema">chrome://extensions/</code> para hacer clic en el
+                                botón de recargar (↻) de la extensión. No hace falta desinstalarla ni volver a
+                                configurarla.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- ── Camino: Firefox de escritorio ────────────────────────── -->
+                    <div class="camino" id="camino-firefox">
+                        <h3 class="camino-titulo">Pasos para <span data-token="nombre">Firefox</span></h3>
+
+                        <ol class="pasos">
+                            <li>
+                                <strong>Empezar la instalación.</strong> Tiene que ser un clic en este botón, hecho
+                                desde el navegador donde la querés instalar.
+                                <span class="paso-extra">
+                                    <a class="btn btn-accent btn-sm" data-xpi-link
+                                        href="https://github.com/LucasPier/diarios-liberados/releases/latest">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                                            stroke-linejoin="round" aria-hidden="true">
+                                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                            <polyline points="7 10 12 15 17 10" />
+                                            <line x1="12" y1="15" x2="12" y2="3" />
+                                        </svg>
+                                        Instalar la extensión
+                                    </a>
+                                </span>
+                            </li>
+                            <li>
+                                <strong>Seguir con la instalación.</strong> Firefox va a preguntar arriba
+                                <em>“¿Permitir que lucaspier.github.io instale un complemento?”</em>. Hacé clic en
+                                <em>“Seguir con la instalación”</em>.
+                                <span class="paso-extra">No es un error ni significa que la extensión sea peligrosa:
+                                    Firefox lo pregunta con cualquier complemento que no venga de su tienda
+                                    oficial.</span>
+                                <span class="paso-extra">Puede que no te aparezca. Firefox pregunta una sola vez por
+                                    sitio, así que si ya instalaste algo desde acá vas a saltar directo al paso 3.</span>
+                                <img class="paso-captura" width="464" height="280" src="imagenes/instalacion/firefox-aviso-instalacion.png"
+                                    alt="Firefox preguntando «¿Permitir que localhost instale un complemento?» con el botón «Seguir con la instalación»" loading="lazy">
+                            </li>
+                            <li>
+                                <strong>Añadir la extensión.</strong> Firefox te va a mostrar
+                                <em>“Añadir Diarios Liberados”</em> junto con la lista de sitios a los que va a
+                                acceder. En <em>“Ajustes opcionales”</em> marcá
+                                <em>“Permitir que la extensión se ejecute en ventanas privadas”</em> y después hacé
+                                clic en <em>“Añadir”</em>.
+                                <span class="paso-extra">Ese permiso es opcional, pero conviene: sin él la extensión
+                                    no funciona en ventanas privadas. Si te lo salteaste, se activa igual desde
+                                    <code>about:addons</code>, abriendo Diarios Liberados y marcando
+                                    <em>“Permitir”</em> en <em>“Ejecutar en ventanas privadas”</em>.</span>
+                            </li>
+                        </ol>
+
+                        <div class="callout callout-info">
+                            <span class="callout-icon" aria-hidden="true">↻</span>
+                            <p>
+                                <strong>¿Cómo actualizo a una versión nueva?</strong>
+                                No tenés que hacer nada: la extensión se actualiza sola. Si alguna vez sumamos un medio
+                                nuevo y no te funciona, abrí el menú de la extensión: te va a ofrecer darle acceso a ese
+                                sitio con un botón.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── Teléfono ─────────────────────────────────────────────────── -->
+                <div class="plataforma-panel" id="panel-movil" role="tabpanel" aria-labelledby="tab-movil">
+
+                    <h3 class="plataforma-titulo">En el teléfono</h3>
+
+                    <div class="callout callout-top">
+                        <span class="callout-icon" aria-hidden="true">⚠</span>
+                        <p>
+                            <strong>Sólo funciona en Android, con Firefox.</strong>
+                            Ningún navegador basado en Chromium permite instalar extensiones en el celular. En iPhone y
+                            iPad tampoco se puede: Apple obliga a que todos los navegadores usen el motor de Safari y a
+                            que las extensiones se distribuyan dentro de una app aprobada por la App Store.
+                        </p>
+                    </div>
+
+                    <div id="navegadores-movil">
+                        <div class="navegadores-grupo">
+                            <div class="navegadores-franja">
+                                <button type="button" class="navegador" data-navegador="firefox-android"
+                                    data-camino="android" data-nombre="Firefox para Android">
+                                    <img src="imagenes/navegadores/firefox.svg" alt="" width="22" height="22">
+                                    <span>Firefox para Android</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ── Camino: Firefox para Android ─────────────────────────── -->
+                    <div class="camino" id="camino-android">
+                        <h3 class="camino-titulo">Pasos en Firefox para Android</h3>
+
+                        <ol class="pasos">
+                            <li>
+                                <strong>Descargar el archivo.</strong> Tocá este botón desde Firefox para Android.
+                                <span class="paso-extra">Firefox lo guarda en tus descargas y no te va a ofrecer
+                                    instalarlo. Es así: se instala desde los ajustes, en los pasos que siguen.</span>
+                                <span class="paso-extra">
+                                    <a class="btn btn-accent btn-sm" data-xpi-link
+                                        href="https://github.com/LucasPier/diarios-liberados/releases/latest">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                                            stroke-linejoin="round" aria-hidden="true">
+                                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                            <polyline points="7 10 12 15 17 10" />
+                                            <line x1="12" y1="15" x2="12" y2="3" />
+                                        </svg>
+                                        Descargar la extensión
+                                    </a>
+                                </span>
+                            </li>
+                            <li>
+                                <strong>Habilitar la instalación desde archivo.</strong> Entrá en
+                                <em>Ajustes → Acerca de Firefox</em> y tocá <strong>cinco veces</strong> el logo de
+                                Firefox.
+                                <span class="paso-extra">Un mensajito te va a avisar que se habilitó el menú. Sirve para
+                                    que aparezca la opción del paso siguiente, que viene oculta.</span>
+                            </li>
+                            <li>
+                                <strong>Elegir el archivo.</strong> Volvé a <em>Ajustes</em>, tocá
+                                <em>“Instalar extensión desde archivo”</em> y elegí el que descargaste en el paso 1.
+                                <img class="paso-captura es-movil" width="800" height="877" src="imagenes/instalacion/firefox-android-menu-extensiones.png"
+                                    alt="Ajustes de Firefox para Android con la opción «Instalar extensión desde archivo»"
+                                    loading="lazy">
+                            </li>
+                            <li>
+                                <strong>Agregar la extensión.</strong> Firefox te va a mostrar
+                                <em>“Agregar Diarios Liberados”</em> junto con la lista de sitios a los que va a
+                                acceder. En <em>“Ajustes opcionales”</em> marcá <em>“Permitir que la extensión se ejecute
+                                    en navegación privada”</em> y después tocá <em>“Agregar”</em>.
+                                <span class="paso-extra">Ese permiso es opcional, pero conviene: sin él la extensión no
+                                    funciona en pestañas privadas.</span>
+                            </li>
+                        </ol>
+
+                        <div class="callout">
+                            <span class="callout-icon" aria-hidden="true">⚠</span>
+                            <p>
+                                <strong>Para abrir el menú de la extensión tiene que haber un sitio abierto.</strong>
+                                Entrá por el menú <strong>⋮ → Extensiones</strong> con un diario cargado en una pestaña
+                                normal. Desde la pantalla de inicio de Firefox no abre: es una limitación conocida de
+                                Firefox para Android, no de la extensión.
+                            </p>
+                        </div>
+
+                        <div class="callout callout-info">
+                            <span class="callout-icon" aria-hidden="true">↻</span>
+                            <p>
+                                <strong>¿Cómo actualizo a una versión nueva?</strong>
+                                Repetí la instalación: descargá el archivo otra vez y volvé a instalarlo desde
+                                <em>Ajustes</em>. No perdés la configuración que tengas puesta.
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -385,7 +648,7 @@
                     <div class="detalle-body">
 
                         <article class="medio" id="medio-clarin">
-                            <h4>Clarín</h4>
+                            <h3>Clarín</h3>
                             <ul>
                                 <li class="f-yes">Permite el acceso a notas para suscriptores</li>
                                 <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
@@ -396,7 +659,7 @@
                         </article>
 
                         <article class="medio" id="medio-lanacion">
-                            <h4>La Nación</h4>
+                            <h3>La Nación</h3>
                             <ul>
                                 <li class="f-no">Por el momento NO permite leer notas para suscriptores</li>
                                 <li class="f-yes">Permite ver resúmenes generados por IA</li>
@@ -407,7 +670,7 @@
                         </article>
 
                         <article class="medio" id="medio-infobae">
-                            <h4>Infobae</h4>
+                            <h3>Infobae</h3>
                             <ul>
                                 <li class="f-info">El medio no requiere suscripción para leer sus notas</li>
                                 <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
@@ -416,7 +679,7 @@
                         </article>
 
                         <article class="medio" id="medio-pagina12">
-                            <h4>Página/12</h4>
+                            <h3>Página/12</h3>
                             <ul>
                                 <li class="f-yes">Permite el acceso a notas para soci@s</li>
                                 <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
@@ -425,7 +688,7 @@
                         </article>
 
                         <article class="medio" id="medio-perfil">
-                            <h4>Perfil</h4>
+                            <h3>Perfil</h3>
                             <ul>
                                 <li class="f-info">El medio no requiere suscripción para leer sus notas</li>
                                 <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
@@ -438,7 +701,7 @@
                         </article>
 
                         <article class="medio" id="medio-eldestape">
-                            <h4>El Destape</h4>
+                            <h3>El Destape</h3>
                             <ul>
                                 <li class="f-info">El medio no requiere suscripción para leer sus notas</li>
                                 <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
@@ -447,7 +710,7 @@
                         </article>
 
                         <article class="medio" id="medio-lacapital">
-                            <h4>La Capital</h4>
+                            <h3>La Capital</h3>
                             <ul>
                                 <li class="f-yes">Permite el acceso a notas para suscriptores</li>
                                 <li class="f-yes">Permite la visualización de versiones impresas</li>
@@ -457,7 +720,7 @@
                         </article>
 
                         <article class="medio" id="medio-lavoz">
-                            <h4>La Voz del Interior</h4>
+                            <h3>La Voz del Interior</h3>
                             <ul>
                                 <li class="f-yes">Permite el acceso a notas para suscriptores</li>
                                 <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
@@ -466,7 +729,7 @@
                         </article>
 
                         <article class="medio" id="medio-lagaceta">
-                            <h4>La Gaceta</h4>
+                            <h3>La Gaceta</h3>
                             <ul>
                                 <li class="f-yes">Permite el acceso a notas para suscriptores</li>
                                 <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
@@ -475,7 +738,7 @@
                         </article>
 
                         <article class="medio" id="medio-ellitoral">
-                            <h4>El Litoral</h4>
+                            <h3>El Litoral</h3>
                             <ul>
                                 <li class="f-info">El medio no requiere suscripción para leer sus notas</li>
                                 <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
@@ -485,7 +748,7 @@
                         </article>
 
                         <article class="medio" id="medio-losandes">
-                            <h4>Los Andes</h4>
+                            <h3>Los Andes</h3>
                             <ul>
                                 <li class="f-info">El medio no requiere suscripción para leer sus notas</li>
                                 <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
@@ -494,7 +757,7 @@
                         </article>
 
                         <article class="medio" id="medio-eldia">
-                            <h4>El Día</h4>
+                            <h3>El Día</h3>
                             <ul>
                                 <li class="f-yes">Permite el acceso a notas para suscriptores</li>
                                 <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
@@ -503,7 +766,7 @@
                         </article>
 
                         <article class="medio" id="medio-rionegro">
-                            <h4>Río Negro</h4>
+                            <h3>Río Negro</h3>
                             <ul>
                                 <li class="f-info">El medio no requiere suscripción para leer sus notas</li>
                                 <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
@@ -512,7 +775,7 @@
                         </article>
 
                         <article class="medio" id="medio-elonce">
-                            <h4>Elonce</h4>
+                            <h3>Elonce</h3>
                             <ul>
                                 <li class="f-info">El medio no requiere suscripción para leer sus notas</li>
                                 <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
@@ -521,7 +784,7 @@
                         </article>
 
                         <article class="medio" id="medio-elciudadano">
-                            <h4>El Ciudadano</h4>
+                            <h3>El Ciudadano</h3>
                             <ul>
                                 <li class="f-info">El medio no requiere suscripción para leer sus notas</li>
                                 <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
@@ -530,7 +793,7 @@
                         </article>
 
                         <article class="medio" id="medio-rosario3">
-                            <h4>Rosario3</h4>
+                            <h3>Rosario3</h3>
                             <ul>
                                 <li class="f-info">El medio no requiere suscripción para leer sus notas</li>
                                 <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
@@ -539,7 +802,7 @@
                         </article>
 
                         <article class="medio" id="medio-cadena3">
-                            <h4>Cadena 3</h4>
+                            <h3>Cadena 3</h3>
                             <ul>
                                 <li class="f-info">El medio no requiere suscripción para leer sus notas</li>
                                 <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
@@ -548,7 +811,7 @@
                         </article>
 
                         <article class="medio" id="medio-airedesantafe">
-                            <h4>Aire de Santa Fe</h4>
+                            <h3>Aire de Santa Fe</h3>
                             <ul>
                                 <li class="f-info">El medio no requiere suscripción para leer sus notas</li>
                                 <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
@@ -557,7 +820,7 @@
                         </article>
 
                         <article class="medio" id="medio-mdz">
-                            <h4>MDZ Online</h4>
+                            <h3>MDZ Online</h3>
                             <ul>
                                 <li class="f-info">El medio no requiere suscripción para leer sus notas</li>
                                 <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
@@ -566,7 +829,7 @@
                         </article>
 
                         <article class="medio" id="medio-uno">
-                            <h4>Diario Uno</h4>
+                            <h3>Diario Uno</h3>
                             <ul>
                                 <li class="f-info">El medio no requiere suscripción para leer sus notas</li>
                                 <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
@@ -575,7 +838,7 @@
                         </article>
 
                         <article class="medio" id="medio-rosarioplus">
-                            <h4>Rosario Plus</h4>
+                            <h3>Rosario Plus</h3>
                             <ul>
                                 <li class="f-info">El medio no requiere suscripción para leer sus notas</li>
                                 <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
@@ -584,7 +847,7 @@
                         </article>
 
                         <article class="medio" id="medio-unoentrerios">
-                            <h4>Diario Uno Entre Ríos</h4>
+                            <h3>Diario Uno Entre Ríos</h3>
                             <ul>
                                 <li class="f-info">El medio no requiere suscripción para leer sus notas</li>
                                 <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
@@ -593,7 +856,7 @@
                         </article>
 
                         <article class="medio" id="medio-unosantafe">
-                            <h4>Diario Uno Santa Fe</h4>
+                            <h3>Diario Uno Santa Fe</h3>
                             <ul>
                                 <li class="f-info">El medio no requiere suscripción para leer sus notas</li>
                                 <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
@@ -602,7 +865,7 @@
                         </article>
 
                         <article class="medio" id="medio-viapais">
-                            <h4>Vía País</h4>
+                            <h3>Vía País</h3>
                             <ul>
                                 <li class="f-info">El medio no requiere suscripción para leer sus notas</li>
                                 <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
@@ -611,7 +874,7 @@
                         </article>
 
                         <article class="medio" id="medio-minutouno">
-                            <h4>Minuto Uno</h4>
+                            <h3>Minuto Uno</h3>
                             <ul>
                                 <li class="f-info">El medio no requiere suscripción para leer sus notas</li>
                                 <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
@@ -620,7 +883,7 @@
                         </article>
 
                         <article class="medio" id="medio-lpo">
-                            <h4>La Política Online</h4>
+                            <h3>La Política Online</h3>
                             <ul>
                                 <li class="f-info">El medio no requiere suscripción para leer sus notas</li>
                                 <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
@@ -629,7 +892,7 @@
                         </article>
 
                         <article class="medio" id="medio-letrap">
-                            <h4>Letra P</h4>
+                            <h3>Letra P</h3>
                             <ul>
                                 <li class="f-info">El medio no requiere suscripción para leer sus notas</li>
                                 <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
@@ -638,7 +901,7 @@
                         </article>
 
                         <article class="medio" id="medio-diariopopular">
-                            <h4>Diario Popular</h4>
+                            <h3>Diario Popular</h3>
                             <ul>
                                 <li class="f-info">El medio no requiere suscripción para leer sus notas</li>
                                 <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
@@ -647,7 +910,7 @@
                         </article>
 
                         <article class="medio" id="medio-elcronista">
-                            <h4>El Cronista</h4>
+                            <h3>El Cronista</h3>
                             <ul>
                                 <li class="f-yes">Permite el acceso a notas y contenidos para suscriptores (members)</li>
                                 <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
@@ -656,7 +919,7 @@
                         </article>
 
                         <article class="medio" id="medio-ambito">
-                            <h4>Ámbito</h4>
+                            <h3>Ámbito</h3>
                             <ul>
                                 <li class="f-info">El medio no requiere suscripción para leer sus notas</li>
                                 <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
@@ -665,7 +928,7 @@
                         </article>
 
                         <article class="medio" id="medio-tn">
-                            <h4>TN</h4>
+                            <h3>TN</h3>
                             <ul>
                                 <li class="f-info">El medio no requiere suscripción para leer sus notas</li>
                                 <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
@@ -674,7 +937,7 @@
                         </article>
 
                         <article class="medio" id="medio-ole">
-                            <h4>Olé</h4>
+                            <h3>Olé</h3>
                             <ul>
                                 <li class="f-yes">Permite el acceso a notas para suscriptores</li>
                                 <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
@@ -683,7 +946,7 @@
                         </article>
 
                         <article class="medio" id="medio-tycsports">
-                            <h4>TyC Sports</h4>
+                            <h3>TyC Sports</h3>
                             <ul>
                                 <li class="f-info">El medio no requiere suscripción para leer sus notas</li>
                                 <li class="f-yes">Se quitan las publicidades de todo el sitio</li>
@@ -735,7 +998,6 @@
                 </svg>
                 Ver el código del proyecto
             </a>
-            <div class="footer-avatar" role="img" aria-label="Lucas Pier"></div>
             <p><strong>Por Lucas Pier | Rosario, 2026</strong></p>
         </div>
     </footer>
