@@ -5,7 +5,7 @@
 # <img src="imagenes/favicon-96x96.png" width="30" height="30" align="absmiddle" alt="Diarios Liberados"> Diarios Liberados
 
 
-Una extensión compatible con múltiples navegadores (Chrome, Edge, Brave, Opera, Vivaldi, etc.) que **mejora la experiencia de lectura en más de 50 portales de medios argentinos**. En los medios que lo requieren, desbloquea notas exclusivas para suscriptores o socios, además elimina publicidades intrusivas y bloquea diálogos de notificaciones. Todas estas características son configurables e independientes desde el menú de la extensión (podés elegir en todo momento si activar o desactivar el desbloqueo de contenidos exclusivos, el bloqueo de publicidad o el ocultamiento de notificaciones). Algunos portales incluyen funcionalidades adicionales: visualización de versiones impresas (La Capital), resúmenes generados por IA y escucha de notas (La Nación), y cobertura extendida a los grupos editoriales completos de Clarín y Perfil. Se irán agregando nuevos medios y funcionalidades con el paso del tiempo.
+Una extensión compatible con múltiples navegadores (Chrome, Edge, Brave, Opera, Vivaldi, Firefox, etc.) que **mejora la experiencia de lectura en más de 50 portales de medios argentinos**. Se puede usar en la computadora y también en teléfonos Android, a través de Firefox. En los medios que lo requieren, desbloquea notas exclusivas para suscriptores o socios, además elimina publicidades intrusivas y bloquea diálogos de notificaciones. Todas estas características son configurables e independientes desde el menú de la extensión (podés elegir en todo momento si activar o desactivar el desbloqueo de contenidos exclusivos, el bloqueo de publicidad o el ocultamiento de notificaciones). Algunos portales incluyen funcionalidades adicionales: visualización de versiones impresas (La Capital), resúmenes generados por IA y escucha de notas (La Nación), y cobertura extendida a los grupos editoriales completos de Clarín y Perfil. Se irán agregando nuevos medios y funcionalidades con el paso del tiempo.
 
 > 🔗 **Compartí la extensión**
 >
@@ -70,6 +70,40 @@ Una extensión compatible con múltiples navegadores (Chrome, Edge, Brave, Opera
 
 ## Instalación paso a paso
 
+La extensión no se instala igual en todos lados: elegí el camino que te toque.
+
+<table>
+  <tr>
+    <td><sub><b>Basados en Chromium</b></sub></td>
+    <td>
+      <img src="imagenes/navegadores/chrome.svg" width="16" alt="" align="absmiddle"> <sub>Chrome</sub> &nbsp;
+      <img src="imagenes/navegadores/edge.svg" width="16" alt="" align="absmiddle"> <sub>Edge</sub> &nbsp;
+      <img src="imagenes/navegadores/brave.svg" width="16" alt="" align="absmiddle"> <sub>Brave</sub> &nbsp;
+      <img src="imagenes/navegadores/opera.svg" width="16" alt="" align="absmiddle"> <sub>Opera</sub> &nbsp;
+      <img src="imagenes/navegadores/vivaldi.svg" width="16" alt="" align="absmiddle"> <sub>Vivaldi</sub> &nbsp;
+      <img src="imagenes/navegadores/chromium.svg" width="16" alt="" align="absmiddle"> <sub>Chromium</sub>
+    </td>
+  </tr>
+  <tr>
+    <td><sub><b>Basados en Firefox</b></sub></td>
+    <td>
+      <img src="imagenes/navegadores/firefox.svg" width="16" alt="" align="absmiddle"> <sub>Firefox</sub> &nbsp;
+      <img src="imagenes/navegadores/floorp.svg" width="16" alt="" align="absmiddle"> <sub>Floorp</sub> &nbsp;
+      <img src="imagenes/navegadores/zen.svg" width="16" alt="" align="absmiddle"> <sub>Zen</sub> &nbsp;
+      <img src="imagenes/navegadores/librewolf.svg" width="16" alt="" align="absmiddle"> <sub>LibreWolf</sub> &nbsp;
+      <img src="imagenes/navegadores/waterfox.svg" width="16" alt="" align="absmiddle"> <sub>Waterfox</sub>
+    </td>
+  </tr>
+  <tr>
+    <td><sub><b>En el celular</b></sub></td>
+    <td>
+      <img src="imagenes/navegadores/firefox.svg" width="16" alt="" align="absmiddle"> <sub>Firefox para Android</sub>
+    </td>
+  </tr>
+</table>
+
+### En Chrome, Edge, Brave, Opera, Vivaldi o Chromium
+
 1. **Descargar:** Hacé clic en el botón verde que dice **`<> Code`** (arriba de todo en esta página), y elegí la opción **`Download ZIP`**.
 2. **Descomprimir:** Extraé el contenido del archivo ZIP descargado en una carpeta de tu compu que no vayas a borrar después.
 3. **Abrir Extensiones:** En tu navegador, andá a la sección de extensiones. Podés hacerlo escribiendo `chrome://extensions/` en la barra de direcciones (o `edge://extensions/`, `brave://extensions/`, dependiendo cuál uses).
@@ -78,9 +112,35 @@ Una extensión compatible con múltiples navegadores (Chrome, Edge, Brave, Opera
 6. **Seleccionar ruta:** Elegí la carpeta que extrajiste en el paso 2 (fijate de seleccionar la carpeta que tiene directamente los archivos adentro).
 7. **Modo Incógnito (Recomendado):** Para evitar problemas o bloqueos, andá a los **Detalles** de la extensión recién instalada y activá la opción **"Permitir en modo incógnito"**.
 
-> ⚠️
+*Para actualizar:* descargá el ZIP otra vez, reemplazá el contenido de la carpeta y hacé clic en el botón de recargar (↻) de la extensión.
+
+### En Firefox (computadora)
+
+Los mismos pasos sirven para los navegadores basados en Firefox: Floorp, Zen, LibreWolf y Waterfox.
+
+1. **Descargar:** Entrá en la [última versión publicada](https://github.com/LucasPier/diarios-liberados/releases/latest) y hacé clic en el archivo terminado en **`.xpi`**.
+2. **Seguir:** Firefox va a preguntar *"¿Permitir que lucaspier.github.io instale un complemento?"*. Hacé clic en **"Seguir con la instalación"**. No es un error: Firefox lo pregunta con cualquier complemento que no venga de su tienda oficial. Puede que no te aparezca, porque pregunta una sola vez por sitio; en ese caso pasá directo al paso siguiente.
+3. **Añadir:** Cuando aparezca *"Añadir Diarios Liberados"* con la lista de sitios, marcá en *"Ajustes opcionales"* la opción **"Permitir que la extensión se ejecute en ventanas privadas"** (recomendado) y hacé clic en **"Añadir"**. Si te lo salteás, se activa igual desde `about:addons`.
+
+*Para actualizar:* no hay que hacer nada, la extensión se actualiza sola. Si en una versión nueva se suma un medio y no funciona, abrí el menú de la extensión: te va a ofrecer darle acceso a ese sitio con un botón.
+
+> 💡 Si en lugar de instalarse el archivo se descarga, entrá en `about:addons`, tocá el engranaje y elegí **"Instalar complemento desde archivo"**.
+
+### En Firefox para Android
+
+1. **Descargar:** Desde Firefox para Android, entrá en la [última versión publicada](https://github.com/LucasPier/diarios-liberados/releases/latest) y tocá el archivo terminado en **`.xpi`**. Se va a guardar en tus descargas sin ofrecerte instalarlo: es así, se instala en los pasos que siguen.
+2. **Habilitar la instalación desde archivo:** Entrá en **Ajustes → Acerca de Firefox** y tocá **cinco veces** el logo de Firefox. Un mensaje te va a avisar que se habilitó el menú.
+3. **Elegir el archivo:** Volvé a **Ajustes**, tocá **"Instalar extensión desde archivo"** y elegí el que descargaste.
+4. **Agregar:** Cuando aparezca *"Agregar Diarios Liberados"* con la lista de sitios, marcá en *"Ajustes opcionales"* la opción **"Permitir que la extensión se ejecute en navegación privada"** (recomendado) y tocá **"Agregar"**.
+
+> ⚠️ **Para abrir el menú de la extensión tiene que haber un sitio abierto.** Entrá por el menú **⋮ → Extensiones** con un diario cargado en una pestaña normal. Desde la pantalla de inicio de Firefox no abre: es una limitación conocida de Firefox para Android, no de la extensión.
+
+*Para actualizar:* descargá el archivo otra vez y repetí la instalación desde los ajustes. No se pierde la configuración.
+
+> 📱  
 > **¿Se puede usar en celulares?**  
-> Lamentablemente **no**. Las versiones móviles de la mayoría de los navegadores no permiten instalar extensiones de PC. Esto está diseñado para usarse solo desde la computadora.
+> **En Android sí**, únicamente con Firefox y siguiendo los pasos de acá arriba. Ningún navegador basado en Chromium permite instalar extensiones en el celular.  
+> **En iPhone y iPad no.** Apple obliga a que todos los navegadores usen el motor de Safari y a que las extensiones se distribuyan dentro de una app aprobada por la App Store, así que Firefox para iOS no admite complementos. No es una limitación de esta extensión sino de la plataforma.
 
 ## Características según cada medio
 
