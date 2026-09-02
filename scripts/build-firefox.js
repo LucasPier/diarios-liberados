@@ -122,15 +122,14 @@ const DIRECTORIOS = ["js", "css", "imagenes"];
 //
 // Excluir de acá hay que hacerlo mirando QUIÉN REFERENCIA el archivo, no por su nombre. Ya pasó
 // con `imagenes/lucas.webp`: parecía material de la landing, la usaba el popup desde un
-// `background: url()` de popup.css, y en el paquete quedó la foto rota. Hoy vuelve a estar
-// excluida porque el popup dejó de usarla —la landing sí la usa— y son 232 KB sobre un paquete
-// de 300. Si un archivo excluido vuelve a hacer falta, la verificación de referencias del final
-// corta el build en vez de dejar pasar el hueco.
+// `background: url()` de popup.css, y en el paquete quedó la foto rota. Esa imagen ya no existe
+// —dejó de usarla primero el popup y después la landing—, pero el criterio queda: si un archivo
+// excluido vuelve a hacer falta, la verificación de referencias del final corta el build en vez
+// de dejar pasar el hueco.
 const EXCLUIDOS = new Set([
     path.join("js", "landing.js"),
     path.join("css", "landing.css"),
     path.join("imagenes", "navegadores"),
-    path.join("imagenes", "lucas.webp"),
 ]);
 
 /**
