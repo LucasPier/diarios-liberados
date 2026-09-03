@@ -735,7 +735,7 @@ const RULES_NOTIFICACIONES = [
 ];
 
 // ID del ruleset estático (rules.json) — aplica sólo a la feature "suscriptores"
-const STATIC_RULESET_ID = "ruleset_lagaceta";
+const STATIC_RULESET_ID = "ruleset_suscripciones";
 
 let isApplyingRules = false;
 let pendingApply = false;

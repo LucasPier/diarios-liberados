@@ -18,7 +18,7 @@
     "declarative_net_request": {
         "rule_resources": [
             {
-                "id": "ruleset_lagaceta",
+                "id": "ruleset_suscripciones",
                 "enabled": true,
                 "path": "rules.json"
             }
