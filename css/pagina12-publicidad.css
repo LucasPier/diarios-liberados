@@ -33,11 +33,6 @@
 .p12-two-cols-layout .main aside.aside-right {
     display: none !important;
 }
-.p12-two-cols-layout .main,
-.p12-home .section-middle {
-    grid-template-columns: minmax(500px, 1fr) !important;
-    grid-template-areas: "main-inner" !important;
-}
 .p12-two-cols-layout .main .main-inner,
 .content-secciones .section-columna-one,
 .p12-home .section-middle .col-content {
@@ -54,4 +49,13 @@
 .content-secciones .content-secciones-grid {
     grid-template-columns: minmax(400px, 1fr) !important;
     grid-template-areas: "col1" !important;
+}
+
+
+@media (min-width: 1025px) {
+    .p12-two-cols-layout .main,
+    .p12-home .section-middle {
+        grid-template-columns: minmax(500px, 1fr) !important;
+        grid-template-areas: "main-inner" !important;
+    }
 }

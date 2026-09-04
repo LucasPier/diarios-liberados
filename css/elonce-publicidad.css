@@ -25,7 +25,17 @@ body.listado #page:has(.sidebar>.banner):not(:has(.sidebar>*:not(.banner))) #mai
 .bloque-deportes {
     margin: 0 0 30px !important;
 }
-
+@media only screen and (max-width: 767px) {
+    .menu-desplegable {
+        height: calc(100vh - 128px) !important;
+    }
+    .menu-desplegable__scroll {
+        height: calc(100vh - 210px) !important;
+    }
+    [id=page]{
+        padding: 50px 20px 0 !important;
+    }
+}
 @media only screen and (max-width: 1023px) {
     .menu {
         top: 0 !important;

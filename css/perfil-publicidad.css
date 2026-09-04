@@ -6,6 +6,7 @@
 *[class*="__ad"],
 *[class*="__promo"],
 *[class*="-promo"],
+*[class*="AdDiv"],
 *[data-type*="_mgwidget"],
 .head-ad,
 .head-ad.d-lg-flex,
@@ -60,7 +61,8 @@ body .ad-bg>*,
 .considebar:has(.mas-en-perfil) .sidebar:not(:has(.masvistas)),
 *:has( > .col-fixed > *[class*="ad"]):not(:has( > .col-fixed > :not(*[class*="ad"]):not(.sticky))):not(:has(*:not(.col-fixed))),
 .col-fixed:has( > *[class*="ad"]):not(:has( > *:not(*[class*="ad"]):not(.sticky))),
-.pf-new-show .d-none.d-lg-block:not(:has(.most-viewed-alter)):has(.ads-space) {
+.pf-new-show .d-none.d-lg-block:not(:has(.most-viewed-alter)):has(.ads-space),
+.botones-redes.position-absolute {
     display: none !important;
 }
 .flex-wrap,
@@ -99,14 +101,15 @@ section.container-fluid.p-0.mt-3.ml-0.mr-0 > .row.m-0 {
 
 /* Fix secciones Economía */
 .row > strong,
-strong > strong {
+strong > strong,
+.container-fluid.m-0.p-0>header:has(.sticky-top) {
     display: contents !important;
 }
 
-.destacada.row.max-width:has( > .col-fixed > *[class*="ads"]):not(:has( > .col-fixed > :not(*[class*="ads"])) ) > .destacada__container,
-.row.max-width.bloque:not(.destacado):has( > .col-fixed > *[class*="ad"]):not(:has( > .col-fixed > :not(*[class*="ad"]):not(.sticky))) >  .bloque__container.d-xl-flex {
-    margin: 0 calc((300px + 1.5rem) / 2) !important;
-    transition: none !important;
+/* Fix bug Menú Weekend y otros */
+.row.m-0.pf-header.navbar-fixed-top.sticky-top.pf-header-strech:has(.navbar-collapse.collapse.show),
+.row.m-0.pf-header.navbar-fixed-top.sticky-top.pf-header-strech:has(.navbar-collapse.collapsing) {
+    display: block !important;
 }
 
 body.pf-new-show>.container-fluid.m-0.p-0 .pf-header .logo[href*="hombre.perfil.com"] img {
@@ -116,7 +119,14 @@ body.pf-new-show>.container-fluid.m-0.p-0 .pf-header .logo[href*="hombre.perfil.
     justify-content: center !important;
 }
 
-@media (max-width: 1199px) {
+@media (min-width: 768px) {
+    .destacada.row.max-width:has( > .col-fixed > *[class*="ads"]):not(:has( > .col-fixed > :not(*[class*="ads"])) ) > .destacada__container,
+    .row.max-width.bloque:not(.destacado):has( > .col-fixed > *[class*="ad"]):not(:has( > .col-fixed > :not(*[class*="ad"]):not(.sticky))) >  .bloque__container.d-xl-flex {
+        margin: 0 calc((300px + 1.5rem) / 2) !important;
+        transition: none !important;
+    }
+}
+@media (min-width: 768px) and (max-width: 1199px) {
     body.pf-new-show>.container-fluid.m-0.p-0 .pf-header-top .time-top {
         top: 88px !important;
     }
@@ -174,4 +184,14 @@ body.pf-new-show>.container-fluid.m-0.p-0 .pf-header .logo[href*="hombre.perfil.
 /* NET TV */
 ._main-section__content {
     margin: 0 auto !important;
+}
+._theme-banner-upper._has-mobile-menu-showed:not(._has-header-fixed) ._main-mobile-header {
+    top: 3.4375rem !important;
+}
+
+/* Fix altura menú mobile Buenos Aires Times */
+@media (max-width: 1199.98px) {
+    .navbar-collapse {
+        top: 39px !important;
+    }
 }

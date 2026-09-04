@@ -218,3 +218,81 @@ body.page-seccion {
 .en-escena-home .destacadas-grid-container .extra-holder .standard-entry-box {
     margin-bottom: 20px;
 }
+
+/* La Capital */
+body.page-home {
+    padding-top: 180px !important;
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+    .site-header .site-header__main-part,
+    .site-header.sticky-header .site-header__main-part{
+        height: 60px !important;
+        margin-bottom: 0px !important;
+    }
+    /* Fix bug tamaño logo: pisa menú */
+    .site-header .site-header__main-part .site-logo-svg {
+        width: 180px !important;
+    }
+    /* Fix bug espaciado Ovación */
+    .page-seccion-ovacion .last-entrys-container {
+        margin-bottom: 20px !important;
+    }
+    /* Fix altura UNO Santa Fe y UNO Entre Ríos */
+    .has-mobile-gutter {
+        padding: 20px 20px 0 20px !important;
+    }
+
+    /* Fix bug UNO SF - Ovación */
+    body:has(header[data-td-script-src*="unosantafe.com.ar"]) .section-top-part .section-title img {
+        width: 100% !important;
+        object-fit: cover !important;
+        height: 32px !important;
+        object-position: left !important;
+    }
+
+    /* Fix bug UNO ER - Logo fuera de home */
+    .site-header.sticky-header[data-td-script-src*="unoentrerios.com.ar"] .site-header__main-part {
+        background: #469ed6 !important;
+    }
+    .site-header.sticky-header[data-td-script-src*="unoentrerios.com.ar"] .site-logo {
+        background-image: url(https://www.unoentrerios.com.ar/assets/img/205/logo-uno-entre-rios-blanco.png) !important;
+        background-position: 50% !important;
+        background-repeat: no-repeat !important;
+        background-size: 95px !important;
+        width: 150px !important;
+        height: 50px !important;
+    }
+    .site-header[data-td-script-src*="unoentrerios.com.ar"] .site-header__main-part .site-logo img {
+        height: 45px !important;
+    }
+    .site-header.sticky-header[data-td-script-src*="unoentrerios.com.ar"] .site-logo img {
+        display: none !important;
+    }
+
+    /* Fix bug UNO ER - Logo en Footer */
+    .site-footer .footer-logo img {
+        object-fit: contain !important;
+    }
+
+    body.page-home,
+    body.page-seccion {
+        padding-top: 60px !important;
+    }
+
+    #zona-ovacion {
+        overflow: hidden !important;
+    }
+    .page-nota-standard {
+        padding-top: 75px !important;
+    }
+    body.page-seccion-ovacion {
+        padding-top: 60px !important;
+    }
+
+    /* UNO Santa Fe */
+    .big-entry-box {
+        max-width: 100% !important;
+    }
+}

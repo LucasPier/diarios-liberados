@@ -11,7 +11,7 @@
 }
 /* Suscriptores - Reemplaza el ícono de estrella sólida por la versión outline (quita indicador gold) */
 .icon-star-regular:before {
-    content: "\e932" !important;
+    content: "\e933" !important;
 }
 /* Suscriptores - Cambia el color de los íconos de estrella (indicadores de premium) a rojo */
 .article .articleHead .breadcrumb a .icon-star-solid,
@@ -30,7 +30,8 @@
 }
 /* Suscriptores - Oculta el enlace de suscripción en el menú de usuario y recirculaciones premium */
 #user_menu .suscribe,
-div[data-mrf-recirculation="home-premium"] .col-12:has(.frame) {
+div[data-mrf-recirculation="home-premium"] .col-12:has(.frame),
+.suscribeWidget {
     display: none !important;
     height: 0 !important;
     overflow: hidden !important;

@@ -49,7 +49,7 @@ const RULES_PUBLICIDAD = [
         action: { type: "block" },
         condition: {
             urlFilter: "doubleclick.net",
-            initiatorDomains: DOMAINS.filter(d => d !== "www.diariopopular.com.ar" && d !== "diariopopular.com.ar" && d !== "www.somosohlala.com" && d !== "somosohlala.com"),
+            initiatorDomains: DOMAINS.filter(d => d !== "www.diariopopular.com.ar" && d !== "diariopopular.com.ar" && d !== "www.somosohlala.com" && d !== "somosohlala.com" && d !== "www.lagaceta.com.ar" && d !== "lagaceta.com.ar"),
         },
     },
     {

@@ -15,7 +15,8 @@
 
 /* Mejoras de distribución UI */
 *:has(*[class*="ad-slot"]):not(:has(> :not(*[class*="ad-slot"]))),
-.b-quad-chain__child-item.c-stack:has(*[class*="ad-slot"]) {
+.b-quad-chain__child-item.c-stack:has(*[class*="ad-slot"]),
+.c-grid.b-right-rail__rail-container:not(:has(*:not(:empty))) {
     display: none !important;
 }
 

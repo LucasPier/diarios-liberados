@@ -20,6 +20,9 @@ a[href*="https://suscripcion.lavoz.com.ar"].nav__link {
 .text-lvi-suscription {
     color: #ff0000 !important;
 }
+a.text-lvi-suscription {
+    color: #ff6d6d !important;
+}
 /* Suscriptores - Cambia el fondo de los elementos de suscripción a rojo */
 .bg-lvi-suscription {
     background-color: #ff0000 !important;
@@ -27,4 +30,5 @@ a[href*="https://suscripcion.lavoz.com.ar"].nav__link {
 /* Suscriptores - Cambia el borde de los elementos de suscripción a rojo */
 .border-lvi-suscription {
     border-color: #ff0000 !important;
+    color: white !important;
 }

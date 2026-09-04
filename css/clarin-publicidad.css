@@ -37,16 +37,7 @@ div[class="sc-737fb80f-8 lgoyrB"],
 *:has(.banner-small):not(:has(> :not(.banner-small))),
 .inread-container:has(>.banner):not(:has(> :not(.banner))),
 *:has(*[id*="div-gpt-ad"]):not(:has(> :not(*[id*="div-gpt-ad"]))),
-.containerUalter .ualter_content .footer {
-    display: none !important;
-}
-
-.bJutdf,
-.bGwtcm,
-.iGVHTF {
-    width: max-content !important;
-    margin: 10px auto 0 !important;
-}
+.containerUalter .ualter_content .footer,
 .bJutdf div[class*="div"]:not(.div13):has(> div>.bannerSRA),
 .bJutdf .div13>div:has(>.bannerSRA),
 /*.bGwtcm div[class*="div"]:not(.div11):has(> div>.bannerSRA),
@@ -80,6 +71,10 @@ div[class="sc-737fb80f-8 lgoyrB"],
 .jckEpp .div6 {
     display: none !important;
 }
+.sticky .container-sticky {
+    top: 0px !important;
+}
+
 .bJutdf .div11 {
     grid-area: 1 / 3 / 3 / 4 !important;
 }
@@ -313,6 +308,35 @@ body .lobeBS .div3:not(:last-child)::after {
 /* Elle */
 .gSmYDh .featured {
     grid-area: 3 / 1 / 5 / 3 !important;
+}
+
+@media (max-width: 1024px) {
+    /*body{
+        overflow: hidden !important;
+    }*/
+    body{
+        overflow: initial !important;
+    }
+    header .spacer:empty,
+    header .spacer:not(:has(*)),
+    .ctYUVo .spacer:empty,
+    .ctYUVo .spacer:not(:has(*)) {
+        display: none !important;
+    }
+    header ul.kdNARW.home {
+        top: 0px;
+    }
+    header .dpsfXv:checked ~ ul {
+        top: 0px !important;
+    }
+}
+@media (min-width: 1025px) {
+    .bJutdf,
+    .bGwtcm,
+    .iGVHTF {
+        width: max-content !important;
+        margin: 10px auto 0 !important;
+    }
 }
 @media (max-width: 1280px) {
     /* Elle */

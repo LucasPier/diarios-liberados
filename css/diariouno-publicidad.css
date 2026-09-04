@@ -1,8 +1,8 @@
 /* Publicidad - Oculta banners */
-.banner,
+.banner:not(:has(#principios-editoriales)):not(:has(#doppler_subscription)),
 .ad-slot,
 ads-component,
-*[class*="banner"],
+*[class*="banner"]:not(:has(#principios-editoriales)):not(:has(#doppler_subscription)),
 *[class*="ad-slot"],
 .residual-container{
     display: none !important;
@@ -21,7 +21,7 @@ ads-component,
     justify-content: center !important;
 }
 
-*:has(*[class*="banner"]):not(:has(> :not(*[class*="banner"]))),
+*:has(*[class*="banner"]):not(:has(> :not(*[class*="banner"]))):not(:has(#principios-editoriales)):not(:has(#doppler_subscription)),
 .footer-dac-logo {
     display: none !important;
 }

@@ -99,3 +99,10 @@
         margin-top: 16px !important;
     }
 }
+
+
+
+/* Fix bug menú en mobile */
+.main-header #menuToggler:not(:checked)~.header__menu {
+    left: -100vw;
+}

@@ -3,7 +3,8 @@
 .grid-ads,
 *[class*="advertisement"],
 *[class*="ad-slot"],
-*[class*="banner"]:not(.S-banner-container-counter) {
+*[class*="banner"]:not(.S-banner-container-counter),
+.S-publicidad {
     display: none !important;
     height: 0 !important;
     overflow: hidden !important;
@@ -34,4 +35,14 @@ div:has(>.WIDGET-BOX>*[class*="ad-slot"]):not(:has(>.WIDGET-BOX>:not(*[class*="a
 
 *[class*="styles_container-mam"] {
     justify-content: center;
+}
+
+#odesur3 .S-columna-3:not(:has(>*:not(.S-publicidad))) {
+    display: none !important;
+}
+@media (min-width: 769px) {
+    #odesur3 .S-columna-2 {
+        width: auto !important;
+        margin-right: 50px !important;
+    }
 }

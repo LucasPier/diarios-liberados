@@ -1,5 +1,6 @@
 /* Suscriptores - Oculta el botón "Socios" del nav principal */
-#main-nav a.partners-btn {
+#main-nav a.partners-btn,
+.partners-offer-popover {
     display: none !important;
     height: 0 !important;
     overflow: hidden !important;

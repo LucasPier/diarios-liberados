@@ -40,9 +40,6 @@ div[class="sc-737fb80f-8 lgoyrB"],
 article .content-bottom .story-content.noPadding + .columns:has(> .bann):not(:has(> :not(.bann))) {
     display: none !important;
 }
-article .content-bottom .story-content.noPadding {
-    margin: 0 200px 0 100px !important;
-}
 
 .fKBsSU {
     height: 523px !important;
@@ -113,9 +110,6 @@ article .content-bottom .story-content.noPadding {
 .iDCXxw .div12 {
     grid-area: 6 / 1 / 7 / 4 !important;
 }
-.cbXsLM {
-    height: 495px !important;
-}
 .iDCXxw .div23 {
     grid-area: 5 / 2 / 6 / 3 !important;
 }
@@ -130,16 +124,9 @@ article .content-bottom .story-content.noPadding {
     margin-bottom: 23px !important;
 }
 
-.cbXsLM {
-    width: 966px !important;
-}
 
 .cbXsLM .slide-container {
     justify-content: center !important;
-}
-/* Olétv */
-.jSjZhd .right:has(div[type="oletv"] > *[id*="gpt-ad"]):not(:has(> :not(div[type="oletv"] > *[id*="gpt-ad"]))) {
-    display: none !important;
 }
 
 .bcPsIB .div4 { /* Fallback, es publicidad y no debería verse */
@@ -329,6 +316,19 @@ article .content-bottom .story-content.noPadding {
     }
 }
 
+@media (min-width: 1024px) {
+    article .content-bottom .story-content.noPadding {
+        margin: 0 200px 0 100px !important;
+    }
+    .cbXsLM {
+        width: 966px !important;
+        height: 495px !important;
+    }
+    /* Olétv */
+    .jSjZhd .right:has(div[type="oletv"] > *[id*="gpt-ad"]):not(:has(> :not(div[type="oletv"] > *[id*="gpt-ad"]))) {
+        display: none !important;
+    }
+}
 @media (min-width: 1401px) {
     .styles_gridContainer__r5Use {
         grid-template-columns: 1fr 300px !important;
@@ -349,5 +349,28 @@ article .content-bottom .story-content.noPadding {
     }
     .styles_parent__8frLI:not(:has(.gYciqK)):not(:has(.fKBsSU)):not(:has(.xZQv)) .styles_listado-container__Qa8b7 {
         grid-template-columns: repeat(4,300px) !important;
+    }
+}
+
+/* Arreglos mobile */
+
+@media (max-width: 1023px) {
+    .llGFGj,
+    .kmePee,
+    .sticky .container-sticky,
+    .llGFGj.sticky,
+    header section.sticky {
+        top: 0px !important;
+    }
+    .eMiNDN {
+        padding-top: 45px !important;
+    }
+    .itVsVD,
+    .eunGoy,
+    header.eMiNDN+div {
+        top: 45px !important;
+    }
+    .coUAHB .div1 {
+        top: 98px !important;
     }
 }

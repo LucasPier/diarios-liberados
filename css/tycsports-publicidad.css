@@ -18,6 +18,7 @@
 
 /* Mejoras de distribución UI */
 *:has(.asideAdWrapper):not(:has(> :not(.asideAdWrapper))),
+*:has(.horizontalAdWrapper):not(:has(> :not(.horizontalAdWrapper))),
 .landing .wrap-sidebars:not(:has(aside>*:not(.asideAdWrapper))) {
     display: none !important;
 }
@@ -26,27 +27,26 @@ body.desktopStickyAd {
     padding-right: 0px !important;
 }
 
-.containerGrid.cardsContainer:not(:has(.col4.aside[data-name="content-right-1"]>*:not(.asideAdWrapper))):has(.col8 .col6) > .col8[data-name="content-left-1"]:has(.col4) {
-    grid-column-start: 3 !important;
-    grid-column-end: 11 !important;
-}
 .containerGrid.cardsContainer:has(.col4.aside):has(.col8 .col6):not(:has(.col12)) > .col8:not([data-name="content-left-3"]) {
     grid-column: span 12 !important;
-}
-.containerGrid.cardsContainer:has(.col4.aside):not(:has(.col12))  .col8:not(:has(.col4)):not([data-name="content-left-3"]) .col6 {
-    grid-column: span 4 !important;
-}
-.containerGrid.cardsContainer:has(.col4.aside.stickyAside):has(.col8 .col6) > .col8[data-name="content-left-3"],
-body>.containerGrid:not(.cardsContainer) article.col8[data-name="article-left-1"],
-.col8.agenda.agendaComponent,
-.containerGrid.cardsContainer:has(.col4.aside > .asideAdWrapper):not(:has(.col4.aside > *:not(.asideAdWrapper))) > .col8:has(.col4),
-.containerGrid.cardsContainer:has(.col4.aside > .asideAdWrapper):not(:has(.col4.aside > *:not(.asideAdWrapper))) > .col8:has(.headline),
-.containerGrid.cardsContainer:has(.col4.aside > .asideAdWrapper):not(:has(.col4.aside > *:not(.asideAdWrapper))) > .col8:not(:has(.col6)):nth-child(1 of .col8):nth-last-child(1 of .col8) {
-    grid-column-start: 3 !important;
-    grid-column-end: 11 !important;
 }
 
 .landing .row:has(.wrap-sidebar .asideAdWrapper) .wrap-landing.col-4 {
     float: none !important;
     margin: 0 auto !important;
+}
+@media (min-width: 1024px) {
+    .containerGrid.cardsContainer:not(:has(.col4.aside[data-name="content-right-1"]>*:not(.asideAdWrapper))):has(.col8 .col6) > .col8[data-name="content-left-1"]:has(.col4),
+    .containerGrid.cardsContainer:has(.col4.aside.stickyAside):has(.col8 .col6) > .col8[data-name="content-left-3"],
+    body>.containerGrid:not(.cardsContainer) article.col8[data-name="article-left-1"],
+    .col8.agenda.agendaComponent,
+    .containerGrid.cardsContainer:has(.col4.aside > .asideAdWrapper):not(:has(.col4.aside > *:not(.asideAdWrapper))) > .col8:has(.col4),
+    .containerGrid.cardsContainer:has(.col4.aside > .asideAdWrapper):not(:has(.col4.aside > *:not(.asideAdWrapper))) > .col8:has(.headline),
+    .containerGrid.cardsContainer:has(.col4.aside > .asideAdWrapper):not(:has(.col4.aside > *:not(.asideAdWrapper))) > .col8:not(:has(.col6)):nth-child(1 of .col8):nth-last-child(1 of .col8) {
+        grid-column-start: 3 !important;
+        grid-column-end: 11 !important;
+    }
+    .containerGrid.cardsContainer:has(.col4.aside):not(:has(.col12))  .col8:not(:has(.col4)):not([data-name="content-left-3"]) .col6 {
+        grid-column: span 4 !important;
+    }
 }
