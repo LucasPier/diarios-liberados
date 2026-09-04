@@ -217,7 +217,19 @@
             ],
             "matches": [
                 "*://*.lanacion.com.ar/*",
-                "*://*.somosohlala.com/*",
+                "*://*.somosohlala.com/*"
+            ],
+            "all_frames": true,
+            "run_at": "document_start"
+        },
+        {
+            "js": [
+                "js/config.js",
+                "js/css-loader.js",
+                "js/site-map.js",
+                "js/loader.js"
+            ],
+            "matches": [
                 "*://*.rollingstone.com/*"
             ],
             "all_frames": true,
@@ -229,8 +241,7 @@
             ],
             "matches": [
                 "*://*.lanacion.com.ar/*",
-                "*://*.somosohlala.com/*",
-                "*://*.rollingstone.com/*"
+                "*://*.somosohlala.com/*"
             ],
             "world": "MAIN",
             "run_at": "document_start"
