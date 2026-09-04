@@ -106,7 +106,7 @@ var COOKIES_SUSCRIPTORES = globalThis.COOKIES_SUSCRIPTORES || [
         hosts: [
             "perfil.com", "www.perfil.com",
             "noticias.perfil.com", "442.perfil.com", "caras.perfil.com", "parabrisas.perfil.com",
-            "fortuna.perfil.com", "weekend.perfil.com", "supercampo.perfil.com", "look.perfil.com",
+            "fortuna.perfil.com", "weekend.perfil.com", "supercampo.perfil.com",
             "luz.perfil.com", "mia.perfil.com", "lunateen.perfil.com", "horizonte.perfil.com",
             "exitoina.perfil.com", "brasil.perfil.com", "marieclaire.perfil.com", "radio.perfil.com",
             "rouge.perfil.com", "hombre.perfil.com",

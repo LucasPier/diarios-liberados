@@ -20,7 +20,7 @@ const BASE_DOMAINS = [
     "puertonegocios.com", "rosario3.com", "lapoliticaonline.com", "pagina12.com.ar",
     "cronista.com", "ambito.com", "eldestapeweb.com", "perfil.com", "noticias.perfil.com",
     "442.perfil.com", "caras.perfil.com", "parabrisas.perfil.com", "fortuna.perfil.com",
-    "weekend.perfil.com", "supercampo.perfil.com", "look.perfil.com", "luz.perfil.com",
+    "weekend.perfil.com", "supercampo.perfil.com", "luz.perfil.com",
     "mia.perfil.com", "lunateen.perfil.com", "horizonte.perfil.com", "exitoina.perfil.com",
     "brasil.perfil.com", "marieclaire.perfil.com", "radio.perfil.com", "canalnet.tv",
     "rouge.perfil.com", "hombre.perfil.com", "batimes.com.ar", "ole.com.ar",

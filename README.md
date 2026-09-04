@@ -66,7 +66,7 @@ Una extensión compatible con múltiples navegadores (Chrome, Edge, Brave, Opera
   </tr>
 </table>
 
-> 💡 **Dato:** La extensión también cubre otros sitios del Grupo Clarín y la Editorial Perfil, como: Ciudad Magazine, El Trece TV, Radio Mitre, La 100, Elle, Cienradios, Rolling Stone, Ohlalá!, 442, Noticias, Caras, Fortuna, Weekend, Parabrisas, Super Campo, Look, Luz, Mia, Lunateen, Horizonte, Exitoina, Marie Claire, Radio Perfil, Rouge, Hombre, Perfil Brasil, Buenos Aires Times y Canal Net TV. Además, incluye Puerto Negocios del grupo El Litoral.
+> 💡 **Dato:** La extensión también cubre otros sitios del Grupo Clarín y la Editorial Perfil, como: Ciudad Magazine, El Trece TV, Radio Mitre, La 100, Elle, Cienradios, Rolling Stone, Ohlalá!, 442, Noticias, Caras, Fortuna, Weekend, Parabrisas, Super Campo, Luz, Mia, Lunateen, Horizonte, Exitoina, Marie Claire, Radio Perfil, Rouge, Hombre, Perfil Brasil, Buenos Aires Times y Canal Net TV. Además, incluye Puerto Negocios del grupo El Litoral.
 
 ## Instalación paso a paso
 
@@ -190,7 +190,7 @@ Los mismos pasos sirven para los navegadores basados en Firefox: Floorp, Zen, Li
 
 ✅ Se bloquean diálogos de notificaciones
 
-✅ Incluye todos los medios de la Editorial Perfil: Diario Perfil, 442, Noticias, Caras, Para Ti, Fortuna, Weekend, Parabrisas, Super Campo, Look, Luz, Mia, Lunateen, Horizonte, Exitoina, Marie Claire, Radio Perfil, Rouge, Hombre, Perfil Brasil, Buenos Aires Times y Canal Net TV
+✅ Incluye todos los medios de la Editorial Perfil: Diario Perfil, 442, Noticias, Caras, Para Ti, Fortuna, Weekend, Parabrisas, Super Campo, Luz, Mia, Lunateen, Horizonte, Exitoina, Marie Claire, Radio Perfil, Rouge, Hombre, Perfil Brasil, Buenos Aires Times y Canal Net TV
 
 ### El Destape
 
