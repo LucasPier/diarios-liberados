@@ -1,7 +1,7 @@
 /* Publicidad - Oculta ad-slots y banners */
 .ad-container,
 *[class*="ad-slot"],
-*[class*="banner"] {
+*[class*="banner"]:not(body) {
     display: none !important;
     height: 0 !important;
     overflow: hidden !important;

@@ -2,7 +2,7 @@
     "name": "Diarios Liberados",
     "short_name": "diarios-liberados",
     "description": "Mejora visualización de diarios online",
-    "version": "1.4.0",
+    "version": "1.5.1",
     "author": "Lucas Pier",
     "homepage_url": "https://github.com/LucasPier/diarios-liberados",
     "manifest_version": 3,
@@ -18,7 +18,7 @@
     "declarative_net_request": {
         "rule_resources": [
             {
-                "id": "ruleset_lagaceta",
+                "id": "ruleset_suscripciones",
                 "enabled": true,
                 "path": "rules.json"
             }
@@ -217,7 +217,19 @@
             ],
             "matches": [
                 "*://*.lanacion.com.ar/*",
-                "*://*.somosohlala.com/*",
+                "*://*.somosohlala.com/*"
+            ],
+            "all_frames": true,
+            "run_at": "document_start"
+        },
+        {
+            "js": [
+                "js/config.js",
+                "js/css-loader.js",
+                "js/site-map.js",
+                "js/loader.js"
+            ],
+            "matches": [
                 "*://*.rollingstone.com/*"
             ],
             "all_frames": true,
@@ -229,8 +241,7 @@
             ],
             "matches": [
                 "*://*.lanacion.com.ar/*",
-                "*://*.somosohlala.com/*",
-                "*://*.rollingstone.com/*"
+                "*://*.somosohlala.com/*"
             ],
             "world": "MAIN",
             "run_at": "document_start"
@@ -700,7 +711,6 @@
         }
     ],
     "content_security_policy": {
-        "extension_pages": "script-src 'self'; object-src 'self';",
-        "sandbox": "sandbox allow-scripts allow-forms allow-popups allow-modals; script-src 'self' 'unsafe-inline' 'unsafe-eval'; child-src 'self';"
+        "extension_pages": "script-src 'self'; object-src 'self';"
     }
 }

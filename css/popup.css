@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
-
 * {
     box-sizing: border-box;
 }
@@ -10,7 +8,16 @@
 }
 
 body {
+    /* 410px es el ancho del panel en escritorio. El max-width es por Firefox para Android, donde el
+       popup ocupa la pantalla completa y un teléfono puede ser más angosto que 410px.
+       Tiene que ser 100% y NO 100vw: vw incluye el ancho de la barra de scroll, y como el popup se
+       dimensiona a partir de su contenido, eso arma un bucle —body de 410 → aparece la barra →
+       el área queda en ~395 → desborda → el navegador reajusta la ventana → vuelve a empezar— que
+       se ve como un popup temblando de ancho al abrirse y cada vez que cambia la altura del
+       contenido. El porcentaje se resuelve contra el bloque contenedor, sin la barra, y no
+       participa del cálculo del ancho preferido. */
     width: 410px;
+    max-width: 100%;
     margin: 0;
     padding: 0;
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -97,6 +104,115 @@ main {
 }
 
 /* Banner de recarga animado (wrapper colapsable) */
+/* Banner de permisos faltantes.
+   Comparte la mecánica de animación del banner de recarga (grid-template-rows 0fr -> 1fr, que
+   permite animar una altura desconocida) pero va en ámbar y no en rojo: son dos avisos distintos
+   y pueden estar visibles al mismo tiempo.
+
+   La clase .visible es SÓLO la animación: un wrapper sin ella mide 0 de alto pero sigue ocupando
+   su lugar en el layout. Quien lo saca del flujo es el atributo hidden que pone js/popup.js. */
+.permisos-banner-wrapper {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    transition: grid-template-rows 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.25s ease,
+                margin-bottom 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    margin-bottom: 0;
+}
+
+.permisos-banner-wrapper.visible {
+    grid-template-rows: 1fr;
+    opacity: 1;
+    margin-bottom: 12px;
+}
+
+.permisos-banner {
+    min-height: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    background: rgba(245, 158, 11, 0.08);
+    border: 1px solid rgba(245, 158, 11, 0.25);
+    border-radius: 7px;
+    font-size: 11px;
+    color: #fcd34d;
+}
+
+.permisos-banner svg {
+    flex-shrink: 0;
+    color: #f59e0b;
+}
+
+.btn-permisos {
+    flex-shrink: 0;
+    font-family: inherit;
+    font-size: 10.5px;
+    font-weight: 600;
+    color: #121318;
+    background: rgba(245, 158, 11, 0.85);
+    border: none;
+    border-radius: 5px;
+    padding: 4px 10px;
+    cursor: pointer;
+    transition: background 0.18s ease;
+    white-space: nowrap;
+}
+
+.btn-permisos:hover {
+    background: rgba(245, 158, 11, 1);
+}
+
+/* Aviso del límite de La Nación.
+   Misma mecánica y misma paleta ámbar que el banner de permisos, pero es informativo: no hay nada
+   que el usuario pueda hacer al respecto, así que no lleva botón y el texto ocupa todo el ancho. */
+.limite-banner-wrapper {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    transition: grid-template-rows 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.25s ease,
+                margin-bottom 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    margin-bottom: 0;
+}
+
+.limite-banner-wrapper.visible {
+    grid-template-rows: 1fr;
+    opacity: 1;
+    margin-bottom: 12px;
+}
+
+.limite-banner {
+    min-height: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    background: rgba(245, 158, 11, 0.08);
+    border: 1px solid rgba(245, 158, 11, 0.25);
+    border-radius: 7px;
+    font-size: 11px;
+    color: #fcd34d;
+}
+
+.limite-banner svg {
+    flex-shrink: 0;
+    color: #f59e0b;
+}
+
+.limite-banner span {
+    flex: 1;
+    line-height: 1.35;
+}
+
+.limite-banner strong {
+    font-weight: 700;
+    color: #fde68a;
+}
+
 .reload-banner-wrapper {
     display: grid;
     grid-template-rows: 0fr;
@@ -361,7 +477,6 @@ main {
 
 /* Footer */
 footer {
-    position: relative;
     padding: 16px 20px;
     background: #0d0e12;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
@@ -466,21 +581,9 @@ footer p {
     margin: 0;
     font-size: 11.5px;
     color: #64748b;
+    text-align: center;
 }
 
 footer p strong {
     color: #94a3b8;
-}
-
-footer p:last-of-type::after {
-    content: "";
-    position: absolute;
-    right: 16px;
-    bottom: 4px;
-    width: 50px;
-    height: 50px;
-    background: url(../imagenes/lucas.webp) bottom center no-repeat;
-    background-size: 90px;
-    border-radius: 50%;
-    border: 1px solid rgba(255, 255, 255, 0.1);
 }

@@ -34,22 +34,31 @@ body {
     display: none !important;
 }
 
-.sticky__wrapper:not(.newsfull__content) .sticky__main h3.mod__title,
-.sticky__main .category-simple:not([style*="background-color: #f0f0f1"]) .mod__header > h3 {
-    position: relative !important;
-    left: -16.5% !important;
-}
-.sticky__main .mod--lastesnews>.mod__header > h3.mod__title,
-.sticky__main .mod--topic.category-simple:not([style*="background-color: #ffffff"]) .mod__header > h3{
-    left: auto !important;
+@media (min-width: 769px) {
+    .sticky__wrapper:not(.newsfull__content) .sticky__main h3.mod__title,
+    .sticky__main .category-simple:not([style*="background-color: #f0f0f1"]) .mod__header > h3 {
+        position: relative !important;
+        left: -16.5% !important;
+    }
+    .sticky__main .mod--lastesnews>.mod__header > h3.mod__title,
+    .sticky__main .mod--topic.category-simple:not([style*="background-color: #ffffff"]) .mod__header > h3{
+        left: auto !important;
+    }
+    .sticky__main .mod--topic.category-simple.mod--sidebar--true[style*="background-color: #ffffff"] {
+        padding: 0 !important;
+    }
 }
 .sticky__main .mod__header:has(h3){
     overflow: visible !important;
 }
 
-.sticky__main .mod--topic.category-simple.mod--sidebar--true[style*="background-color: #ffffff"] {
-    padding: 0 !important;
-}
 /*.mod--sidebar--true{
     padding: 0 !important;
 }*/
+
+@media (max-width: 1024px) {
+    /* Fix bug color texto primera nota secciones */
+    .page-specialsummary .news--innerbox .news__data {
+        color: rgba(0,0,0,.7) !important;
+    }
+}

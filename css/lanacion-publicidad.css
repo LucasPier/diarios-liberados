@@ -5,6 +5,12 @@ div[class*="ln-banner-container"],
 div[class*="container --ads"],
 div[class*="default-creative-container"],
 div[class*="cll-banner"],
+div[class*="AdsPopup"],
+div[class*="AdBelt-"],
+div[class*="AdhesionAds"],
+div[class*="MenuAd-"],
+div[class*="AdParagraph"],
+#menu-ad-root,
 iframe[src*="https://imasdk.googleapis.com"],
 div[data-banner-id*="b"],
 #megatop_dsk,
@@ -29,14 +35,16 @@ aside.ln-aside.--tablet-lg-none.grid-item.--1.--col-lg-4.--col-xl-4,
 .HeaderAd-module-scss-module__CMSPEG__desktop,
 .AdParagraph-module-scss-module__f7hbba__desktop,
 /* RollingStone */
-.elementor-popup-modal .dialog-message,
+.elementor-popup-modal,
 /*.elementor-14400 .elementor-element.elementor-element-5f8aee0,*/
 *[class*="elementor-"] *[class*="elementor-element-"].elementor-element:has(script[src*="ads"]),
 div[class*="elementor-"] div[class*="elementor-element-"].elementor-element:has(.elementor-shortcode):has(*[id*="gpt-ad"]):not(:has(.elementor-element-populated)),
 *[id*="gpt-ad"],
 .elementor-45710 *[class*="elementor-element-"].elementor-element:has(*[id*="ad"]),
 .elementor-element.e-con-full.e-flex.e-con.e-child:has(a[href*="rollingstone.com/suscripciones-digital"]),
-*[class*="elementor-"]  .elementor-element > .elementor-widget-wrap > .elementor-widget:not(.elementor-widget__width-auto):not(.elementor-widget__width-initial):not(:last-child):not(.elementor-absolute):has(a[href*="rollingstone.com/suscripciones-digital"]) {
+*[class*="elementor-"]  .elementor-element > .elementor-widget-wrap > .elementor-widget:not(.elementor-widget__width-auto):not(.elementor-widget__width-initial):not(:last-child):not(.elementor-absolute):has(a[href*="rollingstone.com/suscripciones-digital"]),
+#fusion-app>#wrapper:not(.sitemap):not(.html-libre):before,
+#main-content:before {
     display: none !important;
     width: 0 !important;
     height: 0 !important;
@@ -190,6 +198,12 @@ body.anexos#APartners_bienestar .wrapperFull{
 .SectionsContainer-module-scss-module__V_N8dG__wrapper .SectionsContainer-module-scss-module__V_N8dG__col_left {
     grid-area: auto !important;
 }
+#main-container.main-with-ad {
+    padding-top: 56px !important;
+}
+.NavBarClient-module-scss-module__DRHLEq__menu.NavBarClient-module-scss-module__DRHLEq__top_ad {
+    top: 55px !important;
+}
 @media screen and (min-width: 1200px) {
     .SectionsContainer-module-scss-module__V_N8dG__wrapper {
         grid-template-columns: 100% !important;
@@ -224,4 +238,9 @@ body.anexos#APartners_bienestar .wrapperFull{
     max-height: auto !important;
     -webkit-mask-image: none !important;
     mask-image: none !important;
+}
+
+/* Mobile */
+.common-header-container.mt-50 {
+    margin-top: 0 !important;
 }

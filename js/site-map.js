@@ -299,7 +299,6 @@ var SITE_CSS_MAP = window.SITE_CSS_MAP || (function () {
         'fortuna.perfil.com':      perfilConfig,
         'weekend.perfil.com':      perfilConfig,
         'supercampo.perfil.com':   perfilConfig,
-        'look.perfil.com':         perfilConfig,
         'luz.perfil.com':          perfilConfig,
         'mia.perfil.com':          perfilConfig,
         'lunateen.perfil.com':     perfilConfig,

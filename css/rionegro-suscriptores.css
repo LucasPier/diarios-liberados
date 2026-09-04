@@ -1,6 +1,7 @@
 /* Suscriptores - Oculta banners */
 .header__icons>.radio-header-section,
-.tapas__button--subscribe {
+.tapas__button--subscribe,
+.header-custom-button:not(:has(>*:not(a[href*="suscripciones.rionegro.com.ar"]))) {
     display: none !important;
     height: 0 !important;
     overflow: hidden !important;

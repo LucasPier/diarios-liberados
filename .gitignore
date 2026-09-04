@@ -3,5 +3,12 @@ _metadata/
 
 # Privado
 .agents/
+docs/
 notas.md
 *.stackdump
+AGENTS.md
+CLAUDE.md
+
+# Paquete generado para Firefox (node scripts/build-firefox.js)
+firefox/
+*.xpi

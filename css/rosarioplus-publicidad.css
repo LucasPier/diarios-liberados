@@ -3,7 +3,8 @@
 *[class*="ad-slot"],
 *[class*="banner"],
 tadevel-ad,
-footer .content a[target="_blank"] {
+footer .content a[target="_blank"],
+view-toolbar-wrapper .toolbar-static:has(.adsbygoogle) {
     display: none !important;
     height: 0 !important;
     overflow: hidden !important;

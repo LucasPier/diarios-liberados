@@ -46,3 +46,9 @@ p:has(#mdz-gamesnacks) {
 main[role="main"] > div:has(header.main-header.sticky) {
     display: initial !important;
 }
+
+
+/* Fix bug menú en mobile */
+.main-header #menuToggler:not(:checked)~.header__menu {
+    left: -100vw;
+}

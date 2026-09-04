@@ -32,7 +32,9 @@ body .exclusive-entry .volanta,
 /* Suscriptores - Ajusta el fondo de los bloques de suscriptores y la sección exclusivos */
 .opinion-entry-box:first-child,
 .sucriptoresblc-custom-widget,
-.page-seccion-exclusivo .section-top-part {
+.page-seccion-exclusivo .section-top-part,
+.exclusivo-suscriptores-home,
+.opinion-entry-box:first-of-type {
     background: #dbdbdb !important;
 }
 /*.sucriptoresblc-custom-widget .entry-1-nota-destacada {
@@ -42,4 +44,15 @@ body .exclusive-entry .volanta,
 /* Suscriptores - Cambia el color del scrollbar del slider de suscriptores */
 .sucriptoresblc-custom-widget .fake-slider::-webkit-scrollbar-thumb {
     background: rgb(240 0 0) !important;
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+    *[class*="-home"] .exclusive-icon {
+        width: 24px !important;
+        border-radius: 4px !important;
+    }
+    *[class*="-home"] .exclusive-icon svg {
+        margin-left: 4px !important;
+    }
 }

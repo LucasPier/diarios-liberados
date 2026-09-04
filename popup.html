@@ -37,8 +37,37 @@
                 Configuración
             </h2>
 
+            <!-- Banner de permisos faltantes: lo completa js/popup.js.
+                 Los tres avisos arrancan con hidden y es el JS el que los revela: así el popup no
+                 muestra un hueco vacío en el primer frame, antes de saber cuáles corresponden. -->
+            <div class="permisos-banner-wrapper" id="permisos-banner-wrapper" hidden>
+                <div class="permisos-banner">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 9v4M12 17h.01" />
+                        <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                    </svg>
+                    <span id="permisos-banner-text"></span>
+                    <button class="btn-permisos" id="btn-permisos">Dar acceso</button>
+                </div>
+            </div>
+
+            <!-- Aviso de límite en La Nación: lo muestra js/popup.js si hay una pestaña del medio abierta -->
+            <div class="limite-banner-wrapper" id="limite-banner-wrapper" hidden>
+                <div class="limite-banner">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M12 16v-4M12 8h.01" />
+                    </svg>
+                    <span>Estás visitando <strong>La Nación</strong>, que es el único medio en el que no se desbloquean
+                        las notas para suscriptores. Sí funcionan los resúmenes generados con IA y la escucha de
+                        notas.</span>
+                </div>
+            </div>
+
             <!-- Banner de recarga animado -->
-            <div class="reload-banner-wrapper" id="reload-banner-wrapper">
+            <div class="reload-banner-wrapper" id="reload-banner-wrapper" hidden>
                 <div class="reload-banner">
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
                         stroke-linecap="round" stroke-linejoin="round">
@@ -175,7 +204,7 @@
                 <a href="https://www.eltrecetv.com.ar" target="_blank">El Trece TV</a>
                 <a href="https://radiomitre.cienradios.com" target="_blank">Radio Mitre</a>
                 <a href="https://la100.cienradios.com" target="_blank">La 100</a>
-                <a href="https://cienradios.com" target="_blank">Cienradios</a>
+                <a href="https://ar.cienradios.com" target="_blank">Cienradios</a>
                 <a href="https://elle.clarin.com" target="_blank">Elle</a>
                 <!-- La Nación -->
                 <a href="https://es.rollingstone.com/arg/" target="_blank">Rolling Stone</a>
@@ -188,7 +217,6 @@
                 <a href="https://weekend.perfil.com" target="_blank">Weekend</a>
                 <a href="https://parabrisas.perfil.com" target="_blank">Parabrisas</a>
                 <a href="https://supercampo.perfil.com" target="_blank">Super Campo</a>
-                <a href="https://look.perfil.com" target="_blank">Look</a>
                 <a href="https://luz.perfil.com" target="_blank">Luz</a>
                 <a href="https://mia.perfil.com" target="_blank">Mía</a>
                 <a href="https://lunateen.perfil.com" target="_blank">Lunateen</a>

@@ -8,6 +8,8 @@
  *     extensión con la versión que el usuario tiene instalada.
  *  3. Comparar ambas versiones con criterio semver (numérico, no textual)
  *     e informar al usuario si está al día o si hay una versión nueva.
+ *  4. Mostrar UN solo camino de instalación: el de la plataforma y el
+ *     navegador desde los que se está visitando la página.
  *
  * Nota de seguridad: el valor de ?version es entrada del usuario reflejada
  * en el DOM. Se valida con una expresión regular estricta y se inserta
@@ -16,8 +18,19 @@
 
 const ZIP_URL = 'https://github.com/LucasPier/diarios-liberados/archive/refs/heads/main.zip';
 
+/** Página del último release: respaldo cuando no se puede leer updates.json */
+const RELEASES_URL = 'https://github.com/LucasPier/diarios-liberados/releases/latest';
+
+/** Identificador del add-on dentro de updates.json */
+const ID_ADDON = 'diarios-liberados@lucaspier.github.io';
+
 /** Formato aceptado para una versión: entre 1 y 4 componentes numéricos */
 const RE_VERSION = /^\d+(\.\d+){0,3}$/;
+
+/* Marca el documento como "con JS" apenas se parsea este archivo, antes del
+   DOMContentLoaded: hay estilos que sólo valen cuando las pestañas funcionan
+   y esperar al evento provocaría un parpadeo. */
+document.documentElement.classList.add('js');
 
 /**
  * Convierte una cadena de versión en un array de enteros.
@@ -85,15 +98,51 @@ async function obtenerVersionPublicada() {
 }
 
 /**
+ * Lee la URL del .xpi desde updates.json, el mismo archivo que consulta Firefox
+ * para actualizarse.
+ *
+ * El nombre del asset lleva la versión adentro, así que un link escrito a mano
+ * en el HTML quedaría viejo en cada release sin que nada falle de forma visible.
+ * Leerlo de acá mantiene la regla del proyecto: la versión y su URL viven en un
+ * solo lugar y nadie las duplica.
+ *
+ * @returns {Promise<string|null>} la URL, o null para caer al respaldo
+ */
+async function obtenerUrlXpi() {
+    try {
+        const respuesta = await fetch('updates.json', { cache: 'no-cache' });
+        if (!respuesta.ok) return null;
+
+        const datos = await respuesta.json();
+        const addon = datos && datos.addons && datos.addons[ID_ADDON];
+        const updates = addon && addon.updates;
+        if (!Array.isArray(updates) || updates.length === 0) return null;
+
+        // El archivo puede listar varias versiones y no necesariamente en orden:
+        // se compara para quedarse con la más nueva.
+        const ultima = updates.reduce((mayor, actual) => (
+            compararVersiones(actual.version || '0', mayor.version || '0') > 0 ? actual : mayor
+        ));
+
+        const link = typeof ultima.update_link === 'string' ? ultima.update_link : '';
+        // Sólo se acepta una URL del repo: si el JSON viniera alterado, el botón
+        // cae al respaldo en lugar de mandar al usuario a descargar otra cosa.
+        return link.startsWith('https://github.com/LucasPier/diarios-liberados/') ? link : null;
+    } catch {
+        return null;
+    }
+}
+
+/**
  * Pinta el bloque de estado de versión.
  *
  * @param {'ok'|'outdated'|'dev'} estado
  * @param {string} icono
  * @param {string} titulo
  * @param {string} texto
- * @param {boolean} conAccion — muestra el botón de descarga dentro del bloque
+ * @param {string|null} hrefAccion — URL del botón de descarga, o null para ocultarlo
  */
-function mostrarEstado(estado, icono, titulo, texto, conAccion) {
+function mostrarEstado(estado, icono, titulo, texto, hrefAccion) {
     const bloque  = document.getElementById('version-status');
     const iconoEl = document.getElementById('version-status-icon');
     const tituloEl = document.getElementById('version-status-title');
@@ -106,10 +155,10 @@ function mostrarEstado(estado, icono, titulo, texto, conAccion) {
     tituloEl.textContent = titulo;
     textoEl.textContent  = texto;
 
-    // El botón de descarga solo tiene sentido cuando falta actualizar:
-    // si el usuario ya está al día o va adelantado, no se ofrece.
-    accion.hidden = !conAccion;
-    if (conAccion) accion.href = ZIP_URL;
+    // El botón de descarga solo tiene sentido cuando falta actualizar y la
+    // actualización es manual: en Firefox de escritorio se hace sola.
+    accion.hidden = !hrefAccion;
+    if (hrefAccion) accion.href = hrefAccion;
 
     bloque.hidden = false;
 }
@@ -177,6 +226,46 @@ function configurarEnlacesAMedios() {
     }
 }
 
+/* ═══════════════════════════════════════════════════════════
+   Detección del entorno
+   ═══════════════════════════════════════════════════════════ */
+
+/**
+ * Plataforma desde la que se visita la página.
+ * @returns {'escritorio'|'android'|'ios'}
+ */
+function detectarPlataforma() {
+    const ua = navigator.userAgent;
+
+    // iPadOS 13+ se presenta como Macintosh a propósito. La única pista que
+    // queda es el táctil: una Mac de escritorio informa maxTouchPoints 0.
+    const esIPad = /Macintosh/.test(ua) && navigator.maxTouchPoints > 1;
+    if (/iPhone|iPad|iPod/.test(ua) || esIPad) return 'ios';
+
+    if (/Android/.test(ua)) return 'android';
+    return 'escritorio';
+}
+
+/**
+ * Familia del motor del navegador. Es lo que determina el camino de
+ * instalación: dentro de una misma familia los pasos son los mismos.
+ *
+ * @returns {'chromium'|'gecko'|'otro'}
+ */
+function detectarFamilia() {
+    // userAgentData es exclusiva de Chromium: si existe, no hay más que mirar.
+    if (navigator.userAgentData) return 'chromium';
+
+    const ua = navigator.userAgent;
+    if (/\bChrom(e|ium)\//.test(ua) || /\bCriOS\//.test(ua)) return 'chromium';
+
+    // Firefox para iOS (FxiOS) queda afuera a propósito: es un envoltorio
+    // sobre WebKit, no Gecko, y no admite complementos.
+    if (/\bFirefox\//.test(ua)) return 'gecko';
+
+    return 'otro';
+}
+
 /**
  * Identifica el navegador Chromium desde el que se visita la página.
  *
@@ -186,7 +275,9 @@ function configurarEnlacesAMedios() {
  * daría un resultado equivocado.
  *
  * Limitación conocida: Vivaldi se presenta como Chrome salvo que el usuario
- * active el enmascarado de marca, así que se lo detecta como Chrome.
+ * active el enmascarado de marca, así que se lo detecta como Chrome. Desde que
+ * la franja es un selector eso dejó de ser un problema serio: el usuario puede
+ * corregirlo con un clic.
  *
  * @returns {Promise<string|null>} slug del navegador, o null si no se pudo determinar
  */
@@ -210,69 +301,151 @@ async function detectarNavegador() {
         m => typeof m.brand === 'string' && m.brand.toLowerCase().includes(texto)
     );
 
-    if (incluye('brave'))         return 'brave';
+    if (incluye('brave'))          return 'brave';
     if (incluye('microsoft edge')) return 'edge';
-    if (incluye('opera'))         return 'opera';
-    if (incluye('vivaldi'))       return 'vivaldi';
-    if (incluye('google chrome')) return 'chrome';
-    if (incluye('chromium'))      return 'chromium';
+    if (incluye('opera'))          return 'opera';
+    if (incluye('vivaldi'))        return 'vivaldi';
+    if (incluye('google chrome'))  return 'chrome';
+    if (incluye('chromium'))       return 'chromium';
     return null;
 }
 
 /**
- * Determina si el navegador es de la familia Chromium.
- * Se recurre al user agent como respaldo porque userAgentData no existe en
- * versiones de Chromium anteriores a 2021 ni fuera de un contexto seguro.
+ * Nombre del navegador cuando no se lo puede identificar por marcas.
+ *
+ * Los derivados de Firefox (LibreWolf, Waterfox, Tor Browser) se presentan
+ * como Firefox a secas de forma deliberada: es una función de privacidad, no
+ * un descuido, y no hay que intentar distinguirlos.
  */
-function esChromium() {
-    if (navigator.userAgentData) return true;
-    return /\bChrom(e|ium)\//.test(navigator.userAgent);
-}
-
-/** Nombre del navegador no compatible, si se puede reconocer */
-function nombrarNavegadorIncompatible() {
+function nombrarNavegador() {
     const ua = navigator.userAgent;
-    if (/Firefox\//.test(ua))  return 'Firefox';
-    if (/FxiOS\//.test(ua))    return 'Firefox para iOS';
-    if (/CriOS\//.test(ua))    return 'Chrome para iOS';
-    if (/Safari\//.test(ua) && !/Chrom/.test(ua)) return 'Safari';
+    if (/\bFirefox\//.test(ua)) return 'Firefox';
+    if (/\bFxiOS\//.test(ua))   return 'Firefox para iOS';
+    if (/\bCriOS\//.test(ua))   return 'Chrome para iOS';
+    if (/\bSafari\//.test(ua) && !/Chrom/.test(ua)) return 'Safari';
     return null;
 }
 
-/** Muestra el aviso de navegador no compatible */
-function avisarNoCompatible() {
-    const aviso  = document.getElementById('navegadores-aviso');
-    const titulo = document.getElementById('navegadores-aviso-titulo');
-    const texto  = document.getElementById('navegadores-aviso-texto');
-    if (!aviso || !titulo || !texto) return;
+/* ═══════════════════════════════════════════════════════════
+   Sección de instalación: plataforma → navegador → pasos
+   ═══════════════════════════════════════════════════════════ */
 
-    const nombre = nombrarNavegadorIncompatible();
-    titulo.textContent = nombre
-        ? `Estás navegando en ${nombre}`
-        : 'Tu navegador no es compatible';
-    texto.textContent = 'La extensión necesita un navegador basado en Chromium. '
-        + 'Abrí esta página desde alguno de los que figuran abajo para poder instalarla.';
+/** Muestra el aviso contextual arriba de la sección de instalación */
+function mostrarAviso(titulo, texto) {
+    const aviso     = document.getElementById('navegadores-aviso');
+    const tituloEl  = document.getElementById('navegadores-aviso-titulo');
+    const textoEl   = document.getElementById('navegadores-aviso-texto');
+    if (!aviso || !tituloEl || !textoEl) return;
 
+    tituloEl.textContent = titulo;
+    textoEl.textContent  = texto;
     aviso.hidden = false;
 }
 
 /**
- * Resalta el navegador en uso dentro de la franja y, si no es compatible,
- * lo advierte antes de que el usuario recorra toda la instalación.
+ * Rellena los huecos variables de un camino con los datos del navegador
+ * elegido. Los pasos de Chromium son los mismos para los seis navegadores:
+ * lo único que cambia es el esquema de la URL de extensiones y el nombre.
+ *
+ * @param {HTMLElement} camino
+ * @param {HTMLElement} boton — la tarjeta del navegador elegido
  */
-async function marcarNavegadorEnUso() {
-    if (!document.querySelector('.navegadores-franja')) return;
+function aplicarTokens(camino, boton) {
+    const nombre  = boton.dataset.nombre || '';
+    const esquema = boton.dataset.esquema || '';
 
-    if (!esChromium()) {
-        avisarNoCompatible();
-        return;
+    camino.querySelectorAll('[data-token="nombre"]').forEach(el => {
+        el.textContent = nombre;
+    });
+
+    if (esquema) {
+        camino.querySelectorAll('[data-token="esquema"]').forEach(el => {
+            el.textContent = `${esquema}://extensions/`;
+        });
     }
 
-    const slug = await detectarNavegador();
-    // Ante la duda no se marca nada: señalar el navegador equivocado sería
-    // peor que no señalar ninguno.
-    if (!slug) return;
+    // Aclaraciones que sólo hacen falta mientras no se sabe qué navegador usa
+    // el usuario. Con uno elegido, el paso ya dice la URL exacta.
+    camino.querySelectorAll('[data-generico]').forEach(el => {
+        el.hidden = true;
+    });
+}
 
+/**
+ * Elige un navegador: lo marca en su franja y deja visible únicamente el
+ * camino de instalación que le corresponde.
+ *
+ * @param {HTMLElement} boton
+ */
+function elegirNavegador(boton) {
+    const panel = boton.closest('.plataforma-panel');
+    if (!panel) return;
+
+    panel.querySelectorAll('.navegador').forEach(otro => {
+        const elegido = otro === boton;
+        otro.classList.toggle('is-elegida', elegido);
+        otro.setAttribute('aria-pressed', String(elegido));
+    });
+
+    panel.querySelectorAll('.camino').forEach(camino => {
+        const visible = camino.id === `camino-${boton.dataset.camino}`;
+        camino.hidden = !visible;
+        if (visible) aplicarTokens(camino, boton);
+    });
+}
+
+/**
+ * Muestra la plataforma pedida y, si el panel no tenía ninguno elegido,
+ * selecciona su primer navegador para que nunca se vea un panel sin pasos.
+ *
+ * @param {'escritorio'|'movil'} plataforma
+ */
+function elegirPlataforma(plataforma) {
+    document.querySelectorAll('.plataforma-tab').forEach(tab => {
+        const activa = tab.dataset.plataforma === plataforma;
+        tab.setAttribute('aria-selected', String(activa));
+        // Roving tabindex: dentro de un grupo de pestañas, el tabulador entra
+        // una sola vez y el resto se recorre con las flechas.
+        tab.tabIndex = activa ? 0 : -1;
+    });
+
+    document.querySelectorAll('.plataforma-panel').forEach(panel => {
+        const activo = panel.id === `panel-${plataforma}`;
+        panel.hidden = !activo;
+
+        if (activo && !panel.querySelector('.navegador.is-elegida')) {
+            const primero = panel.querySelector('.navegador');
+            if (primero) elegirNavegador(primero);
+        }
+    });
+}
+
+/** Deja las pestañas operables con las flechas del teclado */
+function configurarTecladoEnPestanas() {
+    const tabs = Array.from(document.querySelectorAll('.plataforma-tab'));
+
+    tabs.forEach((tab, indice) => {
+        tab.addEventListener('keydown', evento => {
+            let destino = null;
+            if (evento.key === 'ArrowRight') destino = tabs[(indice + 1) % tabs.length];
+            if (evento.key === 'ArrowLeft')  destino = tabs[(indice - 1 + tabs.length) % tabs.length];
+            if (!destino) return;
+
+            evento.preventDefault();
+            elegirPlataforma(destino.dataset.plataforma);
+            destino.focus();
+        });
+    });
+}
+
+/**
+ * Marca con un distintivo la tarjeta del navegador desde el que se visita la
+ * página. Es informativo y va aparte de la elección: el usuario puede estar
+ * mirando desde una máquina y querer instalarla en otra.
+ *
+ * @param {string} slug
+ */
+function marcarNavegadorEnUso(slug) {
     const tarjeta = document.querySelector(`.navegador[data-navegador="${slug}"]`);
     if (!tarjeta) return;
 
@@ -285,6 +458,113 @@ async function marcarNavegadorEnUso() {
     tarjeta.appendChild(chip);
 }
 
+/**
+ * Arma la sección de instalación completa: activa las pestañas, elige el
+ * camino que le toca al visitante y avisa cuando su combinación de plataforma
+ * y navegador no tiene ninguno.
+ */
+async function configurarInstalacion() {
+    const tabs = document.getElementById('plataforma-tabs');
+    if (!tabs) return;
+
+    // Con JS disponible los paneles se controlan por pestañas. Hasta acá los
+    // dos venían visibles y apilados, que es como se ve la página sin JS.
+    tabs.hidden = false;
+    configurarTecladoEnPestanas();
+
+    tabs.querySelectorAll('.plataforma-tab').forEach(tab => {
+        tab.addEventListener('click', () => elegirPlataforma(tab.dataset.plataforma));
+    });
+
+    document.querySelectorAll('.navegador').forEach(boton => {
+        boton.addEventListener('click', () => elegirNavegador(boton));
+    });
+
+    const plataforma = detectarPlataforma();
+    const familia    = detectarFamilia();
+
+    // ── iOS: no hay ningún camino posible, y hay que decirlo sin rodeos ──────
+    if (plataforma === 'ios') {
+        elegirPlataforma('escritorio');
+        mostrarAviso(
+            'En iPhone y iPad no se puede instalar.',
+            'Apple obliga a que todos los navegadores usen el motor de Safari y a que las '
+            + 'extensiones se distribuyan dentro de una app aprobada por la App Store. '
+            + 'Podés instalarla en una computadora o en un teléfono Android.'
+        );
+        return;
+    }
+
+    // ── Android: la única puerta es Firefox ─────────────────────────────────
+    if (plataforma === 'android') {
+        elegirPlataforma('movil');
+
+        if (familia === 'gecko') {
+            marcarNavegadorEnUso('firefox-android');
+        } else {
+            // La tarjeta vive en el panel de escritorio, pero su nombre sirve
+            // igual para decirle al usuario desde dónde está entrando.
+            const slug    = await detectarNavegador();
+            const tarjeta = slug && document.querySelector(`.navegador[data-navegador="${slug}"]`);
+            const nombre  = (tarjeta && tarjeta.dataset.nombre) || nombrarNavegador();
+
+            mostrarAviso(
+                nombre ? `Estás navegando en ${nombre}.` : 'Tu navegador no permite instalar extensiones.',
+                'En Android las extensiones sólo se pueden instalar en Firefox. Instalá Firefox '
+                + 'para Android y volvé a abrir esta página desde ahí para seguir los pasos.'
+            );
+        }
+        return;
+    }
+
+    // ── Escritorio ──────────────────────────────────────────────────────────
+    elegirPlataforma('escritorio');
+
+    if (familia === 'gecko') {
+        // Los derivados de Firefox no se pueden distinguir: todos caen acá y
+        // todos comparten exactamente los mismos pasos.
+        const tarjeta = document.querySelector('.navegador[data-navegador="firefox"]');
+        if (tarjeta) {
+            marcarNavegadorEnUso('firefox');
+            elegirNavegador(tarjeta);
+        }
+        return;
+    }
+
+    if (familia === 'chromium') {
+        const slug = await detectarNavegador();
+        // Ante la duda no se marca nada: señalar el navegador equivocado sería
+        // peor que no señalar ninguno. El camino de Chromium ya viene elegido.
+        if (!slug) return;
+
+        const tarjeta = document.querySelector(`.navegador[data-navegador="${slug}"]`);
+        if (!tarjeta) return;
+
+        marcarNavegadorEnUso(slug);
+        elegirNavegador(tarjeta);
+        return;
+    }
+
+    // ── Navegador de otra familia (Safari y compañía) ───────────────────────
+    const nombre = nombrarNavegador();
+    mostrarAviso(
+        nombre ? `Estás navegando en ${nombre}.` : 'Tu navegador no es compatible.',
+        'La extensión necesita un navegador basado en Chromium o en Firefox. Elegí abajo el '
+        + 'que uses para ver sus pasos, o abrí esta página desde él.'
+    );
+}
+
+/**
+ * Camino de instalación que está visible en este momento. Lo usa el bloque de
+ * estado de versión, porque cómo se actualiza la extensión depende de eso.
+ *
+ * @returns {'chromium'|'firefox'|'android'}
+ */
+function caminoVisible() {
+    const elegido = document.querySelector('.plataforma-panel:not([hidden]) .navegador.is-elegida');
+    return (elegido && elegido.dataset.camino) || 'chromium';
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
 
     // ── Enlaces de descarga ──────────────────────────────────────────────────
@@ -295,8 +575,18 @@ document.addEventListener('DOMContentLoaded', async () => {
     // ── Grilla de portales → detalle por medio ───────────────────────────────
     configurarEnlacesAMedios();
 
-    // ── Navegador en uso ─────────────────────────────────────────────────────
-    marcarNavegadorEnUso();
+    // ── Instalación: plataforma, navegador y pasos ───────────────────────────
+    await configurarInstalacion();
+
+    // ── Link al .xpi ─────────────────────────────────────────────────────────
+    // El marcado ya trae la página de releases como href: sólo se pisa cuando
+    // updates.json responde, así que un fallo acá nunca deja un botón muerto.
+    const urlXpi = await obtenerUrlXpi();
+    if (urlXpi) {
+        document.querySelectorAll('[data-xpi-link]').forEach(el => {
+            el.href = urlXpi;
+        });
+    }
 
     // ── Versión publicada ────────────────────────────────────────────────────
     const versionPublicada = await obtenerVersionPublicada();
@@ -328,23 +618,50 @@ document.addEventListener('DOMContentLoaded', async () => {
             '✓',
             'Estás al día',
             `Tenés instalada la versión v${versionInstalada}, que es la última disponible.`,
-            false
+            null
         );
     } else if (comparacion < 0) {
-        mostrarEstado(
-            'outdated',
-            '!',
-            'Hay una versión nueva',
-            `Tenés la v${versionInstalada} y ya está disponible la v${versionPublicada}. Descargá el ZIP y volvé a cargar la carpeta en tu navegador.`,
-            true
-        );
+        // Cómo se actualiza cambia por completo según el navegador: en Firefox
+        // de escritorio no hay nada que hacer, y ofrecerle una descarga sería
+        // mandarlo a repetir a mano algo que ya está pasando solo.
+        const camino = caminoVisible();
+
+        if (camino === 'firefox') {
+            mostrarEstado(
+                'outdated',
+                '!',
+                'Hay una versión nueva',
+                `Tenés la v${versionInstalada} y ya está disponible la v${versionPublicada}. `
+                + 'No tenés que hacer nada: Firefox la actualiza sola. Si querés apurarla, entrá '
+                + 'en about:addons, tocá el engranaje y elegí «Buscar actualizaciones».',
+                null
+            );
+        } else if (camino === 'android') {
+            mostrarEstado(
+                'outdated',
+                '!',
+                'Hay una versión nueva',
+                `Tenés la v${versionInstalada} y ya está disponible la v${versionPublicada}. `
+                + 'Descargá el archivo y volvé a instalarlo desde los ajustes de Firefox.',
+                urlXpi || RELEASES_URL
+            );
+        } else {
+            mostrarEstado(
+                'outdated',
+                '!',
+                'Hay una versión nueva',
+                `Tenés la v${versionInstalada} y ya está disponible la v${versionPublicada}. `
+                + 'Descargá el ZIP y volvé a cargar la carpeta en tu navegador.',
+                ZIP_URL
+            );
+        }
     } else {
         mostrarEstado(
             'dev',
             'i',
             'Versión de desarrollo',
             `Tenés instalada la v${versionInstalada}, más nueva que la v${versionPublicada} publicada. No necesitás hacer nada.`,
-            false
+            null
         );
     }
 

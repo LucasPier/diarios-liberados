@@ -1,0 +1,18 @@
+{
+    "addons": {
+        "diarios-liberados@lucaspier.github.io": {
+            "updates": [
+                {
+                    "version": "1.5.1",
+                    "update_link": "https://github.com/LucasPier/diarios-liberados/releases/download/v1.5.1/diarios-liberados-firefox-1.5.1.xpi",
+                    "update_hash": "sha256:625deb5058f5fd0a28a5ed6587e73441fbd86c06dac18a444109e6c63f251daf",
+                    "applications": {
+                        "gecko": {
+                            "strict_min_version": "128.0"
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}
