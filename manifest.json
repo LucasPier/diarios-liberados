@@ -2,7 +2,7 @@
     "name": "Diarios Liberados",
     "short_name": "diarios-liberados",
     "description": "Mejora visualización de diarios online",
-    "version": "1.4.0",
+    "version": "1.5.1",
     "author": "Lucas Pier",
     "homepage_url": "https://github.com/LucasPier/diarios-liberados",
     "manifest_version": 3,
