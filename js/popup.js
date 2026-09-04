@@ -30,10 +30,15 @@ const DOMINIOS_CUBIERTOS = [
     "cadena3.com", "rosarioplus.com", "somosohlala.com", "rollingstone.com"
 ];
 
-// Dominios de La Nación, el único medio donde no se desbloquean las notas para suscriptores.
+// Dominios donde aplica el aviso del límite de La Nación.
+//
+// Va SÓLO lanacion.com.ar y no los otros dos del grupo (somosohlala.com y rollingstone.com):
+// las notas para suscriptores aparecen únicamente ahí, así que avisar en los otros sería alarmar
+// por una limitación que en esos sitios no existe.
+//
 // Es un subconjunto de DOMINIOS_CUBIERTOS y no se deriva de ahí a propósito: son dos criterios
-// distintos (qué recargar vs. qué medio está abierto) que no tienen por qué moverse juntos.
-const DOMINIOS_LANACION = ["lanacion.com.ar", "somosohlala.com", "rollingstone.com"];
+// distintos (qué recargar vs. dónde avisar) que no tienen por qué moverse juntos.
+const DOMINIOS_LANACION = ["lanacion.com.ar"];
 
 /**
  * Devuelve la versión instalada leyéndola del manifest.
