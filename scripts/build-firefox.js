@@ -130,6 +130,11 @@ const EXCLUIDOS = new Set([
     path.join("js", "landing.js"),
     path.join("css", "landing.css"),
     path.join("imagenes", "navegadores"),
+    // Sólo las referencia index.html: la og:image de las tarjetas sociales y las capturas de los
+    // pasos de instalación. Son 290 KB —casi la mitad del paquete— que ningún content script, el
+    // popup ni el CSS de la extensión llegan a pedir nunca.
+    path.join("imagenes", "ogimage.png"),
+    path.join("imagenes", "instalacion"),
 ]);
 
 /**
