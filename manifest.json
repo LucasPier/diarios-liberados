@@ -232,7 +232,6 @@
             "matches": [
                 "*://*.rollingstone.com/*"
             ],
-            "all_frames": true,
             "run_at": "document_start"
         },
         {
@@ -256,8 +255,7 @@
             ],
             "matches": [
                 "*://*.lanacion.com.ar/*",
-                "*://*.somosohlala.com/*",
-                "*://*.rollingstone.com/*"
+                "*://*.somosohlala.com/*"
             ],
             "run_at": "document_end"
         },
