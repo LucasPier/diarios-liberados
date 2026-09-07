@@ -336,7 +336,8 @@
                                     data-esquema="chrome" data-nombre="Chrome"
                                     data-boton-cargar="Cargar extensión sin empaquetar"
                                     data-interruptor="Modo de desarrollador"
-                                    data-interruptor-donde="arriba a la derecha">
+                                    data-interruptor-donde="arriba a la derecha"
+                                    data-captura="chrome">
                                     <img src="imagenes/navegadores/chrome.svg" alt="" width="22" height="22">
                                     <span>Chrome</span>
                                 </button>
@@ -344,7 +345,8 @@
                                     data-esquema="edge" data-nombre="Edge"
                                     data-boton-cargar="Cargar desempaquetado"
                                     data-interruptor="Modo para desarrolladores"
-                                    data-interruptor-donde="abajo a la izquierda">
+                                    data-interruptor-donde="abajo a la izquierda"
+                                    data-captura="edge">
                                     <img src="imagenes/navegadores/edge.svg" alt="" width="22" height="22">
                                     <span>Edge</span>
                                 </button>
@@ -457,6 +459,19 @@
                                         desarrollador</span>.</strong> Es un interruptor que está <span
                                     data-token="interruptor-donde">arriba a la derecha</span> de esa pantalla. Al
                                 activarlo aparece la fila de botones que vas a necesitar en el paso que sigue.
+                                <span class="paso-extra" data-captura-ajena>Así se ve en Chrome. En <span
+                                        data-token="nombre">los demás navegadores</span> la pantalla cambia de aspecto,
+                                    pero el interruptor y los botones son los mismos.</span>
+                                <img class="paso-captura" data-captura="chrome" width="660" height="300"
+                                    src="imagenes/instalacion/chrome-modo-desarrollador.png"
+                                    alt="La pantalla de extensiones de Chrome con el interruptor «Modo de desarrollador» activado y la fila de botones «Cargar extensión sin empaquetar», «Empaquetar extensión» y «Actualizar»" loading="lazy">
+                                <span class="paso-extra" data-generico>Y así se ve en Edge, que es la excepción:
+                                    el interruptor se llama <em>“Modo para desarrolladores”</em>, está abajo a la
+                                    izquierda, y el botón del paso que sigue es <em>“Cargar
+                                        desempaquetado”</em>:</span>
+                                <img class="paso-captura" data-captura="edge" width="1105" height="512"
+                                    src="imagenes/instalacion/edge-modo-desarrollador.png"
+                                    alt="La pantalla de extensiones de Microsoft Edge con el interruptor «Modo para desarrolladores» activado abajo a la izquierda y los botones «Cargar desempaquetado», «Extensión del paquete» y «Actualizar»" loading="lazy">
                             </li>
                             <li>
                                 <strong>Cargar la extensión.</strong> Hacé clic en el botón <em>“<span

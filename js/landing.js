@@ -373,6 +373,19 @@ function aplicarTokens(camino, boton) {
         });
     });
 
+    // Capturas de pantalla: sólo Chrome y Edge tienen una propia, porque son
+    // las dos pantallas que de verdad se ven distinto. Los otros cuatro miran
+    // la de Chrome, y por eso se les aclara de quién es la que están viendo.
+    const captura = boton.dataset.captura || 'chrome';
+
+    camino.querySelectorAll('[data-captura]').forEach(el => {
+        el.hidden = el.dataset.captura !== captura;
+    });
+
+    camino.querySelectorAll('[data-captura-ajena]').forEach(el => {
+        el.hidden = captura === boton.dataset.navegador;
+    });
+
     // Aclaraciones que sólo hacen falta mientras no se sabe qué navegador usa
     // el usuario. Con uno elegido, el paso ya dice la URL y la etiqueta exactas.
     camino.querySelectorAll('[data-generico]').forEach(el => {
