@@ -108,7 +108,7 @@ La extensión no se instala igual en todos lados: elegí el camino que te toque.
 2. **Descomprimir:** Extraé el contenido del archivo ZIP descargado en una carpeta de tu compu que no vayas a borrar después.
 3. **Abrir Extensiones:** En tu navegador, andá a la sección de extensiones. Podés hacerlo escribiendo `chrome://extensions/` en la barra de direcciones (o `edge://extensions/`, `brave://extensions/`, dependiendo cuál uses).
 4. **Modo Desarrollador:** Activá la opción **"Modo de desarrollador"** (suele ser una llavecita arriba a la derecha).
-5. **Instalar:** Hacé clic en el botón **"Cargar descomprimida"** (o *Load unpacked*).
+5. **Instalar:** Hacé clic en el botón **"Cargar extensión sin empaquetar"** (o *Load unpacked* si tenés el navegador en inglés).
 6. **Seleccionar ruta:** Elegí la carpeta que extrajiste en el paso 2 (fijate de seleccionar la carpeta que tiene directamente los archivos adentro).
 7. **Modo Incógnito (Recomendado):** Para evitar problemas o bloqueos, andá a los **Detalles** de la extensión recién instalada y activá la opción **"Permitir en modo incógnito"**.
 

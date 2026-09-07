@@ -333,32 +333,52 @@
                             <p class="navegadores-grupo-titulo">Basados en Chromium</p>
                             <div class="navegadores-franja">
                                 <button type="button" class="navegador" data-navegador="chrome" data-camino="chromium"
-                                    data-esquema="chrome" data-nombre="Chrome">
+                                    data-esquema="chrome" data-nombre="Chrome"
+                                    data-boton-cargar="Cargar extensión sin empaquetar"
+                                    data-interruptor="Modo de desarrollador"
+                                    data-interruptor-donde="arriba a la derecha"
+                                    data-captura="chrome">
                                     <img src="imagenes/navegadores/chrome.svg" alt="" width="22" height="22">
                                     <span>Chrome</span>
                                 </button>
                                 <button type="button" class="navegador" data-navegador="edge" data-camino="chromium"
-                                    data-esquema="edge" data-nombre="Edge">
+                                    data-esquema="edge" data-nombre="Edge"
+                                    data-boton-cargar="Cargar desempaquetado"
+                                    data-interruptor="Modo para desarrolladores"
+                                    data-interruptor-donde="abajo a la izquierda"
+                                    data-captura="edge">
                                     <img src="imagenes/navegadores/edge.svg" alt="" width="22" height="22">
                                     <span>Edge</span>
                                 </button>
                                 <button type="button" class="navegador" data-navegador="brave" data-camino="chromium"
-                                    data-esquema="brave" data-nombre="Brave">
+                                    data-esquema="brave" data-nombre="Brave"
+                                    data-boton-cargar="Cargar extensión sin empaquetar"
+                                    data-interruptor="Modo de desarrollador"
+                                    data-interruptor-donde="arriba a la derecha">
                                     <img src="imagenes/navegadores/brave.svg" alt="" width="22" height="22">
                                     <span>Brave</span>
                                 </button>
                                 <button type="button" class="navegador" data-navegador="opera" data-camino="chromium"
-                                    data-esquema="opera" data-nombre="Opera">
+                                    data-esquema="opera" data-nombre="Opera"
+                                    data-boton-cargar="Cargar extensión sin empaquetar"
+                                    data-interruptor="Modo de desarrollador"
+                                    data-interruptor-donde="arriba a la derecha">
                                     <img src="imagenes/navegadores/opera.svg" alt="" width="22" height="22">
                                     <span>Opera</span>
                                 </button>
                                 <button type="button" class="navegador" data-navegador="vivaldi" data-camino="chromium"
-                                    data-esquema="vivaldi" data-nombre="Vivaldi">
+                                    data-esquema="vivaldi" data-nombre="Vivaldi"
+                                    data-boton-cargar="Cargar extensión sin empaquetar"
+                                    data-interruptor="Modo de desarrollador"
+                                    data-interruptor-donde="arriba a la derecha">
                                     <img src="imagenes/navegadores/vivaldi.svg" alt="" width="22" height="22">
                                     <span>Vivaldi</span>
                                 </button>
                                 <button type="button" class="navegador" data-navegador="chromium" data-camino="chromium"
-                                    data-esquema="chrome" data-nombre="Chromium">
+                                    data-esquema="chrome" data-nombre="Chromium"
+                                    data-boton-cargar="Cargar extensión sin empaquetar"
+                                    data-interruptor="Modo de desarrollador"
+                                    data-interruptor-donde="arriba a la derecha">
                                     <img src="imagenes/navegadores/chromium.svg" alt="" width="22" height="22">
                                     <span>Chromium</span>
                                 </button>
@@ -435,13 +455,31 @@
                                     <code>opera://extensions/</code> o <code>vivaldi://extensions/</code>.</span>
                             </li>
                             <li>
-                                <strong>Activar el Modo de desarrollador.</strong> Es un interruptor que suele estar
-                                arriba a la derecha de esa pantalla.
+                                <strong>Activar el <span data-token="interruptor">Modo de
+                                        desarrollador</span>.</strong> Es un interruptor que está <span
+                                    data-token="interruptor-donde">arriba a la derecha</span> de esa pantalla. Al
+                                activarlo aparece la fila de botones que vas a necesitar en el paso que sigue.
+                                <span class="paso-extra" data-captura-ajena>Así se ve en Chrome. En <span
+                                        data-token="nombre">los demás navegadores</span> la pantalla cambia de aspecto,
+                                    pero el interruptor y los botones son los mismos.</span>
+                                <img class="paso-captura" data-captura="chrome" width="660" height="300"
+                                    src="imagenes/instalacion/chrome-modo-desarrollador.png"
+                                    alt="La pantalla de extensiones de Chrome con el interruptor «Modo de desarrollador» activado y la fila de botones «Cargar extensión sin empaquetar», «Empaquetar extensión» y «Actualizar»" loading="lazy">
+                                <span class="paso-extra" data-generico>Y así se ve en Edge, que es la excepción:
+                                    el interruptor se llama <em>“Modo para desarrolladores”</em>, está abajo a la
+                                    izquierda, y el botón del paso que sigue es <em>“Cargar
+                                        desempaquetado”</em>:</span>
+                                <img class="paso-captura" data-captura="edge" width="1105" height="512"
+                                    src="imagenes/instalacion/edge-modo-desarrollador.png"
+                                    alt="La pantalla de extensiones de Microsoft Edge con el interruptor «Modo para desarrolladores» activado abajo a la izquierda y los botones «Cargar desempaquetado», «Extensión del paquete» y «Actualizar»" loading="lazy">
                             </li>
                             <li>
-                                <strong>Cargar la extensión.</strong> Hacé clic en el botón <em>“Cargar
-                                    descomprimida”</em> (o <em>“Load unpacked”</em>), que aparece recién después de
-                                activar el modo de desarrollador.
+                                <strong>Cargar la extensión.</strong> Hacé clic en el botón <em>“<span
+                                        data-token="boton-cargar">Cargar extensión sin empaquetar</span>”</em> (o <em>“Load
+                                    unpacked”</em> si tenés el navegador en inglés), que aparece recién después de
+                                activar el <span data-token="interruptor">Modo de desarrollador</span>.
+                                <span class="paso-extra" data-generico>En Edge el botón se llama <em>“Cargar
+                                        desempaquetado”</em>.</span>
                             </li>
                             <li>
                                 <strong>Seleccionar la carpeta.</strong> Elegí la carpeta
@@ -501,8 +539,8 @@
                                     oficial.</span>
                                 <span class="paso-extra">Puede que no te aparezca. Firefox pregunta una sola vez por
                                     sitio, así que si ya instalaste algo desde acá vas a saltar directo al paso 3.</span>
-                                <img class="paso-captura" width="464" height="280" src="imagenes/instalacion/firefox-aviso-instalacion.png"
-                                    alt="Firefox preguntando «¿Permitir que localhost instale un complemento?» con el botón «Seguir con la instalación»" loading="lazy">
+                                <img class="paso-captura" width="460" height="250" src="imagenes/instalacion/firefox-aviso-instalacion.png"
+                                    alt="Firefox preguntando «¿Permitir que lucaspier.github.io instale un complemento?» con el botón «Seguir con la instalación»" loading="lazy">
                             </li>
                             <li>
                                 <strong>Añadir la extensión.</strong> Firefox te va a mostrar

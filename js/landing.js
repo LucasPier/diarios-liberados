@@ -344,28 +344,50 @@ function mostrarAviso(titulo, texto) {
 
 /**
  * Rellena los huecos variables de un camino con los datos del navegador
- * elegido. Los pasos de Chromium son los mismos para los seis navegadores:
- * lo único que cambia es el esquema de la URL de extensiones y el nombre.
+ * elegido. Los pasos de Chromium son los mismos para los seis navegadores,
+ * pero la pantalla de extensiones no: Edge cambia el esquema de la URL, el
+ * nombre del interruptor ("Modo para desarrolladores"), dónde está (abajo a
+ * la izquierda) y cómo llama al botón ("Cargar desempaquetado").
+ *
+ * Cada tarjeta declara lo suyo en `data-*` y acá se vuelca en los `data-token`
+ * del paso. El dato vive en el HTML a propósito: sumar un navegador es sumar
+ * una tarjeta, sin tocar este archivo.
  *
  * @param {HTMLElement} camino
  * @param {HTMLElement} boton — la tarjeta del navegador elegido
  */
 function aplicarTokens(camino, boton) {
-    const nombre  = boton.dataset.nombre || '';
-    const esquema = boton.dataset.esquema || '';
+    const valores = {
+        'nombre':            boton.dataset.nombre,
+        // La tarjeta guarda el esquema pelado ("edge"); el paso muestra la URL.
+        'esquema':           boton.dataset.esquema && `${boton.dataset.esquema}://extensions/`,
+        'boton-cargar':      boton.dataset.botonCargar,
+        'interruptor':       boton.dataset.interruptor,
+        'interruptor-donde': boton.dataset.interruptorDonde,
+    };
 
-    camino.querySelectorAll('[data-token="nombre"]').forEach(el => {
-        el.textContent = nombre;
+    Object.entries(valores).forEach(([token, valor]) => {
+        if (!valor) return;
+        camino.querySelectorAll(`[data-token="${token}"]`).forEach(el => {
+            el.textContent = valor;
+        });
     });
 
-    if (esquema) {
-        camino.querySelectorAll('[data-token="esquema"]').forEach(el => {
-            el.textContent = `${esquema}://extensions/`;
-        });
-    }
+    // Capturas de pantalla: sólo Chrome y Edge tienen una propia, porque son
+    // las dos pantallas que de verdad se ven distinto. Los otros cuatro miran
+    // la de Chrome, y por eso se les aclara de quién es la que están viendo.
+    const captura = boton.dataset.captura || 'chrome';
+
+    camino.querySelectorAll('[data-captura]').forEach(el => {
+        el.hidden = el.dataset.captura !== captura;
+    });
+
+    camino.querySelectorAll('[data-captura-ajena]').forEach(el => {
+        el.hidden = captura === boton.dataset.navegador;
+    });
 
     // Aclaraciones que sólo hacen falta mientras no se sabe qué navegador usa
-    // el usuario. Con uno elegido, el paso ya dice la URL exacta.
+    // el usuario. Con uno elegido, el paso ya dice la URL y la etiqueta exactas.
     camino.querySelectorAll('[data-generico]').forEach(el => {
         el.hidden = true;
     });
