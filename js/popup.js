@@ -209,8 +209,8 @@ async function actualizarBannerRecarga() {
 // ── Límite de La Nación ─────────────────────────────────────────────────────
 //
 // Es el único medio soportado en el que la feature de suscriptores NO abre las notas exclusivas.
-// Sí funcionan los resúmenes con IA y la escucha de notas, así que el aviso aclara las dos cosas:
-// sin eso, el usuario asume que la extensión está rota justo en el diario más leído del país.
+// Sí se desbloquean los resúmenes con IA y la escucha de notas, así que el aviso aclara las dos
+// cosas: sin eso, el usuario asume que la extensión está rota justo en el diario más leído del país.
 //
 // El texto es fijo y vive en popup.html; acá sólo se decide si se muestra. No depende del toggle
 // de suscriptores: es información sobre el alcance real en ese medio, esté la feature prendida o no.
