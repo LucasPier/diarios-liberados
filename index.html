@@ -333,32 +333,50 @@
                             <p class="navegadores-grupo-titulo">Basados en Chromium</p>
                             <div class="navegadores-franja">
                                 <button type="button" class="navegador" data-navegador="chrome" data-camino="chromium"
-                                    data-esquema="chrome" data-nombre="Chrome">
+                                    data-esquema="chrome" data-nombre="Chrome"
+                                    data-boton-cargar="Cargar extensión sin empaquetar"
+                                    data-interruptor="Modo de desarrollador"
+                                    data-interruptor-donde="arriba a la derecha">
                                     <img src="imagenes/navegadores/chrome.svg" alt="" width="22" height="22">
                                     <span>Chrome</span>
                                 </button>
                                 <button type="button" class="navegador" data-navegador="edge" data-camino="chromium"
-                                    data-esquema="edge" data-nombre="Edge">
+                                    data-esquema="edge" data-nombre="Edge"
+                                    data-boton-cargar="Cargar desempaquetado"
+                                    data-interruptor="Modo para desarrolladores"
+                                    data-interruptor-donde="abajo a la izquierda">
                                     <img src="imagenes/navegadores/edge.svg" alt="" width="22" height="22">
                                     <span>Edge</span>
                                 </button>
                                 <button type="button" class="navegador" data-navegador="brave" data-camino="chromium"
-                                    data-esquema="brave" data-nombre="Brave">
+                                    data-esquema="brave" data-nombre="Brave"
+                                    data-boton-cargar="Cargar extensión sin empaquetar"
+                                    data-interruptor="Modo de desarrollador"
+                                    data-interruptor-donde="arriba a la derecha">
                                     <img src="imagenes/navegadores/brave.svg" alt="" width="22" height="22">
                                     <span>Brave</span>
                                 </button>
                                 <button type="button" class="navegador" data-navegador="opera" data-camino="chromium"
-                                    data-esquema="opera" data-nombre="Opera">
+                                    data-esquema="opera" data-nombre="Opera"
+                                    data-boton-cargar="Cargar extensión sin empaquetar"
+                                    data-interruptor="Modo de desarrollador"
+                                    data-interruptor-donde="arriba a la derecha">
                                     <img src="imagenes/navegadores/opera.svg" alt="" width="22" height="22">
                                     <span>Opera</span>
                                 </button>
                                 <button type="button" class="navegador" data-navegador="vivaldi" data-camino="chromium"
-                                    data-esquema="vivaldi" data-nombre="Vivaldi">
+                                    data-esquema="vivaldi" data-nombre="Vivaldi"
+                                    data-boton-cargar="Cargar extensión sin empaquetar"
+                                    data-interruptor="Modo de desarrollador"
+                                    data-interruptor-donde="arriba a la derecha">
                                     <img src="imagenes/navegadores/vivaldi.svg" alt="" width="22" height="22">
                                     <span>Vivaldi</span>
                                 </button>
                                 <button type="button" class="navegador" data-navegador="chromium" data-camino="chromium"
-                                    data-esquema="chrome" data-nombre="Chromium">
+                                    data-esquema="chrome" data-nombre="Chromium"
+                                    data-boton-cargar="Cargar extensión sin empaquetar"
+                                    data-interruptor="Modo de desarrollador"
+                                    data-interruptor-donde="arriba a la derecha">
                                     <img src="imagenes/navegadores/chromium.svg" alt="" width="22" height="22">
                                     <span>Chromium</span>
                                 </button>
@@ -435,13 +453,18 @@
                                     <code>opera://extensions/</code> o <code>vivaldi://extensions/</code>.</span>
                             </li>
                             <li>
-                                <strong>Activar el Modo de desarrollador.</strong> Es un interruptor que suele estar
-                                arriba a la derecha de esa pantalla.
+                                <strong>Activar el <span data-token="interruptor">Modo de
+                                        desarrollador</span>.</strong> Es un interruptor que está <span
+                                    data-token="interruptor-donde">arriba a la derecha</span> de esa pantalla. Al
+                                activarlo aparece la fila de botones que vas a necesitar en el paso que sigue.
                             </li>
                             <li>
-                                <strong>Cargar la extensión.</strong> Hacé clic en el botón <em>“Cargar
-                                    descomprimida”</em> (o <em>“Load unpacked”</em>), que aparece recién después de
-                                activar el modo de desarrollador.
+                                <strong>Cargar la extensión.</strong> Hacé clic en el botón <em>“<span
+                                        data-token="boton-cargar">Cargar extensión sin empaquetar</span>”</em> (o <em>“Load
+                                    unpacked”</em> si tenés el navegador en inglés), que aparece recién después de
+                                activar el <span data-token="interruptor">Modo de desarrollador</span>.
+                                <span class="paso-extra" data-generico>En Edge el botón se llama <em>“Cargar
+                                        desempaquetado”</em>.</span>
                             </li>
                             <li>
                                 <strong>Seleccionar la carpeta.</strong> Elegí la carpeta
