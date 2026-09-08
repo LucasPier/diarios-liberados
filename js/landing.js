@@ -27,6 +27,59 @@ const ID_ADDON = 'diarios-liberados@lucaspier.github.io';
 /** Formato aceptado para una versión: entre 1 y 4 componentes numéricos */
 const RE_VERSION = /^\d+(\.\d+){0,3}$/;
 
+/**
+ * Lo que mandó el popup en el query, leído UNA sola vez y apenas se parsea este
+ * archivo.
+ *
+ * Se captura acá, lejos de donde se usa, porque después la URL se limpia (ver
+ * `limpiarParametrosDelPopup`): para cuando corre el DOMContentLoaded esos
+ * parámetros ya no están en la barra de direcciones.
+ */
+const VERSION_INSTALADA = obtenerVersionInstalada();
+
+/**
+ * Si el visitante llegó tocando «Buscar actualizaciones» en vez de «Visitar
+ * extensión». Son dos intenciones distintas y merecen respuestas distintas:
+ * quien vino a buscar una actualización quiere que le lleven la vista al
+ * resultado; quien vino a ver el proyecto, no.
+ */
+const VINO_A_BUSCAR = new URLSearchParams(window.location.search).has('buscar');
+
+/**
+ * Lo que la detección concluyó, aunque después no se haya marcado ninguna
+ * tarjeta. Son dos cosas distintas y por eso son dos variables: en Android con
+ * un navegador que no es Firefox, por ejemplo, se detecta perfectamente cuál
+ * es y no se marca nada, porque no hay ningún camino que ofrecerle.
+ */
+let navegadorDetectado = null;
+
+/**
+ * La tarjeta que quedó señalada como «El tuyo», o null si no se señaló
+ * ninguna. Sirve para saber cuándo el usuario elige a mano algo distinto de lo
+ * que le ofrecimos.
+ *
+ * OJO AL LEER `es_el_detectado: 'no'` EN LOS INFORMES: no significa que la
+ * detección se haya equivocado. LibreWolf, Waterfox, Zen y Floorp son
+ * indistinguibles de Firefox a propósito —es una función de privacidad de esos
+ * navegadores— así que todos caen en la tarjeta de Firefox y corregirla a mano
+ * es el flujo esperado, no una falla. También lo emite quien mira la página
+ * desde una máquina para instalar en otra.
+ */
+let navegadorMarcado = null;
+
+/**
+ * Registra un evento de uso, si la medición está disponible.
+ *
+ * El `?.` no es decorativo: analytics.js es lo primero que voltea un
+ * bloqueador, y la landing tiene que seguir funcionando igual.
+ *
+ * @param {string} nombre
+ * @param {Object<string, string|number>} [parametros]
+ */
+function medir(nombre, parametros) {
+    window.dlAnalytics?.evento(nombre, parametros);
+}
+
 /* Marca el documento como "con JS" apenas se parsea este archivo, antes del
    DOMContentLoaded: hay estilos que sólo valen cuando las pestañas funcionan
    y esperar al evento provocaría un parpadeo. */
@@ -161,6 +214,39 @@ function mostrarEstado(estado, icono, titulo, texto, hrefAccion) {
     if (hrefAccion) accion.href = hrefAccion;
 
     bloque.hidden = false;
+
+    medir('estado_version', { estado });
+}
+
+/**
+ * Saca de la barra de direcciones los parámetros que puso el popup.
+ *
+ * POR QUÉ
+ * «Visitar extensión» es el botón que la gente usa para compartir el proyecto,
+ * y ahí el `?version=` se vuelve un problema: quien reciba ese link y NO tenga
+ * la extensión instalada vería un «Estás al día, tenés la vX.Y.Z» que es
+ * mentira. La URL que el visitante copia de la barra tiene que ser la misma que
+ * le serviría a cualquiera.
+ *
+ * CUÁNDO
+ * Sólo desde el DOMContentLoaded, nunca en el nivel superior de este archivo.
+ * `landing.js` es un script clásico al final del <body> y corre ANTES que el
+ * `defer` de analytics.js: limpiar apenas se parsea dejaría a la medición sin
+ * ver jamás un `?version=`. Para el DOMContentLoaded ya leyeron los dos.
+ *
+ * Se borran sólo los parámetros propios y se conserva el resto del query
+ * —`dl_debug`, cualquier `utm_*`— que no es nuestro y que alguien puede
+ * necesitar al recargar.
+ */
+function limpiarParametrosDelPopup() {
+    const params = new URLSearchParams(window.location.search);
+    if (!params.has('version') && !params.has('buscar')) return;
+
+    params.delete('version');
+    params.delete('buscar');
+
+    const query = params.toString();
+    history.replaceState(null, '', window.location.pathname + (query ? `?${query}` : '') + window.location.hash);
 }
 
 /** Lleva la vista al bloque de estado y lo resalta brevemente */
@@ -214,6 +300,8 @@ function configurarEnlacesAMedios() {
 
             evento.preventDefault();
             history.replaceState(null, '', `#${id}`);
+
+            medir('ver_medio', { medio: id.replace('medio-', '') });
         });
     });
 
@@ -442,6 +530,65 @@ function elegirPlataforma(plataforma) {
     });
 }
 
+/**
+ * Plataforma cuyo panel está visible, o null si todavía no se eligió ninguna.
+ * @returns {'escritorio'|'movil'|null}
+ */
+function plataformaVisible() {
+    const panel = document.querySelector('.plataforma-panel:not([hidden])');
+    return panel ? panel.id.replace('panel-', '') : null;
+}
+
+/**
+ * Cambia de plataforma y lo mide, pero sólo si efectivamente cambió.
+ *
+ * La guarda no es cosmética. Las pestañas tienen activación automática: la
+ * flecha ya cambia de panel, y quien además confirma con Enter —que es el
+ * hábito de cualquiera que use un tablist— dispara encima un `click` real sobre
+ * el mismo botón. Sin deduplicar, ese usuario emitía DOS `elegir_plataforma`
+ * seguidos, inflando el embudo justo para el segmento que se quería medir bien.
+ * De paso cubre el clic del mouse sobre la pestaña que ya estaba activa.
+ *
+ * @param {'escritorio'|'movil'} plataforma
+ */
+function elegirPlataformaYMedir(plataforma) {
+    const anterior = plataformaVisible();
+    elegirPlataforma(plataforma);
+
+    if (plataforma === anterior) return;
+
+    // Va también el navegador con el que quedó la pantalla, porque cambiar de
+    // plataforma cambia la tarjeta elegida sin que el usuario la toque. Sin
+    // esto, la secuencia de eventos quedaría contando una historia falsa: el
+    // último `elegir_navegador` diría «brave» mientras la pantalla ya muestra
+    // los pasos de Firefox para Android.
+    //
+    // NO se emite un `elegir_navegador` acá, aunque la selección haya cambiado:
+    // ese evento mide elecciones deliberadas, y esta no lo es. Inventar una
+    // rompería el único evento que dice qué navegador busca la gente a mano.
+    medir('elegir_plataforma', {
+        plataforma,
+        navegador: navegadorVisible()
+    });
+}
+
+/**
+ * Convierte el nombre legible de un navegador en un slug, con el mismo formato
+ * que los `data-navegador` de las tarjetas.
+ *
+ * Existe para que la medición no termine con dos vocabularios mezclados: las
+ * ramas que reconocen una tarjeta guardan `firefox` o `brave`, y las que sólo
+ * tienen un nombre para mostrar guardarían `Safari` o `Chrome para iOS`. En el
+ * informe serían valores de familias distintas, imposibles de agrupar sin
+ * normalizar a mano.
+ *
+ * @param {string|null} nombre
+ * @returns {string|null}
+ */
+function slugDeNombre(nombre) {
+    return nombre ? nombre.toLowerCase().replace(/\s+/g, '-') : null;
+}
+
 /** Deja las pestañas operables con las flechas del teclado */
 function configurarTecladoEnPestanas() {
     const tabs = Array.from(document.querySelectorAll('.plataforma-tab'));
@@ -454,7 +601,12 @@ function configurarTecladoEnPestanas() {
             if (!destino) return;
 
             evento.preventDefault();
-            elegirPlataforma(destino.dataset.plataforma);
+
+            // Con las flechas la elección es tan del usuario como con el mouse:
+            // si esto no se midiera, un usuario de teclado generaría un
+            // clic_instalar sin el elegir_plataforma previo y el embudo quedaría
+            // roto justo para quien navega sin mouse.
+            elegirPlataformaYMedir(destino.dataset.plataforma);
             destino.focus();
         });
     });
@@ -470,6 +622,8 @@ function configurarTecladoEnPestanas() {
 function marcarNavegadorEnUso(slug) {
     const tarjeta = document.querySelector(`.navegador[data-navegador="${slug}"]`);
     if (!tarjeta) return;
+
+    navegadorMarcado = slug;
 
     tarjeta.classList.add('is-actual');
     tarjeta.setAttribute('aria-current', 'true');
@@ -494,12 +648,21 @@ async function configurarInstalacion() {
     tabs.hidden = false;
     configurarTecladoEnPestanas();
 
+    // La medición va en el listener y no dentro de elegirPlataforma() ni de
+    // elegirNavegador(): esas dos también se llaman solas desde la detección, y
+    // contar eso como una elección del usuario sería mentirle al informe.
     tabs.querySelectorAll('.plataforma-tab').forEach(tab => {
-        tab.addEventListener('click', () => elegirPlataforma(tab.dataset.plataforma));
+        tab.addEventListener('click', () => elegirPlataformaYMedir(tab.dataset.plataforma));
     });
 
     document.querySelectorAll('.navegador').forEach(boton => {
-        boton.addEventListener('click', () => elegirNavegador(boton));
+        boton.addEventListener('click', () => {
+            elegirNavegador(boton);
+            medir('elegir_navegador', {
+                navegador: boton.dataset.navegador,
+                es_el_detectado: boton.dataset.navegador === navegadorMarcado ? 'si' : 'no'
+            });
+        });
     });
 
     const plataforma = detectarPlataforma();
@@ -507,6 +670,12 @@ async function configurarInstalacion() {
 
     // ── iOS: no hay ningún camino posible, y hay que decirlo sin rodeos ──────
     if (plataforma === 'ios') {
+        // Vale la pena medirlo aunque acá no se pueda instalar nada: es la única
+        // plataforma donde el aviso ES todo el contenido, así que saber cuánta
+        // gente llega desde un iPhone dice cuánta demanda hay que no se puede
+        // satisfacer. Sin esto, todo iOS caía en «(no reconocido)».
+        navegadorDetectado = slugDeNombre(nombrarNavegador());
+
         elegirPlataforma('escritorio');
         mostrarAviso(
             'En iPhone y iPad no se puede instalar.',
@@ -522,11 +691,13 @@ async function configurarInstalacion() {
         elegirPlataforma('movil');
 
         if (familia === 'gecko') {
+            navegadorDetectado = 'firefox-android';
             marcarNavegadorEnUso('firefox-android');
         } else {
             // La tarjeta vive en el panel de escritorio, pero su nombre sirve
             // igual para decirle al usuario desde dónde está entrando.
             const slug    = await detectarNavegador();
+            navegadorDetectado = slug || slugDeNombre(nombrarNavegador());
             const tarjeta = slug && document.querySelector(`.navegador[data-navegador="${slug}"]`);
             const nombre  = (tarjeta && tarjeta.dataset.nombre) || nombrarNavegador();
 
@@ -545,6 +716,8 @@ async function configurarInstalacion() {
     if (familia === 'gecko') {
         // Los derivados de Firefox no se pueden distinguir: todos caen acá y
         // todos comparten exactamente los mismos pasos.
+        navegadorDetectado = 'firefox';
+
         const tarjeta = document.querySelector('.navegador[data-navegador="firefox"]');
         if (tarjeta) {
             marcarNavegadorEnUso('firefox');
@@ -555,6 +728,8 @@ async function configurarInstalacion() {
 
     if (familia === 'chromium') {
         const slug = await detectarNavegador();
+        navegadorDetectado = slug || slugDeNombre(nombrarNavegador());
+
         // Ante la duda no se marca nada: señalar el navegador equivocado sería
         // peor que no señalar ninguno. El camino de Chromium ya viene elegido.
         if (!slug) return;
@@ -569,6 +744,11 @@ async function configurarInstalacion() {
 
     // ── Navegador de otra familia (Safari y compañía) ───────────────────────
     const nombre = nombrarNavegador();
+
+    // Ninguno de estos tiene tarjeta, así que no hay slug propio: se deriva del
+    // nombre, para no meter un vocabulario distinto en la misma dimensión.
+    navegadorDetectado = slugDeNombre(nombre);
+
     mostrarAviso(
         nombre ? `Estás navegando en ${nombre}.` : 'Tu navegador no es compatible.',
         'La extensión necesita un navegador basado en Chromium o en Firefox. Elegí abajo el '
@@ -587,7 +767,64 @@ function caminoVisible() {
     return (elegido && elegido.dataset.camino) || 'chromium';
 }
 
+/**
+ * Navegador cuya tarjeta está elegida en este momento.
+ * @returns {string} slug de la tarjeta, o '(ninguno)'
+ */
+function navegadorVisible() {
+    const elegido = document.querySelector('.plataforma-panel:not([hidden]) .navegador.is-elegida');
+    return (elegido && elegido.dataset.navegador) || '(ninguno)';
+}
+
+/**
+ * Engancha la medición a los tres botones que llevan a instalar algo.
+ *
+ * Va en su propia función y no junto a la asignación de los `href` porque la
+ * del .xpi depende de un fetch que puede fallar: un problema de red no tiene
+ * por qué dejar además sin medir el clic.
+ */
+function medirBotonesDeInstalacion() {
+    // Descargas reales, dentro de los pasos de cada camino.
+    document.querySelectorAll('[data-zip-link], [data-xpi-link]').forEach(el => {
+        const formato = el.hasAttribute('data-zip-link') ? 'zip' : 'xpi';
+
+        el.addEventListener('click', () => {
+            medir('clic_instalar', {
+                formato,
+                camino: caminoVisible(),
+                navegador: navegadorVisible(),
+                origen: 'pasos'
+            });
+        });
+    });
+
+    // Botón del bloque de estado, que aparece sólo cuando hay una versión
+    // nueva y la actualización es manual.
+    document.getElementById('version-status-action')?.addEventListener('click', () => {
+        const camino = caminoVisible();
+
+        medir('clic_instalar', {
+            formato: camino === 'chromium' ? 'zip' : 'xpi',
+            camino,
+            navegador: navegadorVisible(),
+            origen: 'estado_version'
+        });
+    });
+
+    // CTA del encabezado: no descarga nada, pero es la boca del embudo y sin
+    // él no se puede saber cuánta gente se cae entre el hero y la descarga.
+    document.querySelector('[data-cta-instalacion]')?.addEventListener('click', () => {
+        medir('clic_cta_instalacion');
+    });
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
+
+    // ── Barra de direcciones ─────────────────────────────────────────────────
+    // Va primero, pero después de los scripts diferidos: acá ya leyeron todos
+    // los que necesitaban el query, y lo que queda en la barra es lo que el
+    // visitante puede copiar y compartir.
+    limpiarParametrosDelPopup();
 
     // ── Enlaces de descarga ──────────────────────────────────────────────────
     document.querySelectorAll('[data-zip-link]').forEach(el => {
@@ -597,8 +834,23 @@ document.addEventListener('DOMContentLoaded', async () => {
     // ── Grilla de portales → detalle por medio ───────────────────────────────
     configurarEnlacesAMedios();
 
+    // ── Medición de los botones de instalación ───────────────────────────────
+    medirBotonesDeInstalacion();
+
     // ── Instalación: plataforma, navegador y pasos ───────────────────────────
     await configurarInstalacion();
+
+    // Se mide acá, con la detección ya resuelta, y no adentro de
+    // configurarInstalacion(), que tiene cinco salidas distintas.
+    //
+    // Vale la pena aunque GA4 ya informe navegador: GA4 lo deduce del
+    // user-agent y ahí Brave, Vivaldi y Opera son todos «Chrome». Este evento
+    // sabe lo que sabe detectarNavegador(), que es bastante más.
+    medir('entorno_detectado', {
+        plataforma: detectarPlataforma(),
+        familia: detectarFamilia(),
+        navegador: navegadorDetectado || '(no reconocido)'
+    });
 
     // ── Link al .xpi ─────────────────────────────────────────────────────────
     // El marcado ya trae la página de releases como href: sólo se pisa cuando
@@ -618,7 +870,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (!versionPublicada) return;
 
     // ── Comparación con la versión instalada ─────────────────────────────────
-    const versionInstalada = obtenerVersionInstalada();
+    // Capturada al parsear el archivo: para acá la URL ya se limpió.
+    const versionInstalada = VERSION_INSTALADA;
     const badge = document.getElementById('version-badge');
 
     // Sin comparación el número de versión es un dato secundario: se muestra
@@ -687,5 +940,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         );
     }
 
-    destacarEstado();
+    // Sólo se lleva la vista al bloque cuando el visitante vino puntualmente a
+    // buscar una actualización. Quien tocó «Visitar extensión» quiere ver el
+    // proyecto: el estado le queda igual a la vista en el encabezado, sin que
+    // la página le mueva el piso.
+    if (VINO_A_BUSCAR) destacarEstado();
 });

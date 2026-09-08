@@ -128,6 +128,19 @@ const DIRECTORIOS = ["js", "css", "imagenes"];
 // de dejar pasar el hueco.
 const EXCLUIDOS = new Set([
     path.join("js", "landing.js"),
+
+    // La medición de la landing. Excluirlo NO es por peso: el archivo pide un script a
+    // googletagmanager.com, y **código remoto dentro del paquete es motivo de rechazo en la
+    // revisión de AMO**, aunque el manifest no lo referencie desde ningún lado. Además la
+    // extensión declara que no recolecta datos (`data_collection_permissions: none`, más abajo).
+    //
+    // En Chromium el archivo SÍ viaja, y está bien: ese canal se instala descomprimiendo el ZIP
+    // del repo entero, que además trae index.html, el README y los .md. Nadie revisa ese paquete
+    // y el manifest no referencia analytics.js, así que nunca se ejecuta: el descargo sigue
+    // siendo cierto, porque habla de lo que la extensión HACE, no de qué archivos vienen al lado.
+    // La asimetría es sólo con AMO, que es el único que audita el contenido.
+    path.join("js", "analytics.js"),
+
     path.join("css", "landing.css"),
     path.join("imagenes", "navegadores"),
     // Sólo las referencia index.html: la og:image de las tarjetas sociales y las capturas de los
