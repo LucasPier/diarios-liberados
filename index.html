@@ -73,6 +73,10 @@
         "codeRepository": "https://github.com/LucasPier/diarios-liberados"
     }
     </script>
+
+    <!-- Medición de uso (GA4). Va con `defer` y no bloquea nada: si un
+         bloqueador lo voltea, la página funciona exactamente igual. -->
+    <script src="js/analytics.js" defer></script>
 </head>
 
 <body>
@@ -93,7 +97,7 @@
             </p>
 
             <div class="hero-actions">
-                <a class="btn btn-accent" href="#instalacion">
+                <a class="btn btn-accent" href="#instalacion" data-cta-instalacion>
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
@@ -1012,6 +1016,10 @@
                         material protegido por derechos de autor. Todas las modificaciones se ejecutan de manera local
                         en el navegador del usuario sobre la información que el propio sitio web ya envió al cliente.
                     </p>
+                    <p><strong>Medición de uso:</strong> esta página usa Google Analytics para contar visitas y clics.
+                        Guarda en tu navegador una cookie con un identificador aleatorio y deduce el país desde tu IP;
+                        no hay forma de saber quién sos. <strong>La extensión no mide nada</strong>: todo lo que hace
+                        ocurre dentro de tu navegador.</p>
                     <p><strong>Uso bajo propia responsabilidad:</strong> el software se provee «tal cual»
                         (<em>as-is</em>), sin garantías de ningún tipo. Cada usuario es responsable del uso que le da a
                         la herramienta y del cumplimiento de los términos y condiciones de los sitios web que visita.

@@ -243,8 +243,11 @@
     <footer>
         <div class="footer-meta">
             <div class="footer-links">
+                <!-- js/popup.js le agrega ?version= con la versión instalada. El href de acá es
+                     el respaldo: sin JS el enlace sigue llevando a la página, sólo que la página
+                     no va a poder decirle si está al día. -->
                 <a href="https://lucaspier.github.io/diarios-liberados/" target="_blank" class="btn-footer"
-                    title="Ver la página de la extensión">
+                    id="btn-visitar" title="Ver la página de la extensión">
                     <img src="imagenes/favicon-32x32.png" alt="" width="14" height="14">
                     Visitar extensión
                 </a>
