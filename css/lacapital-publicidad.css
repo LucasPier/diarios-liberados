@@ -10,7 +10,10 @@ div[class*="ad-slot"],
 #liveWrapper #liveSponsors,
 .banner-no-sticky,
 .sponsornegocios,
-footer .our-logos {
+footer .our-logos,
+.cds-spon,
+.s26-spon,
+a.sponsored {
     display: none !important;
     height: 0 !important;
     overflow: hidden !important;
