@@ -1,7 +1,9 @@
 /* Publicidad - Oculta banners publicitarios y el bloque "Club" del sidebar */
 .add,
 #addTop,
-.clubSlider {
+.clubSlider,
+#layer:has(script),
+*[id*="gpt-ad"] {
     display: none !important;
     height: 0 !important;
     overflow: hidden !important;

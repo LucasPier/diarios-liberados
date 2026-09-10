@@ -43,7 +43,7 @@ const DOMAINS = Array.from(new Set([
 // Todas las reglas de este bloque corresponden a: Publicidad
 const RULES_PUBLICIDAD = [
     {
-        // Publicidad - Red publicitaria DoubleClick/Google Ads (excluye Diario Popular y Ohlalá por incompatibilidad)
+        // Publicidad - Red publicitaria DoubleClick/Google Ads (excluye Diario Popular, Ohlalá y La Gaceta por incompatibilidad)
         id: 2,
         priority: 1,
         action: { type: "block" },
