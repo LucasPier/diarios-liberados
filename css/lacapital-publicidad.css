@@ -116,6 +116,14 @@ body.page-nota #main>.outer-container:has(>.flex-container.justify-between) .sta
 .last-entrys-container .last-entrys {
     flex-basis: 100% !important;
 }
+.qatar-custom-widget .last-entrys-container,
+.s26-modulo .last-entrys-container {
+    max-width: 960px !important;
+}
+.qatar-custom-widget .last-entrys-container .last-entrys,
+.s26-modulo .last-entrys-container .last-entrys {
+    flex-basis: calc(100% - 330px) !important;
+}
 
 .page-seccion-economia .divino {
     margin-bottom: 40px !important;
