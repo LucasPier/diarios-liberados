@@ -279,6 +279,17 @@
         },
         {
             "js": [
+                "js/lacapitaldom-suscriptores.js"
+            ],
+            "matches": [
+                "*://flipbook.lacapital.com.ar/*"
+            ],
+            "world": "MAIN",
+            "all_frames": true,
+            "run_at": "document_start"
+        },
+        {
+            "js": [
                 "js/config.js",
                 "js/css-loader.js",
                 "js/site-map.js",
