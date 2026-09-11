@@ -4,6 +4,7 @@ _metadata/
 # Privado
 .agents/
 docs/
+tmp/
 notas.md
 *.stackdump
 AGENTS.md
