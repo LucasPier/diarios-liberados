@@ -4,6 +4,7 @@
 *[class*="advertisement"],
 *[class*="ad-slot"],
 *[class*="banner"]:not(.S-banner-container-counter),
+.caja_banner_horizontal,
 .S-publicidad {
     display: none !important;
     height: 0 !important;
@@ -23,8 +24,11 @@
 *[class*="styles_Piso2Notas"] > *[class*="styles_segundo-bloque"]:has(*[class*="ad-slot"]):not(:has(> :not(*[class*="ad-slot"]))),
 div:has(>.WIDGET-BOX>*[class*="ad-slot"]):not(:has(>.WIDGET-BOX>:not(*[class*="ad-slot"]))),
 .WIDGET-BOX:has(>*[class*="ad-slot"]):not(:has(>:not(*[class*="ad-slot"]))),
+.ChNPLx81:has(.WIDGET-BOX>*[class*="ad-slot"]):not(:has(.WIDGET-BOX>:not(*[class*="ad-slot"]))),
 #odesur .S-columna.S-columna-3,
-*[class*="styles_container-mam"] *[class*="styles_c"]:has(*[class*="_publi"]){
+*[class*="styles_container-mam"] *[class*="styles_c"]:has(*[class*="_publi"]),
+a[href*="/servicios/newsletter"],
+.WIDGET-BOX:has(>div>div>a[href*="/servicios/newsletter"]):not(:has(> * > * > :not(a[href*="/servicios/newsletter"]))) {
     display: none !important;
 }
 *[class*="styles_Piso2Notas"],

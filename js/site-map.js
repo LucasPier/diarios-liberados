@@ -260,10 +260,14 @@ var SITE_CSS_MAP = window.SITE_CSS_MAP || (function () {
         'infobae.com':     infobaeConfig,
 
         // ── El Litoral / Puerto Negocios ──────────────────────────
-        'www.ellitoral.com':      ellitoralConfig,
-        'ellitoral.com':          ellitoralConfig,
-        'www.puertonegocios.com': ellitoralConfig,
-        'puertonegocios.com':     ellitoralConfig,
+        'www.ellitoral.com':        ellitoralConfig,
+        'ellitoral.com':            ellitoralConfig,
+        'agenda.ellitoral.com':     ellitoralConfig,
+        'comercial.ellitoral.com':  ellitoralConfig,
+        'servicios.ellitoral.com':  ellitoralConfig,
+        'funebres.ellitoral.com':   ellitoralConfig,
+        'www.puertonegocios.com':   ellitoralConfig,
+        'puertonegocios.com':       ellitoralConfig,
 
         // ── Rosario 3 ─────────────────────────────────────────────
         'www.rosario3.com': rosario3Config,
