@@ -334,6 +334,9 @@
                 "js/loader.js",
                 "js/ellitoral.js"
             ],
+            "css": [
+                "css/ellitoral.css"
+            ],
             "matches": [
                 "*://*.ellitoral.com/*",
                 "*://*.puertonegocios.com/*"

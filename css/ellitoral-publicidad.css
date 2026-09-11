@@ -49,4 +49,43 @@ a[href*="/servicios/newsletter"],
         width: auto !important;
         margin-right: 50px !important;
     }
+    .styles_Piso2Notas-parent__Qyp0B .styles_primer-bloque__n9bzT {
+        grid-area: 2 / 1 / auto / none;
+    }
+}
+
+iframe[src*="idget.spreaker.com/player"] {
+    height: 803px !important;
+}
+
+.styles_Piso4Notas-parent__3J9ga .styles_segundo-bloque__RnE1u:has(.parent-banner):not(:has(> :not(.parent-banner):not(.styles_grid-item2__m1JmO))):not(:has(> .styles_grid-item2__m1JmO > div > div:not(:empty))) {
+    display: none !important;
+}
+
+
+/* La clase va repetida a propósito en las dos reglas de abajo: ellitoral.css declara estas
+   mismas propiedades sobre estos mismos elementos, con !important y con idéntica especificidad.
+   Empatadas, el ganador lo decide el orden de la cascada, y el orden entre el CSS del manifest
+   y el <link> que inyecta el loader no está garantizado entre motores. Repetir la clase suma
+   especificidad sin cambiar a qué elementos alcanza, así gana esta regla en Chromium y en Gecko. */
+@media (min-width: 1025px) and (max-width: 1342px) {
+    .styles_segundo-bloque__RnE1u.styles_segundo-bloque__RnE1u {
+        grid-area: 2/4/auto/5 !important;
+    }
+}
+
+@media (min-width: 1025px) {
+    .styles_Piso4Notas-parent__3J9ga:has(.styles_segundo-bloque__RnE1u > .parent-banner):not(:has(.styles_segundo-bloque__RnE1u > *:not(.parent-banner):not(.styles_grid-item2__m1JmO))):not(:has(.styles_segundo-bloque__RnE1u > .styles_grid-item2__m1JmO > div > div:not(:empty))) {
+        grid-template-columns: repeat(1, 1fr) !important;
+    }
+    .styles_Piso2Notas-parent__Qyp0B:has(.styles_segundo-bloque__55Oov > .parent-banner):not(:has(.styles_segundo-bloque__55Oov > *:not(.parent-banner))) .styles_primer-bloque__n9bzT,
+    .styles_Piso4Notas-parent__3J9ga:has(.styles_segundo-bloque__RnE1u > .parent-banner):not(:has(.styles_segundo-bloque__RnE1u > *:not(.parent-banner):not(.styles_grid-item2__m1JmO))):not(:has(.styles_segundo-bloque__RnE1u > .styles_grid-item2__m1JmO > div > div:not(:empty))) .styles_primer-bloque__LtDr1 {
+        grid-template-columns: repeat(4, 1fr) !important;
+    }
+    .styles_primer-bloque__LtDr1 {
+        grid-area: 2/1/auto/4 !important;
+    }
+    .styles_Piso4Notas-parent__3J9ga.styles_Piso4Notas-parent__3J9ga {
+        grid-template-columns: repeat(4, 1fr) !important;
+    }
 }
