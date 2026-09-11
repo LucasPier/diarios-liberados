@@ -529,11 +529,14 @@ function main() {
     const declarados = (manifest.web_accessible_resources || []).flatMap(r => r.resources || []);
     const faltantes = declarados.filter(r => !fs.existsSync(path.join(DESTINO, r)));
 
-    // Ídem para los content scripts y el background: si el manifest referencia un JS que la
-    // lista blanca no copió, Firefox no carga la entrada.
+    // Ídem para los content scripts y el background: si el manifest referencia un archivo que la
+    // lista blanca no copió, Firefox no carga la entrada. Incluye la clave "css" de content_scripts:
+    // ese CSS lo inyecta el navegador y no pasa por web_accessible_resources, así que la
+    // verificación de arriba no lo alcanza.
     const scripts = [
         ...(manifest.background.scripts || []),
         ...(manifest.content_scripts || []).flatMap(c => c.js || []),
+        ...(manifest.content_scripts || []).flatMap(c => c.css || []),
     ];
     const scriptsFaltantes = [...new Set(scripts)].filter(s => !fs.existsSync(path.join(DESTINO, s)));
 
