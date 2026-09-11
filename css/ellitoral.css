@@ -1,0 +1,122 @@
+/**
+ * ellitoral.css — Correcciones de layout propias de El Litoral
+ *
+ * NO responde a ninguna de las tres features, y es la única excepción del repo al modelo de
+ * las tres flags. Son arreglos de un bug de origen del sitio: entre 769px y 1342px de ancho
+ * la grilla del home y de los pisos de notas queda descolocada, con imágenes desbordadas y
+ * bloques pisándose. El usuario lo ve igual SIN la extensión instalada.
+ *
+ * Por eso se declara en la clave "css" de la entrada de content_scripts del manifest y no en
+ * site-map.js: el navegador lo inyecta solo, a document_start, sin esperar a getConfig() y sin
+ * pasar por web_accessible_resources. Se aplica aunque el usuario apague las tres features.
+ *
+ * La excepción se justifica porque acá no se oculta ni se habilita nada: sólo se devuelve el
+ * layout que el medio quiso y le salió mal. Todo lo que RECOMPONE el layout después de que
+ * ocultamos publicidad depende del flag y vive en ellitoral-publicidad.css.
+ */
+
+@media (min-width: 769px) and (max-width: 1342px) {
+    .styles_primer-bloque__LtDr1,
+    .styles_primer-bloque__k3S4K {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+    .styles_primer-bloque__naspS {
+        grid-template-columns: repeat(auto-fill,minmax(250px,1fr)) !important;
+    }
+    .styles_img-container__8Y4Lr,
+    .styles_img-container__obw5w {
+        width: 100% !important;
+    }
+}
+@media (min-width: 836px) and (max-width: 1342px) {
+    .styles_primer-bloque__naspS {
+        grid-template-columns: repeat(3, 1fr) !important;
+        grid-area: 2/1/auto/4 !important;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1010px) {
+    .styles_primer-bloque__LtDr1 {
+        grid-area: 1/1/auto/5 !important;
+    }
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+    .styles_primer-bloque__n9bzT {
+        grid-template-columns: repeat(3, 1fr) !important;
+        grid-area: 2/1/auto/4 !important;
+    }
+    .styles_img-container__IC2wT,
+    .styles_img-container__Hc4uF {
+        width: 100% !important;
+        max-width: 300px !important;
+    }
+    .styles_primer-bloque___IjIc {
+        grid-column: 1/4 !important;
+    }
+    .styles_tercer-bloque__DGOkS {
+        grid-column: 1/4 !important;
+        grid-row: 2/3 !important;
+    }
+    .styles_cuarto-bloque__n54FU {
+        grid-column: 1/4 !important;
+        grid-row: 3/4 !important;
+    }
+    .styles_Piso1Notas-parent__BQIgO {
+        grid-template-columns: repeat(1, 1fr) !important;
+    }
+    .styles_primer-bloque__k3S4K {
+        grid-area: 1/1/auto/5 !important;
+    }
+    .styles_Piso2Notas-parent__Qyp0B .styles_primer-bloque__n9bzT,
+    .styles_segundo-bloque__RnE1u {
+        max-width: 964px !important;
+    }
+    .styles_segundo-bloque__MrAKb {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr 1fr !important;
+        margin: 0 !important;
+    }
+}
+@media (min-width: 1011px) and (max-width: 1342px) {
+    .styles_Piso4Notas-parent__3J9ga {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+    .styles_segundo-bloque__RnE1u {
+        grid-area: 2/3/auto/4 !important;
+    }
+}
+@media (min-width: 1011px) and (max-width: 1024px) {
+    .styles_segundo-bloque__RnE1u {
+        grid-area: 1 / 3 / auto / 4 !important;
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 1200px) {
+    .styles_img-container__T5fsI {
+        width: 230px !important;
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 1342px){
+    .styles_img-container__IC2wT,
+    .styles_img-container__Hc4uF  {
+        width: 50% !important;
+        max-width: 300px !important;
+    }
+    .styles_Piso1Notas-parent__BQIgO,
+    .styles_parent__yBUjV,
+    .styles_parent__tmDMw {
+        grid-template-columns: repeat(4, 1fr) !important;
+    }
+    .styles_primer-bloque__k3S4K {
+        grid-template-columns: repeat(3, 1fr) !important;
+        grid-area: 2/1/auto/4 !important;
+    }
+    .styles_primer-bloque__naspS {
+        grid-template-columns: repeat(4, 1fr) !important;
+    }
+    .styles_Pisogenericas-parent__07tSc:has(.styles_primer-bloque__naspS) {
+        grid-template-columns: repeat(1, 1fr) !important;
+    }
+}
+
