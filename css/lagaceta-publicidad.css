@@ -3,7 +3,8 @@
 #addTop,
 .clubSlider,
 #layer:has(script),
-*[id*="gpt-ad"] {
+*[id*="gpt-ad"],
+amp-sticky-ad {
     display: none !important;
     height: 0 !important;
     overflow: hidden !important;
