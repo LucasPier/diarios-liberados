@@ -215,7 +215,7 @@ body.page-seccion {
     white-space: nowrap !important;
 }
 
-/* Minuto a minuto DF */
+/* Minuto a minuto DF LC */
 .standard-entry-box.has-mam .mam-holder {
     top: auto !important;
     background: transparent !important;
@@ -233,6 +233,49 @@ body.page-seccion {
 /* La Capital */
 body.page-home {
     padding-top: 180px !important;
+}
+
+/* Fix Juegos Sudamericanos LC */
+.outer-container:has(>.qatar-custom-widget):has(>.s26-modulo) {
+    padding: 20px 0 !important;
+}
+@media (min-width: 992px) {
+    .qatar-custom-widget,
+    .s26-modulo {
+        max-width: 100% !important;
+        margin-left: 0 !important;
+    }
+}
+
+/* Fix Notas Suscriptores en Home LC */
+@media (max-width: 1035px) {
+    .sucriptoresblc-custom-widget .horizontal-entry-box.exclusive-entry {
+        width: 100% !important;
+        grid-area: 2/1/3/4 !important;
+    }
+    .sucriptoresblc-custom-widget .horizontal-entry-box.exclusive-entry + div {
+        width: 100% !important;
+        grid-area: 3/1/4/4 !important;
+    }
+    #blcn95pj5cepo {
+        width: 100% !important;
+    }
+    .sucriptoresblc-custom-widget .fake-slider {
+        width: auto !important;
+    }
+}
+
+/* Fix Motores en Home LC */
+@media (max-width: 1040px) {
+    .motores-custom-widget .buscador {
+        height: 100px !important;
+        padding: 15px 50px !important;
+        flex-wrap: wrap !important;
+    }
+    .motores-custom-widget .buscador .form-kicker {
+        width: 100% !important;
+        text-align: center !important;
+    }
 }
 
 /* Mobile */
