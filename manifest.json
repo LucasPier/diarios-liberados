@@ -4,7 +4,7 @@
     "description": "Mejora visualización de diarios online",
     "version": "1.5.1",
     "author": "Lucas Pier",
-    "homepage_url": "https://github.com/LucasPier/diarios-liberados",
+    "homepage_url": "https://lucaspier.github.io/diarios-liberados/",
     "manifest_version": 3,
     "permissions": [
         "storage",
