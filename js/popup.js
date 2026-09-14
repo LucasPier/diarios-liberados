@@ -209,8 +209,8 @@ async function actualizarBannerRecarga() {
 // ── Límite de La Nación ─────────────────────────────────────────────────────
 //
 // Es el único medio soportado en el que la feature de suscriptores NO abre las notas exclusivas.
-// Sí funcionan los resúmenes con IA y la escucha de notas, así que el aviso aclara las dos cosas:
-// sin eso, el usuario asume que la extensión está rota justo en el diario más leído del país.
+// Sí se desbloquean los resúmenes con IA y la escucha de notas, así que el aviso aclara las dos
+// cosas: sin eso, el usuario asume que la extensión está rota justo en el diario más leído del país.
 //
 // El texto es fijo y vive en popup.html; acá sólo se decide si se muestra. No depende del toggle
 // de suscriptores: es información sobre el alcance real en ese medio, esté la feature prendida o no.
@@ -259,16 +259,40 @@ document.addEventListener('DOMContentLoaded', async () => {
         versionElement.hidden = !version;
     }
 
-    // ── Buscar actualizaciones ───────────────────────────────────────────────
-    // Se delega la comparación a la página de la extensión, que conoce la
-    // última versión publicada. Se le pasa la instalada por query string.
+    // ── Enlaces a la página de la extensión ──────────────────────────────────
+    // Los dos botones le pasan la versión instalada por query string, porque la
+    // comparación la hace la página, que es la que conoce la última publicada.
+    //
+    // Que la lleven LOS DOS no es un detalle: «Visitar extensión» es el botón
+    // grande con texto y el de buscar actualizaciones es un ícono de 11 píxeles.
+    // Si sólo lo mandara el chiquito, la página casi nunca sabría con quién está
+    // hablando.
+    //
+    // Se diferencian por `buscar`, que distingue la intención: quien vino a
+    // buscar una actualización quiere que le lleven la vista al resultado; quien
+    // vino a ver el proyecto, no. La página borra los dos parámetros de la barra
+    // apenas los lee, así que el link que el usuario copie para compartir no
+    // arrastra una versión ajena.
+    // Se arma con URLSearchParams y no concatenando: cuando no hay versión que
+    // mandar —getManifest() puede fallar— una concatenación se comía también el
+    // resto de los parámetros, y el botón de buscar actualizaciones perdía su
+    // `buscar` sin que nada lo delatara.
+    const urlLanding = (extra = {}) => {
+        const params = new URLSearchParams();
+        if (version) params.set('version', version);
+        for (const [clave, valor] of Object.entries(extra)) params.set(clave, valor);
+
+        const query = params.toString();
+        return query ? `${URL_LANDING}?${query}` : URL_LANDING;
+    };
+
+    const btnVisitar = document.getElementById('btn-visitar');
+    if (btnVisitar) btnVisitar.href = urlLanding();
+
     const btnBuscarUpdate = document.getElementById('btn-check-update');
     if (btnBuscarUpdate) {
         btnBuscarUpdate.addEventListener('click', () => {
-            const url = version
-                ? `${URL_LANDING}?version=${encodeURIComponent(version)}`
-                : URL_LANDING;
-            chrome.tabs.create({ url });
+            chrome.tabs.create({ url: urlLanding({ buscar: '1' }) });
             window.close();
         });
     }

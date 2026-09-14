@@ -34,6 +34,8 @@ aside.ln-aside.--tablet-lg-none.grid-item.--1.--col-lg-4.--col-xl-4,
 .SectionsContainer-module-scss-module__V_N8dG__col_right:empty,
 .HeaderAd-module-scss-module__CMSPEG__desktop,
 .AdParagraph-module-scss-module__f7hbba__desktop,
+section[data-roof="Conversaciones"] .ln-roof .--ln-roof-full .--ln-roof-right:has(.h-36.order-2>img.h-100.w-100.w-auto.max-w-100.object-contain),
+section[data-roof="meet music ln 104.9 +música"] .ln-roof .--ln-roof-full .--ln-roof-right:has(.h-36.order-2>img.h-100.w-100.w-auto.max-w-100.object-contain),
 /* RollingStone */
 .elementor-popup-modal,
 /*.elementor-14400 .elementor-element.elementor-element-5f8aee0,*/

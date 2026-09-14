@@ -2,9 +2,9 @@
     "name": "Diarios Liberados",
     "short_name": "diarios-liberados",
     "description": "Mejora visualización de diarios online",
-    "version": "1.5.1",
+    "version": "1.5.2",
     "author": "Lucas Pier",
-    "homepage_url": "https://github.com/LucasPier/diarios-liberados",
+    "homepage_url": "https://lucaspier.github.io/diarios-liberados/",
     "manifest_version": 3,
     "permissions": [
         "storage",
@@ -232,7 +232,6 @@
             "matches": [
                 "*://*.rollingstone.com/*"
             ],
-            "all_frames": true,
             "run_at": "document_start"
         },
         {
@@ -256,8 +255,7 @@
             ],
             "matches": [
                 "*://*.lanacion.com.ar/*",
-                "*://*.somosohlala.com/*",
-                "*://*.rollingstone.com/*"
+                "*://*.somosohlala.com/*"
             ],
             "run_at": "document_end"
         },
@@ -276,6 +274,17 @@
                 "*://*.unosantafe.com.ar/*",
                 "*://*.unoentrerios.com.ar/*"
             ],
+            "all_frames": true,
+            "run_at": "document_start"
+        },
+        {
+            "js": [
+                "js/lacapitaldom-suscriptores.js"
+            ],
+            "matches": [
+                "*://flipbook.lacapital.com.ar/*"
+            ],
+            "world": "MAIN",
             "all_frames": true,
             "run_at": "document_start"
         },
@@ -335,6 +344,9 @@
                 "js/site-map.js",
                 "js/loader.js",
                 "js/ellitoral.js"
+            ],
+            "css": [
+                "css/ellitoral.css"
             ],
             "matches": [
                 "*://*.ellitoral.com/*",

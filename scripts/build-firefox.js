@@ -128,6 +128,19 @@ const DIRECTORIOS = ["js", "css", "imagenes"];
 // de dejar pasar el hueco.
 const EXCLUIDOS = new Set([
     path.join("js", "landing.js"),
+
+    // La medición de la landing. Excluirlo NO es por peso: el archivo pide un script a
+    // googletagmanager.com, y **código remoto dentro del paquete es motivo de rechazo en la
+    // revisión de AMO**, aunque el manifest no lo referencie desde ningún lado. Además la
+    // extensión declara que no recolecta datos (`data_collection_permissions: none`, más abajo).
+    //
+    // En Chromium el archivo SÍ viaja, y está bien: ese canal se instala descomprimiendo el ZIP
+    // del repo entero, que además trae index.html, el README y los .md. Nadie revisa ese paquete
+    // y el manifest no referencia analytics.js, así que nunca se ejecuta: el descargo sigue
+    // siendo cierto, porque habla de lo que la extensión HACE, no de qué archivos vienen al lado.
+    // La asimetría es sólo con AMO, que es el único que audita el contenido.
+    path.join("js", "analytics.js"),
+
     path.join("css", "landing.css"),
     path.join("imagenes", "navegadores"),
     // Sólo las referencia index.html: la og:image de las tarjetas sociales y las capturas de los
@@ -516,11 +529,14 @@ function main() {
     const declarados = (manifest.web_accessible_resources || []).flatMap(r => r.resources || []);
     const faltantes = declarados.filter(r => !fs.existsSync(path.join(DESTINO, r)));
 
-    // Ídem para los content scripts y el background: si el manifest referencia un JS que la
-    // lista blanca no copió, Firefox no carga la entrada.
+    // Ídem para los content scripts y el background: si el manifest referencia un archivo que la
+    // lista blanca no copió, Firefox no carga la entrada. Incluye la clave "css" de content_scripts:
+    // ese CSS lo inyecta el navegador y no pasa por web_accessible_resources, así que la
+    // verificación de arriba no lo alcanza.
     const scripts = [
         ...(manifest.background.scripts || []),
         ...(manifest.content_scripts || []).flatMap(c => c.js || []),
+        ...(manifest.content_scripts || []).flatMap(c => c.css || []),
     ];
     const scriptsFaltantes = [...new Set(scripts)].filter(s => !fs.existsSync(path.join(DESTINO, s)));
 

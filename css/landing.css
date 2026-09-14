@@ -706,11 +706,19 @@ section {
    todo el ancho de la tarjeta quedan enormes y desproporcionadas. */
 .paso-captura {
     display: block;
+    /* Excepción al `border-box` global: con él, el borde de 1px se descuenta
+       del ancho de la imagen (una captura de 660 px se dibuja en 658 y, por
+       `height: auto`, el alto cae de 300 a 299). Son dos píxeles, pero la
+       captura deja de estar a escala 1:1 y el reescalado se nota justo en el
+       texto de la interfaz, que es lo único que el usuario viene a leer acá. */
+    box-sizing: content-box;
     /* Sin `width: 100%`: las capturas se muestran a su tamaño real y sólo se
-       achican si no entran. Estirar una captura de 464 px hasta el ancho de la
+       achican si no entran. Estirar una captura de 460 px hasta el ancho de la
        tarjeta la deja borrosa, que es justo lo que no querés en la imagen que
-       el usuario va a comparar contra su pantalla. */
-    max-width: 100%;
+       el usuario va a comparar contra su pantalla.
+       El `calc` descuenta el borde que `content-box` dejó afuera del cálculo:
+       sin él, una captura más ancha que la tarjeta se pasaría por 2 px. */
+    max-width: calc(100% - 2px);
     height: auto;
     margin-top: 10px;
     border: 1px solid var(--border-strong);
