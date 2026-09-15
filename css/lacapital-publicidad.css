@@ -278,6 +278,13 @@ body.page-home {
     }
 }
 
+/* Fix Layout en Home LC */
+@media (max-width: 1299px) {
+    .zona-3-notas-horizontales .standard-entry-box:first-child {
+        width: 100% !important;
+    }
+}
+
 /* Mobile */
 @media (max-width: 700px) {
     .site-header .site-header__main-part,

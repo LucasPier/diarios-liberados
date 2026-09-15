@@ -38,12 +38,34 @@ const RE_VERSION = /^\d+(\.\d+){0,3}$/;
 const VERSION_INSTALADA = obtenerVersionInstalada();
 
 /**
+ * Primera versión cuyo popup manda `?version=` desde los dos botones y agrega
+ * `buscar` para distinguirlos.
+ *
+ * Hasta la 1.5.1 la versión viajaba SÓLO desde «Buscar actualizaciones»:
+ * «Visitar extensión» iba a la URL pelada. Así que una versión anterior a esta
+ * sin `buscar` no es alguien que vino a ver el proyecto, sino alguien con una
+ * extensión vieja buscando una actualización, y justamente es quien más
+ * necesita ver el estado. Sin esta excepción, su popup lo mandaría a una página
+ * que no le contesta.
+ *
+ * No hay que moverlo nunca: describe qué hacían los popups ya publicados, no la
+ * versión actual.
+ */
+const PRIMERA_VERSION_CON_BUSCAR = '1.5.2';
+
+/**
  * Si el visitante llegó tocando «Buscar actualizaciones» en vez de «Visitar
  * extensión». Son dos intenciones distintas y merecen respuestas distintas:
- * quien vino a buscar una actualización quiere que le lleven la vista al
- * resultado; quien vino a ver el proyecto, no.
+ * quien vino a buscar una actualización ve el estado de versión, con la vista
+ * llevada al resultado; quien vino a ver el proyecto, no ve ninguno. Los dos
+ * mandan la versión, pero en el segundo caso sólo le sirve a la medición.
+ *
+ * `compararVersiones` se puede usar acá arriba porque es una declaración de
+ * función: se eleva al principio del archivo.
  */
-const VINO_A_BUSCAR = new URLSearchParams(window.location.search).has('buscar');
+const VINO_A_BUSCAR = new URLSearchParams(window.location.search).has('buscar')
+    || (VERSION_INSTALADA !== null
+        && compararVersiones(VERSION_INSTALADA, PRIMERA_VERSION_CON_BUSCAR) < 0);
 
 /**
  * Lo que la detección concluyó, aunque después no se haya marcado ninguna
@@ -208,8 +230,10 @@ function mostrarEstado(estado, icono, titulo, texto, hrefAccion) {
     tituloEl.textContent = titulo;
     textoEl.textContent  = texto;
 
-    // El botón de descarga solo tiene sentido cuando falta actualizar y la
-    // actualización es manual: en Firefox de escritorio se hace sola.
+    // El botón de descarga solo tiene sentido cuando falta actualizar y hay algo
+    // que el usuario pueda hacer a mano: en Chromium es el único camino, y en
+    // Firefox para Android es un atajo para no esperar a que llegue sola. En
+    // Firefox de escritorio no se muestra: el atajo es «Buscar actualizaciones».
     accion.hidden = !hrefAccion;
     if (hrefAccion) accion.href = hrefAccion;
 
@@ -874,10 +898,23 @@ document.addEventListener('DOMContentLoaded', async () => {
     const versionInstalada = VERSION_INSTALADA;
     const badge = document.getElementById('version-badge');
 
-    // Sin comparación el número de versión es un dato secundario: se muestra
-    // como nota discreta. Cuando sí hay comparación, el bloque de estado ya
-    // informa ambas versiones y la nota sobraría.
-    if (!versionInstalada) {
+    // Sin comparación que mostrar, el número de versión es un dato secundario: va
+    // como nota discreta. Cuando sí se muestra el estado, el bloque ya informa
+    // ambas versiones y la nota sobraría.
+    //
+    // «Visitar extensión» también manda la versión, pero no para mostrarle nada:
+    // le sirve a la medición. El estado es la respuesta a «Buscar
+    // actualizaciones», y a quien vino a ver el proyecto no se le contesta una
+    // pregunta que no hizo. El evento se mide igual en los dos casos: si sólo se
+    // midiera al mostrar el bloque, `estado_version` pasaría a contar únicamente
+    // a quien busca actualizaciones y dejaría de responder cuántos llegan con una
+    // versión vieja.
+    if (!versionInstalada || !VINO_A_BUSCAR) {
+        if (versionInstalada) {
+            const comparacion = compararVersiones(versionInstalada, versionPublicada);
+            const estado = comparacion === 0 ? 'ok' : comparacion < 0 ? 'outdated' : 'dev';
+            medir('estado_version', { estado });
+        }
         if (badge) {
             badge.textContent = `Última versión disponible: v${versionPublicada}`;
             badge.hidden = false;
@@ -896,9 +933,12 @@ document.addEventListener('DOMContentLoaded', async () => {
             null
         );
     } else if (comparacion < 0) {
-        // Cómo se actualiza cambia por completo según el navegador: en Firefox
-        // de escritorio no hay nada que hacer, y ofrecerle una descarga sería
-        // mandarlo a repetir a mano algo que ya está pasando solo.
+        // Cómo se actualiza cambia por completo según el navegador: en Firefox,
+        // de escritorio y de Android, no hay nada que hacer, y ofrecerle la
+        // descarga como el camino sería mandarlo a repetir a mano algo que ya
+        // está pasando solo. En Android la actualización automática recién se
+        // confirmó con la v1.5.2, y no se sabe cada cuánto consulta: por eso
+        // ahí la descarga queda, pero como atajo para quien no quiere esperar.
         const camino = caminoVisible();
 
         if (camino === 'firefox') {
@@ -917,7 +957,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                 '!',
                 'Hay una versión nueva',
                 `Tenés la v${versionInstalada} y ya está disponible la v${versionPublicada}. `
-                + 'Descargá el archivo y volvé a instalarlo desde los ajustes de Firefox.',
+                + 'No tenés que hacer nada: Firefox la actualiza sola, aunque puede tardar en llegar. '
+                + 'Si no querés esperar, descargá el archivo y volvé a instalarlo desde los ajustes.',
                 urlXpi || RELEASES_URL
             );
         } else {
@@ -940,9 +981,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         );
     }
 
-    // Sólo se lleva la vista al bloque cuando el visitante vino puntualmente a
-    // buscar una actualización. Quien tocó «Visitar extensión» quiere ver el
-    // proyecto: el estado le queda igual a la vista en el encabezado, sin que
-    // la página le mueva el piso.
-    if (VINO_A_BUSCAR) destacarEstado();
+    // Llegar hasta acá implica que el visitante vino a buscar una actualización:
+    // se le lleva la vista al resultado.
+    destacarEstado();
 });

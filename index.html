@@ -116,10 +116,11 @@
                 </a>
             </div>
 
-            <!-- Nota discreta: solo se muestra cuando NO hay comparación de versiones -->
+            <!-- Nota discreta: se muestra siempre que NO se muestre el estado de versión -->
             <p class="version-note" id="version-badge" hidden></p>
 
-            <!-- Estado de versión: lo completa js/landing.js según ?version=X.Y.Z -->
+            <!-- Estado de versión: lo completa js/landing.js sólo cuando llega ?buscar=1
+                 junto con ?version=X.Y.Z, es decir, desde «Buscar actualizaciones» -->
             <div class="version-status" id="version-status" hidden>
                 <span class="version-status-icon" id="version-status-icon" aria-hidden="true"></span>
                 <div class="version-status-body">
@@ -659,8 +660,7 @@
                             <span class="callout-icon" aria-hidden="true">↻</span>
                             <p>
                                 <strong>¿Cómo actualizo a una versión nueva?</strong>
-                                Repetí la instalación: descargá el archivo otra vez y volvé a instalarlo desde
-                                <em>Ajustes</em>. No perdés la configuración que tengas puesta.
+                                No tenés que hacer nada: la extensión se actualiza sola.
                             </p>
                         </div>
                     </div>

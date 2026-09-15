@@ -414,6 +414,15 @@ body .lobeBS .div3:not(:last-child)::after {
     body .jkTEhQ .div4 article > div .mt h2.title {
         height: 70px !important;
     }
+    /* Fix imagen tapa el título en sección "Selección Clarín" del home */
+    .fpQHIJ > div:nth-child(n+3) .grmqwf picture {
+        height: auto !important;
+        overflow: hidden !important;
+    }
+    .fpQHIJ > div:nth-child(n+3) .grmqwf picture img{
+        height: 100% !important;
+    }
+
     .lcCKAe.div5{
         grid-row: 1 / 5 !important;
     }

@@ -43,9 +43,16 @@ amp-sticky-ad {
     #topPage #cfull> .block.noMargin .col-xl-9:has(.timeline) {
         width: 100% !important;
     }
-    #topPage #cfull> .block.noMargin .col-xl-9:has(.timeline) .innerRow:not(:has(.timeline)) .col-12:not(.col-lg-4):not(:has(.titleHead)) {
+    #topPage #cfull> .block.noMargin .col-xl-9:has(.timeline) .innerRow:not(:has(.timeline)) .col-12:not(.col-lg-4):not(.col-lg-6):not(:has(.titleHead)) {
         width: 75% !important;
         margin: 0 auto !important;
+    }
+    #topPage #cfull> .block.noMargin .col-xl-9:has(.timeline) .innerRow:not(:has(.timeline)) .col-12.col-lg-6:not(:has(.titleHead)) {
+        width: 37.5% !important;
+        margin: 0 auto 0 12.5% !important;
+    }
+    #topPage #cfull> .block.noMargin .col-xl-9:has(.timeline) .innerRow:not(:has(.timeline)) .col-12.col-lg-6:not(:has(.titleHead)):last-of-type {
+        margin:0 12.5% 0 auto !important;
     }
     #topPage #cfull> .block.noMargin .col-xl-9:has(.timeline) .innerRow:not(:has(.timeline)) .row .col-lg-4 {
         width: 25% !important;

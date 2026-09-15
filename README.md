@@ -135,7 +135,7 @@ Los mismos pasos sirven para los navegadores basados en Firefox: Floorp, Zen, Li
 
 > ⚠️ **Para abrir el menú de la extensión tiene que haber un sitio abierto.** Entrá por el menú **⋮ → Extensiones** con un diario cargado en una pestaña normal. Desde la pantalla de inicio de Firefox no abre: es una limitación conocida de Firefox para Android, no de la extensión.
 
-*Para actualizar:* descargá el archivo otra vez y repetí la instalación desde los ajustes. No se pierde la configuración.
+*Para actualizar:* no hay que hacer nada, la extensión se actualiza sola.
 
 > 📱  
 > **¿Se puede usar en celulares?**  

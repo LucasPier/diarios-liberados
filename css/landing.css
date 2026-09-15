@@ -728,9 +728,12 @@ section {
 /* Las capturas de celular llegan con el ancho de la pantalla y hay que
    acotarlas, pero el límite lo pone la legibilidad: por debajo de esto el texto
    de la interfaz deja de leerse y el usuario no puede comparar contra su
-   teléfono, que es para lo único que está la imagen. */
+   teléfono, que es para lo único que está la imagen.
+   El `min` conserva el tope de la regla general: un `400px` a secas la pisaba,
+   y en pantallas más angostas que la captura la imagen desbordaba la tarjeta y
+   provocaba scroll horizontal. */
 .paso-captura.es-movil {
-    max-width: 400px;
+    max-width: min(400px, calc(100% - 2px));
 }
 
 code {
@@ -979,7 +982,7 @@ footer p strong {
     }
 
     .portales-grid {
-        grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
     }
 
     .portal-card {
