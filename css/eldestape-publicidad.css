@@ -24,6 +24,10 @@ footer.footer>.fs,
 
 
 /* Mejoras de distribución UI */
+:root {
+    --ad-top-height: 0px !important;
+    --fixed-stack-height: 210px !important;
+}
 .footer .mustang {
     height: 0 !important;
     padding: 0 !important;
@@ -45,8 +49,6 @@ body.hasAdTop {
 body.take-over-open {
     overflow: auto !important;
 }
-
-:root {
-    --ad-top-height: 0px !important;
-    --fixed-stack-height: 210px !important;
+#sitio {
+    margin: 0 auto !important;
 }
