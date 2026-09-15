@@ -38,13 +38,34 @@ const RE_VERSION = /^\d+(\.\d+){0,3}$/;
 const VERSION_INSTALADA = obtenerVersionInstalada();
 
 /**
+ * Primera versión cuyo popup manda `?version=` desde los dos botones y agrega
+ * `buscar` para distinguirlos.
+ *
+ * Hasta la 1.5.1 la versión viajaba SÓLO desde «Buscar actualizaciones»:
+ * «Visitar extensión» iba a la URL pelada. Así que una versión anterior a esta
+ * sin `buscar` no es alguien que vino a ver el proyecto, sino alguien con una
+ * extensión vieja buscando una actualización, y justamente es quien más
+ * necesita ver el estado. Sin esta excepción, su popup lo mandaría a una página
+ * que no le contesta.
+ *
+ * No hay que moverlo nunca: describe qué hacían los popups ya publicados, no la
+ * versión actual.
+ */
+const PRIMERA_VERSION_CON_BUSCAR = '1.5.2';
+
+/**
  * Si el visitante llegó tocando «Buscar actualizaciones» en vez de «Visitar
  * extensión». Son dos intenciones distintas y merecen respuestas distintas:
  * quien vino a buscar una actualización ve el estado de versión, con la vista
  * llevada al resultado; quien vino a ver el proyecto, no ve ninguno. Los dos
  * mandan la versión, pero en el segundo caso sólo le sirve a la medición.
+ *
+ * `compararVersiones` se puede usar acá arriba porque es una declaración de
+ * función: se eleva al principio del archivo.
  */
-const VINO_A_BUSCAR = new URLSearchParams(window.location.search).has('buscar');
+const VINO_A_BUSCAR = new URLSearchParams(window.location.search).has('buscar')
+    || (VERSION_INSTALADA !== null
+        && compararVersiones(VERSION_INSTALADA, PRIMERA_VERSION_CON_BUSCAR) < 0);
 
 /**
  * Lo que la detección concluyó, aunque después no se haya marcado ninguna
