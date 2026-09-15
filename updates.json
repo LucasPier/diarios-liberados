@@ -3,9 +3,9 @@
         "diarios-liberados@lucaspier.github.io": {
             "updates": [
                 {
-                    "version": "1.5.2",
-                    "update_link": "https://github.com/LucasPier/diarios-liberados/releases/download/v1.5.2/diarios-liberados-firefox-1.5.2.xpi",
-                    "update_hash": "sha256:9ea72b3a5193ddf3ce4e9bf3f09d62fcbd0e5ed3bab2f452eae69f9727b9e572",
+                    "version": "1.5.3",
+                    "update_link": "https://github.com/LucasPier/diarios-liberados/releases/download/v1.5.3/diarios-liberados-firefox-1.5.3.xpi",
+                    "update_hash": "sha256:9666c0c9e416d1cb4bc47fdab306c2495bff6b8219c0043d4f992a706caad560",
                     "applications": {
                         "gecko": {
                             "strict_min_version": "128.0"
