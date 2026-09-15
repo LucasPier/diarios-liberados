@@ -48,3 +48,15 @@ div.width_full {
         margin: 0 auto !important;
     }
 }
+
+/* Fix 3 notas para 4 columnas*/
+@media only screen and (min-width: 992px) {
+    .default-chain-4:has(> .story-card-ctn:nth-of-type(3):last-of-type) {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+}
+@media only screen and (min-width: 577px) {
+    .default-chain-4:has(> .story-card-ctn:nth-of-type(3):last-of-type) {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+}
