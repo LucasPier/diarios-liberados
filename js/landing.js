@@ -208,8 +208,10 @@ function mostrarEstado(estado, icono, titulo, texto, hrefAccion) {
     tituloEl.textContent = titulo;
     textoEl.textContent  = texto;
 
-    // El botón de descarga solo tiene sentido cuando falta actualizar y la
-    // actualización es manual: en Firefox de escritorio se hace sola.
+    // El botón de descarga solo tiene sentido cuando falta actualizar y hay algo
+    // que el usuario pueda hacer a mano: en Chromium es el único camino, y en
+    // Firefox para Android es un atajo para no esperar a que llegue sola. En
+    // Firefox de escritorio no se muestra: el atajo es «Buscar actualizaciones».
     accion.hidden = !hrefAccion;
     if (hrefAccion) accion.href = hrefAccion;
 
@@ -896,9 +898,12 @@ document.addEventListener('DOMContentLoaded', async () => {
             null
         );
     } else if (comparacion < 0) {
-        // Cómo se actualiza cambia por completo según el navegador: en Firefox
-        // de escritorio no hay nada que hacer, y ofrecerle una descarga sería
-        // mandarlo a repetir a mano algo que ya está pasando solo.
+        // Cómo se actualiza cambia por completo según el navegador: en Firefox,
+        // de escritorio y de Android, no hay nada que hacer, y ofrecerle la
+        // descarga como el camino sería mandarlo a repetir a mano algo que ya
+        // está pasando solo. En Android la actualización automática recién se
+        // confirmó con la v1.5.2, y no se sabe cada cuánto consulta: por eso
+        // ahí la descarga queda, pero como atajo para quien no quiere esperar.
         const camino = caminoVisible();
 
         if (camino === 'firefox') {
@@ -917,7 +922,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                 '!',
                 'Hay una versión nueva',
                 `Tenés la v${versionInstalada} y ya está disponible la v${versionPublicada}. `
-                + 'Descargá el archivo y volvé a instalarlo desde los ajustes de Firefox.',
+                + 'No tenés que hacer nada: Firefox la actualiza sola, aunque puede tardar en llegar. '
+                + 'Si no querés esperar, descargá el archivo y volvé a instalarlo desde los ajustes.',
                 urlXpi || RELEASES_URL
             );
         } else {
