@@ -40,8 +40,9 @@ const VERSION_INSTALADA = obtenerVersionInstalada();
 /**
  * Si el visitante llegó tocando «Buscar actualizaciones» en vez de «Visitar
  * extensión». Son dos intenciones distintas y merecen respuestas distintas:
- * quien vino a buscar una actualización quiere que le lleven la vista al
- * resultado; quien vino a ver el proyecto, no.
+ * quien vino a buscar una actualización ve el estado de versión, con la vista
+ * llevada al resultado; quien vino a ver el proyecto, no ve ninguno. Los dos
+ * mandan la versión, pero en el segundo caso sólo le sirve a la medición.
  */
 const VINO_A_BUSCAR = new URLSearchParams(window.location.search).has('buscar');
 
@@ -876,10 +877,23 @@ document.addEventListener('DOMContentLoaded', async () => {
     const versionInstalada = VERSION_INSTALADA;
     const badge = document.getElementById('version-badge');
 
-    // Sin comparación el número de versión es un dato secundario: se muestra
-    // como nota discreta. Cuando sí hay comparación, el bloque de estado ya
-    // informa ambas versiones y la nota sobraría.
-    if (!versionInstalada) {
+    // Sin comparación que mostrar, el número de versión es un dato secundario: va
+    // como nota discreta. Cuando sí se muestra el estado, el bloque ya informa
+    // ambas versiones y la nota sobraría.
+    //
+    // «Visitar extensión» también manda la versión, pero no para mostrarle nada:
+    // le sirve a la medición. El estado es la respuesta a «Buscar
+    // actualizaciones», y a quien vino a ver el proyecto no se le contesta una
+    // pregunta que no hizo. El evento se mide igual en los dos casos: si sólo se
+    // midiera al mostrar el bloque, `estado_version` pasaría a contar únicamente
+    // a quien busca actualizaciones y dejaría de responder cuántos llegan con una
+    // versión vieja.
+    if (!versionInstalada || !VINO_A_BUSCAR) {
+        if (versionInstalada) {
+            const comparacion = compararVersiones(versionInstalada, versionPublicada);
+            const estado = comparacion === 0 ? 'ok' : comparacion < 0 ? 'outdated' : 'dev';
+            medir('estado_version', { estado });
+        }
         if (badge) {
             badge.textContent = `Última versión disponible: v${versionPublicada}`;
             badge.hidden = false;
@@ -946,9 +960,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         );
     }
 
-    // Sólo se lleva la vista al bloque cuando el visitante vino puntualmente a
-    // buscar una actualización. Quien tocó «Visitar extensión» quiere ver el
-    // proyecto: el estado le queda igual a la vista en el encabezado, sin que
-    // la página le mueva el piso.
-    if (VINO_A_BUSCAR) destacarEstado();
+    // Llegar hasta acá implica que el visitante vino a buscar una actualización:
+    // se le lleva la vista al resultado.
+    destacarEstado();
 });

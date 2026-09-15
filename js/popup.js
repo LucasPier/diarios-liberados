@@ -268,11 +268,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Si sólo lo mandara el chiquito, la página casi nunca sabría con quién está
     // hablando.
     //
-    // Se diferencian por `buscar`, que distingue la intención: quien vino a
-    // buscar una actualización quiere que le lleven la vista al resultado; quien
-    // vino a ver el proyecto, no. La página borra los dos parámetros de la barra
-    // apenas los lee, así que el link que el usuario copie para compartir no
-    // arrastra una versión ajena.
+    // Se diferencian por `buscar`, que distingue la intención: sólo quien vino a
+    // buscar una actualización ve el resultado de la comparación; a quien vino a
+    // ver el proyecto la versión le sirve a la medición, no a él. La página borra
+    // los dos parámetros de la barra apenas los lee, así que el link que el
+    // usuario copie para compartir no arrastra una versión ajena.
     // Se arma con URLSearchParams y no concatenando: cuando no hay versión que
     // mandar —getManifest() puede fallar— una concatenación se comía también el
     // resto de los parámetros, y el botón de buscar actualizaciones perdía su
